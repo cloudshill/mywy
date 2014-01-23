@@ -1,0 +1,145 @@
+<section id="sys-notification">
+	<div class="container">
+		<div id="notification">
+			<%= devise_error_messages! %>
+		</div>
+	</div>
+</section>
+<section id="columns" class="offcanvas-siderbars">
+	<div class="row visible-xs">
+		<div class="container"> 
+			<div class="offcanvas-sidebars-buttons">
+				<button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
+				
+				<button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
+			</div>
+		</div>
+	</div>
+	<div id="breadcrumb">
+		<ol class="breadcrumb container">
+			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>Home</a></span></li>
+			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account"><span>Account</a></span></li>
+			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/register"><span>Register</a></span></li>
+		</ol>
+	</div>
+	<div class="container">
+		<div class="row">
+			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<div id="content">
+					<h1>注册 账号</h1>
+						<div class="wrapper underline no-margin">
+							<p>如果你已经有账号了, 请在这里进入登录 <%= link_to "页面", new_member_session_path %>.
+							</p>		
+							<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+								<h2>个人信息</h2>
+								<div class="content">
+									<table class="form">
+										<tr>
+											<td>
+												<span class="required">*</span>
+												<%= f.label :email %>:							</td>
+											<td>
+												<%= f.email_field :email, :autofocus => true %>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="required">*</span> 
+												<%= f.label :nickname %>:
+											</td>
+											<td>
+												<%= f.text_field :nickname %>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="required">*</span> 
+												<%= f.label :mobile %>:
+											</td>
+											<td>
+												<%= f.text_field :mobile %>
+											</td>
+										</tr>
+									</table>
+								</div>
+			
+			
+								<h2>你的密码</h2>
+								<div class="content">
+									<table class="form table-condensed">
+										<tr>
+											<td>
+												<span class="required">*</span> 
+												<%= f.label :password %>: 
+											</td>
+											<td>
+												<%= f.password_field :password %>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span class="required">*</span>
+												<%= f.label :password_confirmation %>:
+											</td>
+											<td>
+												<%= f.password_field :password_confirmation %>
+											</td>
+										</tr>
+									</table>
+								</div>
+				
+				
+								<div class="buttons">
+									<div class="right">
+										我已经阅读和同意美月无忧网站 <a class="colorbox" href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=information/information/info&amp;information_id=3" alt="Privacy Policy"><b>使用条款</b></a>
+										<input type="checkbox" name="agree" value="1" />
+										<%= f.submit "注册", :class=>"button" %>
+									</div>
+								</div>
+														
+							<% end %>
+						</div>
+					</div>	  
+	  
+				</section>	
+
+				<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12">	
+				<div id="column-right" class="sidebar">
+						<div class="box account highlights">
+			  			<div class="box-heading"><span>账号</span>
+			  		</div>
+			  		<div class="box-content">
+			    		<ul>
+			          <li>
+									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/login">登录</a>
+								</li>
+							  <li>
+									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/register">注册</a>
+							  </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/forgotten">忘记密码</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account">我的账号</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/address">地址簿</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/wishlist">心愿墙</a>
+						    </li>
+						    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/order">我的订单</a></li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/newsletter">Newsletter</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/recurring">Recurring payments</a>
+						    </li>
+			        </ul>
+			  		</div>
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+</section>

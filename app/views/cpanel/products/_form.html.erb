@@ -1,0 +1,56 @@
+<%= form_for([:cpanel, @node, @product], :validate => true) do |f| %>
+<fieldset>
+  <div class="form-group">
+    <label>名称：</label>
+    <%= f.text_field :name, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>条形码：</label>
+    <%= f.text_field :barcode, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>零售价：</label>
+    <%= f.text_field :price, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>入货价：</label>
+    <%= f.text_field :inprice, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>库存量：</label>
+    <%= f.text_field :inventory, :class=>"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>属性：</label>
+      
+    <div id="category-group">
+      <% @node.categories.where(:parent_id => 0).each do |root| %>
+        <div class="control-group">
+          <label class="control-label">
+            <%= root.name %>
+          </label>
+          <div class="controls">
+            <ul>
+            <% root.children.each do |leave| %>
+            <li>
+              <label class="checkbox inline">
+                <%= check_box_tag "product[category_ids][]", leave.id, @product.categories.map(&:id).include?(leave.id) %>
+                <%= leave.name %>
+              </label>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>描述：</label>
+    <%= f.text_area :description, :class => "form-control" %>
+  </div>
+  <%= f.submit "保存", :class => 'btn btn-default' %>
+  or
+  <%= link_to '返回', cpanel_node_products_path(@node), :class => 'btn btn-default' %>
+</fieldset>
+<% end %>

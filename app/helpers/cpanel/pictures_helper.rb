@@ -1,0 +1,2 @@
+module Cpanel::PicturesHelper
+end

@@ -1,0 +1,113 @@
+<section id="sys-notification">
+	<div class="container">
+		<div id="notification">
+			<%= devise_error_messages! %>
+		</div>
+	</div>
+</section>
+<section id="columns" class="offcanvas-siderbars">
+	<div class="row visible-xs">
+		<div class="container"> 
+			<div class="offcanvas-sidebars-buttons">
+				<button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
+				<button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
+			</div>
+		</div>
+	</div>
+	<div id="breadcrumb">
+		<ol class="breadcrumb container">
+			<li>
+				<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>Home</a></span>
+			</li>
+			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account"><span>Account</a></span></li>
+			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/login"><span>Login</a></span></li>
+		</ol>
+	</div>
+	<div class="container">
+		<div class="row">
+			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">  
+				<div id="content">
+					<h1>账号 登录</h1>		
+					<div class="login-content wrapper">
+						<div class="row">
+							<div class="col-lg-6 col-sm-6 col-xs-12">
+								<div class="inner no-margin">
+									<h2>新顾客</h2>
+									<div class="content">
+										<p>注册账号</p>
+										<p>注册账号，可以让你更方便地使用我们网站的所有功能，而且我们会根据随时提供优惠信息，根据你的购买需求，为你推荐你喜欢的商品。</p>
+										<p><%= link_to "马上注册", new_member_registration_path, :class=>"button" %></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-6 col-xs-12">
+								<div class="inner underline no-margin">
+									<h2>欢迎再次光临</h2>
+									<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+										<div class="content">					  
+											<div class="form-group">
+												<p>请登录</p>					  	
+												<label>账号/邮箱/手机</label>				
+												<p><%= f.text_field :login, :autofocus => true %></p>		
+											</div>
+											<div class="form-group">				      						  	
+												<%= f.label :password %>							
+												<p><%= f.password_field :password %></p>
+											</div>
+											<% if devise_mapping.rememberable? -%>
+										    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+										  <% end -%>
+											<div class="form-group">
+												<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/forgotten">忘记密码？</a>						
+											</div>
+
+											<div class="form-group">
+												<%= f.submit "登 录", :class => "button" %>
+											</div>				  
+										</div>			
+									<% end %>
+								</div>
+							</div>	
+						</div>	
+					</div>
+				</div> 
+			</section> 
+
+			<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12">	
+				<div id="column-right" class="sidebar">
+						<div class="box account highlights">
+			  			<div class="box-heading"><span>账号</span>
+			  		</div>
+			  		<div class="box-content">
+			    		<ul>
+			          <li>
+									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/login">登录</a>
+								</li>
+							  <li>
+									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/register">注册</a>
+							  </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/forgotten">忘记密码</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account">我的账号</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/address">地址簿</a>
+						    </li>
+						    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/wishlist">心愿墙</a></li>
+						    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/order">我的订单</a></li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/newsletter">Newsletter</a>
+						    </li>
+						    <li>
+						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/recurring">Recurring payments</a>
+						    </li>
+			        </ul>
+			  		</div>
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+</section>

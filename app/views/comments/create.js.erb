@@ -1,0 +1,4 @@
+<% if @success > 0 %>
+$('#comments_list').append("<%= escape_javascript(render(:partial => @comment)) %>")
+<% else %>
+<% end %>

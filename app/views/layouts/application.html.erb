@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>美月无忧</title>
+  	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  	<!-- END Icons -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  	<%= controller_stylesheet_link_tag %>
+  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  	<%= controller_javascript_include_tag %>
+  	<%= csrf_meta_tags %>
+</head>
+<body id="offcanvas-container" class="offcanvas-container layout-fullwidth fs12 page-common-home ">
+	<section id="page" class="offcanvas-pusher" role="main">
+		<header id="header">
+			<%= render "shared/topbar" %>
+			<%= render "shared/header_main" %>
+			<%= render "shared/header_bottom" %>
+		</header>
+		
+		<% if controller_name == "home" %>
+		<section class="pav-promotion" id="pav-promotion">
+			<div class="container">
+				<div class="in-border">
+					<div class="row"> 				
+						<div class="col-lg-9 col-md-9 col-sm-12 col-lg-offset-3 col-md-offset-3"> 
+							<div class="row">	
+								<div class="col-lg-9 col-md-9">
+									<div id="pavcontentslider8" class="carousel slide pavcontentslider hidden-xs">
+										<div class="carousel-inner">
+			 								<div class="item active">
+												<a href="#">
+													<img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/layer-slider-1-700x369.png" alt="New Arrivals" />
+												</a>
+												<div class="pav-caption expandUp typo-small green" style="top:222px;left:44px">New Arrivals</div>
+												<div class="pav-caption stretchRight typo-big black big-caption" style="top:250px;left:44px">35 % off</div>
+												<div class="pav-caption fadeIn typo-big-black black  normal-caption" style="top:248px;left:271px">sales</div>
+											</div>
+											<div class="item ">
+												<a href="#">
+													<img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/layer-slider-2-700x369.png" alt="fashion" />
+												</a>
+												<div class="pav-caption stretchLeft typo-small black" style="top:50px;left:72px">fashion</div>
+												<div class="pav-caption stretchRight typo-big black" style="top:75px;left:74px">summer 2013</div>
+											</div>
+											<div class="item ">
+												<a href="#">
+													<img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/layer-slider-3-700x369.png" alt="top" />
+												</a>
+												<div class="pav-caption expandOpen typo-small white" style="top:30px;left:113px">top</div>
+												<div class="pav-caption fadeIn typo-small white" style="top:55px;left:112px">favorite</div>
+												<div class="pav-caption expandOpen typo-big white" style="top:74px;left:113px">brands</div>
+											</div>
+											<div class="item ">
+												<a href="#">
+													<img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/layer-slider-4-700x369.png" alt="spring" />
+												</a>
+												<div class="pav-caption hatch typo-small orange" style="top:71px;left:379px">spring</div>
+												<div class="pav-caption expandOpen typo-big gray" style="top:98px;left:378px">collections</div>
+											</div>
+										</div>
+										<a class="carousel-control left fa fa-angle-left " href="#pavcontentslider8" data-slide="prev"></a>
+										<a class="carousel-control right fa fa-angle-right" href="#pavcontentslider8" data-slide="next"></a>
+										<ol class="carousel-indicators">
+											<li data-target="#pavcontentslider8" data-slide-to="0" class="active"></li>
+											<li data-target="#pavcontentslider8" data-slide-to="1" class=""></li>
+											<li data-target="#pavcontentslider8" data-slide-to="2" class=""></li>
+											<li data-target="#pavcontentslider8" data-slide-to="3" class=""></li>
+										</ol>
+									</div>
+									<script type="text/javascript">
+									<!--
+										$('#pavcontentslider8').carousel({interval:8000});
+									-->
+									</script>
+								</div>				
+								<div class="col-lg-3 col-md-3">
+									<div class="box pav-custom  custom-block hidden-xs hidden-sm">
+										<div class="box-heading">
+											<span>我们的承诺</span>
+										</div>
+										<div class="box-content">
+											<ul class="custom">
+												<li>
+													<i class="fa fa-legal">&nbsp;</i>
+													<h3>最优惠的价格</h3>
+													<p>Lorem Ipsum roin gra nibh vel velit</p>
+												</li>
+												<li>
+													<i class="fa fa-rocket">&nbsp;</i>
+													<h3>最准时的配送</h3>
+													<p>Aenean sollicitudin lorem quis bibendum</p>
+												</li>
+												<li>
+													<i class="fa fa-money">&nbsp;</i>
+													<h3>最安全的支付</h3>
+													<p>Duis sed odio sit amet nibh vulputate</p>
+												</li>
+												<li>
+													<i class="fa fa-shopping-cart">&nbsp;</i>
+													<h3>最完善的售后</h3>
+													<p>Lorem Ipsum roin gra nibh vel velit</p>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>				
+						</div> 			 
+					</div>
+				</div>
+			</div>	
+		</section>
+		<% end %>
+
+		<section id="sys-notification">
+			<div class="container">
+				<div id="notification"></div>
+			</div>
+		</section>
+		
+		<%= yield %>
+
+
+		<%= render "shared/footer" %>
+	</section>
+</body>
+</html>

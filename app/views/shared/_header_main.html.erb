@@ -1,0 +1,46 @@
+			<section id="header-main">		
+				<div class="container">
+					<div class="header-wrap">												
+						<div class="pull-left inner">
+							<div id="logo">
+								<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home">
+									<img src="http://www.themelexus.com/demo/opencart/megashop/image/data/logo.png" title="Lexus Mega Shop" alt="Lexus Mega Shop" />
+								</a>
+							</div>				
+						</div>
+						<div class="pull-right inner">
+							<section id="pav-mainnav">
+								<div class="container" style="width:800px;height:50px;">
+									<div class="pav-megamenu">
+										<div class="navbar navbar-default" style="background:#FFF;height:50px;">
+											<div id="mainmenutop" class="megamenu" role="navigation">
+												<div class="navbar-header">
+													<a href="javascript:;" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+												    <span class="fa fa-bars"></span>		        
+												  </a>
+													<div class="collapse navbar-collapse navbar-ex1-collapse">
+														<ul class="nav navbar-nav megamenu">
+															<li class="home" >
+																<%= link_to root_path do %>
+																	<span class="menu-title">首页</span>
+																<% end %>
+															</li>
+															<% Node.all.each do |node| %>
+															<li class="multi-menu parent dropdown" >
+																<%= link_to products_path(:node_id => node.id) do %>
+																	<span class="menu-title"><%= node.name %></span>
+																<% end %>
+															</li>
+															<% end %>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>		
+							</section>
+						</div>													
+					</div>
+				</div>
+			</section>

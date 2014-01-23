@@ -1,0 +1,28 @@
+<div class="col-md-2">
+  <div class="sidebar">
+    <ul class="nav nav-list">
+      <li>
+        <%= link_to "添加商品", new_cpanel_node_product_path(@node) %>
+      </li>
+      <li>
+        <%= link_to "商品列表", cpanel_node_products_path(@node) %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-md-10">
+  <div class="content">
+    <ul class="breadcrumb">
+      <li>管理面板</li>
+      <li>商品管理</li>
+      <li><%= @node.name %></li>
+      <li>添加</li>
+    </ul>
+    <div class="row">
+      <div class="col-md-6">
+        <%= render 'form' %>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>

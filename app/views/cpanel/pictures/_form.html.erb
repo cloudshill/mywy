@@ -1,0 +1,30 @@
+<%= form_for([:cpanel, @node, @product, @picture], :remote => true) do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        上传图片
+      </div>
+      <div class="modal-body">
+        
+        <div id="error_explanation">
+          <ul class="list-unstyled">
+          </ul>
+        </div>
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+        <div class="field">
+          <%= f.label :image %><br>
+          <%= f.file_field :image %>
+        </div>
+        <div class="field">
+          <%= f.label :is_cover %><br>
+          <%= f.check_box :is_cover %>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "保存", :class=>"btn btn-primary" %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+<% end %>

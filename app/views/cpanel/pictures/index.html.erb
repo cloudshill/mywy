@@ -1,0 +1,48 @@
+<div class="col-md-2">
+  <div class="sidebar">
+    <ul class="nav nav-list">
+      <li>
+        <%= link_to "添加商品", new_cpanel_node_product_path(@node) %>
+      </li>
+      <li>
+        <%= link_to "商品列表", cpanel_node_products_path(@node) %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-md-10">
+  <div class="content">
+    <ul class="breadcrumb">
+      <li>管理面板</li>
+      <li>商品管理</li>
+      <li><%= @node.name %></li>
+      <li><%= @product.name %></li>
+      <li>图片管理</li>
+    </ul>
+    <div class="page-header">
+      <%= link_to "上传", new_cpanel_node_product_picture_path(@node, @product), :class=>"btn btn-default", "data-toggle"=>"modal", "data-target"=>"#myModal" %>
+    </div>
+    <table class="table table-hover table-border">
+      <thead>
+        <th>图片</th>
+        <th>封面</th>
+        <th>上传时间</th>
+        <th width="50">操作</th>
+      </thead>
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td>
+          <%= image_tag(picture.image.url("50x50"), :class=>"img-rounded") %>
+        </td>
+        <td><%= picture.is_cover ? "是" : "否" %></td>
+        <td><%= formattime(picture.created_at) %></td>
+        <td>
+          <span class="pull-right">
+            <%= link_to "删除", cpanel_node_product_picture_path(@node, @product, picture), :class=>"btn btn-danger", :method =>:delete, data: { confirm: 'Are you sure?' } %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

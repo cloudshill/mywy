@@ -1,0 +1,58 @@
+<section id="columns" class="offcanvas-siderbars">
+  <div class="row visible-xs">
+    <div class="container"> 
+      <div class="offcanvas-sidebars-buttons">
+        <button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
+      
+        <button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
+      </div>
+    </div>
+  </div>
+  <div id="breadcrumb">
+    <ol class="breadcrumb container">
+      <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>首页</a></span></li>
+      <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account"><span>账号</a></span></li>
+      <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/edit"><span>修改资料</a></span></li>
+    </ol>
+  </div>
+  <div class="container">
+    <div class="row">
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
+        <div id="content">
+          <div class="wrapper no-margin">
+            <h1>我的订单</h1>
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>商品</th>
+                  <th>总额</th>
+                  <th>收货地址</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @orders.each do |order| %>
+                  <tr>
+                    <td>
+                      <% order.products.each do |product| %>
+                      <%= product.name %>
+                      <% end %>
+                    </td>
+                    <td>￥<%= order.total_price %></td>
+                    <td><%= order.address %></td>
+                    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </section>
+
+      <%= render 'shared/account_sidebar' %>
+    </div>
+  </div>
+</section>

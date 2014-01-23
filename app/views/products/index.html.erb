@@ -1,0 +1,112 @@
+<section id="columns" class="offcanvas-siderbars">
+  <div class="row visible-xs">
+    <div class="container"> 
+      <div class="offcanvas-sidebars-buttons">
+        <button type="button" data-for="column-left" class="pull-left btn btn-danger">
+          <i class="fa fa-sort-amount-asc"></i> Sidebar Left
+        </button>
+      
+        <button type="button" data-for="column-right" class="pull-right btn btn-danger">
+          Sidebar Right <i class="fa fa-sort-amount-desc"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="breadcrumb">
+    <ol class="breadcrumb container">
+      <li>
+        <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>Home</a></span>
+      </li>
+      <li>
+        <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=product/category&amp;path=17">
+          <span>Software</span>
+        </a>
+      </li>
+    </ol>
+  </div>
+  <div class="container">
+    <div class="row"> 
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">   
+        <div id="content">
+          <div class="content-top"></div>
+          <div class="category-info clearfix">
+            <div class="image">
+              <img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/banner-category-870x220.jpg" alt="Software" class="responsive-img" />
+            </div>
+          </div>
+          <div class="product-filter clearfix">
+            <ul>
+              <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
+              <li>
+                <ul class="category clearfix">
+                  <li><%= root.name %></li>
+                  <li><%= render_option_of_total_category(@node.id, root.id) %></li>
+                  <% root.children.each do |leave| %>
+                  <li><%= render_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <% end %>
+            </ul>
+          </div>    
+      
+          <div class="product-grid">     
+            <div class="products-block">
+              <div class="row">
+                <% @products.each do |product| %>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">   
+                  <div class="product-block">
+                    <div class="image">
+                      <a href="">
+                        <%= image_tag(product.pictures.first.image.url("500x500"), :title=>"#{product.name}", :alt=>"#{product.name}", :class=>"img-responsive") %>
+                      </a>
+                      <a href="product.pictures.first.image.url('500x500')" class="info-view colorbox product-zoom" rel="colorbox" title="MacBook Air">
+                        <i class="fa fa-search-plus"></i>
+                      </a>
+                      <%= link_to product_path(product), :class=>"pav-colorbox" do %>
+                        <span class='fa fa-eye'></span>浏览
+                      <% end %>
+                      <div class="img-overlay"></div>
+                    </div>
+                    <div class="product-meta">                  
+                      <h3 class="name">
+                        <a href=""><%= link_to product.name, product_path(product) %></a>
+                      </h3>                  
+                      <p class="description">
+                        MacBook Air is ultrathin, ultraportable,...
+                      </p>
+                      <div class="rating">
+                        <%= image_tag("stars-5.png") %>
+                      </div>
+                      <div class="price">￥<%= product.price %>
+                      </div>
+                                        
+                      <div class="action">
+                        <div class="cart">
+                          <a class="product-icon fa fa-shopping-cart shopping-cart " onclick="return App.addToCart(this);" data-id="<%= product.id %>" data-placement="top" data-toggle="tooltip" data-original-title="添加到购物车"></a>
+                        </div>
+                        <div class="wishlist">
+                          <%= favorites_tag(product) %> 
+                        </div>
+                        <div class="compare">     
+                          <a onclick="window.App.addToCompare('47');" title="Add to Compare" class="fa fa-exchange product-icon" data-placement="top" data-toggle="tooltip" data-original-title="对比"></a>  
+                        </div>
+                      </div>  
+                    </div>  
+                         
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="pagination">
+            <div class="results">Showing 1 to 12 of 12 (1 Pages)</div>
+          </div>                  
+        </div>
+      </section> 
+
+      <%= render 'shared/category_right' %>
+    </div>
+  </div>
+</section>

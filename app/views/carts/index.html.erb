@@ -1,0 +1,112 @@
+<section id="columns" class="offcanvas-siderbars">
+  <div class="row visible-xs"><div class="container"> 
+    <div class="offcanvas-sidebars-buttons">
+      <button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
+      
+      <button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
+    </div>
+  </div></div>
+    <div id="breadcrumb"><ol class="breadcrumb container">
+    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>首页</a></span></li>
+    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=checkout/cart"><span>购物车</a></span></li>
+  </ol>
+</div>  
+
+  <div class="container">
+    <div class="row">
+      <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id="content">
+          <h1>购物车</h1>
+          <div class="content page-not-found">
+            <% if @products.blank? %>
+            <h2><span class="fa fa-notification"></span>对不起，在购物车里找不到任何商品！</h2>
+            <p>你的购物车还是空的哟!赶快 <%= link_to "喂饱", root_path, :class=>"button" %> 它吧！</p>
+
+            <div class="buttons">
+              <div class="right">
+                <%= link_to "继续购物", root_path, :class=>"button" %></div>
+              </div>
+            </div>
+            <% else %>
+            <div class="checkout wrapper no-margin">
+                <div class="cart-info table-responsive">
+                  <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <td style="width:65px;"><input type="checkbox" checked="true" /> 全选</td>
+                        <td class="image">图片</td>
+                        <td class="name">商品</td>
+                        <td class="quantity" style="width:70px;">数量</td>
+                        <td class="price" style="width:100px;">单价</td>
+                        <td class="total" style="width:100px;">总价</td>
+                        <td style="width:110px;"></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <form action="<%= new_order_path %>" method="get" id="products_list_form">
+                    <% @products.each do |product| %>
+                      <tr id="product_<%= product.id %>">
+                        <td style="width:50px;line-height:50px;text-align:center;">
+                          <input type="checkbox" name="products[]" value="<%= product.id %>" checked="true" />
+                        </td>
+                        <td class="image" data-label="Image" style="width:100px;height:50px;">
+                          <%= link_to product_path(product) do %>
+                            <%= image_tag(product.pictures.first.image.url("500x500"), :id=>"image", "data-zoom-image"=>"#{product.pictures.first.image.url("500x500")}") %>
+                          <% end %>
+                        </td>
+                        <td class="name" data-label="Product Name">
+                          <%= link_to product_path(product) do %>
+                            <%= product.name %>
+                          <% end %>
+                          <div class="cart-option">
+                          </div>
+                          <small>Reward Points: 700</small>
+                        </td>
+                        <td class="quantity" data-label="Quantity" style="vertical-align:middle;">
+                          <input type="text" name="quantity" data-id="<%= product.belongs_to_line_item(current_member).id %>" data-product="<%= product.id %>" value="<%= product.quantity_in_cart(current_member) %>" size="1" />
+                        </td>
+                        <td class="price" data-label="Unit Price">￥<%= product.price %></td>
+                        <td class="total" data-label="Total">￥<%= product.price * product.quantity_in_cart(current_member) %></td>
+                        <td>
+                          <%= link_to "移出购物车", line_item_path(product.belongs_to_line_item(current_member)), :remote => true, :method => :delete, :class=>"button" %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    </form>
+                    </tbody>
+                  </table>
+                </div>
+
+            </div>  
+            <div class="buttons">
+              <div class="right">
+                <a href="#" class="button" onclick="$('#products_list_form').submit()">结算</a>
+              </div>
+              <div class="left">
+                <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home" class="button">继续购物</a>
+              </div>
+            </div>
+            <% end %>
+          </div>   
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+$("input[name='quantity']").change(function(){
+  id = $(this).data("id");
+  product_id = $(this).data("product");
+  amount = $(this).val();
+  $.ajax({
+    url: "/line_items/" + id,
+    type: "PUT",
+    data: {
+      line_item: {
+        product_id: product_id,
+        amount: amount
+      }
+    }
+  });
+});
+</script>

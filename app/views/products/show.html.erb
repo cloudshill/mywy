@@ -1,0 +1,163 @@
+<section id="columns" class="offcanvas-siderbars">
+  <div class="row visible-xs">
+    <div class="container"> 
+      <div class="offcanvas-sidebars-buttons">
+        <button type="button" data-for="column-left" class="pull-left btn btn-danger">
+          <i class="fa fa-sort-amount-asc"></i> Sidebar Left
+        </button>
+      
+        <button type="button" data-for="column-right" class="pull-right btn btn-danger">
+          Sidebar Right <i class="fa fa-sort-amount-desc"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="breadcrumb">
+    <ol class="breadcrumb container">
+      <li>
+        <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>首页</a></span>
+      </li>
+      <li>
+        <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=product/category&amp;path=17">
+          <span><%= @product.node.name %></span>
+        </a>
+      </li>
+    </ol>
+  </div>
+  <div class="container">
+    <div class="row">
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">  
+        <div id="content" class="product-detail">
+          <div class="product-info">
+            <div class="row">     
+              <div class="col-lg-5 col-sm-5 col-xs-12 image-container">
+                <span class="product-label-special"><span>Sale</span></span>
+                <div class="image">
+                  <a href="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/product_14-500x500.jpg" title="Elegant jute sofa " class="colorbox">
+                    <%= image_tag(@product.pictures.first.image.url("500x500"), :id=>"image", "data-zoom-image"=>"#{@product.pictures.first.image.url("500x500")}", :class=>"product-image-zoom img-responsive") %>
+                  </a>
+                </div>
+                <div class="image-additional slide carousel" id="image-additional">
+                  <div class="carousel-inner">
+                    <div class="item">
+                      <% @product.pictures.each do |pic| %>
+                      <a href="<%= pic.image.url("500x500")%>" class="colorbox" data-zoom-image="<%= pic.image.url("500x500")%>" data-image="<%= pic.image.url("500x500")%>">
+                        <img src="<%= pic.image.url("500x500")%>" style="max-width:80px" data-zoom-image="<%= pic.image.url("500x500")%>" class="product-image-zoom img-responsive" />
+                      </a>
+                      <% end %>
+                    </div>              
+                  </div>
+                  <div class="carousel-control left fa fa-angle-left" href="#image-additional" data-slide="prev">
+                  </div>
+                  <div class="carousel-control right fa fa-angle-right" href="#image-additional" data-slide="next">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7 col-sm-7 col-xs-12">       
+                <h1><%= @product.name %> </h1>         
+                <div class="description">
+                  <p><b>条形码:</b><%= @product.barcode %></p>
+                  <p><b>Availability:</b><span class="availability">In Stock</span></p>  
+                </div>
+                <div class="price">
+                  <div class="price-gruop">
+                    <span class="text-price">价格:</span>
+                    <span class="price-old">￥<%= @product.price %></span> 
+                    <span class="price-new">$96.00</span>
+                  </div>  
+                  <div class="other-price">
+                    <span class="price-tax">Ex Tax: $80.00</span><br/>
+                  </div>
+                </div>
+                <div class="product-extra">
+                  <div class="quantity-adder pull-left">
+                    <div class="quantity-number pull-left">
+                      <span>数 量:</span>
+                      <input type="text" name="quantity" id="quantity" size="2" value="1" />
+                    </div>
+                    <div class="quantity-wrapper pull-left">
+                      <span class="add-up add-action fa fa-plus" onClick="setAmount.add('#quantity')"></span> 
+                      <span class="add-down add-action fa fa-minus" onClick="setAmount.reduce('#quantity')"></span>
+                    </div>
+                  </div>     
+                  <div class="cart pull-left">
+                    <button id="button-cart" class="btn btn-cart" onclick="return Product.addToCart(this);" data-id="<%= @product.id %>">
+                      <span class="fa fa-shopping-cart  add-to-icon"></span>
+                      <span>添加到购物车</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="action">
+                  <div class="pull-left">
+                    <a class="wishlist" onclick="addToWishList('60');">
+                      <i class="fa fa-heart fa fa-wishlist-compare"></i>
+                      收藏夹
+                    </a>        
+                  </div>
+                  <div class="pull-left">
+                    <a class="compare" onclick="addToCompare('60');">
+                      <i class="fa fa-exchange fa fa-wishlist-compare"></i>
+                      对比
+                    </a>
+                  </div>
+                </div>
+                <div class="review">
+                  <div>
+                    <%= image_tag("stars-0.png") %>&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');"><%= @product.comments.count %> 评价</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');">我也评价评价！</a>
+                  </div>
+                </div>
+                <div class="share">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tabs-group box">
+          <div id="tabs" class="htabs">
+            <ul class="nav nav-tabs box-heading clearfix">
+              <li><a href="#tab-description">详细描述</a></li>     
+              <li><a href="#tab-review">评价 (<%= @product.comments.count %>)</a></li>
+            </ul>     
+          </div>
+          <div id="tab-description" class="tab-content">
+            <%= @product.description %>
+          </div>
+          <div id="tab-review" class="tab-content no-margin">
+            <table class="table" id="comments_list">
+              <% @product.comments.each do |comment| %>
+              <tr>
+                <td></td>
+                <td><%= comment.body %></td>
+              </tr>
+              <% end %>
+            </table>
+            <div id="review"></div>
+            <h2 id="review-title">评价</h2>
+            <%= form_for([@product, @comment], :remote => true) do |f| %>
+            <div class="form-group">
+              <p>
+                <%= f.text_area :body, :class => "form-control", :cols => "50", :rows => "8" %>
+              </p>
+            </div>
+            
+            <div class="buttons no-padding">
+              <div class="pull-right"><%= f.submit "发表", :class=>"button" %></div>
+            </div>
+            <% end %>
+          </div>
+
+        </div>
+      </section>
+ 
+      <%= render 'shared/category_right' %>
+    </div>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  $("#image").elevateZoom({gallery:'image-additional', cursor: 'pointer', galleryActiveClass: 'active'});
+  $('#image-additional .item:first').addClass('active');
+  $('#image-additional').carousel({interval:false})
+  $('#tabs a').tabs();
+</script> 

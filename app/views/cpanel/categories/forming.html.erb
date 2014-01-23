@@ -1,0 +1,13 @@
+<% @node.categories.where(:parent_id => nil).each do |root| %>
+  <div class="control-group">
+    <label class="control-label"><%= root.name %></label>
+    <div class="controls">
+      <% Category.where(:parent_id => root.id).each do |leave| %>
+      <label class="checkbox inline">
+        <%= check_box_tag "product[category_ids][]", leave.id, @product.categories.map(&:id).include?(leave.id) if not @product.blank? %>
+        <%= leave.name %>
+      </label>
+      <% end %>
+    </div>
+  </div>
+<% end %>

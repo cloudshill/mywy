@@ -1,0 +1,26 @@
+defaults: &defaults
+  app_name: "MeiYueWuYou"
+  foot_html: "&copy; MeiYueWuYou."
+  domain: "meiyuewuyou.com"
+  email_sender: '85636682@qq.com'
+  upload_url: "meiyuewuyou.b0.upaiyun.com"
+  upyun_username: "meiyuewuyou"
+  upyun_password: "hs123456"
+  upyun_bucket: "meiyuewuyou"
+  cdn_url: "meiyuewuyou-file.u.qiniudn.com"
+  sms:
+    tui3:
+      username: 'stephen'
+      password: '861117'
+    smsbao:
+      username: 'stephen'
+      password: '861117'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

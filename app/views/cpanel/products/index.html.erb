@@ -1,0 +1,99 @@
+<div class="col-md-2">
+  <div class="sidebar">
+    <ul class="nav nav-list">
+      <li>
+        <%= link_to "添加商品", new_cpanel_node_product_path(@node) %>
+      </li>
+      <li>
+        <%= link_to "商品列表", cpanel_node_products_path(@node) %>
+      </li>
+      <li>
+        <a href="#" id="get_data">导入数据</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-md-10">
+  <div id="test" style="height:300px;width:300px;"></div>
+  <div class="content">
+    <ul class="breadcrumb">
+      <li>管理面板</li>
+      <li>商品管理</li>
+      <li><%= @node.name %></li>
+    </ul>
+    <h2>卫生巾</h2>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">筛选</h3>
+      </div>
+      <div class="panel-body">
+        <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
+        <ul class="category">
+          <li><%= root.name %></li>
+          <li><%= render_cpanel_option_of_total_category(@node.id, root.id) %></li>
+          <% root.children.each do |leave| %>
+          <li><%= render_cpanel_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
+          <% end %>
+        </ul>
+        <br/>
+        <% end %>
+      </div>
+    </div>
+    <table class="table" style="width:100%;">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th style="width: 100px;">条形码</th>
+          <th style="width: 50px;">图片</th>
+          <th style="width: 50px;">价格</th>
+          <th style="width: 50px;">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.barcode %></td>
+            <td>(张)</td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  价格 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">零售价：<%= product.price %>(元)</a></li>
+                  <li><a href="#">入货价：<%= product.inprice %>(元)</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  操作 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><%= link_to "查看", cpanel_node_product_path(@node, product) %></li>
+                  <li><%= link_to "修改", edit_cpanel_node_product_path(@node, product) %></li>
+                  <li><%= link_to "删除", cpanel_node_product_path(@node, product), :method => :delete %></li>
+                  <li><%= link_to "上传图片", cpanel_node_product_pictures_path(@node, product) %></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  $("#get_data").click(function() {
+    $.ajax({
+      url: "http://meiyuewuyou.com/products.json",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(data){
+        $("#test").html(data);
+      }
+    }); 
+  });
+</script>

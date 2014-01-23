@@ -1,0 +1,31 @@
+      <aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12"> 
+        <div id="column-right" class="sidebar">
+          <div class="box account highlights">
+            <div class="box-heading">
+              <span>我的账号</span>
+            </div>
+            <div class="box-content">
+              <ul>
+                <li>
+                  <%= link_to "账号资料", edit_member_registration_path %>
+                </li>
+                <li>
+                  <%= link_to "地址本", "#" %>
+                </li>
+                <li>
+                  <%= link_to "收藏夹", favorites_accounts_path %>
+                </li>
+                <li>
+                  <%= link_to "我的订单", orders_path %>
+                </li>
+                <li>
+                  <%= link_to "站内通知", "#" %>
+                </li>
+                <li>
+                  <%= link_to "退出登录", destroy_member_session_path, :method => :delete %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>

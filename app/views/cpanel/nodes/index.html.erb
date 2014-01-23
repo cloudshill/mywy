@@ -1,0 +1,43 @@
+<div class="col-md-2">
+  <div class="sidebar"></div>
+</div>
+<div class="col-md-10">
+  <div class="content">
+    <ul class="breadcrumb">
+      <li>管理面板</li>
+      <li>节点管理</li>
+    </ul>
+    <h2>节点（<%= link_to "添加节点", new_cpanel_node_path %>）</h2>
+            <div class="well widget" style="display: none;">
+                <form class="form-inline" style="margin-bottom: 0px;">
+                    <input class="input-xlarge" placeholder="Search All Users..." type="text">
+                    <button class="btn" type="button"><i class="icon-search"></i> Go</button>
+                </form>
+            </div>
+            <table class="table table-first-column-check">
+              <thead>
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>ID</th>
+                  <th>名称</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @nodes.each do |node| %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><%= node.id %></td>
+                  <td><%= node.name %></td>
+                  <td>
+                    <%= link_to "修改", edit_cpanel_node_path(node), :class => 'btn' %>
+                    <%= link_to "删除", cpanel_node_path(node), :method => :delete ,:class => 'btn' %>
+                    <%= link_to "商品", cpanel_node_products_path(node), :class => 'btn btn-default' %>
+                    <%= link_to "属性", cpanel_node_categories_path(node), :class => "btn btn-default" %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+  </div>
+</div>

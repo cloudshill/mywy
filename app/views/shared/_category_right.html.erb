@@ -1,0 +1,65 @@
+<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12"> 
+        <div id="column-right" class="sidebar">
+              <div class="box category highlights">
+                <div class="box-heading">
+                  <span>分类</span>
+                </div>
+                <div class="box-content">
+                  <ul id="accordion" class="box-category">
+                  <% Node.all.each do |node| %>
+                    <li class="">
+                      <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=product/category&amp;path=33"><%= node.name %></a>
+                    </li>
+                  <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="box box-product bestseller">
+                <div class="box-heading">
+                  <span>Bestsellers</span>
+                </div> 
+                <div class="box-content">
+                  <div class="product-grid">
+                    <div class="row">
+                      <div class="col-lg-3 col-sm-3 col-xs-12">
+                        <div class="product-block">
+                          <div class="image">
+                            <span class="product-label-special"><span>text_sale</span></span>
+                            <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=product/product&amp;product_id=59"><img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/product_10-95x100.jpg" alt="Vintage sofas" class="img-responsive" /></a>
+                            <div class="img-overlay"></div>
+                          </div>
+                          <div class="product-meta">
+                            <h3 class="name">
+                              <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=product/product&amp;product_id=59">Vintage sofas</a>
+                            </h3>
+                            <div class="price">
+                              <span class="price-old">$273.43</span> <span class="price-new">$88.95</span>
+                            </div>
+                              
+                            <div class="action">
+                              <div class="cart">
+                                <input type="button" value="&#xf07a;" onclick="addToCart('59');" class="product-icon fa fa-shopping-cart shopping-cart " data-placement="top" data-toggle="tooltip" data-original-title="Add to Cart" />
+                              </div>
+                              <div class="wishlist"> 
+                                <a onclick="addToWishList('59');" title="Add to Wish List" class="fa fa-heart product-icon" data-placement="top" data-toggle="tooltip" data-original-title="Add to Wish List"></a>
+                              </div>
+                              <div class="compare">
+                                <a onclick="addToCompare('59');" title="Add to Compare" class="fa fa-exchange product-icon" data-placement="top" data-toggle="tooltip" data-original-title="Add to Compare"></a>
+                              </div>
+                            </div>
+                          </div>    
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="banner0" class="box banner">
+                <div>
+                  <img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/banner-macbook-270x230.jpg" alt="Macbook Pro" title="Macbook Pro" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>

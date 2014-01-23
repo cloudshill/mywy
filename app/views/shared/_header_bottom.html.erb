@@ -1,0 +1,121 @@
+			<section id="header-bottom" class="hidden-xs hidden-sm">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-sm-3 col-md-3 hidden-xs hidden-sm">
+							<div id="pav-verticalmenu" class="pav-dropdown">
+								<div class="menu-heading d-heading" id="category-menu">
+									<h4>
+										商品分类<span class="arrow-down pull-right"><span></span></span>
+									</h4>
+								</div>
+								
+								<div class="menu-content d-content" id="category-content" <%= raw 'style="display:none;"' if controller_name != "home" %>>
+									<div class="pav-verticalmenu">
+										<div class="navbar navbar-default">
+											<div id="mainmenutop" class="verticalmenu" role="navigation">
+												<div class="navbar-header">
+													<div class="collapse navbar-collapse navbar-ex1-collapse">
+														<ul class="nav navbar-nav verticalmenu">
+															<% Node.all.each do |node| %>
+															<li class="home" >
+																<%= link_to products_path(:node_id => node.id), :class => "dropdown-toggle", "data-toggle"=>"dropdown" do %>
+																	<span class="menu-title"><%= node.name %></span>
+																	<b class="caret"></b>
+																<% end %>
+																<div class="dropdown-menu level1">
+																	<div class="dropdown-menu-inner">
+																		<div class="row">
+																			<div class="col-sm-12 mega-col" data-colwidth="12" data-type="menu" >
+																				<div class="mega-col-inner">
+																					<ul class="nav navbar-nav verticalmenu">
+																						<% Category.roots.where(:node_id => node.id).order("id ASC").each do |root| %>
+																						<li class="parent dropdown pav-parrent">
+																							<a class="dropdown-toggle" data-toggle="dropdown" href="">
+																								<span class="menu-title"><%= root.name %></span>
+																								<b class="caret"></b>
+																							</a>
+																							<div class="dropdown-menu level2">
+																								<div class="dropdown-menu-inner">
+																									<div class="row">
+																										<div class="col-sm-12 mega-col" data-colwidth="12" data-type="menu" >
+																											<div class="mega-col-inner">
+																												<ul class="nav navbar-nav verticalmenu">
+																												<% root.children.each do |leave| %>
+																													<li><%= category_link(leave.name, node.id, root.id, leave.id) %></li>
+																												<% end %>
+																												</ul>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+																							</div>
+																						</li>
+																						<% end %>
+																					</ul>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</li>
+															<% end %>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>			
+						</div>
+						<div class="col-lg-7 col-sm-6 col-md-6 col-xs-12">
+							<div id="search">							
+								<input type="text" name="search" placeholder="搜索" value="" class="form-control input-search" />
+								<div class="button-search"><span class="fa fa-search"></span>
+								</div>
+							</div>
+						</div>
+							
+						<div class="col-lg-2 col-sm-6 col-md-3 col-xs-12">
+							<div class="cart-top">
+								<div id="cart" class="clearfix">
+									<div class="heading">
+										<i class="fa fa-shopping-cart "></i>
+										<div class="cart-inner">
+											<h4>购物车</h4>
+											<a><span id="cart-total">0 商品(s) - $0.00</span></a>
+										</div>
+									</div>
+	
+									<div class="content">
+										<div class="empty">你的购物车是空的!</div>
+									</div>  
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+<% if controller_name != "home" %>
+			<script type="text/javascript">
+			$('#category-menu').hover(function(){
+				if ($("#category-content").css("display")=="none") {
+					$("#category-content").css("display", "block");
+				}
+			}, function(){
+				if ($("#category-content").css("display")=="block") {
+					$("#category-content").css("display", "none");
+				}
+			});
+			$('#category-content').hover(function(){
+				if ($("#category-content").css("display")=="none") {
+					$("#category-content").css("display", "block");
+				}
+			}, function(){
+				if ($("#category-content").css("display")=="block") {
+					$("#category-content").css("display", "none");
+				}
+			});
+			</script>
+<% end %>

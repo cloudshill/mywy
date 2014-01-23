@@ -1,0 +1,31 @@
+<section id="columns" class="offcanvas-siderbars">
+  <div class="row visible-xs">
+    <div class="container"> 
+      <div class="offcanvas-sidebars-buttons">
+        <button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
+      
+        <button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
+      </div>
+    </div>
+  </div>
+  <div id="breadcrumb">
+    <ol class="breadcrumb container">
+      <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>首页</a></span></li>
+      <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account"><span>账号</a></span></li>
+      <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/edit"><span>收藏夹</a></span></li>
+    </ol>
+  </div>
+  <div class="container">
+    <div class="row">
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
+        <div id="content">
+          <div class="wrapper no-margin">
+
+          </div>
+        </div>
+      </section>
+
+      <%= render 'shared/account_sidebar' %>
+    </div>
+  </div>
+</section>

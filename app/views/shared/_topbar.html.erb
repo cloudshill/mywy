@@ -1,0 +1,105 @@
+			<section id="topbar">
+				<div class="container">				
+					<div class="navbar-header pull-left hidden-xs hidden-sm">
+						<div class="clearfix">
+							<% if member_signed_in? %>
+							<ul class="links">
+								<li>
+									<%= link_to favorites_accounts_path do %>
+										<i class="fa fa-user"></i>收藏夹 (0)
+									<% end %>
+								</li>
+								<li>
+									<%= link_to edit_member_registration_path do %>
+										<i class="fa fa-list"></i>我的账号
+									<% end %>
+								</li>
+								<li>
+								<%= link_to carts_path do %>
+									<i class="fa fa-shopping-cart "></i>我的购物车</a></li>
+								<% end %>
+								<li>
+									<%= link_to destroy_member_session_path, :method => :delete, :class=>"last" do %>
+										<i class="fa fa-archive"></i>退出
+									<% end %>
+								</li>
+							</ul>
+							<% else %>
+							<div class="login links">
+								<%= link_to carts_path do %>
+									<i class="fa fa-shopping-cart "></i>我的购物车</a></li>
+								<% end %>
+								<%= link_to new_member_session_path do %>
+									<i class="fa fa-lock"></i> 登录
+								<% end %>
+								<%= link_to new_member_registration_path do %>
+									<i class=" fa fa-pencil"></i> 注册
+								<% end %>
+							</div>
+							<% end %>
+						</div>					
+					</div>
+
+					<div class="show-mobile hidden-lg hidden-md">
+						<div class="quick-access pull-left">
+							<div class="quickaccess-toggle">
+								<i class="fa fa-user"></i>															
+							</div>	
+							<div class="inner-toggle">
+								<ul class="links">
+									<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/wishlist" id="wishlist-total"><i class="fa fa-user"></i>Wish List (0)</a></li>
+									<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account"><i class="fa fa-list"></i>我的账号</a></li>
+									<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=checkout/cart"><i class="fa fa-shopping-cart "></i>购物车</a></li>
+									<li><a class="last" href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=checkout/checkout"><i class="fa fa-archive"></i>退出</a></li>
+								</ul>
+								<div class="login links">
+									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/login"><i class="fa fa-lock"></i> 登录</a><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/register"><i class=" fa fa-pencil"></i> 注册</a>									 
+								</div>
+							</div>						
+						</div>
+
+						<div id="search_mobile" class="search pull-left">				
+							<div class="quickaccess-toggle">
+								<i class="fa fa-search"></i>								
+							</div>																								
+							<div class="inner-toggle">
+								<input id="search-mobile" type="text" name="search-mobile" placeholder="搜索" value="" class="form-control input-search" />
+								<div class="button-search-mobile"><span class="fa fa-search"></span></div>
+							</div>
+						</div>
+
+
+						<div class="cart-m pull-left">
+							<div class="quickaccess-toggle">
+								<i class="fa fa-shopping-cart "></i>								
+							</div>
+							<div class="inner-toggle">
+								<div class="cart-top">
+									<div id="cart-m" class="clearfix">
+										<div class="heading">
+											<i class="fa fa-shopping-cart "></i>
+											<div class="cart-inner">
+												<h4>购物车</h4>
+												<a><span id="cart-total">0 商品(s) - $0.00</span></a>
+											</div>
+										</div>
+	
+										<div class="content">
+											<div class="empty">你的购物车是空的!</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="support pull-right hidden-xs hidden-sm">
+						<div class="pull-right left">
+							<ul class="links hidden-xs hidden-sm hidden-md">
+								<li><i class="fa fa-headphones">&nbsp;</i> 支持 24小时/7天: <b> 18316464413</b></li>
+								<li><i class="fa fa-skype">&nbsp;</i> QQ: <b>85636682</b></li>
+							</ul>				
+						</div>	
+					</div>				
+				</div>
+			</section>
