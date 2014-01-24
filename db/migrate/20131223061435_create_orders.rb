@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :member, index: true
       t.decimal :total_price
       t.string :address
+      t.string :status
 
       t.timestamps
     end

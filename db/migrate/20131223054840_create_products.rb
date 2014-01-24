@@ -7,6 +7,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :inventory
       t.integer :sales
       t.string :barcode
+      t.text :description
       t.references :node, index: true
 
       t.timestamps

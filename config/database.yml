@@ -23,7 +23,7 @@ test:
   pool: 5
   timeout: 5000
   username: root
-  password:
+  password: 
   host: localhost
 
 production:
@@ -32,6 +32,6 @@ production:
   database: mywy
   pool: 5
   timeout: 5000
-  username: root
-  password:
+  username: stephen
+  password: hs123456
   host: localhost

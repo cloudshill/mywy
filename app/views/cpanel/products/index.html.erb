@@ -7,14 +7,10 @@
       <li>
         <%= link_to "商品列表", cpanel_node_products_path(@node) %>
       </li>
-      <li>
-        <a href="#" id="get_data">导入数据</a>
-      </li>
     </ul>
   </div>
 </div>
 <div class="col-md-10">
-  <div id="test" style="height:300px;width:300px;"></div>
   <div class="content">
     <ul class="breadcrumb">
       <li>管理面板</li>
@@ -85,15 +81,3 @@
     </table>
   </div>
 </div>
-<script type="text/javascript">
-  $("#get_data").click(function() {
-    $.ajax({
-      url: "http://meiyuewuyou.com/products.json",
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      success: function(data){
-        $("#test").html(data);
-      }
-    }); 
-  });
-</script>
