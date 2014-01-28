@@ -77,7 +77,11 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'capistrano'
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-rbenv', '~> 2.0', require: false
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'memcache-client'
   gem 'rspec-rails', '~> 2.10.0'
   gem 'factory_girl_rails'
