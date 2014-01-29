@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require stylesheet
- *= require animation
  *= require pavdeals
  *= require pavproducttabs
  *= require pavproductcarousel
