@@ -85,15 +85,12 @@ group :development, :test do
   gem 'memcache-client'
   gem 'rspec-rails', '~> 2.10.0'
   gem 'factory_girl_rails'
-  gem 'database_cleaner'
-  gem 'rspec-cells'
   gem 'capybara', :require => false
   gem 'api_taster'
   gem 'letter_opener'
   gem 'thin'
   gem 'better_errors'            #出错提示友好版
   gem 'binding_of_caller'     #出错提示友好版
-  gem 'fastercsv'
 end
 
 group :production do

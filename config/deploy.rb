@@ -41,8 +41,7 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
-set :puma_role, :app
-set :puma_config_file, "config/puma.rb"
+set :linked_dirs, %w{tmp/pids tmp/sockets log}
 
 namespace :deploy do
 
