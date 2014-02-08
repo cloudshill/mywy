@@ -65,7 +65,7 @@ namespace :deploy do
   end
 
   after :finishing, :cdn_assets do
-    %x('RAILS_ENV=production bundle exec rake "cdn"')
+    %x('RAILS_ENV=production bundle exec rake "capistrano::tasks::cdn"')
   end
 
 end
