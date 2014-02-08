@@ -65,7 +65,7 @@ namespace :deploy do
   end
 
   after :finishing, :cdn_assets do
-    %x('cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake "assets:cdn"')
+    %x('RAILS_ENV=production bundle exec rake "cdn"')
   end
 
 end
