@@ -53,10 +53,6 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :cdn_assets do
-    %x('RAILS_ENV=production bundle exec rake "capistrano:tasks:cdn"')
-  end
-
   after :publishing, :restart
 
   after :restart, :clear_cache do
@@ -66,6 +62,10 @@ namespace :deploy do
       #   execute :rake, 'cache:clear'
       # end
     end
+  end
+
+  after :finishing, :cdn_assets do
+    %x('RAILS_ENV=production bundle exec rake "assets:cdn"')
   end
 
 end
