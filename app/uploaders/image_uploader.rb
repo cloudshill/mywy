@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   
   def default_url
-    "#{Setting.upload_url}/blank.png#{version_name}"
+    "#{Setting.upyun_upload_url}/blank.png#{version_name}"
   end
   
   def url(version_name = "")
