@@ -59,7 +59,8 @@ Mywy::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( cpanel.css cpanel.js home.css home.js products.css products.js elevatezoom-min.js )
+  config.assets.precompile += %w( cpanel.css cpanel.js bootstrap.min.js carts.js colorpicker.js countdown.js elevatezoom-min.js
+  jquery.cycle.js jquery.ztree.all-3.5.min.js payfor.js sessions.js tabs.js )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
