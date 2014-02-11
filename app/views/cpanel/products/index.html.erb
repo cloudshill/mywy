@@ -44,38 +44,36 @@
           <th style="width: 50px;">价格</th>
           <th style="width: 50px;">操作</th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <% @products.each do |product| %>
-          <tr>
-            <td><%= product.name %></td>
-            <td><%= product.barcode %></td>
-            <td>(张)</td>
-            <td>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  价格 <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">零售价：<%= product.price %>(元)</a></li>
-                  <li><a href="#">入货价：<%= product.inprice %>(元)</a></li>
-                </ul>
-              </div>
-            </td>
-            <td>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  操作 <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><%= link_to "查看", cpanel_node_product_path(@node, product) %></li>
-                  <li><%= link_to "修改", edit_cpanel_node_product_path(@node, product) %></li>
-                  <li><%= link_to "删除", cpanel_node_product_path(@node, product), :method => :delete %></li>
-                  <li><%= link_to "上传图片", cpanel_node_product_pictures_path(@node, product) %></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.barcode %></td>
+          <td>(张)</td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">价格 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">零售价：<%= product.price %>(元)</a></li>
+                <li><a href="#">入货价：<%= product.inprice %>(元)</a></li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">操作 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to "查看", cpanel_node_product_path(@node, product) %></li>
+                <li><%= link_to "修改", edit_cpanel_node_product_path(@node, product) %></li>
+                <li><%= link_to "删除", cpanel_node_product_path(@node, product), :method => :delete %></li>
+                <li><%= link_to "上传图片", cpanel_node_product_pictures_path(@node, product) %></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
         <% end %>
       </tbody>
     </table>
