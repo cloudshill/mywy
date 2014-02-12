@@ -2,6 +2,8 @@
 #= require jquery_ujs
 #= require bootstrap.min
 #= require jquery.autogrowtextarea.min
+#= require jquery.qeditor
+#= require categories
 
 $(document).ready(function(){
     $('#myModal').on('hide.bs.modal', function () {

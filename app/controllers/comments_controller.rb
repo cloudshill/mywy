@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @product.comments.build(comment_params)
-    @comment.member_id = current_member.id
+    @comment.member_id = current_or_guest_member.id
 
     respond_to do |format|
       if @comment.save

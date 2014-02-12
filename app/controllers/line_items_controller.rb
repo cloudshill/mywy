@@ -1,5 +1,4 @@
 class LineItemsController < ApplicationController
-  before_filter :require_member
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -25,9 +24,10 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
+    @line_item = LineItem.where("product_id = ? AND member_id = ?", params[:id], current_or_guest_member.id).first
     if @line_item.blank?
       @line_item = LineItem.new
-      @line_item.member_id = current_member.id
+      @line_item.member_id = current_or_guest_member.id
       @line_item.product_id = params[:id]
       @line_item.amount = params[:amount]
     else

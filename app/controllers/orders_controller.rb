@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = current_member.orders.order("created_at desc")
+    @orders = current_or_guest_member.orders.order("created_at desc")
   end
 
   # GET /orders/1
@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-    @products = current_member.products_in_cart.where("product_id in (?)", params[:products])
+    @products = current_or_guest_member.products_in_cart.where("product_id in (?)", params[:products])
   end
 
   # GET /orders/1/edit
@@ -26,20 +26,20 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = current_member.orders.build(order_params)
+    @order = current_or_guest_member.orders.build(order_params)
     if params[:order][:pay_method] == 'cod'
       @order.status = 'delivering'
     else
       @order.status = 'paying'
     end
     @order.total_price = 0
-    current_member.products_in_cart.where("product_id in (?)", params[:products]).each do |product|
-      @order.total_price += (product.price * product.quantity_in_cart(current_member))
+    current_or_guest_member.products_in_cart.where("product_id in (?)", params[:products]).each do |product|
+      @order.total_price += (product.price * product.quantity_in_cart(current_or_guest_member))
     end
 
     respond_to do |format|
       if @order.save
-        LineItem.where("member_id = ? AND product_id in (?)", current_member.id, params[:products]).each do |line_item|
+        LineItem.where("member_id = ? AND product_id in (?)", current_or_guest_member.id, params[:products]).each do |line_item|
           line_item.order_id = @order.id
           line_item.save
         end

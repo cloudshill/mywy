@@ -18,6 +18,7 @@
 //= require countdown
 //= require jquery.cycle
 //= require jquery.autogrowtextarea.min
+//= require products
 //= require_self
 
 

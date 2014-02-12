@@ -2,11 +2,11 @@ class AccountsController < Devise::RegistrationsController
 	before_filter :require_member
 
   def favorites
-    @products = current_member.my_favorite_products
+    @products = current_or_guest_member.my_favorite_products
   end
 	
 	def update
-    @member = Member.find(current_member.id)
+    @member = Member.find(current_or_guest_member.id)
 
     @successfully_updated = if needs_password?(@member, params)
       @member.update_with_password(params[:member])

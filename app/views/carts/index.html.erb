@@ -63,12 +63,12 @@
                           <small>Reward Points: 700</small>
                         </td>
                         <td class="quantity" data-label="Quantity" style="vertical-align:middle;">
-                          <input type="text" name="quantity" data-id="<%= product.belongs_to_line_item(current_member).id %>" data-product="<%= product.id %>" value="<%= product.quantity_in_cart(current_member) %>" size="1" />
+                          <input type="text" name="quantity" data-id="<%= product.belongs_to_line_item(current_or_guest_member).id %>" data-product="<%= product.id %>" value="<%= product.quantity_in_cart(current_or_guest_member) %>" size="1" />
                         </td>
                         <td class="price" data-label="Unit Price">￥<%= product.price %></td>
-                        <td class="total" data-label="Total">￥<%= product.price * product.quantity_in_cart(current_member) %></td>
+                        <td class="total" data-label="Total">￥<%= product.price * product.quantity_in_cart(current_or_guest_member) %></td>
                         <td>
-                          <%= link_to "移出购物车", line_item_path(product.belongs_to_line_item(current_member)), :remote => true, :method => :delete, :class=>"button" %>
+                          <%= link_to "移出购物车", line_item_path(product.belongs_to_line_item(current_or_guest_member)), :remote => true, :method => :delete, :class=>"button" %>
                         </td>
                       </tr>
                     <% end %>
