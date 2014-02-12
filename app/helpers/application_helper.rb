@@ -1,12 +1,4 @@
-module ApplicationHelper
-  def controller_cpanel_stylesheet_link_tag
-    stylesheet_link_tag "cpanel/#{controller_name}"
-  end
-  
-  def controller_cpanel_javascript_include_tag
-    javascript_include_tag "cpanel/#{controller_name}"
-  end
-  
+module ApplicationHelper  
 	def active_controller?(c_name = nil)
     raw('class="active"') if controller_name == c_name
   end
