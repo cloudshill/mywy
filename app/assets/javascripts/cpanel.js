@@ -3,7 +3,7 @@
 #= require bootstrap.min
 #= require jquery.autogrowtextarea.min
 #= require jquery.qeditor
-#= require categories
+#= require cpanel/categories
 
 $(document).ready(function(){
     $('#myModal').on('hide.bs.modal', function () {
