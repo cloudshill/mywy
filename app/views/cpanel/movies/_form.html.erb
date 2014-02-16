@@ -1,0 +1,68 @@
+<%= form_for([:cpanel, @movie], :validate => true, :html => {:class => "form-horizontal"}) do |f| %>
+<fieldset>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">电影在豆瓣的ID：</label>
+    <div class="col-sm-6">
+      <%= f.text_field :douban_id, :class=>"form-control" %>
+    </div>
+    <div class="col-sm-2">
+      <a href="#" id="douban_api" class="btn btn-default" onclick="return Movie.getMovieFromDouban();">获取数据</a>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">中文名：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :title, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">原名：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :original_title, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">上映时间：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :pubdate, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">国内上映时间：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :mainland_pubdate, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">上映年份：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :year, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">片长：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :durations, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">封面：</label>
+    <div class="col-sm-8">
+      <%= f.text_field :cover, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-4 control-label">简介：</label>
+    <div class="col-sm-8">
+      <%= f.text_area :summary, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <%= f.submit "保存", :class => 'btn btn-default' %>
+      or
+      <%= link_to '返回', cpanel_movies_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+</fieldset>
+<% end %>

@@ -4,6 +4,7 @@
 #= require jquery.autogrowtextarea.min
 #= require jquery.qeditor
 #= require cpanel/categories
+#= require cpanel/movies
 
 $(document).ready(function(){
     $('#myModal').on('hide.bs.modal', function () {

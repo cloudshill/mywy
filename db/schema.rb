@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107090626) do
+ActiveRecord::Schema.define(version: 20140215014232) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 20140107090626) do
     t.integer "category_id"
   end
 
+  create_table "cinemas", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "member_id"
@@ -70,6 +76,14 @@ ActiveRecord::Schema.define(version: 20140107090626) do
   create_table "favorites", force: true do |t|
     t.integer  "member_id"
     t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hall_seats", force: true do |t|
+    t.integer  "movie_hall_id"
+    t.integer  "row"
+    t.integer  "col"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,6 +116,29 @@ ActiveRecord::Schema.define(version: 20140107090626) do
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
   add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
+
+  create_table "movie_halls", force: true do |t|
+    t.string   "name"
+    t.integer  "cinema_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movie_halls", ["cinema_id"], name: "index_movie_halls_on_cinema_id", using: :btree
+
+  create_table "movies", force: true do |t|
+    t.string   "title"
+    t.string   "original_title"
+    t.date     "pubdate"
+    t.date     "mainland_pubdate"
+    t.integer  "year"
+    t.string   "durations"
+    t.text     "summary"
+    t.string   "cover"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "douban_id"
+  end
 
   create_table "nodes", force: true do |t|
     t.string   "name"
@@ -145,5 +182,26 @@ ActiveRecord::Schema.define(version: 20140107090626) do
   end
 
   add_index "products", ["node_id"], name: "index_products_on_node_id", using: :btree
+
+  create_table "show_times", force: true do |t|
+    t.integer  "cinema_id"
+    t.integer  "movie_id"
+    t.integer  "movie_hall_id"
+    t.datetime "show_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", force: true do |t|
+    t.integer  "member_id"
+    t.integer  "cinema_id"
+    t.integer  "movie_id"
+    t.integer  "movie_hall_id"
+    t.integer  "show_time_id"
+    t.integer  "hall_seat_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

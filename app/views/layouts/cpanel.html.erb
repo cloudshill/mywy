@@ -61,6 +61,11 @@
             <li><%= link_to "节点列表", cpanel_nodes_path %></li>
           </ul>
         </li>
+        <li <%= active_controller?("movies") %>>
+          <%= link_to cpanel_movies_path do %>
+          <i class=""></i> <span>电影</span>
+          <% end %>
+        </li>
       </ul>
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">

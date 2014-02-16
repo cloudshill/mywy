@@ -51,7 +51,7 @@
 																		
 														<div class="product-meta">									
 															<h3 class="name">
-																<a href=""><%= product.name %></a>
+																<%= link_to product.name, product_path(product) %>
 															</h3>										
 															<p class="description">
 											
@@ -61,7 +61,7 @@
 															</p>
 															<div class="price">
 																<span class="price-old">￥<%= product.price %></span> 
-																<span class="price-new">$88.95</span>
+																<span class="price-new">￥<%= product.price %></span>
 															</div>
 																				
 															<div class="action">

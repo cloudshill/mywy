@@ -1,0 +1,64 @@
+        <div class="col-md-2">
+          <div class="sidebar">
+            <ul class="nav nav-list">
+              <li>
+                <%= link_to "添加电影", new_cpanel_movie_path %>
+              </li>
+              <li>
+                <%= link_to "电影列表", cpanel_movies_path %>
+              </li>
+              <li>
+                <%= link_to "添加电影院", new_cpanel_cinema_path %>
+              </li>
+              <li>
+                <%= link_to "电影院列表", cpanel_cinemas_path %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="content">
+            <ul class="breadcrumb">
+              <li>管理面板</li>
+              <li>电影院管理</li>
+              <li>放映厅</li>
+              <li>座位</li>
+            </ul>
+            <div>
+              <div class="btn-group">
+                <%= link_to "添加座位", new_cpanel_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall), :class=>"btn btn-default" %>
+              </div>
+            </div>
+            <table class="table" style="width:100%;">
+              <thead>
+                <tr>
+                  <th style="width: 20px;"><input type="checkbox"></th>
+                  <th style="width: 100px;">行号</th>
+                  <th style="width: 100px;">列号</th>
+                  <th style="width: 50px;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @hall_seats.each do |hall_seat| %>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><%= hall_seat.row %></td>
+                  <td><%= hall_seat.col %></td>
+                  <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        操作 <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><%= link_to "查看", cpanel_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat) %></li>
+                        <li><%= link_to "修改", edit_cpanel_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat) %></li>
+                        <li><%= link_to "删除", cpanel_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat), :method => :delete %></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
