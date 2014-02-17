@@ -18,7 +18,7 @@
 														<ul class="nav navbar-nav verticalmenu">
 															<% Node.all.each do |node| %>
 															<li class="home" >
-																<%= link_to products_path(:node_id => node.id), :class => "dropdown-toggle", "data-toggle"=>"dropdown" do %>
+																<%= link_to node_products_path(node), :class => "dropdown-toggle", "data-toggle"=>"dropdown" do %>
 																	<span class="menu-title"><%= node.name %></span>
 																	<b class="caret"></b>
 																<% end %>

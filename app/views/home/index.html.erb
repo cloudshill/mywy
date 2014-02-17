@@ -11,88 +11,49 @@
 	<div class="container">
 		<div class="row">
 			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
-				<div id="content">
-					<div class="content-top">
-					<% Node.all.each do |node| %>
-						<div class=" box productcarousel">
-							<div class="box-heading">
-								<span><%= node.name %></span>
-							</div>
-							<div class="box-content">
-						 		<div class="box-products slide" id="productcarousel156">
-									<div class="carousel-controls">
-										<a class="carousel-control left fa fa-angle-left" href="#productcarousel156"   data-slide="prev"></a>
-										<a class="carousel-control right fa fa-angle-right" href="#productcarousel156"  data-slide="next"></a>
-									</div>
-						
-									<div class="carousel-inner">
-										<div class="item active product-grid no-margin">
-											<div class="row">
-									<% count = 1 %>
-									<% node.products.each do |product| %>
-												<div class="col-lg-3 col-sm-3 col-xs-12">
-													<div class="product-block">
-														<div class="image ">
-															<span class="product-label-special"><span>Sale</span></span>
-															<div class="image_container">
-																<a href="" class="img front">
-																	<%= image_tag(product.pictures.first.image.url("500x500"), :title=>"#{product.name}", :alt=>"#{product.name}", :class=>"img-responsive") %>
-																</a>
-															</div>
-															<a href='<%= product.pictures.first.image.url("500x500") %>' class="info-view colorbox product-zoom" rel="colorbox" title="MacBook">
-																<i class="fa fa-search-plus"></i>
-															</a>
-															<%= link_to product_path(product), :class=>"pav-colorbox" do %>
-																<span class='fa fa-eye'></span>浏览
-															<% end %>
-															<div class="img-overlay">
-															</div>
-														</div>
-																		
-														<div class="product-meta">									
-															<h3 class="name">
-																<%= link_to product.name, product_path(product) %>
-															</h3>										
-															<p class="description">
-											
-																Intel Core 2 Duo processor
-
-																Powered ...
-															</p>
-															<div class="price">
-																<span class="price-old">￥<%= product.price %></span> 
-																<span class="price-new">￥<%= product.price %></span>
-															</div>
-																				
-															<div class="action">
-																<div class="cart">	
-																	<a class="product-icon fa fa-shopping-cart shopping-cart " onclick="return App.addToCart(this);" data-id="<%= product.id %>" data-placement="top" data-toggle="tooltip" data-original-title="添加到购物车"></a>	
-																</div>
-																<div class="wishlist">
-																	<%= favorites_tag(product) %>	
-																</div>
-																<div class="compare">			
-																	<a onclick="addToCompare('43');" title="Add to Compare" class="fa fa-exchange product-icon" data-placement="top" data-toggle="tooltip" data-original-title="Add to Compare"></a>	
-																</div>
-															</div>	
-														</div>									
-   							    			</div>
-												</div>
-												<% if count%4 == 0 %>
-   							    	</div>
-										</div>
-   							    <div class="item product-grid no-margin">
-											<div class="row">
-   							    <% end %>
-									<% count += 1 %>
-   							  <% end %>						
-   							    	</div>
-										</div>
-									</div>								
-								</div>
-							</div>  
+				<div id="content" class="ui-slide-movie">
+					<div class="ui-slide-control">
+						<span class="title">电影</span>
+						<div class="pull-right">
+							<a class="prev-next-btn left" href="#" data-slide="prev">
+							</a>
+							<a class="prev-next-btn right" href="#"  data-slide="next">
+							</a>
 						</div>
-					<% end %>
+					</div>
+					<div class="ui-slide-content row">
+						<% Movie.all.each do |movie| %>
+						<div class="ui-slide-content-box col-md-3">
+							<%= image_tag(movie.cover.url("140x140")) %>
+							<div class="controll-box">
+								<a href="" class="left pull-left" alt="订票">
+									<span class="fa fa-plus"></span>
+								</a>
+								<a href="" class="right pull-right" alt="赞">
+									<span class="fa fa-heart"></span>
+								</a>
+							</div>
+						</div>
+						<% end %>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="row">
+			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
+				<div id="content">
+					<div class="ui-slide-control">
+						<span class="title">商城</span>
+						<div class="pull-right">
+							<a class="prev-next-btn left" href="#" data-slide="prev">
+							</a>
+							<a class="prev-next-btn right" href="#"  data-slide="next">
+							</a>
+						</div>
+					</div>
+					<div class="content-bottom">
+						
 					</div>
 				</div>
 			</section>

@@ -1,14 +1,14 @@
-.pavcarousel{
+.pavcarousel {
 	margin:0 40px;
 }
-.pavcarousel .carousel-control{
+.pavcarousel .carousel-control {
 	top: 50%;
 	margin: -10px 0;	
 	background: transparent;
 }
-.pavcarousel .carousel-control.left{
+.pavcarousel .carousel-control .left{
 	left: -40px;
 }
-.pavcarousel .carousel-control.right{
+.pavcarousel .carousel-control .right{
 	right: -40px;
 }

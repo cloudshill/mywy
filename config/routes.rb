@@ -7,6 +7,7 @@ Mywy::Application.routes.draw do
   end
 
   get "home/index"
+  get "home/market"
   
   root 'home#index'
 
@@ -26,7 +27,9 @@ Mywy::Application.routes.draw do
     resources :comments
   end
 
-  resources :nodes
+  resources :nodes do
+    resources :products, :only => [:index]
+  end
 
   devise_for :members, :path => "accounts", :controllers => {
     :sessions => :sessions,

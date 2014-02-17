@@ -11,6 +11,7 @@ class Cpanel::MoviesController < Cpanel::ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @movie.cover = Movie.download_file(params[:cover])
 
     respond_to do |format|
       if @movie.save
@@ -52,6 +53,6 @@ class Cpanel::MoviesController < Cpanel::ApplicationController
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :original_title, :pubdate, :mainland_pubdate, :year, :durations, :summary, :cover)
+    params.require(:movie).permit(:title, :original_title, :pubdate, :mainland_pubdate, :year, :durations, :summary, :cover, :douban_id)
   end
 end

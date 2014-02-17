@@ -1,6 +1,13 @@
 .box-products {
 	position:relative;
 }
+
+
+
+.productcarousel .title {
+	font-size: 16px;
+}
+
 .productcarousel .carousel-control{
 	z-index:10
 }
@@ -16,7 +23,10 @@
 }
 
 .productcarousel .left{
-	left: -49px;	
+	left: -49px;
+}
+
+.productcarousel .right {
 }
 	
 .productcarousel .tab-content, .producttabs .box-product{

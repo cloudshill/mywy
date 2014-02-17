@@ -12,7 +12,7 @@ window.Movie = {
         $("#movie_mainland_pubdate").val(result["mainland_pubdate"]);
         $("#movie_year").val(result["year"]);
         $("#movie_durations").val(result["durations"]);
-        $("#movie_cover").val(result["images"]["medium"]);
+        $("#cover").val(result["images"]["large"]);
         $("#movie_summary").val(result["summary"]);
       },
       error: function(result, status, xhr) {

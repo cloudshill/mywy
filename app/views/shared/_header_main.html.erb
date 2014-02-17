@@ -20,18 +20,17 @@
 												  </a>
 													<div class="collapse navbar-collapse navbar-ex1-collapse">
 														<ul class="nav navbar-nav megamenu">
-															<li class="home" >
+															<li class="home">
 																<%= link_to root_path do %>
 																	<span class="menu-title">首页</span>
 																<% end %>
 															</li>
-															<% Node.all.each do |node| %>
-															<li class="multi-menu parent dropdown" >
-																<%= link_to products_path(:node_id => node.id) do %>
-																	<span class="menu-title"><%= node.name %></span>
-																<% end %>
+															<li>
+																<%= link_to "商城", home_market_path %>
 															</li>
-															<% end %>
+															<li>
+																<%= link_to "电影", "#" %>
+															</li>
 														</ul>
 													</div>
 												</div>
