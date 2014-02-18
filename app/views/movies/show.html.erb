@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <%= image_tag(@movie.cover.url("500x500")) %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-4">
         <h1><span><%= @movie.title %></span><span class="year">（<%= @movie.year %>）</span></h1>
         <div class="sub_title">
           <span class="time_length">
@@ -44,6 +44,29 @@
         </ul>
         <div>
           <%= link_to "订票", "#", :class => "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="box2 box_left clearfix">
+          <h2>日期</h2>
+          <ul class="items clearfix">
+            <li>今天</li>
+            <li>明天</li>
+            <li>后天</li>
+          </ul>
+        </div>
+        <div class="box2 box_left clearfix">
+          <h2>影院</h2>
+          <ul class="items clearfix">
+            <li>新兴经典电影城</li>
+          </ul>
+        </div>
+        <div class="box2 box_left clearfix">
+          <h2>场次</h2>
+          <ul class="items clearfix">
+            <li>10:00</li>
+            <li>14:00</li>
+          </ul>
         </div>
       </div>
     </div>

@@ -102,6 +102,37 @@
     margin-bottom:0px;
     .year { color:#999; font-size:14px; }
   }
+
+  .box2 {
+    position:relative;
+    margin-bottom:20px;
+    padding: 0px;
+    h2 {
+      margin: 0px;
+      padding-top:5px;
+      font-size:14px; font-weight:normal;
+      background:#4b65c6; color:#fff;
+      width:50px;
+      height: 25px;
+      position:absolute;
+      left:0; top:0;
+      text-align:center;
+    }
+    .items {
+      border:1px solid #ddd;
+      border-top:3px solid #4b65c6;
+      padding:20px;
+      margin:0;
+      margin-left: 49px;
+      ul, ol {
+        margin:0; padding:0;
+      }
+      li.item {
+        text-align: center;
+        list-style:none; margin:0; padding:0;
+      }
+    }
+  }
   .sub_title { 
     padding-left:4px;
     margin-top:5px;
