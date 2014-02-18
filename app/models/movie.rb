@@ -1,5 +1,14 @@
 require "open-uri"
 class Movie < ActiveRecord::Base
+  serialize :aka
+  serialize :directors
+  serialize :casts
+  serialize :writers
+  serialize :pubdates
+  serialize :languages
+  serialize :genres
+  serialize :countries
+
   mount_uploader :cover, MovieCoverUploader
 
   attr_accessor :uploader_secure_token

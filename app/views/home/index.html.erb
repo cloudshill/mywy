@@ -1,13 +1,4 @@
 <section id="columns" class="offcanvas-siderbars">
-	<div class="row visible-xs">
-		<div class="container"> 
-			<div class="offcanvas-sidebars-buttons">
-				<button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
-			
-				<button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
-			</div>
-		</div>
-	</div>
 	<div class="container">
 		<div class="row">
 			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
@@ -22,9 +13,11 @@
 						</div>
 					</div>
 					<div class="ui-slide-content row">
-						<% Movie.all.each do |movie| %>
+						<% @movies.each do |movie| %>
 						<div class="ui-slide-content-box col-md-3">
-							<%= image_tag(movie.cover.url("140x140")) %>
+							<%= link_to movie_path(movie) do %>
+								<%= image_tag(movie.cover.url("140x140")) %>
+							<% end %>
 							<div class="controll-box">
 								<a href="" class="left pull-left" alt="订票">
 									<span class="fa fa-plus"></span>
@@ -52,8 +45,20 @@
 							</a>
 						</div>
 					</div>
-					<div class="content-bottom">
-						
+					<div class="ui-slide-content row">
+						<% @products.each do |product| %>
+						<div class="ui-slide-content-box col-md-3">
+							<%= image_tag(product.pictures.first.image.url("140x140")) %>
+							<div class="controll-box">
+								<a href="" class="left pull-left" alt="订票">
+									<span class="fa fa-plus"></span>
+								</a>
+								<a href="" class="right pull-right" alt="赞">
+									<span class="fa fa-heart"></span>
+								</a>
+							</div>
+						</div>
+						<% end %>
 					</div>
 				</div>
 			</section>

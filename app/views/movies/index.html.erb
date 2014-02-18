@@ -1,0 +1,35 @@
+<h1>Listing movies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Original title</th>
+      <th>Pubdate</th>
+      <th>Mainland pubdate</th>
+      <th>Year</th>
+      <th>Durations</th>
+      <th>Summary</th>
+      <th>Cover</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.original_title %></td>
+        <td><%= movie.pubdate %></td>
+        <td><%= movie.mainland_pubdate %></td>
+        <td><%= movie.year %></td>
+        <td><%= movie.durations %></td>
+        <td><%= movie.summary %></td>
+        <td><%= movie.cover %></td>
+        <td><%= link_to 'Show', movie %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -10,6 +10,14 @@ class CreateMovies < ActiveRecord::Migration
       t.text :summary
       t.string :cover
       t.integer :douban_id
+      t.text :aka
+      t.text :directors
+      t.text :casts
+      t.text :writers
+      t.text :pubdates
+      t.text :languages
+      t.text :genres
+      t.text :countries
 
       t.timestamps
     end

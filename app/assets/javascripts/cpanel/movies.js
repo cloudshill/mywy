@@ -14,6 +14,20 @@ window.Movie = {
         $("#movie_durations").val(result["durations"]);
         $("#cover").val(result["images"]["large"]);
         $("#movie_summary").val(result["summary"]);
+        $("#movie_aka").val(result["aka"]);
+        $("#movie_countries").val(result["countries"]);
+        $("#movie_genres").val(result["genres"]);
+        $("#movie_languages").val(result["languages"]);
+        var r = "";
+        jQuery.each( result["directors"], function( index, value ) {
+          r += value["name"] + ",";
+        });
+        $("#movie_directors").val(r);
+        r = "";
+        jQuery.each( result["casts"], function( index, value ) {
+          r += value["name"] + ",";
+        });
+        $("#movie_casts").val(r);
       },
       error: function(result, status, xhr) {
       }

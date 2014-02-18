@@ -2,9 +2,7 @@ Mywy::Application.routes.draw do
 
   resources :cinemas
 
-  namespace :movie do
-    resources :movies
-  end
+  resources :movies
 
   get "home/index"
   get "home/market"

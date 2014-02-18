@@ -1,0 +1,78 @@
+<section id="movie" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag(@movie.cover.url("500x500")) %>
+      </div>
+      <div class="col-md-8">
+        <h1><span><%= @movie.title %></span><span class="year">（<%= @movie.year %>）</span></h1>
+        <div class="sub_title">
+          <span class="time_length">
+          </span>
+          <span class="countries">
+            <%= @movie.countries.to_sentence(words_connector: ",") %>
+          </span>
+          <span class="categories">
+            <%= @movie.genres.to_sentence(words_connector: ",", last_word_connector: "等") %>
+          </span>
+        </div>
+        <ul class="details">
+          <li>
+            <b>原名：</b>
+            <h2><%= @movie.original_title %></h2>
+          </li>
+          <li>
+            <b>首映日：</b>
+            <h2><%= @movie.pubdate %></h2>
+          </li>
+          <li>
+            <b>国内首映日：</b>
+            <h2><%= @movie.mainland_pubdate %></h2>
+          </li>
+          <li>
+            <b>片长：</b>
+            <h2><%= @movie.durations %></h2>
+          </li>
+          <li>
+            <b>导演：</b>
+            <h2><%= @movie.directors.to_sentence(words_connector: ",", last_word_connector: "等") %></h2>
+          </li>
+          <li>
+            <b>主要演员：</b>
+            <h2><%= @movie.casts.to_sentence(words_connector: ",", last_word_connector: "等") %></h2>
+          </li>
+        </ul>
+        <div>
+          <%= link_to "订票", "#", :class => "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    </br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ui-movie-ext-title">《<%= @movie.title %>》的简介</div>
+        <div class="ui-movie-ext-content summary">
+          <%= @movie.summary %>
+        </div>
+      </div>
+    </div>
+    </br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ui-movie-ext-title">《<%= @movie.title %>》的宣传片</div>
+        <div class="ui-movie-ext-content summary">
+          <%= @movie.summary %>
+        </div>
+      </div>
+    </div>
+    </br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ui-movie-ext-title">喜欢《<%= @movie.title %>》的人也喜欢</div>
+        <div class="ui-movie-ext-content summary">
+          <%= @movie.summary %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
