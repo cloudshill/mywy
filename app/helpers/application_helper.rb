@@ -11,6 +11,8 @@ module ApplicationHelper
       DateTime.parse(time.iso8601).strftime('%Y年%m月%d日') if time
     when "hour"
       DateTime.parse(time.iso8601).strftime('%Y年%m月%d日 %H:%M') if time
+    when "noDayOnlyHour"
+      DateTime.parse(time.iso8601).strftime('%H:%M') if time
     end
   end
 

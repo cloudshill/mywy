@@ -31,7 +31,17 @@ class Cpanel::ShowTimesController < Cpanel::ApplicationController
   end
 
   def update
-    
+    respond_to do |format|
+      if @show_time.update(time_params)
+        format.html { redirect_to cpanel_cinema_show_times_path, notice: 'Picture was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @show_time }
+        format.js { @success = 1 }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @show_time.errors, status: :unprocessable_entity }
+        format.js { @success = 2 }
+      end
+    end
   end
 
   def destroy
@@ -41,7 +51,7 @@ class Cpanel::ShowTimesController < Cpanel::ApplicationController
   private
 
   def set_time
-    @hall = ShowTime.find(params[:id])
+    @show_time = ShowTime.find(params[:id])
   end
 
   def set_cinema

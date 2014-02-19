@@ -10,6 +10,7 @@ class MoviesController < ApplicationController
   # GET /movie/movies/1
   # GET /movie/movies/1.json
   def show
+    @show_times = @movie.show_times.where(:show_time => ((Date.current.beginning_of_day)..(Date.current.end_of_day)))
   end
 
   private

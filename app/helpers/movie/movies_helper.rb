@@ -1,2 +1,0 @@
-module Movie::MoviesHelper
-end

@@ -102,7 +102,14 @@
     margin-bottom:0px;
     .year { color:#999; font-size:14px; }
   }
-
+  .unchecked{  
+    border: 1px solid gray;  
+    padding: 6px 6px 6px 6px;  
+  }  
+  .checked{  
+    border: 2px solid #c00;  
+    padding: 6px 6px 6px 6px;  
+  }
   .box2 {
     position:relative;
     margin-bottom:20px;
@@ -240,6 +247,11 @@
   fieldset[disabled] .btn-primary.active {
     background-color: #1abc9c;
     border-color: #1abc9c;
+  }
+  #hall_seats {
+    ul {
+      margin-bottom: 20px;
+    }
   }
 }
 

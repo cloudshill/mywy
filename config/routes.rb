@@ -3,6 +3,8 @@ Mywy::Application.routes.draw do
   resources :cinemas
 
   resources :movies
+  resources :show_times
+  resources :hall_seats
 
   get "home/index"
   get "home/market"

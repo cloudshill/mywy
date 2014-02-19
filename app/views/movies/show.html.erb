@@ -1,4 +1,4 @@
-<section id="movie" class="offcanvas-siderbars">
+<section id="movie" data-id="<%= @movie.id %>" class="offcanvas-siderbars">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
@@ -13,7 +13,7 @@
             <%= @movie.countries.to_sentence(words_connector: ",") %>
           </span>
           <span class="categories">
-            <%= @movie.genres.to_sentence(words_connector: ",", last_word_connector: "等") %>
+            <%= @movie.genres.to_sentence(words_connector: ",") %>
           </span>
         </div>
         <ul class="details">
@@ -35,11 +35,11 @@
           </li>
           <li>
             <b>导演：</b>
-            <h2><%= @movie.directors.to_sentence(words_connector: ",", last_word_connector: "等") %></h2>
+            <h2><%= @movie.directors.to_sentence(words_connector: ",") %></h2>
           </li>
           <li>
             <b>主要演员：</b>
-            <h2><%= @movie.casts.to_sentence(words_connector: ",", last_word_connector: "等") %></h2>
+            <h2><%= @movie.casts.to_sentence(words_connector: ",") %></h2>
           </li>
         </ul>
         <div>
@@ -49,25 +49,40 @@
       <div class="col-md-4">
         <div class="box2 box_left clearfix">
           <h2>日期</h2>
-          <ul class="items clearfix">
-            <li>今天</li>
-            <li>明天</li>
-            <li>后天</li>
+          <ul class="items clearfix list-inline">
+            <li>
+              <span id="today" class='checked' name='dateSpan' checked='true' onclick='App.moviePubDateChange(this);' >今天</span>
+            </li>
+            <li><span id="tomorrow" class='unchecked' name='dateSpan' checked='false' onclick='App.moviePubDateChange(this);' >明天</span></li>
+            <li><span id="last" class='unchecked' name='dateSpan' checked='false' onclick='App.moviePubDateChange(this);' >后天</span></li>
           </ul>
         </div>
         <div class="box2 box_left clearfix">
           <h2>影院</h2>
-          <ul class="items clearfix">
-            <li>新兴经典电影城</li>
+          <ul class="items clearfix list-inline">
+            <li><span class='checked' data-id="" name='cinemaSpan' checked='true' onclick='App.cinemaChange(this);' >新兴经典电影城</span></li>
           </ul>
         </div>
         <div class="box2 box_left clearfix">
           <h2>场次</h2>
-          <ul class="items clearfix">
-            <li>10:00</li>
-            <li>14:00</li>
+          <ul id="show_times" class="items clearfix list-inline">
+            <% @show_times.each do |show_time| %>
+            <li>
+              <span class='unchecked' data-id="<%= show_time.id %>" name='timeSpan' checked='false' onclick='App.movieShowTimeChange(this);' >
+              <%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %>
+              </span>
+            </li>
+            <% end %>
           </ul>
         </div>
+        <div class="box2 box_left clearfix">
+          <h2>座位</h2>
+          <ul class="items clearfix list-inline">
+            <li><span class='unchecked'  name='timeSpan' checked='false' >A1</span></li>
+            <li><span class='unchecked'  name='timeSpan' checked='false' >A2</span></li>
+          </ul>
+        </div>
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal">选座位</a>
       </div>
     </div>
     </br>
@@ -94,6 +109,23 @@
         <div class="ui-movie-ext-title">喜欢《<%= @movie.title %>》的人也喜欢</div>
         <div class="ui-movie-ext-content summary">
           <%= @movie.summary %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">电影院选座</h4>
+        </div>
+        <div class="modal-body" id="hall_seats">
+          你还未有选择要在什么时候看这场电影哦！所以小优找不到座位信息...！快回去选场次呗！
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">不选了</button>
+          <button type="button" class="btn btn-primary">确定座位</button>
         </div>
       </div>
     </div>
