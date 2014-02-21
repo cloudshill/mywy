@@ -1,0 +1,60 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="tickets" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading"><span>票务中心</span></div>
+          <ul class="list-group">
+            <li class="list-group-item">未付款电影票</li>
+            <li class="list-group-item">已付款电影票</li>
+            <li class="list-group-item">已取消电影票</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="panel panel-info">
+          <div class="panel-heading"><span>未付款电影票  (合并付款) | 由于数据同步可能带来订单信息及订单状态显示滞后，请稍等一会儿。</span></div>
+            <table class="table table-hover">
+              <% @tickets.each do |ticket| %>
+              <tr>
+                <td width="30"><input type="checkbox" name="tickets[]" value="<%= ticket.id %>" /></td>
+                <td><%= ticket.cinema.name %></td>
+                <td><%= ticket.movie.title %></td>
+                <td><%= ticket.hall_seat.movie_hall.name %></td>
+                <td><%= ticket.hall_seat.row %>排<%= ticket.hall_seat.col %>号</td>
+                <td><%= link_to "马上付款", "#" %></td>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

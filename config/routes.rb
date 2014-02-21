@@ -5,6 +5,7 @@ Mywy::Application.routes.draw do
   resources :movies
   resources :show_times
   resources :hall_seats
+  resources :tickets, :only => [:index, :create]
 
   get "home/index"
   get "home/market"

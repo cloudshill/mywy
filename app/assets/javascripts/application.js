@@ -72,12 +72,14 @@ window.App = {
     });  
     span.className="checked";  
     span.checked=true;
+    $("#selectedDate").val($(span).attr("id"));
     $.ajax({
       url: "/show_times.json",
       type: "GET",
       dataType: "json",
       data: {
-        day: $(span).attr("id")
+        day: $("#selectedDate").val(),
+        cinema: $("#selectedCinema").val()
       },
       success: function(result, status, xhr){
         var html = "";
@@ -102,6 +104,29 @@ window.App = {
     });  
     span.className="checked";  
     span.checked=true;
+    $("#selectedCinema").val($(span).attr("data-id"));
+    $("#ticket_cinema_id").val($(span).attr("data-id"));
+    $.ajax({
+      url: "/show_times.json",
+      type: "GET",
+      dataType: "json",
+      data: {
+        day: $("#selectedDate").val(),
+        cinema: $("#selectedCinema").val()
+      },
+      success: function(result, status, xhr){
+        var html = "";
+        $.each(result, function(key, value) {
+          html += "<li><span class='unchecked' data-id='" + value["id"] + 
+          "' name='timeSpan' checked='false' onclick='App.movieShowTimeChange(this);' >" 
+          + value["show_time"] + " - " + value["price"] + "元</span></li>";
+        });
+        $("#show_times").html(html);
+      },
+      error: function(result, status, xhr){
+
+      }
+    });
   },
   movieShowTimeChange: function(span) {  
     $('span[name="'+$(span).attr('name')+'"]').each(function(){
@@ -112,6 +137,20 @@ window.App = {
     });  
     span.className="checked";  
     span.checked=true;
+    $("#ticket_show_time_id").val($(span).attr("data-id"));
+  },
+  movieSelectSeat: function(span) {
+    if(span.className == "checked") {
+      span.className = "unchecked";
+      span.checked=false;
+      $("#selectedSeat_" + $(span).attr("data-id")).remove();
+    } else {
+      span.className = "checked";
+      span.checked=true;
+      $("#selectedSeats").append("<li id='selectedSeat_" + $(span).attr("data-id") + 
+        "'><input type='checkbox' style='display:none;' name='seats[]' checked='true' value='" + $(span).attr("data-id") + 
+        "' /><span class='checked' checked='true' >" + $(span).text() + "</span></li>");
+    }
   }
 };
 
@@ -144,7 +183,11 @@ $(document).ready(function(){
             new_row = "</ul><ul class='list-inline'>";
           }
           pre_row = value["row"];
-          html += new_row + '<li><span class="unchecked" name="seatSpan" checked="false">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          if(value["booking"]) {
+            html += new_row + '<li><span data-id="' + value["id"] + '" class="unchecked" name="seatSpan" checked="false" onclick="App.movieSelectSeat(this);">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          } else {
+            html += new_row + '<li><span class="checked">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          }
           new_row = "";
         });
         html += "</ul>";

@@ -1,3 +1,29 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
 <section id="movie" data-id="<%= @movie.id %>" class="offcanvas-siderbars">
   <div class="container">
     <div class="row">
@@ -42,13 +68,11 @@
             <h2><%= @movie.casts.to_sentence(words_connector: ",") %></h2>
           </li>
         </ul>
-        <div>
-          <%= link_to "订票", "#", :class => "btn btn-primary" %>
-        </div>
       </div>
       <div class="col-md-4">
         <div class="box2 box_left clearfix">
           <h2>日期</h2>
+          <input type="hidden" id="selectedDate" value="today" />
           <ul class="items clearfix list-inline">
             <li>
               <span id="today" class='checked' name='dateSpan' checked='true' onclick='App.moviePubDateChange(this);' >今天</span>
@@ -59,8 +83,11 @@
         </div>
         <div class="box2 box_left clearfix">
           <h2>影院</h2>
+          <input type="hidden" id="selectedCinema" value="" /> 
           <ul class="items clearfix list-inline">
-            <li><span class='checked' data-id="" name='cinemaSpan' checked='true' onclick='App.cinemaChange(this);' >新兴经典电影城</span></li>
+            <% @cinemas.each do |cinema| %>
+            <li><span class='unchecked' data-id="<%= cinema.id %>" name='cinemaSpan' checked='false' onclick='App.cinemaChange(this);' >新兴经典电影城</span></li>
+            <% end %>
           </ul>
         </div>
         <div class="box2 box_left clearfix">
@@ -69,20 +96,25 @@
             <% @show_times.each do |show_time| %>
             <li>
               <span class='unchecked' data-id="<%= show_time.id %>" name='timeSpan' checked='false' onclick='App.movieShowTimeChange(this);' >
-              <%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %>
+              <%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %> - <%= show_time.price %>元
               </span>
             </li>
             <% end %>
           </ul>
         </div>
+        <%= form_for(Ticket.new) do |f| %>
         <div class="box2 box_left clearfix">
-          <h2>座位</h2>
-          <ul class="items clearfix list-inline">
-            <li><span class='unchecked'  name='timeSpan' checked='false' >A1</span></li>
-            <li><span class='unchecked'  name='timeSpan' checked='false' >A2</span></li>
+          <h2>座位</h2>        
+          <%= f.hidden_field :movie_id, :value => @movie.id %>
+          <%= f.hidden_field :cinema_id %>
+          <%= f.hidden_field :show_time_id %>
+          <ul class="items clearfix list-inline" id="selectedSeats">
           </ul>
         </div>
         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal">选座位</a>
+        选好了就
+        <%= f.submit "订票", :class => "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
     </br>
@@ -124,8 +156,7 @@
           你还未有选择要在什么时候看这场电影哦！所以小优找不到座位信息...！快回去选场次呗！
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">不选了</button>
-          <button type="button" class="btn btn-primary">确定座位</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
         </div>
       </div>
     </div>

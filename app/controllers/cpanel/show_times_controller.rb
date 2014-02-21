@@ -59,6 +59,6 @@ class Cpanel::ShowTimesController < Cpanel::ApplicationController
   end
 
   def time_params
-    params.require(:show_time).permit(:cinema_id, :movie_id, :movie_hall_id, :show_time)
+    params.require(:show_time).permit(:cinema_id, :movie_id, :movie_hall_id, :show_time, :price)
   end
 end

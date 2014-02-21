@@ -14,6 +14,7 @@ class Member < ActiveRecord::Base
   has_many :my_favorite_products, :through => :favorites, :source => :member
   has_many :comments
   has_many :orders
+  has_many :tickets
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

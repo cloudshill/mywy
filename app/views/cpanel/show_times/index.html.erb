@@ -35,6 +35,7 @@
                   <th style="width: 100px;">电影名</th>
                   <th style="width: 100px;">播放影厅</th>
                   <th style="width: 100px;">时间</th>
+                  <th style="width: 50px;">价格</th>
                   <th style="width: 50px;">操作</th>
                 </tr>
               </thead>
@@ -45,6 +46,7 @@
                   <td><%= show_time.movie.title %></td>
                   <td><%= show_time.movie_hall.name %></td>
                   <td><%= show_time.show_time %></td>
+                  <td>￥<%= show_time.price %>元</td>
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

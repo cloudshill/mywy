@@ -1,35 +1,62 @@
-<h1>Listing movies</h1>
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Original title</th>
-      <th>Pubdate</th>
-      <th>Mainland pubdate</th>
-      <th>Year</th>
-      <th>Durations</th>
-      <th>Summary</th>
-      <th>Cover</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.original_title %></td>
-        <td><%= movie.pubdate %></td>
-        <td><%= movie.mainland_pubdate %></td>
-        <td><%= movie.year %></td>
-        <td><%= movie.durations %></td>
-        <td><%= movie.summary %></td>
-        <td><%= movie.cover %></td>
-        <td><%= link_to 'Show', movie %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="movies">
+  <div class="container">
+    <div class="row">
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
+        <div id="content" class="ui-slide-movie">
+          <div class="ui-slide-control">
+            <span class="title">近期上映</span>
+            <div class="pull-right">
+              <a class="prev-next-btn left" href="#" data-slide="prev">
+              </a>
+              <a class="prev-next-btn right" href="#"  data-slide="next">
+              </a>
+            </div>
+          </div>
+          <div class="ui-slide-content row">
+            <% @movies.each do |movie| %>
+            <div class="ui-slide-content-box col-md-3">
+              <%= link_to movie_path(movie) do %>
+                <%= image_tag(movie.cover.url("140x140")) %>
+              <% end %>
+              <div class="controll-box">
+                <a href="" class="left pull-left" alt="订票">
+                  <span class="fa fa-plus"></span>
+                </a>
+                <a href="" class="right pull-right" alt="赞">
+                  <span class="fa fa-heart"></span>
+                </a>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
