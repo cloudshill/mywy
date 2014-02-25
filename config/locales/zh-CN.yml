@@ -216,6 +216,7 @@
       admin: "管理员"
       guardian: "监护人"
       member: "会员"
+      cinema: "电影院"
     attributes:
       member:
         email: "邮箱"
@@ -229,6 +230,8 @@
       order:
         pay_method: "支付方式"
         address: "收货地址"
+      cinema:
+        name: "名称"
   enumerize:
     pay_method:
       cod: "货到付款"

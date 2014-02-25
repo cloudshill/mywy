@@ -33,15 +33,22 @@
           <ul class="list-group">
             <li class="list-group-item"><%= link_to '我的电影院', cinemas_path %></li>
             <li class="list-group-item"><%= link_to '创建电影院', new_cinema_path %></li>
-            <li class="list-group-item">已取消电影票</li>
+          </ul>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading"><span>场次管理</span></div>
+          <ul class="list-group">
+            <li class="list-group-item"><%= link_to '场次列表', cinema_show_times_path(@cinema) %></li>
+            <li class="list-group-item"><%= link_to '添加场次', new_cinema_show_time_path(@cinema) %></li>
           </ul>
         </div>
       </div>
       <div class="col-md-9">
         <div class="panel panel-info">
-          <div class="panel-heading"><span>创建电影院</span></div>
+          <div class="panel-heading"><span><%= link_to @cinema.name, cinemas_path %></span> - <span>场次</span></div>
           <div class="panel-body">
             <%= render 'form' %>
+          </div>
           </div>
         </div>
       </div>

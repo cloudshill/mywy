@@ -11,11 +11,11 @@ class Cpanel::ShowTimesController < Cpanel::ApplicationController
   end
 
   def create
-    @show_time = @cinema.show_times.build(time_params)
+    @show_time = @cinema.show_times.build(show_time_params)
 
     respond_to do |format|
       if @show_time.save
-        format.html { redirect_to cpanel_cinema_show_times_path, notice: 'Picture was successfully created.' }
+        format.html { redirect_to cpanel_cinema_show_times_path(@cinema), notice: 'Picture was successfully created.' }
         format.json { render action: 'show', status: :created, location: @show_time }
         format.js { @success = 1 }
       else
@@ -32,8 +32,8 @@ class Cpanel::ShowTimesController < Cpanel::ApplicationController
 
   def update
     respond_to do |format|
-      if @show_time.update(time_params)
-        format.html { redirect_to cpanel_cinema_show_times_path, notice: 'Picture was successfully created.' }
+      if @show_time.update(show_time_params)
+        format.html { redirect_to cpanel_cinema_show_times_path(@cinema), notice: 'Picture was successfully created.' }
         format.json { render action: 'show', status: :created, location: @show_time }
         format.js { @success = 1 }
       else
@@ -58,7 +58,7 @@ class Cpanel::ShowTimesController < Cpanel::ApplicationController
     @cinema = Cinema.find(params[:cinema_id])
   end
 
-  def time_params
+  def show_time_params
     params.require(:show_time).permit(:cinema_id, :movie_id, :movie_hall_id, :show_time, :price)
   end
 end

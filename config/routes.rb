@@ -1,6 +1,12 @@
 Mywy::Application.routes.draw do
 
-  resources :cinemas
+  resources :cinemas do
+    resources :movie_halls do
+      resources :hall_seats
+    end
+    resources :show_times
+    resources :tickets
+  end
 
   resources :movies
   resources :show_times

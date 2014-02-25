@@ -1,8 +1,13 @@
 class TicketsController < ApplicationController
   before_filter :require_member
+  before_action :set_cinema, only: [:index, :new, :create]
 
   def index
     @tickets = current_member.tickets
+  end
+
+  def new
+    @show_times = ShowTime.all.where(:show_time => ((Date.current.beginning_of_day)..(Date.current.end_of_day))).where(:cinema_id => params[:cinema_id].to_i)
   end
 
   def create
@@ -17,6 +22,10 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def set_cinema
+    @cinema = Cinema.find(params[:cinema_id]) if not params[:cinema_id].blank?
+  end
 
   def ticket_params
     params.require(:ticket).permit(:movie_id, :show_time_id, :cinema_id, :movie_hall_id, :hall_seat_id)

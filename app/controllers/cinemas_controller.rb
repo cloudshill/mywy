@@ -1,10 +1,11 @@
 class CinemasController < ApplicationController
+  before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:show, :edit, :update, :destroy]
 
   # GET /cinemas
   # GET /cinemas.json
   def index
-    @cinemas = Cinema.all
+    @cinemas = current_member.cinemas.all
   end
 
   # GET /cinemas/1
@@ -24,11 +25,11 @@ class CinemasController < ApplicationController
   # POST /cinemas
   # POST /cinemas.json
   def create
-    @cinema = Cinema.new(cinema_params)
+    @cinema = current_member.cinemas.build(cinema_params)
 
     respond_to do |format|
       if @cinema.save
-        format.html { redirect_to @cinema, notice: 'Cinema was successfully created.' }
+        format.html { redirect_to cinemas_path, notice: 'Cinema was successfully created.' }
         format.json { render action: 'show', status: :created, location: @cinema }
       else
         format.html { render action: 'new' }
@@ -40,12 +41,13 @@ class CinemasController < ApplicationController
   # PATCH/PUT /cinemas/1
   # PATCH/PUT /cinemas/1.json
   def update
+    if not params[:pk].blank?
+      params[:cinema][:name] = params[:value]
+    end
     respond_to do |format|
       if @cinema.update(cinema_params)
-        format.html { redirect_to @cinema, notice: 'Cinema was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
         format.json { render json: @cinema.errors, status: :unprocessable_entity }
       end
     end

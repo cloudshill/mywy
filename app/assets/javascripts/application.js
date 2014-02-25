@@ -18,27 +18,29 @@
 //= require countdown
 //= require jquery.cycle
 //= require jquery.autogrowtextarea.min
-//= require products
+//= require bootstrap-editable.min
+//= require elevatezoom-min
+//= require tabs
 //= require_self
 
 window.App = {
 	addToCart: function(el) {
 		var product_count, product_id;
-	   	product_id = $(el).data("id");
-	   	$.ajax({
-	     	url: "/line_items",
-	      	type: "POST",
-	      	data: {
-	        	id: product_id,
-	        	amount: 1
-	      	},
-	      	success: function(result, status, xhr) {
-	        	$("#notification").append("<div class='alert alert-success'>添加成功！</div>");
-	      	},
-	      	error: function(result, status, xhr) {
-	        	$("#notification").append("<div class='alert alert-error'>添加失败！</div>");
-	      	}
-	    });
+    product_id = $(el).data("id");
+	 	$.ajax({
+	    url: "/line_items",
+      type: "POST",
+      data: {
+        id: product_id,
+        amount: 1
+	    },
+      success: function(result, status, xhr) {
+	    	$("#notification").append("<div class='alert alert-success'>添加成功！</div>");
+	   	},
+      error: function(result, status, xhr) {
+        $("#notification").append("<div class='alert alert-error'>添加失败！</div>");
+      }
+    });
 	},
 
 	addToFavorite: function(el) {
@@ -63,6 +65,39 @@ window.App = {
 
 	addToCompare: function(param) {
 	},
+  movieChange: function(span) {
+    $('span[name="'+$(span).attr('name')+'"]').each(function(){
+      if(this!=span) {
+        this.className="unchecked";  
+        this.checked=false;
+      }                 
+    });  
+    span.className="checked";  
+    span.checked=true;
+    $("#selectedMovie").val($(span).attr("data-id"));
+    $("#ticket_movie_id").val($(span).attr("data-id"));
+    $.ajax({
+      url: "/show_times.json",
+      type: "GET",
+      dataType: "json",
+      data: {
+        day: $("#selectedDate").val(),
+        movie: $("#selectedMovie").val()
+      },
+      success: function(result, status, xhr){
+        var html = "";
+        $.each(result, function(key, value) {
+          html += "<li><span class='unchecked' data-id='" + value["id"] + 
+          "' name='timeSpan' checked='false' onclick='App.cinemaShowTimeChange(this);' >" 
+          + value["show_time"] + " - " + value["price"] + "元</span></li>";
+        });
+        $("#show_times").html(html);
+      },
+      error: function(result, status, xhr){
+
+      }
+    });
+  },
 	moviePubDateChange: function(span) {  
     $('span[name="'+$(span).attr('name')+'"]').each(function(){
       if(this!=span) {
@@ -118,7 +153,7 @@ window.App = {
         var html = "";
         $.each(result, function(key, value) {
           html += "<li><span class='unchecked' data-id='" + value["id"] + 
-          "' name='timeSpan' checked='false' onclick='App.movieShowTimeChange(this);' >" 
+          "' name='timeSpan' checked='false' onclick='App.cinemaShowTimeChange(this);' >" 
           + value["show_time"] + " - " + value["price"] + "元</span></li>";
         });
         $("#show_times").html(html);
@@ -127,6 +162,59 @@ window.App = {
 
       }
     });
+  },
+  cinemaShowTimeChange: function(span) {
+    $('span[name="'+$(span).attr('name')+'"]').each(function(){
+      if(this!=span) {
+        this.className="unchecked";  
+        this.checked=false;  
+      }                 
+    });  
+    span.className="checked";  
+    span.checked=true;
+    $("#ticket_show_time_id").val($(span).attr("data-id"));
+    $.ajax({
+      url: "/hall_seats.json",
+      type: "GET",
+      dataType: "json",
+      data: {
+        show_time_id: $(span).attr("data-id")
+      },
+      success: function(result, status, xhr){
+        var html = "<ul class='list-inline'>";
+        var pre_row = 1;
+        var new_row = "";
+        $.each(result, function(key, value) {
+          if(pre_row != value["row"]) {
+            new_row = "</ul><ul class='list-inline'>";
+          }
+          pre_row = value["row"];
+          if(value["booking"]) {
+            html += new_row + '<li><input type="checkbox" style="display:none;" name="seats[]" id="seat_' + value["id"] + '" value="' + value["id"] + 
+        '"/><span data-id="' + value["id"] + '" class="unchecked" name="seatSpan" checked="false" onclick="App.cinemaSelectSeat(this);">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          } else {
+            html += new_row + '<li><span class="checked">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          }
+          new_row = "";
+        });
+        html += "</ul>";
+        $("#hall_seats").html(html);
+      },
+      error: function(result, status, xhr){
+
+      }
+    });
+  },
+  cinemaSelectSeat: function(span) {
+    if(span.className == "checked") {
+      span.className = "unchecked";
+      span.checked=false;
+      $("#seat_" + $(span).attr("data-id")).prop('checked',false)
+    } else {
+      span.className = "checked";
+      span.checked=true;
+      $("#seat_" + $(span).attr("data-id")).prop('checked',true)
+    }
   },
   movieShowTimeChange: function(span) {  
     $('span[name="'+$(span).attr('name')+'"]').each(function(){
@@ -151,6 +239,27 @@ window.App = {
         "'><input type='checkbox' style='display:none;' name='seats[]' checked='true' value='" + $(span).attr("data-id") + 
         "' /><span class='checked' checked='true' >" + $(span).text() + "</span></li>");
     }
+  }
+};
+
+window.Product = {
+  addToCart: function(el) {
+    product_id = $(el).data("id");
+    product_count = $("#quantity").val();
+    $.ajax({
+      url: "/line_items",
+      type: "POST",
+      data: {
+        id: product_id,
+        amount: product_count
+      },
+      success: function(result, status, xhr) {
+        $("#notification").append("<div class='alert alert-success'>添加成功！</div>");
+      },
+      error: function(result, status, xhr) {
+        $("#notification").append("<div class='alert alert-error'>添加失败！</div>");
+      }
+    });
   }
 };
 
