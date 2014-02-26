@@ -16,10 +16,8 @@
 //= require bootstrap.min
 //= require payfor
 //= require countdown
-//= require jquery.cycle
 //= require jquery.autogrowtextarea.min
 //= require bootstrap-editable.min
-//= require elevatezoom-min
 //= require tabs
 //= require_self
 

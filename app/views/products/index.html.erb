@@ -1,112 +1,85 @@
-<section id="columns" class="offcanvas-siderbars">
-  <div class="row visible-xs">
-    <div class="container"> 
-      <div class="offcanvas-sidebars-buttons">
-        <button type="button" data-for="column-left" class="pull-left btn btn-danger">
-          <i class="fa fa-sort-amount-asc"></i> Sidebar Left
-        </button>
-      
-        <button type="button" data-for="column-right" class="pull-right btn btn-danger">
-          Sidebar Right <i class="fa fa-sort-amount-desc"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div id="breadcrumb">
-    <ol class="breadcrumb container">
-      <li>
-        <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>Home</a></span>
-      </li>
-      <li>
-        <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=product/category&amp;path=17">
-          <span>Software</span>
-        </a>
-      </li>
-    </ol>
-  </div>
+<section id="market-page">
   <div class="container">
-    <div class="row"> 
-      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">   
-        <div id="content">
-          <div class="content-top"></div>
-          <div class="category-info clearfix">
-            <div class="image">
-              <img src="http://www.themelexus.com/demo/opencart/megashop/image/cache/data/demo/banner-category-870x220.jpg" alt="Software" class="responsive-img" />
-            </div>
-          </div>
-          <div class="product-filter clearfix">
-            <ul>
-              <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
-              <li>
-                <ul class="category clearfix">
-                  <li><%= root.name %></li>
-                  <li><%= render_option_of_total_category(@node.id, root.id) %></li>
-                  <% root.children.each do |leave| %>
-                  <li><%= render_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
-                  <% end %>
-                </ul>
-              </li>
-              <% end %>
-            </ul>
-          </div>    
-      
-          <div class="product-grid">     
-            <div class="products-block">
-              <div class="row">
-                <% @products.each do |product| %>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">   
-                  <div class="product-block">
-                    <div class="image">
-                      <a href="">
-                        <%= image_tag(product.pictures.first.image.url("500x500"), :title=>"#{product.name}", :alt=>"#{product.name}", :class=>"img-responsive") %>
-                      </a>
-                      <a href="product.pictures.first.image.url('500x500')" class="info-view colorbox product-zoom" rel="colorbox" title="MacBook Air">
-                        <i class="fa fa-search-plus"></i>
-                      </a>
-                      <%= link_to product_path(product), :class=>"pav-colorbox" do %>
-                        <span class='fa fa-eye'></span>浏览
-                      <% end %>
-                      <div class="img-overlay"></div>
-                    </div>
-                    <div class="product-meta">                  
-                      <h3 class="name">
-                        <%= link_to product.name, product_path(product) %>
-                      </h3>                  
-                      <p class="description">
-                        MacBook Air is ultrathin, ultraportable,...
-                      </p>
-                      <div class="rating">
-                        <%= image_tag("stars-5.png") %>
-                      </div>
-                      <div class="price">￥<%= product.price %>
-                      </div>
-                                        
-                      <div class="action">
-                        <div class="cart">
-                          <a class="product-icon fa fa-shopping-cart shopping-cart " onclick="return App.addToCart(this);" data-id="<%= product.id %>" data-placement="top" data-toggle="tooltip" data-original-title="添加到购物车"></a>
-                        </div>
-                        <div class="wishlist">
-                          <%= favorites_tag(product) %> 
-                        </div>
-                        <div class="compare">     
-                          <a onclick="window.App.addToCompare('47');" title="Add to Compare" class="fa fa-exchange product-icon" data-placement="top" data-toggle="tooltip" data-original-title="对比"></a>  
-                        </div>
-                      </div>  
-                    </div>  
-                         
-                  </div>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="pagination">
-            <div class="results">Showing 1 to 12 of 12 (1 Pages)</div>
-          </div>                  
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧商城</a>
         </div>
-      </section> 
 
-      <%= render 'shared/category_right' %>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "首页", home_market_path %></li>
+            <% Node.all.each do |node| %>
+            <li>
+              <%= link_to node.name, node_products_path(node) %>
+            </li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="market" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="list-group product-category">
+          <% Node.all.each do |node| %>
+          <li class="list-group-item">
+            <%= link_to node.name, node_products_path(node) %>
+            <span class="pull-right"><i class="fa fa-angle-right"></i></span>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <div class="panel panel-warning">
+          <div class="panel-heading"><span><%= @node.name %></span></div>
+          <ul class="list-group">
+            <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
+            <li class="list-group-item">
+              <ul class="clearfix list-inline">
+                <li><%= root.name %></li>
+                <li><%= render_option_of_total_category(@node.id, root.id) %></li>
+                <% root.children.each do |leave| %>
+                <li><%= render_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
+                <% end %>
+              </ul>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="panel panel-warning">
+          <div class="panel-heading"><span>排序方式：</span></div>
+          <ul class="clearfix list-inline products-list">
+            <% @products.each_with_index do |product, index| %>
+            <li>
+              <div class="products-item">
+                <div class="item-thumb">
+                  <%= image_tag(product.pictures.first.image.url("500x500")) %>
+                </div>
+                <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
+                <div class="item-price"><%= product.price %> 元</div>
+                <div class="item-action">
+                  <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
+                    <i class="fa fa-plus-circle"></i> 加入购物车
+                  </a>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
     </div>
   </div>
 </section>

@@ -21,9 +21,6 @@
 		<header id="header" class="header">
 			<%= render "shared/topbar" %>
 			<%= render "shared/header_main" %>
-			<% if action_name == 'market' or controller_name == 'products' %>
-				<%= render "shared/header_bottom" %>
-			<% end %>
 		</header>
 		
 		<%= yield %>

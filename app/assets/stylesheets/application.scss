@@ -9,18 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require stylesheet
- *= require pavdeals
  *= require pavproducttabs
- *= require pavproductcarousel
- *= require pavquickview
- *= require pavcontentslider
- *= require pavcarousel
- *= require style
  *= require bootstrap-editable
  *= require products
  *= require_self
  */
-
  .breadcrumb {
  	background-color: #FFF;
  }
@@ -668,5 +661,1089 @@ fieldset[disabled] .btn-link:focus {
   }
   .navbar-default {
     background-color: #3695d0;
+  }
+}
+
+#market-page {
+  a {
+    color: #FFF;
+  }
+  .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+    background-color: #ed5466;
+  }
+  .navbar-nav > .active > a {
+    background-color: #ed5466;
+  }
+  .navbar-default {
+    background-color: #dd4250;
+  }
+}
+
+#market {
+  .product-category li {
+    background-color: #fffbea;
+    border-color: #f4edd9;
+  }
+  .product-category li:hover {
+    background-color: #fcf5de;
+  }
+  .product-category li > a {
+    color: #974c19;
+  }
+  .products-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    _zoom: 1
+  }
+  .products-list li {
+    position: relative;
+    padding: 0px;
+    border: solid #ededed;
+    border-width: 0 1px 1px 0;
+    background: #fff;
+    overflow: hidden;
+    _zoom: 1
+  }
+  .products-list li:hover {
+    background: #f8f8f8;
+  }
+  .products-item {
+    position: relative;
+    margin: 5px;
+    padding: 10px 15px;
+    background: #fff;
+    *zoom: 1;
+    width: 197px;
+  }
+  .products-item .item-thumb {
+    padding: 25px 0;
+    text-align: center;
+  }
+  .products-item .item-thumb img {
+    width: 180px;
+    height: 180px;
+    background: image-url("loading.gif") no-repeat 50% 50%;
+  }
+  .products-item .item-name {
+    width: 100%;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .products-item .item-name a {
+    color: #434a54;
+  }
+  .products-item .item-name a:hover {
+    color: #f84858;
+    text-decoration: none;
+  }
+  .products-item .item-price {
+    line-height: 1.3;
+    color: #434a54;
+  }
+  .products-item .item-price del{
+    color: #aab2bd;
+    margin-left: 10px;
+    text-decoration: line-through;
+  }
+  .products-item .item-action {
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+}
+
+#good {
+  .icon-slides {
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    width:41px;
+    height:69px;
+    text-indent:
+    -9999em;
+    overflow:hidden;
+    background-image: image-url("icon-slides.png");
+    background-repeat:no-repeat;
+    _filter:alpha(opacity=40);
+  }
+  .icon-slides:hover {
+    opacity:.6;
+    filter:alpha(opacity=60);
+  }
+  .icon-slides:focus {
+    outline:0;
+  }
+  .icon-slides-prev {
+    background-position:-84px center;
+  }
+  .icon-slides-prev:hover {
+    background-position:0 center;
+  }
+  .icon-slides-next {
+    background-position:-125px center;
+  }
+  .icon-slides-next:hover {
+    background-position:-42px center;
+  }
+  .goods-detail-info {
+    padding: 0px;
+    background: #fff;
+  }
+
+  .goods-pic-box, .goods-info-box {
+    min-height: 620px;
+    _height: 620px
+  }
+
+  .goods-pic-box {
+    text-align: center
+  }
+
+  .goods-pic-box .icon-slides {
+    position: absolute;
+    top: 0;
+    cursor: pointer
+  }
+
+  .goods-pic-box .icon-slides-prev {
+      left: 0
+  }
+
+  .goods-pic-box .icon-slides-next {
+      right: 0
+  }
+
+  .goods-big-pic {
+    height: 550px;
+    padding: 20px 0 10px;
+    background: image-url("loading.gif") no-repeat center center
+  }
+
+  .goods-big-pic img {
+      width: 500px;
+      height: 500px
+  }
+
+  .goods-small-pic li {
+      display: inline-block;
+      *display: inline;
+      width: 60px;
+      height: 60px;
+      margin: 0 5px;
+      cursor: pointer;
+      zoom: 1;
+      border: 3px solid #fff;
+      border-radius: 5px
+  }
+
+  .goods-small-pic li img {
+      width: 60px;
+      height: 60px
+  }
+
+  .goods-small-pic li.current {
+      border-color: #ededed
+  }
+
+  .goods-info-box {
+      float: right;
+      width: 332px;
+      padding: 0 28px 0 29px;
+      border-left: 1px solid #ededed;
+      font-size: 12px;
+      color: #434a54
+  }
+
+  .goods-info-box dt {
+      padding-bottom: 15px
+  }
+
+  .goods-info-box dt .discount {
+      padding-bottom: 30px
+  }
+
+  .goods-info-box dt .discount p {
+      height: 40px;
+      margin-bottom: -10px
+  }
+
+  .goods-info-box h1 {
+      font-size: 24px;
+      line-height: 1.5
+  }
+
+  .goods-info-box dd {
+      padding: 10px 0;
+      position: relative;
+      border-top: 1px solid #ededed
+  }
+
+  .goods-info-box .goods-info-extent {
+      border: none;
+      padding-top: 20px
+  }
+
+  .goods-info-phone {
+      font-size: 14px;
+      line-height: 2;
+      color: #656d78
+  }
+
+  .goods-info-price .item {
+      padding: 4px 0
+  }
+
+  .goods-info-price .goods-info-activity {
+      padding-left: 60px;
+      position: relative;
+      color: #da4453
+  }
+
+  .goods-info-price .goods-info-activity label {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      _left: -60px;
+      color: #434a54
+  }
+
+  .goods-info-price .goods-info-activity .icon {
+      padding: 1px 3px;
+      margin-right: 8px;
+      background-color: #da4453;
+      color: #fff
+  }
+
+  .goods-info-price .goods-info-activity a {
+      margin-left: 8px;
+      color: #36c
+  }
+
+  .goods-info-price .letter-spacing-2 {
+      letter-spacing: 2em
+  }
+
+  .goods-info-price .letter-spacing-half {
+      letter-spacing: 0.5em
+  }
+
+  .goods-info-price .goods-info-price-num {
+      font-size: 14px;
+      color: #f84858
+  }
+
+  .goods-info-price .goods-info-price-num em {
+      font-size: 24px;
+      margin-right: 5px
+  }
+
+  .goods-info-price del {
+      color: #aab2bd
+  }
+
+  .goods-info-price .icon-stat {
+      margin-right: 5px;
+      margin-bottom: -2px
+  }
+
+  .goods-info-options {
+      padding: 10px 0;
+      margin-bottom: -10px;
+      overflow: hidden;
+      zoom: 1
+  }
+
+  .goods-info-options .label {
+      display: block;
+      margin-bottom: 10px
+  }
+
+  .goods-info-options .item {
+      float: left;
+      display: inline-block;
+      padding: 1px 11px;
+      height: 24px;
+      line-height: 24px;
+      margin: 0 10px 10px 0;
+      border: 1px solid #ededed;
+      overflow: hidden
+  }
+
+  .goods-info-options .item:hover {
+      text-decoration: none
+  }
+
+  .goods-info-options .selected {
+      padding: 0 10px;
+      border: 2px solid #f84858;
+      color: #f84858
+  }
+
+  .icon-goods-notice {
+      display: inline-block;
+      width: 20px;
+      height: 14px;
+      margin: -2px 5px 0 0;
+      vertical-align: middle;
+      background: url("http://p.www.xiaomi.com/zt/2013/icon-goods-notice.png") no-repeat;
+      overflow: hidden
+  }
+
+  .goods-notice-btn {
+      float: left;
+      width: 161px;
+      margin: 10px 10px 0 0;
+      _height: 24px;
+      _padding-top: 12px
+  }
+
+  .goods-over-btn {
+      float: left;
+      width: 161px;
+      margin: 10px 10px 0 0;
+      cursor: default
+  }
+
+  #playHeart {
+      display: block;
+      position: absolute;
+      width: 23px;
+      height: 23px;
+      z-index: 100
+  }
+
+  .goods-info-extent li {
+      height: 16px;
+      line-height: 16px;
+      padding: 15px 0;
+      border-top: 1px solid #ededed
+  }
+
+  .goods-info-extent li .icon-common {
+      margin-right: 10px;
+      vertical-align: middle;
+      margin-top: -2px;
+      *margin-top: 0
+  }
+
+  .goods-info-extent .sns-share a {
+      margin-right: 20px
+  }
+
+  .goods-info-extent .sns-share .icon-common {
+      margin-right: 0
+  }
+
+  .goods-info-extent .sns-share .icon-common-sina {
+      background-position: -485px -2px
+  }
+
+  .goods-info-extent .sns-share .icon-common-kongjian {
+      background-position: -485px -23px
+  }
+
+  .goods-detail-box .hd {
+      padding-top: 0
+  }
+
+  .goods-detail-box .bd {
+      padding: 10px
+  }
+
+  .godds-desc-menu ul {
+      height: 20px;
+      padding: 15px 0;
+      overflow: hidden
+  }
+
+  .godds-desc-menu li {
+      float: left;
+      margin-left: -1px
+  }
+
+  .godds-desc-menu li a {
+      display: inline-block;
+      line-height: 20px;
+      padding: 0 15px;
+      color: #434a54;
+      font-size: 18px;
+      border-left: 1px solid #ccd1d9
+  }
+
+  .godds-desc-menu li a:hover {
+      text-decoration: none;
+      color: #f84858
+  }
+
+  .godds-desc-menu .current a {
+      color: #f84858
+  }
+
+  .godds-desc-par {
+      padding: 20px
+  }
+
+  .godds-desc-par table {
+      width: 100%
+  }
+
+  .godds-desc-par table th, .godds-desc-par table td {
+      padding: 8px 0 8px 20px;
+      border-bottom: 1px solid #ededed;
+      text-align: left
+  }
+
+  .godds-desc-par table th {
+      background-color: #fafafa;
+      color: #666
+  }
+
+  .godds-desc-par table thead th {
+      background-color: #f4f4f6;
+      font-weight: normal
+  }
+
+  .godds-desc-par table tbody th {
+      width: 150px
+  }
+
+  .godds-desc-par table tbody td {
+      color: #999
+  }
+
+  .goods-desc-con {
+      width: 100%;
+      padding: 10px 0;
+      overflow: hidden;
+      text-align: center
+  }
+
+  .goods-comment-trigger {
+      float: right;
+      margin: 15px 15px 0 0;
+      font-size: 14px
+  }
+
+  .goods-comment-trigger .icon-common-comment {
+      margin-right: 5px;
+      vertical-align: middle
+  }
+
+  .goods-comment-list ul {
+      margin: 0 10px
+  }
+
+  .goods-comment-list li {
+      padding: 15px 0;
+      border-bottom: 1px solid #ededed
+  }
+
+  .goods-comment-list li h2 {
+      font-size: 14px;
+      color: #f84858
+  }
+
+  .goods-comment-list li p {
+      font-size: 12px;
+      color: #656d78
+  }
+
+  .goods-comment-list li .is-top {
+      float: right;
+      font-size: 12px;
+      background-color: #f84858;
+      color: #fff;
+      padding: 0 8px;
+      border-radius: 3px;
+      font-weight: normal
+  }
+
+  .goods-comment-list li .reply {
+      margin: 5px 0 0;
+      padding: 10px 20px;
+      background-color: #f5f7fa;
+      font-size: 12px
+  }
+
+  .goods-comment-list li .state {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #aab2bd
+  }
+
+  .goods-comment-list li .state a {
+      color: #aab2bd
+  }
+
+  .goods-comment-list li .state a:hover {
+      color: #f84858;
+      text-decoration: none
+  }
+
+  .goods-comment-list li .state .useful {
+      color: #656d78;
+      float: right
+  }
+
+  .goods-comment-list li .state .line {
+      margin: 0 5px
+  }
+
+  .goods-comment-list li .icon-stat {
+      margin-bottom: -3px;
+      margin-right: 3px
+  }
+
+  .goods-comment-list .xm-pagenavi {
+      display: none
+  }
+
+  .goods-faq-sub {
+      float: left;
+      line-height: 14px;
+      font-size: 14px;
+      margin: 18px 0 0 10px;
+      padding-left: 10px;
+      border-left: 1px solid #aab2bd
+  }
+
+  .goods-online-trigger {
+      float: right;
+      line-height: 18px;
+      margin: 15px 15px 0 0;
+      font-size: 14px
+  }
+
+  .goods-online-trigger .icon-common-people {
+      margin-right: 5px;
+      margin-top: -2px;
+      vertical-align: middle
+  }
+
+  .goods-faq-list ul {
+      overflow: hidden
+  }
+
+  .goods-faq-list li {
+      float: left;
+      width: 435px;
+      padding: 20px;
+      margin-bottom: -1px
+  }
+
+  .goods-faq-list li h2 {
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #434a54
+  }
+
+  .goods-faq-list li p {
+      font-size: 12px;
+      color: #656d78
+  }
+
+  .goods-sub-bar {
+      display: block;
+      width: 100%;
+      height: 60px;
+      position: fixed;
+      _width: 0;
+      _height: 0;
+      _overflow: hidden;
+      top: -60px;
+      left: 0;
+      background: #fff;
+      z-index: 1000;
+      -webkit-transition: .15s ease all;
+      -moz-transition: .15s ease all;
+      -o-transition: .15s ease all;
+      -ms-transition: .15s ease all;
+      transition: .15s ease all;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      *border-bottom: 2px solid #ededed
+  }
+
+  .goods-sub-bar .godds-desc-menu ul {
+      padding: 20px 0
+  }
+
+  .goods-sub-bar .goods-sub-bar-info {
+      padding: 10px 0
+  }
+
+  .goods-sub-bar .goods-sub-bar-info dt {
+      float: left;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px
+  }
+
+  .goods-sub-bar .goods-sub-bar-info dt img {
+      width: 40px;
+      height: 40px
+  }
+
+  .goods-sub-bar .goods-sub-bar-info dd {
+      float: left
+  }
+
+  .goods-sub-bar .goods-sub-bar-info dd strong {
+      display: block;
+      width: 180px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden
+  }
+
+  .goods-sub-bar .goods-sub-bar-info dd em {
+      margin-right: 5px;
+      color: #f84858
+  }
+
+  .goods-sub-bar .goods-sub-bar-info dd del {
+      color: #aab2bd
+  }
+
+  .goods-sub-bar .fr {
+      float: right
+  }
+
+  .goods-sub-bar .fr .btn {
+      margin-top: 10px;
+      margin-right: 0
+  }
+
+  .goods-sub-bar .fr .item-action-state {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 50px;
+      z-index: 100;
+      width: 161px;
+      height: 38px;
+      line-height: 38px;
+      color: #fff;
+      text-align: center;
+      background: #91cd50;
+      cursor: pointer;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px
+  }
+
+  .goods-sub-bar .fr .item-action-state .icon-goods-add-success {
+      display: inline-block;
+      position: relative;
+      top: 2px;
+      width: 16px;
+      height: 16px;
+      margin-right: 2px;
+      background: url("http://p.www.xiaomi.com/zt/2013/icon-goods-list.png") no-repeat -36px 0
+  }
+
+  .goods-sub-bar .godds-desc-menu li {
+      margin-left: 0
+  }
+
+  .goods-sub-bar-play {
+      top: 0
+  }
+
+  .mayBeLike {
+      padding-bottom: 10px;
+      text-align: center
+  }
+
+  .mayBeLike li {
+      padding: 10px 10px;
+      color: #656d78
+  }
+
+  .mayBeLike li del {
+      color: #aab2bd
+  }
+
+  .mayBeLike li .item-name {
+      padding-top: 5px;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden
+  }
+
+  .modal-faq {
+      width: 725px;
+      height: 550px;
+      margin-top: -275px
+  }
+
+  .faq-header {
+      width: 695px
+  }
+
+  .faq-body {
+      padding-right: 0;
+      padding-top: 0;
+      _padding-right: 0
+  }
+
+  .faq-body iframe {
+      width: 710px;
+      display: block;
+      margin: 0;
+      border: 0;
+      padding: 0
+  }
+
+  .goods-change {
+      width: 700px;
+      margin: 0 auto;
+      padding: 40px 0;
+      border: 10px solid #f5f5f5;
+      background-color: #fff;
+      text-align: left
+  }
+
+  .goods-change-l {
+      float: left;
+      width: 390px;
+      padding: 70px 0 0 30px
+  }
+
+  .goods-change-l h4 {
+      font-size: 24px
+  }
+
+  .goods-change-l .goods-change-info {
+      padding: 15px 0 25px;
+      font-size: 14px
+  }
+
+  .goods-change-l dl {
+      padding-bottom: 24px
+  }
+
+  .goods-change-l dl.goods-change-skin {
+      padding-bottom: 5px
+  }
+
+  .goods-change-l dl dt, .goods-change-l dl dd {
+      float: left
+  }
+
+  .goods-change-l dl dt {
+      width: 90px;
+      height: 38px;
+      line-height: 38px;
+      font-size: 14px;
+      font-weight: bold
+  }
+
+  .goods-change-l dl dd {
+      width: 38px;
+      height: 38px;
+      margin-right: 10px;
+      cursor: pointer
+  }
+
+  .goods-change-l dl dd i {
+      display: block;
+      width: 38px;
+      height: 38px;
+      background-image: url(http://p.www.xiaomi.com/zt/2013/goods-icon-change.png?1);
+      background-repeat: no-repeat
+  }
+
+  .goods-change-l dl dd.current {
+      background: url(http://p.www.xiaomi.com/zt/2013/goods-icon-change-bg.png) no-repeat center center;
+      cursor: default
+  }
+
+  .goods-change-l dl dd .goods-icon-change-01 {
+      background-position: 4px 4px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-02 {
+      background-position: -41px 4px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-03 {
+      background-position: -86px 4px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-04 {
+      background-position: -131px 4px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-05 {
+      background-position: -176px 4px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-06 {
+      background-position: -221px 4px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-07 {
+      background-position: 4px -44px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-08 {
+      background-position: -41px -44px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-09 {
+      background-position: -86px -44px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-10 {
+      background-position: -131px -44px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-11 {
+      background-position: -176px -44px
+  }
+
+  .goods-change-l dl dd .goods-icon-change-12 {
+      background-position: -221px -44px
+  }
+
+  .goods-change-l .goods-change-tips {
+      color: #666
+  }
+
+  .goods-change-l .goods-change-link {
+      height: 145px
+  }
+
+  .goods-change-r {
+      float: right;
+      position: relative;
+      width: 245px;
+      height: 445px;
+      margin-right: 25px;
+      background-repeat: no-repeat;
+      background-position: center center
+  }
+
+  .goods-change-r .goods-change-loading {
+      display: none;
+      width: 150px;
+      height: 24px;
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      margin-left: -75px;
+      line-height: 24px;
+      font-size: 12px;
+      background: url(http://p.www.xiaomi.com/zt/131008/images/loading.gif) no-repeat scroll 18px center;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      background-color: #333;
+      filter: alpha(opacity=70);
+      border-radius: 25px;
+      color: #eaeaea;
+      text-align: center;
+      text-indent: 32px
+  }
+
+  .goods-comment-box {
+      width: 740px;
+      margin-left: -370px;
+      font-size: 12px;
+      margin-top: -300px
+  }
+
+  .goods-comment-form {
+      width: 710px
+  }
+
+  .goods-comment-form .pic {
+      float: left;
+      width: 350px;
+      height: 350px;
+      margin-right: 20px
+  }
+
+  .goods-comment-form .pic img {
+      display: block;
+      width: 350px;
+      height: 350px
+  }
+
+  .goods-comment-form .form-box {
+      float: left
+  }
+
+  .goods-comment-form .stat-list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none
+  }
+
+  .goods-comment-form .stat-list li {
+      padding: 4px 0
+  }
+
+  .goods-comment-form .stat-list li label, .goods-comment-form .stat-list li .stat-box,
+  .goods-comment-form .stat-list li .txt {
+      float: left
+  }
+
+  .goods-comment-form .stat-list li label {
+      color: #434a54
+  }
+
+  .goods-comment-form .stat-list li .stat-box {
+      width: 90px;
+      height: 14px;
+      margin-top: 3px;
+      position: relative
+  }
+
+  .goods-comment-form .stat-list li .stat-holder {
+      width: 90px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      margin: 0
+  }
+
+  .goods-comment-form .stat-list li .stat-holder i {
+      float: left;
+      width: 18px;
+      height: 14px;
+      cursor: pointer
+  }
+
+  .goods-comment-form .stat-list li .msg {
+      margin-left: 10px;
+      color: #ff6f3d
+  }
+
+  .goods-comment-form .comment-text {
+      margin-top: 15px
+  }
+
+  .goods-comment-form .comment-text label {
+      display: block;
+      margin-bottom: 5px;
+      color: #434a54
+  }
+
+  .goods-comment-form .comment-text label em {
+      color: #ff6f3d
+  }
+
+  .goods-comment-form .comment-text .msg {
+      float: right;
+      color: #ff6f3d
+  }
+
+  .goods-comment-form .comment-text textarea {
+      width: 318px;
+      height: 100px;
+      padding: 10px;
+      line-height: 20px;
+      border: 1px solid #e5e8ed;
+      border-radius: 8px
+  }
+
+  .goods-comment-form .comment-text textarea:hover, .goods-comment-form .comment-text textarea:focus {
+      border-color: #ff6f3d;
+      outline: none
+  }
+
+  .goods-comment-form .tips {
+      margin: 15px 0 0;
+      padding: 0;
+      list-style-type: none
+  }
+
+  .icon-sina {
+      display: inline-block;
+      width: 19px;
+      height: 16px;
+      background: url("http://p.www.xiaomi.com/zt/2013/icon-sina-white.png?0809") no-repeat;
+      overflow: hidden
+  }
+
+  .goods-comment-result-box {
+      width: 400px;
+      margin-left: -200px;
+      text-align: center
+  }
+
+  .goods-comment-result-box .modal-body {
+      padding: 20px
+  }
+
+  .goods-comment-result-box .hd h3 {
+      font-size: 24px;
+      margin: 0 0 5px;
+      color: #434a54
+  }
+
+  .goods-comment-result-box .bd {
+      padding: 15px;
+      margin-top: 15px;
+      background: #f5f7fa;
+      border: 1px solid #ededed;
+      border-radius: 5px
+  }
+
+  .goods-comment-result-box .bd img {
+      width: 110px;
+      height: 110px
+  }
+
+  .goods-comment-result-box .bd .stat-result {
+      margin-top: 10px
+  }
+
+  .goods-comment-result-box .bd p {
+      font-size: 12px
+  }
+
+  .goods-comment-result-box .comment-text {
+      height: 2em;
+      overflow: hidden
+  }
+
+  .goods-comment-result-box .comment-share {
+      padding-top: 20px
+  }
+
+  .goods-comment-result-box .comment-share .btn {
+      width: 120px;
+      padding: 0 15px;
+      margin-bottom: 5px
+  }
+
+  .goods-comment-result-box .comment-share .btn .icon-sina {
+      margin: -2px 5px 0 0;
+      vertical-align: middle
+  }
+
+  .goods-comment-result-box .comment-share p {
+      color: #aab2bd;
+      font-size: 12px
+  }
+
+  .goods-comment-tip-box dl {
+      padding: 10px;
+      line-height: 2
+  }
+
+  .goods-comment-tip-box .btn {
+      display: block;
+      margin: 10px auto 0
   }
 }
