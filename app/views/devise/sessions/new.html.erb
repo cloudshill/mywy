@@ -1,3 +1,32 @@
+<section id="market-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "首页", root_path %></li>
+            <li><%= link_to "电影购票&影讯", movies_path %></li>
+            <li><%= link_to "愉快购物", home_market_path %></li>
+            <li><%= link_to "智能点餐", home_market_path %></li>
+            <li><%= link_to "尝试云购", home_market_path %></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
 <section id="sys-notification">
 	<div class="container">
 		<div id="notification">
@@ -6,26 +35,9 @@
 	</div>
 </section>
 <section id="columns" class="offcanvas-siderbars">
-	<div class="row visible-xs">
-		<div class="container"> 
-			<div class="offcanvas-sidebars-buttons">
-				<button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
-				<button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
-			</div>
-		</div>
-	</div>
-	<div id="breadcrumb">
-		<ol class="breadcrumb container">
-			<li>
-				<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>Home</a></span>
-			</li>
-			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account"><span>Account</a></span></li>
-			<li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/login"><span>Login</a></span></li>
-		</ol>
-	</div>
 	<div class="container">
 		<div class="row">
-			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">  
+			<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
 				<div id="content">
 					<h1>账号 登录</h1>		
 					<div class="login-content wrapper">
@@ -36,7 +48,7 @@
 									<div class="content">
 										<p>注册账号</p>
 										<p>注册账号，可以让你更方便地使用我们网站的所有功能，而且我们会根据随时提供优惠信息，根据你的购买需求，为你推荐你喜欢的商品。</p>
-										<p><%= link_to "马上注册", new_member_registration_path, :class=>"button" %></p>
+										<p><%= link_to "马上注册", new_member_registration_path, :class=>"btn btn-danger" %></p>
 									</div>
 								</div>
 							</div>
@@ -62,7 +74,7 @@
 											</div>
 
 											<div class="form-group">
-												<%= f.submit "登 录", :class => "button" %>
+												<%= f.submit "登 录", :class => "btn btn-info" %>
 											</div>				  
 										</div>			
 									<% end %>
@@ -72,42 +84,6 @@
 					</div>
 				</div> 
 			</section> 
-
-			<aside class="col-lg-3 col-md-3 col-sm-12 col-xs-12">	
-				<div id="column-right" class="sidebar">
-						<div class="box account highlights">
-			  			<div class="box-heading"><span>账号</span>
-			  		</div>
-			  		<div class="box-content">
-			    		<ul>
-			          <li>
-									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/login">登录</a>
-								</li>
-							  <li>
-									<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/register">注册</a>
-							  </li>
-						    <li>
-						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/forgotten">忘记密码</a>
-						    </li>
-						    <li>
-						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/account">我的账号</a>
-						    </li>
-						    <li>
-						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/address">地址簿</a>
-						    </li>
-						    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/wishlist">心愿墙</a></li>
-						    <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/order">我的订单</a></li>
-						    <li>
-						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/newsletter">Newsletter</a>
-						    </li>
-						    <li>
-						    	<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/recurring">Recurring payments</a>
-						    </li>
-			        </ul>
-			  		</div>
-					</div>
-				</div>
-			</aside>
 		</div>
 	</div>
 </section>
