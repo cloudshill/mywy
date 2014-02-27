@@ -40,7 +40,7 @@
               <ul id="goodsPicList">
                 <% @product.pictures.each do |pic| %>
                 <li>
-                  <img src="<%= pic.image.url("500x500")%>" />
+                  <img src="<%= pic.image.url("50x50")%>" data-src="<%= pic.image.url("500x500")%>" />
                 </li>
                 <% end %>
               </ul>
@@ -66,7 +66,7 @@
                 <div class="item">
                   <label>商品评价：</label>
                   <span id="goodsStarLevel"></span>
-                  <a href="#goodsComment" id="goodsToComment"> 已有3666人评价 &gt;</a>
+                  <a href="#goodsComment" id="goodsToComment"> 已有<%= @product.comments.count %>人评价 &gt;</a>
                 </div>
                 <!-- 评价 E -->
                 <!--S 参与活动-->
@@ -74,19 +74,17 @@
               </dd>
               <!--S 可选-->
               <dd>
-                <div class="goods-info-options">
-                  <div class="product-extra">
-                    <div class="quantity-adder pull-left">
-                      <div class="quantity-number pull-left">
-                        <span>数 量:</span>
-                        <input type="text" name="quantity" id="quantity" size="2" value="1" />
-                      </div>
-                      <div class="quantity-wrapper pull-left">
-                        <span class="add-up add-action fa fa-plus" onClick="setAmount.add('#quantity')"></span> 
-                        <span class="add-down add-action fa fa-minus" onClick="setAmount.reduce('#quantity')"></span>
-                      </div>
+                <div class="goods-info-quantity">
+                  <div class="quantity-adder pull-left">
+                    <div class="quantity-number pull-left">
+                      <span>数 量:</span>
+                      <input type="text" name="quantity" id="quantity" size="2" value="1" />
                     </div>
-                  </div>                                               
+                    <div class="quantity-wrapper pull-left">
+                      <span class="add-up add-action fa fa-plus" onClick="setAmount.add('#quantity')"></span> 
+                      <span class="add-down add-action fa fa-minus" onClick="setAmount.reduce('#quantity')"></span>
+                    </div>
+                  </div>
                 </div>
               </dd>
               <!--E 可选-->
@@ -115,38 +113,59 @@
         <div class="panel panel-success">
           <div class="panel-heading">
             <ul class="list-inline clearfix">
-              <li><a href="#tab-description">详细描述</a></li>     
-              <li><a href="#tab-review">评价 (<%= @product.comments.count %>)</a></li>
+              <li class="current"><a href="#goodsDesc">产品详情</a></li>
+              <li><a href="#goodsPar">规格参数</a></li>
+              <li><a href="#goodsComment">用户评价(<%= @product.comments.count %>)</a></li>
+              <li><a href="#goodsFaq">常见问题</a></li>
             </ul>    
           </div>
+          <div class="panel-body" id="goodsDesc">
+            <%= @product.description %>
+          </div>
+        </div>
+
+        <div class="panel panel-warning" id="goodsPar">
+          <div class="panel-heading">规格参数</div>
+          <div class="panel-body"></div>
+        </div>
+
+        <div class="panel panel-info" id="goodsComment">
+          <div class="panel-heading">商品评价 <span class="pull-right"><i class="fa fa-comment"></i> 我要评论</span></div>
           <div class="panel-body">
-            <div class="tabs-group box">
-              <div id="tab-description" class="tab-content">
-                <%= @product.description %>
-              </div>
-              <div id="tab-review" class="tab-content no-margin">
-                <table class="table" id="comments_list">
-                  <% @product.comments.each do |comment| %>
-                  <tr>
-                    <td></td>
-                    <td><%= comment.body %></td>
-                  </tr>
-                  <% end %>
-                </table>
-                <div id="review"></div>
-                <h2 id="review-title">评价</h2>
-                <%= form_for([@product, @comment], :remote => true) do |f| %>
-                <div class="form-group">
-                  <p>
-                    <%= f.text_area :body, :class => "form-control", :cols => "50", :rows => "8" %>
-                  </p>
-                </div>
-                
-                <div class="buttons no-padding">
-                  <div class="pull-right"><%= f.submit "发表", :class=>"button" %></div>
-                </div>
+            <div class="goods-comment-list">
+              <ul id="goodsCommentList">
+                <% @product.comments.each do |comment| %>
+                <li><%= comment.body %></li>
                 <% end %>
+              </ul>
+              <div class="xm-pagenavi" id="commentPages">            
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-danger" id="goodsFaq">
+          <div class="panel-heading">常见问题</div>
+          <div class="panel-body">
+            <div class="goods-faq-list">
+              <ul class="clearfix">
+                <li>
+                  <h2>如何挑选商品？</h2>
+                  <p>点击页面上方“加入购物车”按钮或页面下拉时顶部导航上的“加入购物车”按钮将商品加入购物车，再点击页面右上角的“购物车”前往购物车页面进行结算。</p>
+                </li>
+                <li>
+                  <h2>收藏商品功能</h2>
+                  <p>点击“收藏按钮”后，按钮中的红心亮起代表收藏成功，再次点击取消收藏，按钮颜色回复灰色。您可在“个人中心”中的我的收藏查看所有收藏商品。</p>
+                </li>
+                <li>
+                  <h2>维修网点销售配件吗？</h2>
+                  <p>所有授权维修网点具备维修手机标配里配件的功能，部分指定授权维修网点可销售标配及部分官网配件，具体销售的产品及价格请以修网点信息为准。</p>
+                </li>
+                <li>
+                  <h2>退换货办理流程</h2>
+                  <p>您可拨打美月客服中心与客服人员沟通，或登录美月网“我的订单” ->“订单详情”下方点击“申请售后服务”并填写相应信息，美月看到您的申请，会安排工作人员与您进行退换货质量确认并办理相关事宜.</p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -154,8 +173,3 @@
     </div>
   </div>
 </section>
-
-
-<script type="text/javascript">
-  $('#tabs a').tabs();
-</script> 

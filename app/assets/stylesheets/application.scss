@@ -830,33 +830,31 @@ fieldset[disabled] .btn-link:focus {
   }
 
   .goods-small-pic li {
-      display: inline-block;
-      *display: inline;
-      width: 60px;
-      height: 60px;
-      margin: 0 5px;
-      cursor: pointer;
-      zoom: 1;
-      border: 3px solid #fff;
-      border-radius: 5px
+    display: inline-block;
+    *display: inline;
+    width: 60px;
+    height: 60px;
+    margin: 0 5px;
+    cursor: pointer;
+    zoom: 1;
+    border: 3px solid #fff;
+    border-radius: 5px
   }
 
   .goods-small-pic li img {
-      width: 60px;
-      height: 60px
+    width: 60px;
+    height: 60px
   }
 
   .goods-small-pic li.current {
-      border-color: #ededed
+    border-color: #ededed
   }
 
   .goods-info-box {
-      float: right;
-      width: 332px;
-      padding: 0 28px 0 29px;
-      border-left: 1px solid #ededed;
-      font-size: 12px;
-      color: #434a54
+    padding: 0 28px 0 29px;
+    border-left: 1px solid #ededed;
+    font-size: 12px;
+    color: #434a54
   }
 
   .goods-info-box dt {
@@ -982,6 +980,46 @@ fieldset[disabled] .btn-link:focus {
       padding: 0 10px;
       border: 2px solid #f84858;
       color: #f84858
+  }
+
+  .goods-info-quantity {
+    padding: 10px 12px;
+  }
+  .goods-info-quantity:before,
+  .goods-info-quantity:after {
+    content: " ";
+    display: table;
+  }
+  .goods-info-quantity:after {
+    clear: both;
+  }
+  .goods-info-quantity .quantity-adder {
+    margin-right: 10px;
+  }
+  .goods-info-quantity .add-action {
+    display: block;
+    width: 27px;
+    height: 15px;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+    position: relative;
+    cursor: pointer;
+    font-size: 7px;
+    line-height: 14px;
+    text-align: center;
+    color: #6f6f6f;
+  }
+  .goods-info-quantity .add-action:hover {
+    color: #d95750;
+  }
+  .goods-info-quantity .add-up {
+    border-bottom: 0;
+  }
+  .goods-info-quantity .add-to-icon {
+    font-size: 16px;
+    padding: 6px;
+    background: #d95750;
   }
 
   .icon-goods-notice {
@@ -1226,25 +1264,25 @@ fieldset[disabled] .btn-link:focus {
   }
 
   .goods-faq-list ul {
-      overflow: hidden
+    overflow: hidden
   }
 
   .goods-faq-list li {
-      float: left;
-      width: 435px;
-      padding: 20px;
-      margin-bottom: -1px
+    float: left;
+    width: 400px;
+    padding: 20px;
+    margin-bottom: -1px
   }
 
   .goods-faq-list li h2 {
-      margin-bottom: 5px;
-      font-size: 14px;
-      color: #434a54
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #434a54
   }
 
   .goods-faq-list li p {
-      font-size: 12px;
-      color: #656d78
+    font-size: 12px;
+    color: #656d78
   }
 
   .goods-sub-bar {

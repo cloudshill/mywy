@@ -18,7 +18,6 @@
 //= require countdown
 //= require jquery.autogrowtextarea.min
 //= require bootstrap-editable.min
-//= require tabs
 //= require_self
 
 window.App = {
@@ -258,11 +257,37 @@ window.Product = {
         $("#notification").append("<div class='alert alert-error'>添加失败！</div>");
       }
     });
+  },
+  changeGoodsBigPic: function() {
+    var a = $("#goodsPicList");
+    var b = a.children();
+    var c = b.length;
+    var d = $("#goodsPicPrev");
+    var e = $("#goodsPicNext");
+    var f = $("#goodsBigPic");
+    var g = 0, h = null;
+    d.height(d.parent().height()), e.height(e.parent().height()), 2 > c && (d.hide(), e.hide(), a.hide()), b.each(function() {
+      0 === $(this).index() && $(this).addClass("current"), $(this).click(function() {
+        {
+          var a = $(this).index();
+          $(this).children("img").attr("data-src")
+        }
+        g = a, h(g)
+      })
+    }), e.click(function() {
+      g += 1, (g >= c || 0 > g) && (g = 0), h(g)
+    }), d.click(function() {
+      g -= 1, g >= c ? g = 0 : 0 > g && (g = c-1), h(g)
+    }), h = function(a) {
+      var c = b.eq(a).children("img").attr("data-src");
+      c && f.attr("src", c), b.eq(g).addClass("current").siblings().removeClass("current")
+    }
   }
 };
 
 $(document).ready(function(){
   $("textarea").autoGrow();
+  Product.changeGoodsBigPic();
   $('#myModal').on('show.bs.modal', function (e) {
     var show_time_id = 0;
     $('span[name="timeSpan"]').each(function(){
