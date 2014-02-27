@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  extend Enumerize
+  enumerize :role, in: [:buyer, :seller], default: :buyer
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

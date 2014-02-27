@@ -1,6 +1,6 @@
 class HallSeatsController < ApplicationController
-  before_action :set_cinema, only: [:index]
-  before_action :set_movie_hall, only: [:index]
+  before_action :set_cinema, only: [:index, :new, :create]
+  before_action :set_movie_hall, only: [:index, :new, :create]
   before_action :set_hall_seat, only: [:update, :destroy]
   # GET /hallseats
   # GET /hallseats.json
@@ -11,6 +11,26 @@ class HallSeatsController < ApplicationController
     else
       @show_time = ShowTime.find(params["show_time_id"])
       @hall_seats = @show_time.movie_hall.hall_seats.order("row ASC, col ASC")
+    end
+  end
+
+  def new
+    @hall_seat = HallSeat.new
+  end
+
+  def create
+    @hall_seat = @movie_hall.hall_seats.build(hall_seat_params)
+
+    respond_to do |format|
+      if @hall_seat.save
+        format.html { redirect_to cinema_movie_hall_hall_seats_path(@cinema, @movie_hall), notice: 'Picture was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @hall_seat }
+        format.js { @success = 1 }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @hall_seat.errors, status: :unprocessable_entity }
+        format.js { @success = 2 }
+      end
     end
   end
 

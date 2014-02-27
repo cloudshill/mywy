@@ -54,72 +54,10 @@
             <span><%= @cinema.name %></span> - <span><%= @movie_hall.name %></span>
           </div>
           <div class="panel-body">
-            <table class="table" style="width:100%;">
-              <thead>
-                <tr>
-                  <th style="width: 20px;"><input type="checkbox"></th>
-                  <th style="width: 100px;">行号</th>
-                  <th style="width: 100px;">列号</th>
-                  <th style="width: 50px;">操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @hall_seats.each do |hall_seat| %>
-                <tr>
-                  <td><input type="checkbox" style="margin-top:12px;"></td>
-                  <td>
-                    <span style="font-size:17px;line-height:37px;">
-                      <a class="edit_hall_seat_row" href="#" data-pk="<%= hall_seat.id %>" data-url="<%= cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat) %>" data-placement="right">
-                        <%= hall_seat.row %>
-                      </a>
-                    </span>
-                  </td>
-                  <td>
-                    <span style="font-size:17px;line-height:37px;">
-                      <a class="edit_hall_seat_col" href="#" data-pk="<%= hall_seat.id %>" data-url="<%= cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat) %>" data-placement="right">
-                        <%= hall_seat.col %>
-                      </a>
-                    </span>
-                  </td>
-                  <td>
-                    <%= link_to "删除", cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat), :method => :delete, :class => "btn btn-info btn-sm" %>
-                  </td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
+            <%= render 'form' %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $.fn.editable.defaults.mode = 'pop';
-    $(".edit_hall_seat_row").editable({
-      type: "text",
-      title: "输入名称",
-      ajaxOptions: {
-        type: 'PUT'
-      },
-      params: function(params) {
-        //originally params contain pk, name and value
-        params.hall_seat = { "row" : "wait" };
-        return params;
-      }
-    });
-    $(".edit_hall_seat_col").editable({
-      type: "text",
-      title: "输入名称",
-      ajaxOptions: {
-        type: 'PUT'
-      },
-      params: function(params) {
-        //originally params contain pk, name and value
-        params.hall_seat = { "col" : "wait" };
-        return params;
-      }
-    });
-  });
-</script>
