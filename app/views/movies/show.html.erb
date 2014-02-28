@@ -36,10 +36,10 @@
           <span class="time_length">
           </span>
           <span class="countries">
-            <%= @movie.countries.to_sentence(words_connector: ",") %>
+            <%= @movie.countries.to_sentence(words_connector: ",") if not @movie.countries.blank? %>
           </span>
           <span class="categories">
-            <%= @movie.genres.to_sentence(words_connector: ",") %>
+            <%= @movie.genres.to_sentence(words_connector: ",") if not @movie.genres.blank? %>
           </span>
         </div>
         <ul class="details">
@@ -61,11 +61,11 @@
           </li>
           <li>
             <b>导演：</b>
-            <h2><%= @movie.directors.to_sentence(words_connector: ",") %></h2>
+            <h2><%= @movie.directors.to_sentence(words_connector: ",") if not @movie.directors.blank? %></h2>
           </li>
           <li>
             <b>主要演员：</b>
-            <h2><%= @movie.casts.to_sentence(words_connector: ",") %></h2>
+            <h2><%= @movie.casts.to_sentence(words_connector: ",") if not @movie.casts.blank? %></h2>
           </li>
         </ul>
       </div>
@@ -119,28 +119,89 @@
     </div>
     </br>
     <div class="row">
-      <div class="col-md-12">
-        <div class="ui-movie-ext-title">《<%= @movie.title %>》的简介</div>
-        <div class="ui-movie-ext-content summary">
-          <%= @movie.summary %>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">你可能还喜欢</div>
+          <div class="panel-body"></div>
         </div>
       </div>
-    </div>
-    </br>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="ui-movie-ext-title">《<%= @movie.title %>》的宣传片</div>
-        <div class="ui-movie-ext-content summary">
-          <%= @movie.summary %>
+      <div class="col-md-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <ul class="list-inline clearfix">
+              <li class="current"><a href="#goodsDesc">《<%= @movie.title %>》的简介</a></li>
+              <li><a href="#goodsPar">预告片</a></li>
+              <li><a href="#goodsComment">用户评论(<%= @movie.comments.count %>)</a></li>
+              <li><a href="#goodsFaq">常见问题</a></li>
+            </ul>    
+          </div>
+          <div class="panel-body" id="goodsDesc">
+            <%= @movie.summary %>
+          </div>
         </div>
-      </div>
-    </div>
-    </br>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="ui-movie-ext-title">喜欢《<%= @movie.title %>》的人也喜欢</div>
-        <div class="ui-movie-ext-content summary">
-          <%= @movie.summary %>
+        <div class="panel panel-warning" id="goodsPar">
+          <div class="panel-heading">预告片</div>
+          <div class="panel-body"></div>
+        </div>
+
+        <div class="panel panel-info" id="goodsComment">
+          <div class="panel-heading">电影评价 <span class="pull-right" data-toggle="modal" data-target="#commentPages"><i class="fa fa-comment"></i> 我要评论</span></div>
+          <div class="panel-body">
+            <div class="goods-comment-list">
+              <ul id="goodsCommentList">
+                <% @movie.comments.each do |comment| %>
+                <li><%= comment.body %></li>
+                <% end %>
+              </ul>
+              <%= form_for([@movie, Comment.new], :remote => true) do |f| %>
+              <div class="modal fade xm-pagenavi" id="commentPages" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title" id="myModalLabel">我要留言</h4>
+                    </div>
+                    <div class="modal-body">
+                      
+                      <%= f.text_area :body, :class => "", :rows => "2", :cols => "10" %>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">不留言了</button>
+                      <%= f.submit "发表", :class=>"btn btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-danger" id="goodsFaq">
+          <div class="panel-heading">常见问题</div>
+          <div class="panel-body">
+            <div class="goods-faq-list">
+              <ul class="clearfix">
+                <li>
+                  <h2>如何挑选商品？</h2>
+                  <p>点击页面上方“加入购物车”按钮或页面下拉时顶部导航上的“加入购物车”按钮将商品加入购物车，再点击页面右上角的“购物车”前往购物车页面进行结算。</p>
+                </li>
+                <li>
+                  <h2>收藏商品功能</h2>
+                  <p>点击“收藏按钮”后，按钮中的红心亮起代表收藏成功，再次点击取消收藏，按钮颜色回复灰色。您可在“个人中心”中的我的收藏查看所有收藏商品。</p>
+                </li>
+                <li>
+                  <h2>维修网点销售配件吗？</h2>
+                  <p>所有授权维修网点具备维修手机标配里配件的功能，部分指定授权维修网点可销售标配及部分官网配件，具体销售的产品及价格请以修网点信息为准。</p>
+                </li>
+                <li>
+                  <h2>退换货办理流程</h2>
+                  <p>您可拨打美月客服中心与客服人员沟通，或登录美月网“我的订单” ->“订单详情”下方点击“申请售后服务”并填写相应信息，美月看到您的申请，会安排工作人员与您进行退换货质量确认并办理相关事宜.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

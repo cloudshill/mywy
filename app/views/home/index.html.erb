@@ -30,7 +30,7 @@
 <section id="home_page" class="offcanvas-siderbars">
 	<div class="container">
 		<div class="row">
-			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
+			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 				<div id="content" class="ui-slide-movie">
 					<div class="ui-slide-control">
 						<span class="title">电影</span>
@@ -63,8 +63,8 @@
 		</div>
 
 		<div class="row">
-			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
-				<div id="content">
+			<section id="market" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
+				<div id="content" class="">
 					<div class="ui-slide-control">
 						<span class="title">商城</span>
 						<div class="pull-right">
@@ -76,17 +76,20 @@
 					</div>
 					<div class="ui-slide-content row">
 						<% @products.each do |product| %>
-						<div class="ui-slide-content-box col-md-3">
-							<%= image_tag(product.pictures.first.image.url("140x140")) %>
-							<div class="controll-box">
-								<a href="" class="left pull-left" alt="订票">
-									<span class="fa fa-plus"></span>
-								</a>
-								<a href="" class="right pull-right" alt="赞">
-									<span class="fa fa-heart"></span>
-								</a>
-							</div>
-						</div>
+						<div class="col-lg-3 col-sm-3 col-xs-12">
+              <div class="products-item" style="width:180px;">
+                <div class="item-thumb">
+                  <%= image_tag(product.pictures.first.image.url("500x500")) %>
+                </div>
+                <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
+                <div class="item-price"><%= product.price %> 元</div>
+                  <div class="item-action">
+                    <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
+                      <i class="fa fa-plus-circle"></i> 加入购物车
+                    </a>
+                  </div>
+                </div>
+              </div>
 						<% end %>
 					</div>
 				</div>

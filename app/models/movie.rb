@@ -14,6 +14,7 @@ class Movie < ActiveRecord::Base
   attr_accessor :uploader_secure_token
 
   has_many :show_times
+  has_many :comments, as: :commentable
 
   def self.download_file(url)
     img = nil

@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   has_many :favorites
   has_many :members, :through => :favorites
   has_and_belongs_to_many :categories
-  has_many :comments
+  has_many :comments, as: :commentable
 
   def favorited_by_member?(member)
     return false if member.blank?

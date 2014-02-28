@@ -8,7 +8,9 @@ Mywy::Application.routes.draw do
     resources :tickets
   end
 
-  resources :movies
+  resources :movies do
+    resources :comments
+  end
   resources :show_times
   resources :hall_seats
   resources :tickets, :only => [:index, :create]
