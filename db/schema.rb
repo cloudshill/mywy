@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228101904) do
+ActiveRecord::Schema.define(version: 20140301114937) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -77,9 +77,10 @@ ActiveRecord::Schema.define(version: 20140228101904) do
 
   create_table "favorites", force: true do |t|
     t.integer  "member_id"
-    t.integer  "product_id"
+    t.integer  "favoriteable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "favoriteable_type"
   end
 
   create_table "hall_seats", force: true do |t|

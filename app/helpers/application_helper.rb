@@ -10,6 +10,32 @@ module ApplicationHelper
 
     flash_messages.join("\n").html_safe
   end
+
+  def favorite_tag(favorite_object)
+    return "" if current_member.blank?
+    class_name = "btn-default"
+    state = ""
+    title = "收藏"
+    id = 0
+    if current_member
+      favorite = current_member.favorites.where("favoriteable_id = ? AND favoriteable_type = ?", favorite_object.id, favorite_object.class.name).first
+      if favorite
+        class_name = "btn-danger"
+        state = "favorited"
+        title = "已收藏"
+        id = favorite.id
+      end
+    end
+
+    html = <<-HTML
+      <a class="btn #{class_name}" onclick="return App.addToFavorite(this);" data-o="#{id}" data-state="#{state}" data-type="#{favorite_object.class.name.downcase}s" data-id="#{favorite_object.id}">
+        <i class="fa fa-heart fa fa-wishlist-compare"></i>
+        #{title}
+      </a>
+    HTML
+
+    html.html_safe
+  end
   
 	def active_controller?(c_name = nil)
     raw('class="active"') if controller_name == c_name

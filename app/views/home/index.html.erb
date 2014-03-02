@@ -79,7 +79,9 @@
 						<div class="col-lg-3 col-sm-3 col-xs-12">
               <div class="products-item" style="width:180px;">
                 <div class="item-thumb">
+                  <%= link_to product_path(product) do %>
                   <%= image_tag(product.pictures.first.image.url("500x500")) %>
+                  <% end %>
                 </div>
                 <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
                 <div class="item-price"><%= product.price %> 元</div>
@@ -90,6 +92,7 @@
                   </div>
                 </div>
               </div>
+            </div>
 						<% end %>
 					</div>
 				</div>

@@ -1,9 +1,5 @@
 class AccountsController < Devise::RegistrationsController
 	before_filter :require_member
-
-  def favorites
-    @products = current_member.my_favorite_products
-  end
 	
 	def update
     @member = Member.find(current_member.id)

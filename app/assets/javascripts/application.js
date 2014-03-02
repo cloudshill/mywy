@@ -32,31 +32,29 @@ window.App = {
         amount: 1
 	    },
       success: function(result, status, xhr) {
-	    	$("#notification").append("<div class='alert alert-success'>添加成功！</div>");
+	    	$("#notification").append("<div class='alert alert-success'>添加成功！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
 	   	},
       error: function(result, status, xhr) {
-        $("#notification").append("<div class='alert alert-error'>添加失败！</div>");
+        $("#notification").append("<div class='alert alert-danger'>请先登录,添加失败！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
       }
     });
 	},
 
 	addToFavorite: function(el) {
-		var product_id = $(el).data("id");
+		var object_id = $(el).data("id");
+    var object_type = $(el).data("type");
 		if ($(el).data("state") != "favorited") {
 			$.ajax({
-			  url: "/favorites",
-			  type: "POST",
-			  data: {
-			    id: product_id
-			  }
+			  url: '/' + object_type + '/' + object_id + '/favorites',
+			  type: "POST"
 			});
-			$(el).data("state", "favorited").attr("css", "fa fa-heart product-icon-active")
+			$(el).data("state", "favorited").attr("class", "btn btn-danger")
 		} else{
 			$.ajax({
-			  url: "/favorites/" + product_id,
+			  url: '/' + object_type + '/' + object_id + '/favorites/' + $(el).data("o"),
 			  type: "DELETE"
 			});
-			$(el).data("state", "").attr("css", "fa fa-heart product-icon")
+			$(el).data("state", "").attr("class", "btn btn-default")
 		};
 	},
 
@@ -251,10 +249,10 @@ window.Product = {
         amount: product_count
       },
       success: function(result, status, xhr) {
-        $("#notification").append("<div class='alert alert-success'>添加成功！</div>");
+        $("#notification").append("<div class='alert alert-success'>添加成功！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
       },
       error: function(result, status, xhr) {
-        $("#notification").append("<div class='alert alert-error'>添加失败！</div>");
+        $("#notification").append("<div class='alert alert-danger'>请先登录,添加失败！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
       }
     });
   },
@@ -287,7 +285,6 @@ window.Product = {
 
 $(document).ready(function(){
   $("textarea").autoGrow();
-  Product.changeGoodsBigPic();
   $('#myModal').on('show.bs.modal', function (e) {
     var show_time_id = 0;
     $('span[name="timeSpan"]').each(function(){

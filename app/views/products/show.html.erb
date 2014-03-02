@@ -28,6 +28,13 @@
     </nav>
   </div>
 </section>
+<section id="sys-notification">
+  <div class="container">
+    <div id="notification">
+      <%= notice_message %>
+    </div>
+  </div>
+</section>
 <section id="good" class="offcanvas-siderbars">
   <div class="container goods-detail">
     <div class="panel panel-default goods-detail-info clearfix">
@@ -90,10 +97,7 @@
               <!--E 可选-->
               <dd class="clearfix" id="goodsDetailBtnBox">
                 <a href="#" class="btn btn-primary" onclick="return Product.addToCart(this);" data-id="<%= @product.id %>"><i class="fa fa-plus-circle"></i> 加入购物车</a>
-                <a class="btn btn-default" onclick="addToWishList('60');">
-                  <i class="fa fa-heart fa fa-wishlist-compare"></i>
-                  收藏夹
-                </a>
+                <%= favorite_tag(@product) %>
               </dd>
               <dd class="goods-info-extent">
                
@@ -192,3 +196,8 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $(document).ready(function(){
+    Product.changeGoodsBigPic();
+  });
+</script>

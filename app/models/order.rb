@@ -7,4 +7,10 @@ class Order < ActiveRecord::Base
   belongs_to :member
   has_many :line_items
   has_many :products, :through => :line_items
+
+  validates :total_price, presence: true
+  validates :address, presence: true
+  validates :pay_method, presence: true
+  validates :status, presence: true
+  validates :member_id, presence: true
 end

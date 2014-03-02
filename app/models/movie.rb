@@ -15,6 +15,9 @@ class Movie < ActiveRecord::Base
 
   has_many :show_times
   has_many :comments, as: :commentable
+  has_many :favorites, as: :favoriteable
+
+  validates :title, presence: true
 
   def self.download_file(url)
     img = nil

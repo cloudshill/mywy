@@ -32,10 +32,29 @@
   <div class="container">
     <div class="row">
       <%= render 'shared/account_sidebar' %>
-      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
-        <div id="content">
-          <div class="wrapper no-margin">
-
+      <section id="market" class="col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
+        <div class="panel panel-default">
+          <div class="panel-heading">收藏的商品</div>
+          <div class="panel-body">
+            <% @favorites_is_product.each do |favorite| %>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+              <div class="products-item" style="width:180px;">
+                <div class="item-thumb">
+                  <%= link_to product_path(favorite.favoriteable) do %>
+                  <%= image_tag(favorite.favoriteable.pictures.first.image.url("500x500")) %>
+                  <% end %>
+                </div>
+                <h3 class="item-name"><%= link_to favorite.favoriteable.name, product_path(favorite.favoriteable) %></h3>
+                <div class="item-price"><%= favorite.favoriteable.price %> 元</div>
+                  <div class="item-action">
+                    <a onclick="return App.addToCart(this);" data-id="<%= favorite.favoriteable.id %>">
+                      <i class="fa fa-plus-circle"></i> 加入购物车
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
           </div>
         </div>
       </section>

@@ -13,7 +13,6 @@ class Member < ActiveRecord::Base
   has_many :line_items
   has_many :products_in_cart, -> { where "order_id IS NULL" }, :through => :line_items, :source => :product
   has_many :favorites
-  has_many :my_favorite_products, :through => :favorites, :source => :member
   has_many :comments
   has_many :orders
   has_many :tickets
@@ -28,5 +27,4 @@ class Member < ActiveRecord::Base
     end
   end
 
-  
 end

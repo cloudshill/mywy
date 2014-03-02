@@ -10,17 +10,17 @@ Mywy::Application.routes.draw do
 
   resources :movies do
     resources :comments
+    resources :favorites, :only => [:create, :destroy]
   end
   resources :show_times
   resources :hall_seats
   resources :tickets, :only => [:index, :create]
+  resources :favorites, :only => [:index]
 
   get "home/index"
   get "home/market"
   
   root 'home#index'
-
-  resources :favorites, :only => [:create, :destroy]
 
   resources :categories
 
@@ -34,6 +34,7 @@ Mywy::Application.routes.draw do
 
   resources :products do
     resources :comments
+    resources :favorites, :only => [:create, :destroy]
   end
 
   resources :nodes do
@@ -45,7 +46,6 @@ Mywy::Application.routes.draw do
     :registrations => :accounts
   }
   devise_scope :member do
-    get 'accounts/favorites'      =>    'accounts#favorites',        :as => :favorites_accounts
   end
 
   devise_for :admins, :controllers => {

@@ -9,4 +9,10 @@ class Ticket < ActiveRecord::Base
   belongs_to :hall_seat
 
   has_many :line_items, as: :goodsable
+
+  validates :member_id, presence: true
+  validates :cinema_id, presence: true
+  validates :movie_id, presence: true
+  validates :show_time_id, presence: true
+  validates :hall_seat_id, presence: true
 end
