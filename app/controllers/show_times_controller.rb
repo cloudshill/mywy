@@ -1,5 +1,7 @@
 class ShowTimesController < ApplicationController
-  before_action :set_cinema, only: [:index, :new, :create]
+  before_filter :require_member, only: [:new, :edit, :create, :update, :destroy, :order]
+  before_filter :require_cinema_owner, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_cinema, only: [:index, :new, :create, :order]
   # GET /showtimes
   # GET /showtimes.json
   def index
@@ -21,6 +23,12 @@ class ShowTimesController < ApplicationController
 
   def new
     @show_time = ShowTime.new
+  end
+
+  def order
+    @show_time = ShowTime.find(params[:id])
+    @movie_hall = @show_time.movie_hall
+    @hall_seats = @movie_hall.hall_seats.order("row ASC, col ASC")
   end
 
   def create
@@ -48,7 +56,7 @@ class ShowTimesController < ApplicationController
   end
 
   def show_time_params
-    params.require(:show_time).permit(:cinema_id, :movie_id, :movie_hall_id, :show_time, :price)
+    params.require(:show_time).permit(:cinema_id, :movie_id, :movie_hall_id, :show_time, :price, :technology)
   end
 
 end

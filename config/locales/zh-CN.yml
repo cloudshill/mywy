@@ -232,6 +232,8 @@
         address: "收货地址"
       cinema:
         name: "名称"
+        avatar: "头像"
+        guide: "观看指南"
   enumerize:
     pay_method:
       cod: "货到付款"

@@ -234,6 +234,17 @@ window.App = {
         "'><input type='checkbox' style='display:none;' name='seats[]' checked='true' value='" + $(span).attr("data-id") + 
         "' /><span class='checked' checked='true' >" + $(span).text() + "</span></li>");
     }
+  },
+  selectSeat: function(a) {
+    if(a.className == "checked") {
+      a.className = "unchecked";
+      $(a).attr("style", "");
+      $("#seat_" + $(a).attr("data-id")).prop('checked',false);
+    } else {
+      a.className = "checked";
+      $(a).attr("style", "color: red;");
+      $("#seat_" + $(a).attr("data-id")).prop('checked',true);
+    }
   }
 };
 
@@ -313,9 +324,9 @@ $(document).ready(function(){
           }
           pre_row = value["row"];
           if(value["booking"]) {
-            html += new_row + '<li><span data-id="' + value["id"] + '" class="unchecked" name="seatSpan" checked="false" onclick="App.movieSelectSeat(this);">' + value["row"] + '排' + value["col"] + '号</span></li>';
-          } else {
             html += new_row + '<li><span class="checked">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          } else {
+            html += new_row + '<li><span data-id="' + value["id"] + '" class="unchecked" name="seatSpan" checked="false" onclick="App.movieSelectSeat(this);">' + value["row"] + '排' + value["col"] + '号</span></li>';
           }
           new_row = "";
         });

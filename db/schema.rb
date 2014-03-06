@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301114937) do
+ActiveRecord::Schema.define(version: 20140304085108) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20140301114937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "member_id"
+    t.string   "avatar"
+    t.text     "guide"
   end
 
   create_table "comments", force: true do |t|
@@ -116,6 +118,8 @@ ActiveRecord::Schema.define(version: 20140301114937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
+    t.string   "business_scope"
+    t.string   "avatar"
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
@@ -126,6 +130,8 @@ ActiveRecord::Schema.define(version: 20140301114937) do
     t.integer  "cinema_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rows"
+    t.integer  "cols"
   end
 
   add_index "movie_halls", ["cinema_id"], name: "index_movie_halls_on_cinema_id", using: :btree
@@ -203,6 +209,7 @@ ActiveRecord::Schema.define(version: 20140301114937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "price",         precision: 10, scale: 0
+    t.string   "technology"
   end
 
   create_table "tickets", force: true do |t|

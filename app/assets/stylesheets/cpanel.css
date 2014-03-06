@@ -1,6 +1,6 @@
 /*
 *= require jquery.qeditor
-*= require cpanel/categories
+*= require zTreeStyle
 */
 
 body {
@@ -166,12 +166,6 @@ hr {
   }
 }
 
-
-.category > li {
-  margin-right: 10px;
-  float: left;
-}
-
 .sidebar {
   border:solid 1px #ccc;
   background:#F0F0F0;
@@ -179,5 +173,13 @@ hr {
 .content {
   border:solid 5px #F0F0F0;
   padding: 20px;
-  height: 100%
+  height: 100%;
 }
+
+.ztree li span.button.add {
+  margin-left:2px;
+  margin-right: -1px;
+  background-position:-144px 0;
+  vertical-align:top;
+  *vertical-align:middle;
+  }

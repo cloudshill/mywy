@@ -1,4 +1,6 @@
 class HallSeatsController < ApplicationController
+  before_filter :require_member, only: [:new, :edit, :create, :update, :destroy]
+  before_filter :require_cinema_owner, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:index, :new, :create]
   before_action :set_movie_hall, only: [:index, :new, :create]
   before_action :set_hall_seat, only: [:update, :destroy]
@@ -19,6 +21,12 @@ class HallSeatsController < ApplicationController
   end
 
   def create
+    if (params[:hall_seat][:row].to_i > @movie_hall.rows) or (params[:hall_seat][:row].to_i <= 0) or (params[:hall_seat][:col].to_i > @movie_hall.cols) or (params[:hall_seat][:col].to_i <= 0)
+      respond_to do |format|
+        format.html { redirect_to new_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall), :notice => "你输入的行号或者列号不符合要求！" }
+      end
+      return
+    end
     @hall_seat = @movie_hall.hall_seats.build(hall_seat_params)
 
     respond_to do |format|

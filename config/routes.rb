@@ -4,7 +4,11 @@ Mywy::Application.routes.draw do
     resources :movie_halls do
       resources :hall_seats
     end
-    resources :show_times
+    resources :show_times do
+      member do
+        get :order
+      end
+    end
     resources :tickets
   end
 

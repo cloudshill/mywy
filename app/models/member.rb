@@ -1,12 +1,16 @@
 class Member < ActiveRecord::Base
   extend Enumerize
   enumerize :role, in: [:buyer, :seller], default: :buyer
+  serialize :business_scope, Array
+  enumerize :business_scope, in: [:cinema, :ktv, :catering], multiple: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
-  attr_accessor :login
+  mount_uploader :avatar, ImageUploader
+
+  attr_accessor :login, :uploader_secure_token
 
   validates :nickname, :uniqueness => { :case_sensitive => false }
 

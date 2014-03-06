@@ -1,6 +1,9 @@
 class CinemasController < ApplicationController
   before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_filter :require_cinema_owner, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:show, :edit, :update, :destroy]
+
+  layout false, only: [:show]
 
   # GET /cinemas
   # GET /cinemas.json
@@ -11,6 +14,8 @@ class CinemasController < ApplicationController
   # GET /cinemas/1
   # GET /cinemas/1.json
   def show
+    @show_times_today = @cinema.show_times.where(:show_time => ((Date.current.beginning_of_day)..(Date.current.end_of_day))).order("show_time ASC")
+    @show_times_tomorrow = @cinema.show_times.where(:show_time => ((Date.current.beginning_of_day + 216000)..(Date.current.end_of_day + 216000))).order("show_time ASC")
   end
 
   # GET /cinemas/new
@@ -46,8 +51,10 @@ class CinemasController < ApplicationController
     end
     respond_to do |format|
       if @cinema.update(cinema_params)
+        format.html { redirect_to edit_cinema_path(@cinema)}
         format.json { head :no_content }
       else
+        format.html { render action: 'new' }
         format.json { render json: @cinema.errors, status: :unprocessable_entity }
       end
     end
@@ -71,6 +78,6 @@ class CinemasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cinema_params
-      params.require(:cinema).permit(:name)
+      params.require(:cinema).permit(:name, :avatar, :guide)
     end
 end

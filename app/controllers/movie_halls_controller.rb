@@ -1,4 +1,6 @@
 class MovieHallsController < ApplicationController
+  before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_filter :require_cinema_owner, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:index, :new, :create]
   before_action :set_movie_hall, only: [:update]
   
@@ -28,7 +30,13 @@ class MovieHallsController < ApplicationController
 
   def update
     if not params[:pk].blank?
-      params[:movie_hall][:name] = params[:value]
+      if params[:update_attr] == "name"
+        params[:movie_hall][:name] = params[:value]
+      elsif params[:update_attr] == "rows"
+        params[:movie_hall][:rows] = params[:value]
+      elsif params[:update_attr] == "cols"
+        params[:movie_hall][:cols] = params[:value]
+      end
     end
     respond_to do |format|
       if @movie_hall.update(movie_hall_params)
@@ -50,6 +58,6 @@ class MovieHallsController < ApplicationController
   end
 
   def movie_hall_params
-    params.require(:movie_hall).permit(:name)
+    params.require(:movie_hall).permit(:name, :rows, :cols)
   end
 end

@@ -1,9 +1,145 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>美月无忧</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <!-- END Icons -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag    "cinemas", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+  <section id="page" class="offcanvas-pusher" role="main">
+    <header id="header" class="header">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">美月</a>
+          </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @cinema.name %>
-</p>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <% if member_signed_in? %>
+              <li>
+                <%= link_to edit_member_registration_path do %>
+                  <i class="fa fa-list"></i>我的账号
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_member_session_path, :method => :delete do %>
+                  <i class="fa fa-archive"></i>退出
+                <% end %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to new_member_session_path do %>
+                  <i class="fa fa-lock"></i> 登录
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_member_registration_path do %>
+                  <i class=" fa fa-pencil"></i> 注册
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+    <section id="body" class="container">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <%= image_tag(@cinema.avatar.url("50x50"), :class=>"media-object") %>
+                    </a>
+                    <div class="media-body">
+                      <span class="name"><%= @cinema.name %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#">在线购票</a></li>
+                    <li><a href="#">活动 会员优惠</a></li>
+                    <li><a href="#">影院介绍</a></li>
+                    <li><a href="#">最新消息</a></li>
+                    <li><a href="#">留言板</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>观影指南</h2>
+                  <div class="well"><%= @cinema.guide %></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>在线选座购票</h2>
+                  <h4>今天</h4>
+                  <table class="table table-hover">
+                  <% @show_times_today.each do |show_time| %>
+                    <tr>
+                      <td><%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %></td>
+                      <td><%= show_time.movie.title %> <%= show_time.technology %></td>
+                      <td><%= show_time.movie_hall.name %></td>
+                      <td><%= show_time.price %>元</td>
+                      <td><%= link_to "订票", order_cinema_show_time_path(@cinema, show_time) %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+                  <h4>明天</h4>
+                  <table class="table table-hover">
+                  <% @show_times_tomorrow.each do |show_time| %>
+                    <tr>
+                      <td><%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %></td>
+                      <td><%= show_time.movie.title %> <%= show_time.technology %></td>
+                      <td><%= show_time.price %>元</td>
+                      <td><%= link_to "订票", order_cinema_show_time_path(@cinema, show_time) %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="#" class="thumbnail">
+                    <%= image_tag(@cinema.avatar.url("140x140")) %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<%= link_to 'Edit', edit_cinema_path(@cinema) %> |
-<%= link_to 'Back', cinemas_path %>
+    <footer>
+      
+    </footer>
+    
+  </section>
+</body>
+</html>

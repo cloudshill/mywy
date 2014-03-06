@@ -29,17 +29,21 @@
     </nav>
   </div>
 </section>
-<section id="sys-notification">
-  <div class="container">
-    <div id="notification">
-      <%= notice_message %>
-    </div>
-  </div>
-</section>
 <section id="tickets" class="offcanvas-siderbars">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading"><span>我的订单</span></div>
+          <div class="panel-body">
+            <ul>
+              <li>影片<%= @show_time.movie.title %></li>
+              <li>时间<%= @show_time.show_time %></li>
+              <li>票价<%= @show_time.price %>/张</li>
+              <li>票数  总计</li>
+            </ul>
+          </div>
+        </div>
         <div class="panel panel-warning">
           <div class="panel-heading"><span>票务中心</span></div>
           <ul class="list-group">
@@ -51,20 +55,32 @@
       </div>
       <div class="col-md-9">
         <div class="panel panel-info">
-          <div class="panel-heading"><span>未付款电影票  (合并付款) | 由于数据同步可能带来订单信息及订单状态显示滞后，请稍等一会儿。</span></div>
-            <table class="table table-hover">
-              <% @tickets.each do |ticket| %>
+          <div class="panel-heading">
+            <span><%= @cinema.name %> - <%= @show_time.movie_hall.name %> - <%= @show_time.movie.title %> - <%= formattime(@show_time.show_time, :unit => "noDayOnlyHour") %></span>
+          </div>
+          <div class="panel-body">
+            <%= form_for(Ticket.new) do |f| %>
+            <%= f.hidden_field :movie_id, :value => @show_time.movie.id %>
+            <%= f.hidden_field :cinema_id, :value => @cinema.id %>
+            <%= f.hidden_field :show_time_id, :value => @show_time.id %>
+            <%= f.hidden_field :channel, :value => :website %>
+            <table class="seating_chart">
               <tr>
-                <td width="30"><input type="checkbox" name="tickets[]" value="<%= ticket.id %>" /></td>
-                <td><%= ticket.cinema.name %></td>
-                <td><%= ticket.movie.title %></td>
-                <td><%= formattime(ticket.show_time.show_time) %></td>
-                <td><%= ticket.hall_seat.movie_hall.name %></td>
-                <td><%= ticket.hall_seat.row %>排<%= ticket.hall_seat.col %>号</td>
-                <td><%= link_to "马上付款", "#" %></td>
+                <td>屏幕</td>
               </tr>
-              <% end %>
+            <% (1..@movie_hall.rows).each do |row| %>
+              <tr>
+                <td><%= row %>排</td>
+                <% (1..@movie_hall.cols).each do |col| %>
+                <td>
+                  <%= hall_seat_tag(row, col, @show_time.id, @movie_hall) %>
+                </td>
+                <% end %>
+              </tr>
+            <% end %>
             </table>
+            <%= f.submit "订票", :class => "btn btn-primary" %>
+            <% end %>
           </div>
         </div>
       </div>

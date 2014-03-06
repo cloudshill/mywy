@@ -27,76 +27,104 @@
     </nav>
   </div>
 </section>
-<section id="home_page" class="offcanvas-siderbars">
+<section id="sys-notification">
+  <div class="container">
+    <div id="notification">
+      <%= notice_message %>
+    </div>
+  </div>
+</section>
+<section id="home_page">
 	<div class="container">
 		<div class="row">
-			<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-				<div id="content" class="ui-slide-movie">
-					<div class="ui-slide-control">
-						<span class="title">电影</span>
-						<div class="pull-right">
-							<a class="prev-next-btn left" href="#" data-slide="prev">
-							</a>
-							<a class="prev-next-btn right" href="#"  data-slide="next">
-							</a>
-						</div>
-					</div>
-					<div class="ui-slide-content row">
-						<% @movies.each do |movie| %>
-						<div class="ui-slide-content-box col-md-3">
-							<%= link_to movie_path(movie) do %>
-								<%= image_tag(movie.cover.url("140x140")) %>
-							<% end %>
-							<div class="controll-box">
-								<a href="" class="left pull-left" alt="订票">
-									<span class="fa fa-plus"></span>
-								</a>
-								<a href="" class="right pull-right" alt="赞">
-									<span class="fa fa-heart"></span>
-								</a>
-							</div>
-						</div>
-						<% end %>
-					</div>
-				</div>
-			</section>
-		</div>
-
-		<div class="row">
-			<section id="market" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
-				<div id="content" class="">
-					<div class="ui-slide-control">
-						<span class="title">商城</span>
-						<div class="pull-right">
-							<a class="prev-next-btn left" href="#" data-slide="prev">
-							</a>
-							<a class="prev-next-btn right" href="#"  data-slide="next">
-							</a>
-						</div>
-					</div>
-					<div class="ui-slide-content row">
-						<% @products.each do |product| %>
-						<div class="col-lg-3 col-sm-3 col-xs-12">
-              <div class="products-item" style="width:180px;">
-                <div class="item-thumb">
-                  <%= link_to product_path(product) do %>
-                  <%= image_tag(product.pictures.first.image.url("500x500")) %>
+      <div class="col-md-9">
+        <div class="row">
+          <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="movie" class="ui-slide-box">
+              <div class="ui-slide-control">
+                <span class="title">电影</span>
+                <div class="pull-right">
+                  <a class="prev-next-btn left" href="#" data-slide="prev">
+                  </a>
+                  <a class="prev-next-btn right" href="#"  data-slide="next">
+                  </a>
+                </div>
+              </div>
+              <div class="ui-slide-content">
+                <div class="row">
+                  <% @movies.each do |movie| %>
+                  <div class="ui-slide-content-box col-md-3">
+                    <%= link_to movie_path(movie) do %>
+                      <%= image_tag(movie.cover.url("140x140")) %>
+                    <% end %>
+                    <div class="controll-box">
+                      <a href="" class="left pull-left" alt="订票">
+                        <span class="fa fa-plus"></span>
+                      </a>
+                      <a href="" class="right pull-right" alt="赞">
+                        <span class="fa fa-heart"></span>
+                      </a>
+                    </div>
+                  </div>
                   <% end %>
                 </div>
-                <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
-                <div class="item-price"><%= product.price %> 元</div>
-                  <div class="item-action">
-                    <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
-                      <i class="fa fa-plus-circle"></i> 加入购物车
-                    </a>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="row">
+          <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">         
+            <div id="content">
+              <div class="ui-slide-control">
+                <span class="title">商城</span>
+              </div>
+              <div class="ui-slide-content newgoods">
+                <div class="row">
+                  <div class="col-md-12">
                   </div>
                 </div>
               </div>
             </div>
-						<% end %>
-					</div>
-				</div>
-			</section>
-		</div>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div id="movie" class="ui-slide-box">
+          <div class="ui-slide-control">
+            <span class="title">话费充值</span>
+          </div>
+          <div class="ui-slide-content">
+            <form class="xm-recharge-form" action="#">
+              <fieldset class="xm-recharge-tel">
+                <label for="rechargeTel">手机号：</label>
+                <span id="rechargeTips" class="xm-recharge-tips"></span>
+                <input type="tel" class="form-control" name="rechargeTel" id="rechargeTel" placeholder="支持移动、联通、电信" />
+              </fieldset>
+              <fieldset class="xm-recharge-amount clearfix">
+                <span class="fieldset-name">面值：</span>
+                <label><input type="radio" name="rechargeAmount" id="amount30" value="30" />30元</label>
+                <label><input type="radio" name="rechargeAmount" id="amount50" value="50" />50元</label>
+                <label><input type="radio" name="rechargeAmount" id="amount100" value="100" checked />100元</label>
+              </fieldset>
+              <fieldset class="xm-recharge-price clearfix">
+                <span class="fieldset-name">价格：</span>
+                <span id="rechargePrice" class="fieldset-text"><span>98.4</span>元起</span>
+              </fieldset>
+              <fieldset class="xm-recharge-submit">
+                <input id="rechargeBtn" class="btn btn-danger btn-recharge-submit disabled" type="submit" value="服务正在升级" />
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div id="movie" class="ui-slide-box">
+          <div class="ui-slide-control">
+            <span class="title">特价商品</span>
+          </div>
+          <div class="ui-slide-content">
+            
+          </div>
+        </div>
+      </div>  
+    </div>
 	</div>
 </section>

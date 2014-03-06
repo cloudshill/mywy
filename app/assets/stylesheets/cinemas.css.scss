@@ -1,3 +1,104 @@
 // Place all the styles related to the Cinemas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container {
+  width: 800px;
+}
+
+#body {
+  .name {
+    font-size: 25px;
+  }
+
+  .nav-tabs > li {
+    margin-bottom: 0px;
+    padding: 0 15px;
+  }
+  .nav-tabs > li > a {
+    border: 0;
+    color: #858585;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .nav-tabs > li > a:hover {
+    color: #d95750;
+    background-color: #FFF;
+    border: 0;
+  }
+  .nav-tabs > li > a.selected {
+    color: #d95750;
+    position: relative;
+  }
+  .nav-tabs > li > a.selected:after {
+    bottom: 0;
+    border: solid transparent;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-bottom-color: #e2e2e2;
+    border-width: 10px;
+    left: 50%;
+    margin-left: -10px;
+  }
+  .nav-tabs > li > a.selected:before {
+    bottom: -1px;
+    border: solid transparent;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-bottom-color: #FFFFFF;
+    border-width: 9px;
+    left: 50%;
+    margin-left: -9px;
+    z-index: 1;
+  }
+  .nav-tabs > li.active {
+    position: relative;
+  }
+  .nav-tabs > li.active:after {
+    bottom: 0;
+    border: solid transparent;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-bottom-color: #e07772;
+    border-width: 8px;
+    left: 50%;
+    margin-left: -10px;
+  }
+  .nav-tabs > li.active:before {
+    bottom: 0px;
+    border: solid transparent;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-bottom-color: #e07772;
+    border-width: 7px;
+    left: 50%;
+    margin-left: -9px;
+    z-index: 1;
+  }
+  .nav-tabs > li.active > a {
+    border-bottom-color: #e07772;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+  }
+  .nav-tabs > li.active > a:hover,
+  .nav-tabs > li.active > a:focus {
+    border-width: 0 0 2px 0;
+    border-bottom-color: #e07772;
+    color: #d95750;
+  }
+}

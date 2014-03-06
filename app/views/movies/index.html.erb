@@ -19,7 +19,7 @@
             <li class="active"><a href="#">购票</a></li>
             <li><a href="#">问答</a></li>
           </ul>
-          <% if current_member.role.seller? %>
+          <% if current_member.role.seller? and is_cinema_owner? %>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "我的电影院", cinemas_path %></a></li>
           </ul>
@@ -33,7 +33,7 @@
   <div class="container">
     <div class="row">
       <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
-        <div id="content" class="ui-slide-movie">
+        <div id="movie" class="ui-slide-box">
           <div class="ui-slide-control">
             <span class="title">近期上映</span>
             <div class="pull-right">
@@ -43,22 +43,24 @@
               </a>
             </div>
           </div>
-          <div class="ui-slide-content row">
-            <% @movies.each do |movie| %>
-            <div class="ui-slide-content-box col-md-3">
-              <%= link_to movie_path(movie) do %>
-                <%= image_tag(movie.cover.url("140x140")) %>
-              <% end %>
-              <div class="controll-box">
-                <a href="" class="left pull-left" alt="订票">
-                  <span class="fa fa-plus"></span>
-                </a>
-                <a href="" class="right pull-right" alt="赞">
-                  <span class="fa fa-heart"></span>
-                </a>
+          <div class="ui-slide-content">
+            <div class="row">
+              <% @movies.each do |movie| %>
+              <div class="ui-slide-content-box col-md-3">
+                <%= link_to movie_path(movie) do %>
+                  <%= image_tag(movie.cover.url("140x140")) %>
+                <% end %>
+                <div class="controll-box">
+                  <a href="" class="left pull-left" alt="订票">
+                    <span class="fa fa-plus"></span>
+                  </a>
+                  <a href="" class="right pull-right" alt="赞">
+                    <span class="fa fa-heart"></span>
+                  </a>
+                </div>
               </div>
+              <% end %>
             </div>
-            <% end %>
           </div>
         </div>
       </section>

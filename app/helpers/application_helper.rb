@@ -66,4 +66,29 @@ module ApplicationHelper
     link_to(v, products_path(:node_id => node_id, :category => category))
   end
 
+  def hall_seat_tag(row, col, show_time_id, movie_hall)
+    hall_seat = movie_hall.hall_seats.where("row = ? AND col = ?", row, col).first
+    if hall_seat.blank?
+      a = "<a href='#' style='display:none;'>"
+      input = ""
+    else
+      a = "<a href='#' >"
+      if hall_seat.booking?(show_time_id)
+        input = ""
+        a = "<a href='#' style='color: #CCC;' >"
+      else
+        a = "<a href='#' class='unchecked' data-id='#{hall_seat.id}' onclick='App.selectSeat(this);return false;'>"
+        input = "<input type='checkbox' id='seat_#{hall_seat.id}' name='seats[]' value='#{hall_seat.id}' style='display:none;' />"
+      end
+    end
+    html = <<-html
+      #{a}
+        #{input}
+        <i class="fa fa-inbox fa-2x"></i>
+      </a>
+    html
+
+    html.html_safe
+  end
+
 end

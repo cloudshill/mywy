@@ -7,6 +7,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :cinema
   belongs_to :movie
   belongs_to :hall_seat
+  belongs_to :show_time
 
   has_many :line_items, as: :goodsable
 

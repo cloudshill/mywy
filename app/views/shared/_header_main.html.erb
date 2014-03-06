@@ -1,6 +1,6 @@
 			<section id="header-main">		
 				<div class="container">
-					<div class="header-wrap">												
+					<div class="header-wrap">
 						<div class="pull-left inner">
 							<div id="logo">
 								<a href="http://www.meiyuewuyou.com">
@@ -9,33 +9,21 @@
 							</div>				
 						</div>
 						<div class="pull-right inner">
-							<section id="pav-mainnav">
-								<div class="container" style="width:800px;height:50px;">
-									<div class="pav-megamenu">
-										<div class="navbar navbar-default" style="background:#FFF;height:50px;">
-											<div id="mainmenutop" class="megamenu" role="navigation">
-												<div class="navbar-header">
-													<div class="collapse navbar-collapse navbar-ex1-collapse">
-														<ul class="nav navbar-nav megamenu">
-															<li class="home">
-																<%= link_to root_path do %>
-																	<span class="menu-title">首页</span>
-																<% end %>
-															</li>
-															<li>
-																<%= link_to "商城", home_market_path %>
-															</li>
-															<li>
-																<%= link_to "电影", movies_path %>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>		
-							</section>
+							<div class="navbar navbar-default">
+								<div class="collapse navbar-collapse navbar-ex1-collapse">
+									<ul class="nav navbar-nav">
+										<li>
+											<%= link_to "首页", root_path %>
+										</li>
+										<li>
+											<%= link_to "商城", home_market_path %>
+										</li>
+										<li>
+											<%= link_to "电影", movies_path %>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>													
 					</div>
 				</div>

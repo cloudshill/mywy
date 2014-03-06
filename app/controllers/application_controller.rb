@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
+  helper_method :is_cinema_owner?
+
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
@@ -17,6 +19,16 @@ class ApplicationController < ActionController::Base
         }
       end
     end
+  end
+
+  def require_cinema_owner
+    if not is_cinema_owner?
+      redirect_to root_path, notice: '你没有权限这样操作！如有疑问，请联系管理员！'
+    end
+  end
+
+  def is_cinema_owner?
+    current_member.role.seller? and current_member.business_scope.include?(:cinema)
   end
   
   def after_sign_in_path_for(resource)
