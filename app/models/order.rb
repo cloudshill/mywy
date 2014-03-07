@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 	extend Enumerize
 
-  enumerize :pay_method, in: [:cod, :alipay, :unionpay]
+  enumerize :pay_method, in: [:offline, :online]
   enumerize :status,     in: [:paying, :delivering, :finished]
 
   belongs_to :member

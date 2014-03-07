@@ -16,7 +16,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "首页", home_market_path %></li>
+            <li class="active"><%= link_to "首页", products_path %></li>
             <% Node.all.each do |node| %>
             <li>
               <%= link_to node.name, node_products_path(node) %>
@@ -47,47 +47,41 @@
           </li>
           <% end %>
         </ul>
+
+        <div id="movie" class="ui-slide-box">
+          <div class="ui-slide-control">
+            <span class="title">话费充值</span>
+          </div>
+          <div class="ui-slide-content">
+            <form class="xm-recharge-form" action="#">
+              <fieldset class="xm-recharge-tel">
+                <label for="rechargeTel">手机号：</label>
+                <span id="rechargeTips" class="xm-recharge-tips"></span>
+                <input type="tel" class="form-control" name="rechargeTel" id="rechargeTel" placeholder="支持移动、联通、电信" />
+              </fieldset>
+              <fieldset class="xm-recharge-amount clearfix">
+                <span class="fieldset-name">面值：</span>
+                <label><input type="radio" name="rechargeAmount" id="amount30" value="30" />30元</label>
+                <label><input type="radio" name="rechargeAmount" id="amount50" value="50" />50元</label>
+                <label><input type="radio" name="rechargeAmount" id="amount100" value="100" checked />100元</label>
+              </fieldset>
+              <fieldset class="xm-recharge-price clearfix">
+                <span class="fieldset-name">价格：</span>
+                <span id="rechargePrice" class="fieldset-text"><span>98.4</span>元起</span>
+              </fieldset>
+              <fieldset class="xm-recharge-submit">
+                <input id="rechargeBtn" class="btn btn-danger btn-recharge-submit disabled" type="submit" value="服务正在升级" />
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </div>
       <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-        <div class="panel panel-warning">
-          <div class="panel-heading"><span><%= @node.name %></span></div>
-          <ul class="list-group">
-            <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
-            <li class="list-group-item">
-              <ul class="clearfix list-inline">
-                <li><%= root.name %></li>
-                <li><%= render_option_of_total_category(@node.id, root.id) %></li>
-                <% root.children.each do |leave| %>
-                <li><%= render_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
-                <% end %>
-              </ul>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="panel panel-warning">
-          <div class="panel-heading"><span>排序方式：</span></div>
-          <ul class="clearfix list-inline products-list">
-            <% @products.each_with_index do |product, index| %>
-            <li>
-              <div class="products-item">
-                <div class="item-thumb">
-                  <%= link_to product_path(product) do %>
-                  <%= image_tag(product.pictures.first.image.url("500x500")) %>
-                  <% end %>
-                </div>
-                <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
-                <div class="item-price"><%= product.price %> 元</div>
-                <div class="item-action">
-                  <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
-                    <i class="fa fa-plus-circle"></i> 加入购物车
-                  </a>
-                </div>
-              </div>
-            </li>
-            <% end %>
-          </ul>
-        </div>
+        <% if @node.blank? %>
+        <%= render 'no_node_index' %>
+        <% else %>
+        <%= render 'has_node_index' %>
+        <% end %>
       </section>
     </div>
   </div>

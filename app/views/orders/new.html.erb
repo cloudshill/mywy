@@ -1,29 +1,51 @@
-<section id="columns" class="offcanvas-siderbars">
-  <div class="row visible-xs">
-	  <div class="container"> 
-	    <div class="offcanvas-sidebars-buttons">
-	      <button type="button" data-for="column-left" class="pull-left btn btn-danger"><i class="fa fa-sort-amount-asc"></i> Sidebar Left</button>
-	      
-	      <button type="button" data-for="column-right" class="pull-right btn btn-danger">Sidebar Right <i class="fa fa-sort-amount-desc"></i></button>
-	    </div>
-	  </div>
-  </div>
-  <div id="breadcrumb">
-   	<ol class="breadcrumb container">
-		  <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home"><span>首页</a></span></li>
-		  <li><a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=checkout/cart"><span>购物车</a></span></li>
-		</ol>
-	</div>  
+<section id="market-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧商城</a>
+        </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "首页", products_path %></li>
+            <% Node.all.each do |node| %>
+            <li>
+              <%= link_to node.name, node_products_path(node) %>
+            </li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="sys-notification">
+  <div class="container">
+    <div id="notification">
+      <%= notice_message %>
+    </div>
+  </div>
+</section>
+<section id="order" class="offcanvas-siderbars">
   <div class="container">
     <div class="row">
       <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div id="content">
-          <h1>订单结算</h1>
-          <div class="content page-not-found">
-            <div class="checkout wrapper no-margin">
-            	<%= form_for(@order) do |f| %>
-              <div class="cart-info table-responsive">
+        <div id="content" class="panel panel-success">
+          <div class="panel-heading">
+            订单结算
+          </div>
+          <div class="panel-body">
+            <%= form_for(@order, :html => {:class => "form-horizontal"}) do |f| %>
+            
                 <table class="table table-hover table-bordered">
                   <thead>
                     <tr>
@@ -35,87 +57,55 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <% @products.each do |product| %>
+                  <% @line_items.each do |line_item| %>
                     <tr>
                       <td class="image" data-label="Image" style="width:100px;height:50px;">
-                        <%= link_to product_path(product) do %>
-                          <%= image_tag(product.pictures.first.image.url("500x500"), :id=>"image", "data-zoom-image"=>"#{product.pictures.first.image.url("500x500")}") %>
+                        <%= link_to product_path(line_item.product) do %>
+                          <%= image_tag(line_item.product.pictures.first.image.url("50x50")) %>
                         <% end %>
                       </td>
                       <td class="name" data-label="Product Name">
-                        <%= link_to product_path(product) do %>
-                          <%= product.name %>
+                        <%= link_to product_path(line_item.product) do %>
+                          <%= line_item.product.name %>
                         <% end %>
-                        <input type="checkbox" name="products[]" value="<%= product.id %>" checked="true" style="display:none;" />
-                        <div class="cart-option">
-                        </div>
-                        <small>Reward Points: 700</small>
+                        <input type="checkbox" name="line_items[]" value="<%= line_item.id %>" checked="true" style="display:none;" />
                       </td>
                       <td class="quantity" data-label="Quantity">
-                        <%= product.quantity_in_cart(current_member) %>
+                        <%= line_item.amount %>
                       </td>
-                      <td class="price" data-label="Unit Price">￥<%= product.price %></td>
-                      <td class="total" data-label="Total">￥<%= product.price * product.quantity_in_cart(current_member) %></td>
+                      <td class="price" data-label="Unit Price">￥<%= line_item.product.price %></td>
+                      <td class="total" data-label="Total">￥<%= line_item.product.price * line_item.amount %></td>
                     </tr>
                   <% end %>
                   </tbody>
                 </table>
-              </div>
 
-              <div class="content">
-                <table class="radio">
-                  <tr class="highlight">
-                  	<td style="width:200px;">
-                  		<%= f.label :pay_method %>
-                  	</td>
-                    <td>
-                      <%= f.select :pay_method, Order.pay_method.options, {:prompt=>"请选择"}, :class => "form-control" %>
-                    </td>
-                  </tr>
-                  <tr>
-                  	<td>
-                  		<%= f.label :address %>
-                  	</td>
-                  	<td>
-                  		<%= f.text_field :address, :class => "form-control" %>
-                  	</td>
-                  </tr>
-                </table>
-              </div>
-              <% end %>
-                  
-              <div class="wrapper-cart-total">
-                <div class="cart-total clearfix">
-                  <table id="total">
-                    <tr>
-                      <td class="right"><b>Sub-Total:</b></td>
-                      <td class="right">$1,000.00</td>
-                    </tr>
-                    <tr>
-                      <td class="right"><b>Eco Tax (-2.00):</b></td>
-                      <td class="right">$2.00</td>
-                    </tr>
-                    <tr>
-                      <td class="right"><b>VAT (17.5%):</b></td>
-                      <td class="right">$175.00</td>
-                    </tr>
-                    <tr>
-                      <td class="right"><b>Total:</b></td>
-                      <td class="right">$1,177.00</td>
-                    </tr>
-                  </table>
+              <div class="form-group">
+                <label class="col-sm-1 control-label"><%= f.label :pay_method %></label>
+                <div class="col-sm-11" style="padding-top:6px;">
+                  <% Order.pay_method.options.each do |key, value| %>
+                  <label>
+                  <%= f.radio_button :pay_method, value, :checked => (value == 'offline') %>
+                  <%= key %>
+                  </label>
+                  <% end %>
                 </div>
               </div>
-              
-            </div>  
-            <div class="buttons">
-              <div class="right">
-                <a href="#" class="button" onclick="$('#new_order').submit()">确认订单</a>
+              <div class="form-group">
+                <label class="col-sm-1 control-label"><%= f.label :address %></label>
+                <div class="col-sm-11">
+                  <%= f.text_field :address, :class => "form-control" %>
+                </div>
               </div>
-              <div class="left">
-                <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=common/home" class="button">继续购物</a>
+              <div class="buttons">
+                <div class="pull-right">
+                  <%= f.submit "确认订单", :class=>"btn btn-danger" %>
+                </div>
+                <div class="left">
+                  <%= link_to "继续购物", products_path, :class=>"btn btn-info" %>
+                </div>
               </div>
-            </div>
+            <% end %>    
           </div>  
         </div>
       </section>

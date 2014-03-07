@@ -236,9 +236,8 @@
         guide: "观看指南"
   enumerize:
     pay_method:
-      cod: "货到付款"
-      alipay: "支付宝"
-      unionpay: "银联支付"
+      offline: "货到付款"
+      online: "在线支付"
     status:
       paying: "等待支付"
       delivering: "正在配送"

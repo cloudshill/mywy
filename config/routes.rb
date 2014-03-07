@@ -22,7 +22,6 @@ Mywy::Application.routes.draw do
   resources :favorites, :only => [:index]
 
   get "home/index"
-  get "home/market"
   
   root 'home#index'
 

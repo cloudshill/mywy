@@ -1,0 +1,54 @@
+        <div id="content">
+          <div class="content-top">
+          <% Node.all.each do |node| %>
+            <div class=" box productcarousel">
+              <div id="content" class="ui-slide-box">
+                <div class="box-products slide" id="productcarousel<%= node.id %>">
+                  <div class="ui-slide-control">
+                    <span class="title"><%= node.name %></span>
+                    <div class="pull-right">
+                      <a class="prev-next-btn left" href="#productcarousel<%= node.id %>" data-slide="prev">
+                      </a>
+                      <a class="prev-next-btn right" href="#productcarousel<%= node.id %>"  data-slide="next">
+                      </a>
+                    </div>
+                  </div>
+            
+                  <div class="carousel-inner ui-slide-content">
+                    <div class="item active product-grid no-margin">
+                      <div class="row">
+                  <% count = 1 %>
+                  <% node.products.each do |product| %>
+                        <div class="col-lg-3 col-sm-3 col-xs-12">
+                          <div class="products-item">
+                            <div class="item-thumb">
+                              <%= link_to product_path(product) do %>
+                              <%= image_tag(product.pictures.first.image.url("500x500")) %>
+                              <% end %>
+                            </div>
+                            <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
+                            <div class="item-price"><%= product.price %> 元</div>
+                            <div class="item-action">
+                              <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
+                                <i class="fa fa-plus-circle"></i> 加入购物车
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <% if count%4 == 0 %>
+                      </div>
+                    </div>
+                    <div class="item product-grid no-margin">
+                      <div class="row">
+                    <% end %>
+                  <% count += 1 %>
+                  <% end %>           
+                      </div>
+                    </div>
+                  </div>                
+                </div>
+              </div>  
+            </div>
+          <% end %>
+          </div>
+        </div>

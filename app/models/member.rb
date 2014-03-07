@@ -15,7 +15,6 @@ class Member < ActiveRecord::Base
   validates :nickname, :uniqueness => { :case_sensitive => false }
 
   has_many :line_items
-  has_many :products_in_cart, -> { where "order_id IS NULL" }, :through => :line_items, :source => :product
   has_many :favorites
   has_many :comments
   has_many :orders

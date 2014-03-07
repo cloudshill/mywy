@@ -29,18 +29,20 @@
     </nav>
   </div>
 </section>
-<section id="tickets" class="offcanvas-siderbars">
+<section id="ticket_order" class="offcanvas-siderbars">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="panel panel-warning">
           <div class="panel-heading"><span>我的订单</span></div>
           <div class="panel-body">
-            <ul>
-              <li>影片<%= @show_time.movie.title %></li>
-              <li>时间<%= @show_time.show_time %></li>
-              <li>票价<%= @show_time.price %>/张</li>
-              <li>票数  总计</li>
+            <ul class="list-unstyled movie-order">
+              <li>影片：<%= @show_time.movie.title %></li>
+              <li>时间：<%= formattime(@show_time.show_time, :unit => "hour") %></li>
+              <li>票价：<%= @show_time.price %>/张</li>
+              <li class="line"></li>
+              <li>票数</li>
+              <li>总计</li>
             </ul>
           </div>
         </div>

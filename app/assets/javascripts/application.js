@@ -11,13 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap.min
 //= require payfor
 //= require countdown
 //= require jquery.autogrowtextarea.min
 //= require bootstrap-editable.min
+//= require turbolinks
 //= require_self
 
 window.App = {

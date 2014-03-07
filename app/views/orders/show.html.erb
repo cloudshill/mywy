@@ -1,19 +1,94 @@
-<p id="notice"><%= notice %></p>
+<section id="market-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧商城</a>
+        </div>
 
-<p>
-  <strong>Member:</strong>
-  <%= @order.member %>
-</p>
-
-<p>
-  <strong>Total price:</strong>
-  <%= @order.total_price %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @order.address %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "首页", products_path %></li>
+            <% Node.all.each do |node| %>
+            <li>
+              <%= link_to node.name, node_products_path(node) %>
+            </li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="sys-notification">
+  <div class="container">
+    <div id="notification">
+      <%= notice_message %>
+    </div>
+  </div>
+</section>
+<section id="orders" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <%= render 'shared/account_sidebar' %>
+      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12"> 
+        <div id="content">
+          <div class="panel panel-default">
+            <div class="panel-heading">交易订单号：<%= @order.id %></div>
+            <div class="panel-body">
+              <div class="panel panel-info">
+                  <div class="panel-heading">发货单号</div>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <td class="image">图片</td>
+                        <td class="name">商品</td>
+                        <td class="quantity" style="width:100px;">数量</td>
+                        <td class="price" style="width:100px;">单价</td>
+                        <td class="total" style="width:100px;">总价</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <% @line_items.each do |line_item| %>
+                      <tr>
+                        <td class="image" data-label="Image" style="width:100px;height:50px;">
+                          <%= link_to product_path(line_item.product) do %>
+                            <%= image_tag(line_item.product.pictures.first.image.url("50x50")) %>
+                          <% end %>
+                        </td>
+                        <td class="name" data-label="Product Name">
+                          <%= link_to product_path(line_item.product) do %>
+                            <%= line_item.product.name %>
+                          <% end %>
+                        </td>
+                        <td class="quantity" data-label="Quantity">
+                          <%= line_item.amount %>
+                        </td>
+                        <td class="price" data-label="Unit Price">￥<%= line_item.product.price %></td>
+                        <td class="total" data-label="Total">￥<%= line_item.product.price * line_item.amount %></td>
+                      </tr>
+                    <% end %>
+                      <tr>
+                        <td colspan="5"><%= @order.total_price %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="5"><%= @order.address %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

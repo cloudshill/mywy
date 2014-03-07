@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @products = current_member.products_in_cart
+    @line_items = current_member.line_items.where("order_id IS NULL")
   end
 
 end

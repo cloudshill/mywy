@@ -12,7 +12,7 @@
  *= require bootstrap-editable
  *= require_self
  */
- 
+
 #header-main {
   background-color: transparent;
 }
@@ -91,6 +91,232 @@
     border: 0;
     color: #fff;
     background: #f84858;
+}
+
+.newgoods .span3 {
+    overflow: hidden
+}
+
+.newgoods .span3 .home-recharge-box {
+    height: 261px;
+    overflow: hidden;
+    _zoom: 1
+}
+
+.newgoods .span3 .home-recharge-box .xm-recharge-form {
+    padding: 16px 15px
+}
+
+.newgoods .home-goods-listlt {
+    float: left;
+    width: 590px;
+    margin-left: 10px;
+    _display: inline
+}
+
+.newgoods .home-goods-listrt {
+    float: left;
+    width: 225px
+}
+
+.newgoods .home-goods-list {
+    padding: 10px 0 0
+}
+
+.newgoods .home-goods-list li {
+    position: relative;
+    float: left;
+    width: 280px;
+    height: 310px;
+    margin: 0px 10px 10px 0px;
+    overflow: hidden
+}
+
+.newgoods .home-goods-list li a:hover {
+    filter: alpha(opacity=50)\0;
+    filter: alpha(opacity=50)
+}
+
+.newgoods .home-goods-list li a:hover:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 280px;
+    height: 310px;
+    border: 5px solid rgba(0, 0, 0, 0.05);
+    content: ""
+}
+
+.newgoods .home-goods-list li a {
+    display: block;
+    position: relative
+}
+
+.newgoods .home-goods-list li img {
+    width: 280px;
+    height: 310px
+}
+
+.newgoods .home-goods-list li.big {
+    width: 570px
+}
+
+.newgoods .home-goods-list li.big a:before {
+    width: 570px
+}
+
+.newgoods .home-goods-list li.big img {
+    width: 570px;
+    height: 310px
+}
+
+.newgoods .home-goods-list li.small {
+    height: 150px
+}
+
+.newgoods .home-goods-list li.small img {
+    width: 225px;
+    height: 150px
+}
+
+.newgoods .home-goods-list li.small a:before {
+    height: 140px
+}
+
+.newgoods .home-goods-list li.small a:hover:before {
+    width: 225px;
+    height: 150px;
+}
+
+.newgoods .home-goods-list li.small a {
+    display: block;
+    margin-bottom: 10px
+}
+
+.newgoods .home-goods-list li.last {
+    margin-right: 0px
+}
+
+.newgoods .xm-recharge-amount {
+    display: block;
+    width: 206px
+}
+
+.newgoods .spike {
+    position: relative;
+    height: 300px;
+    text-align: center;
+    color: #656d78
+}
+
+.newgoods .spike .spikelnk {
+    display: block;
+    color: #656d78;
+    text-decoration: none
+}
+
+.newgoods .spike .spikelnk:hover img {
+    filter: alpha(opacity=50)\0;
+    *filter: alpha(opacity=50)
+}
+
+.newgoods .spike .spikelnk:hover:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 220px;
+    height: 290px;
+    border: 5px solid rgba(0, 0, 0, 0.05);
+    content: ""
+}
+
+.newgoods .spike strong {
+    display: block;
+    font-size: 18px;
+    padding-top: 20px
+}
+
+.newgoods .spike p {
+    font-size: 12px
+}
+
+.newgoods .spike .price {
+    display: block;
+    color: #da4453;
+    font-size: 12px
+}
+
+.newgoods .spike .timebtn {
+    display: block;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    color: #fff;
+    text-align: center;
+    background: #ee5567;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px
+}
+
+.newgoods .spike .time {
+    display: block;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    color: #fff;
+    text-align: center;
+    background: #aab2bd;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px
+}
+
+.newgoods .spike .time span {
+    margin-right: 16px;
+    font-style: normal
+}
+
+.newgoods .spike .timecont {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden
+}
+
+.newgoods .forum {
+    height: 120px;
+    line-height: 22px;
+    font-size: 12px
+}
+
+.newgoods .forum a {
+    color: #434a54;
+    text-decoration: none
+}
+
+.newgoods .forum a:hover {
+    color: #f84858
+}
+
+.newgoods .forum dl {
+    padding-top: 15px;
+    padding-left: 20px
+}
+
+.newgoods .forum dl em {
+    margin-right: 6px;
+    font-size: 20px;
+    vertical-align: -5px
 }
 
 
@@ -245,6 +471,19 @@
   #hall_seats {
     ul {
       margin-bottom: 20px;
+    }
+  }
+}
+
+#ticket_order {
+  .movie-order {
+    li {
+      padding: 5px;
+    }
+    li.line {
+      padding: 0px;
+      height:1px;
+      background-color: #CCC;
     }
   }
 }

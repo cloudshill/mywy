@@ -1,0 +1,39 @@
+        <div class="panel panel-warning">
+          <div class="panel-heading"><span><%= @node.name %></span></div>
+          <ul class="list-group">
+            <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
+            <li class="list-group-item">
+              <ul class="clearfix list-inline">
+                <li><%= root.name %></li>
+                <li><%= render_option_of_total_category(@node.id, root.id) %></li>
+                <% root.children.each do |leave| %>
+                <li><%= render_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
+                <% end %>
+              </ul>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="panel panel-warning">
+          <div class="panel-heading"><span>排序方式：</span></div>
+          <ul class="clearfix list-inline products-list">
+            <% @products.each_with_index do |product, index| %>
+            <li>
+              <div class="products-item">
+                <div class="item-thumb">
+                  <%= link_to product_path(product) do %>
+                  <%= image_tag(product.pictures.first.image.url("500x500")) %>
+                  <% end %>
+                </div>
+                <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
+                <div class="item-price"><%= product.price %> 元</div>
+                <div class="item-action">
+                  <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
+                    <i class="fa fa-plus-circle"></i> 加入购物车
+                  </a>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+        </div>
