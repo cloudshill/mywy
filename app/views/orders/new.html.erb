@@ -45,7 +45,7 @@
           </div>
           <div class="panel-body">
             <%= form_for(@order, :html => {:class => "form-horizontal"}) do |f| %>
-            
+              <%= render 'shared/form_error_messages', :f => f %>
                 <table class="table table-hover table-bordered">
                   <thead>
                     <tr>

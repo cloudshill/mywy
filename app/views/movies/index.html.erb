@@ -19,7 +19,7 @@
             <li class="active"><a href="#">购票</a></li>
             <li><a href="#">问答</a></li>
           </ul>
-          <% if current_member.role.seller? and is_cinema_owner? %>
+          <% if is_cinema_owner? %>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "我的电影院", cinemas_path %></a></li>
           </ul>

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_cinema_owner?
-    current_member.role.seller? and current_member.business_scope.include?(:cinema)
+    !current_member.blank? and current_member.role.seller? and current_member.business_scope.include?(:cinema)
   end
   
   def after_sign_in_path_for(resource)

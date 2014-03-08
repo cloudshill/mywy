@@ -1,10 +1,12 @@
-#= require jquery
-#= require jquery_ujs
-#= require bootstrap.min
-#= require jquery.autogrowtextarea.min
-#= require jquery.qeditor
-#= require cpanel/categories
-#= require cpanel/movies
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require bootstrap.min
+//= require jquery.autogrowtextarea.min
+//= require jquery.qeditor
+//= require turbolinks
+//= require cpanel/categories
+//= require cpanel/movies
 
 $(document).ready(function(){
     $('#myModal').on('hide.bs.modal', function () {
