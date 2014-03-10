@@ -32,38 +32,54 @@
 <section id="movies">
   <div class="container">
     <div class="row">
-      <section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">         
-        <div id="movie" class="ui-slide-box">
-          <div class="ui-slide-control">
-            <span class="title">近期上映</span>
-            <div class="pull-right">
-              <a class="prev-next-btn left" href="#" data-slide="prev">
-              </a>
-              <a class="prev-next-btn right" href="#"  data-slide="next">
-              </a>
-            </div>
-          </div>
-          <div class="ui-slide-content">
-            <div class="row">
-              <% @movies.each do |movie| %>
-              <div class="ui-slide-content-box col-md-3">
-                <%= link_to movie_path(movie) do %>
-                  <%= image_tag(movie.cover.url("140x140")) %>
-                <% end %>
-                <div class="controll-box">
-                  <a href="" class="left pull-left" alt="订票">
-                    <span class="fa fa-plus"></span>
+      <div class="col-md-9">
+        <div class="row">
+          <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="movie" class="ui-slide-box">
+              <div class="ui-slide-control">
+                <span class="title">近期上映</span>
+                <div class="pull-right">
+                  <a class="prev-next-btn left" href="#" data-slide="prev">
                   </a>
-                  <a href="" class="right pull-right" alt="赞">
-                    <span class="fa fa-heart"></span>
+                  <a class="prev-next-btn right" href="#"  data-slide="next">
                   </a>
                 </div>
               </div>
-              <% end %>
+              <div class="ui-slide-content">
+                <div class="row">
+                  <% @movies.each do |movie| %>
+                  <div class="ui-slide-content-box col-md-3">
+                    <%= link_to movie_path(movie) do %>
+                      <%= image_tag(movie.cover.url("140x140")) %>
+                    <% end %>
+                    <div class="controll-box">
+                      <a href="" class="left pull-left" alt="订票">
+                        <span class="fa fa-plus"></span>
+                      </a>
+                      <a href="" class="right pull-right" alt="赞">
+                        <span class="fa fa-heart"></span>
+                      </a>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
             </div>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div id="movie" class="ui-slide-box">
+          <div class="ui-slide-control">
+            <span class="title">合作影院</span>
+          </div>
+          <div class="ui-slide-content">
+            <%= link_to "#", :class=>"thumbnail" do %>
+              <%= image_tag("jingdian.jpg") %>
+            <% end %>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   </div>
 </section>

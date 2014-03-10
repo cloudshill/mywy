@@ -80,18 +80,12 @@
                 <!--E 参与活动-->
               </dd>
               <!--S 可选-->
-              <dd>
-                <div class="goods-info-quantity">
-                  <div class="quantity-adder pull-left">
-                    <div class="quantity-number pull-left">
-                      <span>数 量:</span>
-                      <input type="text" name="quantity" id="quantity" size="2" value="1" />
-                    </div>
-                    <div class="quantity-wrapper pull-left">
-                      <span class="add-up add-action fa fa-plus" onClick="setAmount.add('#quantity')"></span> 
-                      <span class="add-down add-action fa fa-minus" onClick="setAmount.reduce('#quantity')"></span>
-                    </div>
-                  </div>
+              <dd class="goods-info-price">
+                <div class="item">
+                  <span class="letter-spacing-2">数</span>量:
+                  <span class="fa fa-minus" onClick="setAmount.reduce('#quantity')"></span>
+                  <input type="text" name="quantity" id="quantity" size="2" value="1" />
+                  <span class="fa fa-plus" onClick="setAmount.add('#quantity')"></span> 
                 </div>
               </dd>
               <!--E 可选-->
