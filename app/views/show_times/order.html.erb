@@ -68,7 +68,7 @@
             <%= f.hidden_field :channel, :value => :website %>
             <table class="seating_chart">
               <tr>
-                <td>屏幕</td>
+                <td colspan="<%= @movie_hall.cols + 1 %>" style="text-align:center;"><span>屏幕</span></td>
               </tr>
             <% (1..@movie_hall.rows).each do |row| %>
               <tr>

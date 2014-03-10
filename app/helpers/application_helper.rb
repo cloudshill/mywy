@@ -75,7 +75,7 @@ module ApplicationHelper
       a = "<a href='#' >"
       if hall_seat.booking?(show_time_id)
         input = ""
-        a = "<a href='#' style='color: #CCC;' >"
+        a = "<a href='#' style='color: #CCC;' alt='此座位已出售' >"
       else
         a = "<a href='#' class='unchecked' data-id='#{hall_seat.id}' onclick='App.selectSeat(this);return false;'>"
         input = "<input type='checkbox' id='seat_#{hall_seat.id}' name='seats[]' value='#{hall_seat.id}' style='display:none;' />"

@@ -186,10 +186,10 @@ window.App = {
           }
           pre_row = value["row"];
           if(value["booking"]) {
+            html += new_row + '<li><span class="checked">' + value["row"] + '排' + value["col"] + '号</span></li>';
+          } else {
             html += new_row + '<li><input type="checkbox" style="display:none;" name="seats[]" id="seat_' + value["id"] + '" value="' + value["id"] + 
         '"/><span data-id="' + value["id"] + '" class="unchecked" name="seatSpan" checked="false" onclick="App.cinemaSelectSeat(this);">' + value["row"] + '排' + value["col"] + '号</span></li>';
-          } else {
-            html += new_row + '<li><span class="checked">' + value["row"] + '排' + value["col"] + '号</span></li>';
           }
           new_row = "";
         });
