@@ -5,6 +5,8 @@ class CreateShowTimes < ActiveRecord::Migration
       t.integer :movie_id
       t.integer :movie_hall_id
       t.datetime :show_time
+      t.decimal :price
+      t.string :technology
 
       t.timestamps
     end

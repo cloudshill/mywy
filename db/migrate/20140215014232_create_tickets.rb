@@ -8,6 +8,7 @@ class CreateTickets < ActiveRecord::Migration
       t.integer :show_time_id
       t.integer :hall_seat_id
       t.string :status
+      t.string :channel
 
       t.timestamps
     end
