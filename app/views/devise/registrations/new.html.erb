@@ -38,73 +38,64 @@
 	<div class="container">
 		<div class="row">
 			<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div id="content">
-					<h1>注册 账号</h1>
-					<div class="wrapper underline no-margin">
+				<div id="content" class="panel panel-default">
+					<h1 class="suc">注册美月无忧账号</h1>
+					<div class="underline">
 						<p>如果你已经有账号了, 请在这里进入登录 <%= link_to "页面", new_member_session_path %>.</p>		
-							<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-								<h2>个人信息</h2>
-								<div class="content">
-									<table class="form">
-										<tr>
-											<td>
-												<span class="required">*</span>
-												<%= f.label :email %>:
-											</td>
-											<td>
-												<%= f.email_field :email, :autofocus => true %>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span class="required">*</span> 
-												<%= f.label :nickname %>:
-											</td>
-											<td>
-												<%= f.text_field :nickname %>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span class="required">*</span> 
-												<%= f.label :mobile %>:
-											</td>
-											<td>
-												<%= f.text_field :mobile %>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span class="required">*</span> 
-												<%= f.label :password %>:
-											</td>
-											<td>
-												<%= f.password_field :password %>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<span class="required">*</span>
-												<%= f.label :password_confirmation %>:
-											</td>
-											<td>
-												<%= f.password_field :password_confirmation %>
-											</td>
-										</tr>
-									</table>
-								</div>
-				
-								<div class="buttons">
-									<div class="right">
-										按下注册按钮已经默认代表你阅读和同意美月无忧网站 <a class="colorbox" href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=information/information/info&amp;information_id=3" alt="Privacy Policy"><b>使用条款</b></a>
-										<%= f.submit "注册", :class=>"btn btn-info" %>
-									</div>
-								</div>
-														
-							<% end %>
-						</div>
-					</div>	  
-	  
+					</div>
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+            <div class="content" style="margin-top:30px;">
+              <div class="form-group">
+                <%= f.label :email, :class => "col-sm-2 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.email_field :email, :autofocus => true, :class => "form-control" %>
+                </div>
+                <div class="col-sm-7 help-info">填写你常用的邮箱，用于登录，接收系统的一些优惠活动信息和修改密码的安全信息。</div>
+              </div>
+              <div class="form-group">
+                <%= f.label :nickname, :class => "col-sm-2 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.text_field :nickname, :class => "form-control" %>
+                </div>
+                <div class="col-sm-7">用户名，可以是英文+数字，用于登录和个性化主页。</div>
+              </div>   
+              <div class="form-group">
+                <%= f.label :mobile, :class => "col-sm-2 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.text_field :mobile, :class => "form-control" %>
+                </div>
+                <div class="col-sm-7">常用手机号，用于接收系统的一些安全性高和私密的信息，对外保密。</div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password, :class => "col-sm-2 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.password_field :password, :class => "form-control" %>
+                </div>
+                <div class="col-sm-7">密码长度8~16位，数字、字母、字符至少包含两种。</div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password_confirmation, :class => "col-sm-2 control-label" %>
+                <div class="col-sm-3">
+                  <%= f.password_field :password_confirmation, :class => "form-control" %>
+                </div>
+                <div class="col-sm-7">再一次确认密码，必须和上面输入的密码一致。</div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <%= f.submit "立 即 注 册", :class => "btn btn-info" %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  按下注册按钮已经默认代表你阅读和同意美月无忧网站 <a class="colorbox" href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=information/information/info&amp;information_id=3" alt="Privacy Policy"><b>使用条款</b></a>
+                </div>
+              </div>
+            </div>          
+          <% end %>
 			</section>	
 		</div>
 	</div>

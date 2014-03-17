@@ -4,6 +4,8 @@ class Cinema < ActiveRecord::Base
   has_many :movie_halls
   has_many :show_times
 
+  has_many :employments, as: :employmentable
+
   validates :name, presence: true
   validates :member_id, presence: true
 

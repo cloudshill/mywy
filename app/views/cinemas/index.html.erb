@@ -51,7 +51,7 @@
               <tr>
                 <th><input type="checkbox" /></th>
                 <th>名称</th>
-                <th colspan="4">操作</th>
+                <th colspan="5">操作</th>
               </tr>
               <% @cinemas.each do |cinema| %>
               <tr>
@@ -65,6 +65,7 @@
                 </td>
                 <td><%= link_to "查看影厅", cinema_movie_halls_path(cinema), :class => "btn btn-info btn-sm" %></td>
                 <td><%= link_to "查看场次", cinema_show_times_path(cinema), :class => "btn btn-info btn-sm" %></td>
+                <td><%= link_to "员工管理", cinema_employments_path(cinema), :class => "btn btn-info btn-sm" %></td>
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown">

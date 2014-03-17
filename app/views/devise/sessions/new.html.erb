@@ -38,50 +38,42 @@
 	<div class="container">
 		<div class="row">
 			<section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
-				<div id="content">
-					<h1>账号 登录</h1>		
-					<div class="login-content wrapper">
-						<div class="row">
-							<div class="col-lg-6 col-sm-6 col-xs-12">
-								<div class="inner no-margin">
-									<h2>新顾客</h2>
-									<div class="content">
-										<p>注册账号</p>
-										<p>注册账号，可以让你更方便地使用我们网站的所有功能，而且我们会根据随时提供优惠信息，根据你的购买需求，为你推荐你喜欢的商品。</p>
-										<p><%= link_to "马上注册", new_member_registration_path, :class=>"btn btn-danger" %></p>
-									</div>
+				<div id="content" class="panel panel-default">
+					<h1 class="suc">账号 登录</h1>
+          <div class="underline">
+            <p>新顾客，<%= link_to "注册账号", new_member_registration_path %>可以让你更方便地使用我们网站的所有功能，而且我们会根据随时提供优惠信息。</p>    
+          </div>
+					<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
+						<div class="content" style="margin-top:30px;">					  
+							<div class="form-group">
+								<label class="col-sm-2 control-label">账号</label>
+                <div class="col-sm-3">	
+									<%= f.text_field :login, :autofocus => true, :class => "form-control" %>
 								</div>
-							</div>
-							<div class="col-lg-6 col-sm-6 col-xs-12">
-								<div class="inner underline no-margin">
-									<h2>欢迎再次光临</h2>
-									<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-										<div class="content">					  
-											<div class="form-group">
-												<p>请登录</p>					  	
-												<label>账号/邮箱/手机</label>				
-												<p><%= f.text_field :login, :autofocus => true %></p>		
-											</div>
-											<div class="form-group">				      						  	
-												<%= f.label :password %>							
-												<p><%= f.password_field :password %></p>
-											</div>
-											<% if devise_mapping.rememberable? -%>
-										    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-										  <% end -%>
-											<div class="form-group">
-												<a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/forgotten">忘记密码？</a>						
-											</div>
-
-											<div class="form-group">
-												<%= f.submit "登 录", :class => "btn btn-info" %>
-											</div>				  
-										</div>			
-									<% end %>
+                <div class="col-sm-7 help-info">可以用邮箱，账号，手机登录。</div>
+              </div>
+							<div class="form-group">
+								<%= f.label :password, :class => "col-sm-2 control-label" %>
+                <div class="col-sm-3">
+									<%= f.password_field :password, :class => "form-control" %>
 								</div>
-							</div>	
-						</div>	
-					</div>
+                <div class="col-sm-7 help-info">请正确填写你的密码，注意大小写，至少8位。</div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+									<% if devise_mapping.rememberable? -%>
+								    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+				  			  <% end -%>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <%= f.submit "登 录", :class => "btn btn-info" %>	
+                  <a href="http://www.themelexus.com/demo/opencart/megashop/index.php?route=account/forgotten">忘记密码？</a> 
+								</div>
+              </div>
+            </div>
+					<% end %>
 				</div> 
 			</section> 
 		</div>

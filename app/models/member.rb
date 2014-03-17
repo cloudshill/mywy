@@ -14,6 +14,8 @@ class Member < ActiveRecord::Base
 
   validates :nickname, :uniqueness => { :case_sensitive => false }
 
+  has_one :employment
+
   has_many :line_items
   has_many :favorites
   has_many :comments

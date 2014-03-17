@@ -13,6 +13,16 @@
  *= require_self
  */
 
+.suc {
+  margin:0 0 10px 30px; padding-top:20px; font-size:22px; font-weight:bold; color:#ff9630;
+}
+.underline {
+  padding:0 0 20px 30px; border-bottom:1px dashed #e3e3e3; color:#999;
+}
+.help-info {
+  line-height: 35px;
+}
+
 #header-main {
   background-color: transparent;
 }

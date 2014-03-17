@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employmentable:</strong>
+  <%= @employment.employmentable_id %>
+</p>
+
+<p>
+  <strong>Employmentable type:</strong>
+  <%= @employment.employmentable_type %>
+</p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @employment.member_id %>
+</p>
+
+<%= link_to 'Edit', edit_employment_path(@employment) %> |
+<%= link_to 'Back', employments_path %>
