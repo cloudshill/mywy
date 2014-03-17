@@ -1,5 +1,6 @@
 Mywy::Application.routes.draw do
 
+  resources :members, only: [:index]
   resources :cinemas do
     resources :employments
     resources :movie_halls do

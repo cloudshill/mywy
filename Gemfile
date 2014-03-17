@@ -27,8 +27,6 @@ gem 'enumerize'
 
 gem 'chinese_pinyin'
 
-gem "select2-rails"
-
 # pdf
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'

@@ -1,4 +1,7 @@
 class Employment < ActiveRecord::Base
+  extend Enumerize
+  enumerize :status, in: [:apply, :work], default: :apply
+
   belongs_to :member
   belongs_to :employmentable, polymorphic: true
 
