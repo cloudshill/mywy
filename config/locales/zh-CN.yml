@@ -239,6 +239,8 @@
       offline: "货到付款"
       online: "在线支付"
     status:
+      apply: "申请中"
+      work: "就职中"
       paying: "等待支付"
       delivering: "正在配送"
       finished: "已收货"

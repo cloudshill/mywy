@@ -1,6 +1,7 @@
 class EmploymentsController < ApplicationController
-  before_action :set_employmentable, only: [:show, :edit, :update, :destroy]
-  before_action :set_cinema, only: [:index, :new, :create]
+  before_action :set_employmentable, only: [:show, :edit, :create, :update, :destroy]
+  before_action :set_cinema, only: [:index, :new, :create, :update]
+  before_action :set_employment, only: [:update, :show, :destroy]
 
   # GET /employments
   # GET /employments.json
@@ -25,15 +26,20 @@ class EmploymentsController < ApplicationController
   # POST /employments
   # POST /employments.json
   def create
-    @employment = @employmentable.employments.build(employment_params)
+    if current_member.id == @employmentable.member.id
+      respond_to do |format|
+        format.js { @info = "创始人不能应聘！" }
+      end
+    else
+      @employment = @employmentable.employments.build
+      @employment.member_id  = current_member.id
 
-    respond_to do |format|
-      if @employment.save
-        format.html { redirect_to @employment, notice: 'Employment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @employment }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @employment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @employment.save
+          format.js { @info = "应聘成功！请耐心等待审核！" }
+        else
+          format.js { @info = "应聘失败了！" }
+        end
       end
     end
   end
@@ -41,12 +47,15 @@ class EmploymentsController < ApplicationController
   # PATCH/PUT /employments/1
   # PATCH/PUT /employments/1.json
   def update
+    if not params[:pk].blank?
+      params[:employment][:status] = params[:value]
+    end
     respond_to do |format|
       if @employment.update(employment_params)
-        format.html { redirect_to @employment, notice: 'Employment was successfully updated.' }
+        format.js { @notice = 'Employment was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.js { @notice = 'Employment was successfully updated.' }
         format.json { render json: @employment.errors, status: :unprocessable_entity }
       end
     end
@@ -83,8 +92,12 @@ class EmploymentsController < ApplicationController
       end
     end
 
+    def set_employment
+      @employment = Employment.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def employment_params
-      params.require(:employment).permit(:employmentable_id, :employmentable_type, :member_id)
+      params.require(:employment).permit(:employmentable_id, :employmentable_type, :member_id, :status)
     end
 end

@@ -1,6 +1,6 @@
 class MovieHallsController < ApplicationController
   before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
-  before_filter :require_cinema_owner, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_filter :require_cinema_owner_or_employee, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:index, :new, :create]
   before_action :set_movie_hall, only: [:update]
   

@@ -1,14 +1,19 @@
 class CinemasController < ApplicationController
   before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
-  before_filter :require_cinema_owner, only: [:index, :new, :edit, :create, :update, :destroy]
-  before_action :set_cinema, only: [:show, :edit, :update, :destroy]
+  before_filter :require_cinema_owner_or_employee, only: [:index, :new, :edit, :create, :update, :destroy]
+  before_action :set_cinema, only: [:show, :edit, :update, :destroy, :employment, :comments]
 
-  layout false, only: [:show]
+  layout "cinema", only: [:show, :employment, :comments]
 
   # GET /cinemas
   # GET /cinemas.json
   def index
-    @cinemas = current_member.cinemas.all
+    @cinemas = []
+    if is_cinema_employee?
+      @cinemas << current_member.employment.cinema
+    else
+      @cinemas = current_member.cinemas.all
+    end
   end
 
   # GET /cinemas/1
@@ -16,6 +21,14 @@ class CinemasController < ApplicationController
   def show
     @show_times_today = @cinema.show_times.where(:show_time => ((Date.current.beginning_of_day)..(Date.current.end_of_day))).order("show_time ASC")
     @show_times_tomorrow = @cinema.show_times.where(:show_time => ((Date.current.beginning_of_day + 216000)..(Date.current.end_of_day + 216000))).order("show_time ASC")
+  end
+
+  def employment
+    @employment = Employment.new
+  end
+
+  def comments
+    
   end
 
   # GET /cinemas/new
@@ -51,10 +64,10 @@ class CinemasController < ApplicationController
     end
     respond_to do |format|
       if @cinema.update(cinema_params)
-        format.html { redirect_to edit_cinema_path(@cinema)}
+        format.js
         format.json { head :no_content }
       else
-        format.html { render action: 'new' }
+        format.js
         format.json { render json: @cinema.errors, status: :unprocessable_entity }
       end
     end

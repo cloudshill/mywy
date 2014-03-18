@@ -2,6 +2,10 @@ Mywy::Application.routes.draw do
 
   resources :members, only: [:index]
   resources :cinemas do
+    member do
+      get :employment
+      get :comments
+    end
     resources :employments
     resources :movie_halls do
       resources :hall_seats

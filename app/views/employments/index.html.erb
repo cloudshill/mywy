@@ -55,11 +55,9 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>Employmentable</th>
-                  <th>Employmentable type</th>
-                  <th>Member</th>
-                  <th></th>
-                  <th></th>
+                  <th width="100px;">账号</th>
+                  <th width="150px;">电话</th>
+                  <th width="100px;">状态</th>
                   <th></th>
                 </tr>
               </thead>
@@ -67,12 +65,16 @@
               <tbody>
                 <% @employments.each do |employment| %>
                   <tr>
-                    <td><%= employment.employmentable_id %></td>
-                    <td><%= employment.employmentable_type %></td>
-                    <td><%= employment.member_id %></td>
-                    <td><%= link_to 'Show', employment %></td>
-                    <td><%= link_to 'Edit', edit_employment_path(employment) %></td>
-                    <td><%= link_to 'Destroy', employment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= employment.member.nickname %></td>
+                    <td><%= employment.member.mobile %></td>
+                    <td>
+                      <span>
+                        <a class="edit_employment" data-type="select" href="#" data-pk="<%= employment.id %>" data-url="<%= cinema_employment_path(@cinema, employment) %>" data-placement="right">
+                          <%= employment.status.text %>
+                        </a>
+                      </span>
+                    </td>
+                    <td><%= link_to '删除', cinema_employment_path(@cinema, employment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -83,3 +85,23 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.fn.editable.defaults.mode = 'pop';
+    $(".edit_employment").editable({
+      type: "text",
+      title: "输入名称",
+      source: [
+        {value: 'work', text: '批准'}
+      ],
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.employment = { "status" : "" };
+        return params;
+      }
+    });
+  });
+</script>

@@ -4,6 +4,7 @@ class Employment < ActiveRecord::Base
 
   belongs_to :member
   belongs_to :employmentable, polymorphic: true
+  belongs_to :cinema, :foreign_key => :employmentable_id, :class_name => "Cinema"
 
   validates :member_id, presence: true
   validates :employmentable_id, presence: true
