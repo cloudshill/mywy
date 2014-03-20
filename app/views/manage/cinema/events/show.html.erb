@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @event.body %>
+</p>
+
+<p>
+  <strong>Eventable type:</strong>
+  <%= @event.eventable_type %>
+</p>
+
+<p>
+  <strong>Eventable:</strong>
+  <%= @event.eventable_id %>
+</p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @event.member_id %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @event.start %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @event.deadline %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

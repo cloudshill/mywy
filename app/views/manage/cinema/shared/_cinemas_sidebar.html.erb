@@ -43,3 +43,14 @@
           </ul>
         </div>
         <% end %>
+        <% if controller_name == 'events' %>
+        <div class="panel panel-info">
+          <div class="panel-heading"><span>影院活动中心</span></div>
+          <ul class="list-group">
+            <li class="list-group-item"><%= link_to '所有活动', manage_cinema_cinema_events_path(@cinema) %></li>
+            <% if not is_cinema_employee? %>
+            <li class="list-group-item"><%= link_to '创建活动', new_manage_cinema_cinema_event_path(@cinema) %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
