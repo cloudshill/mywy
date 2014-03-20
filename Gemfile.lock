@@ -5,6 +5,15 @@ GIT
     capistrano3-puma (0.2.0)
       capistrano (~> 3.0)
 
+GIT
+  remote: git@github.com:yeeli/getvideo.git
+  revision: 5319da0cbdab16e6d40c4d46971ad5ab2ee4a316
+  specs:
+    getvideo (0.0.4)
+      faraday
+      multi_json
+      nokogiri
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -106,6 +115,7 @@ GEM
     enumerize (0.7.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
+    essage-rails (0.0.1)
     eventmachine (1.0.3)
     execjs (2.0.2)
     factory_girl (4.3.0)
@@ -113,6 +123,8 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -140,6 +152,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.4)
+    multipart-post (2.0.0)
     mysql2 (0.3.15)
     nested_form (0.3.2)
     net-scp (1.1.2)
@@ -271,7 +284,9 @@ DEPENDENCIES
   devise
   devise-encryptable
   enumerize
+  essage-rails
   factory_girl_rails
+  getvideo!
   jbuilder (~> 1.2)
   jquery-atwho-rails
   jquery-rails

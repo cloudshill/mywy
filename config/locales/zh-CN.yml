@@ -217,6 +217,7 @@
       guardian: "监护人"
       member: "会员"
       cinema: "电影院"
+      event: "活动"
     attributes:
       member:
         email: "邮箱"
@@ -234,6 +235,10 @@
         name: "名称"
         avatar: "头像"
         guide: "观看指南"
+      event:
+        body: "内容"
+        start: "开始时间"
+        deadline: "截止期日"
   enumerize:
     pay_method:
       offline: "货到付款"

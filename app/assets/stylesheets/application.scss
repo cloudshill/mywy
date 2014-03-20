@@ -11,6 +11,7 @@
  *= require stylesheet
  *= require bootstrap-editable
  *= require essage
+ *= require video-js
  *= require_self
  */
 
@@ -1116,6 +1117,12 @@
       margin-right: 5px;
       margin-top: -2px;
       vertical-align: middle
+  }
+
+  .goods-trailers-list li {
+    width: 250px;
+    padding: 20px;
+    margin-bottom: -1px
   }
 
   .goods-faq-list ul {

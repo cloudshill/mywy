@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317063953) do
+ActiveRecord::Schema.define(version: 20140319060051) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20140317063953) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+  end
+
+  create_table "events", force: true do |t|
+    t.text     "body"
+    t.string   "eventable_type"
+    t.integer  "eventable_id"
+    t.integer  "member_id"
+    t.datetime "start"
+    t.datetime "deadline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "favorites", force: true do |t|
@@ -232,6 +243,13 @@ ActiveRecord::Schema.define(version: 20140317063953) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "channel"
+  end
+
+  create_table "trailers", force: true do |t|
+    t.string   "url"
+    t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -39,9 +39,13 @@ gem 'china_sms'
 
 # @
 gem 'jquery-atwho-rails'
+gem 'essage-rails'
 
 # 权限
 gem 'cancan'
+
+# getvideo is parse video information on Ruby, you can get video media download url, cover, flash url and title.
+gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
 
 # YAML 配置信息
 gem "settingslogic"

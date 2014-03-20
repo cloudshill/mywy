@@ -1,0 +1,49 @@
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <%= image_tag(@cinema.avatar.url("50x50"), :class=>"media-object") %>
+                    </a>
+                    <div class="media-body">
+                      <span class="name"><%= @cinema.name %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="nav nav-tabs">
+                    <li><%= link_to "在线购票", cinema_path(@cinema) %></li>
+                    <li><a href="#">优惠活动</a></li>
+                    <li><a href="#">影院介绍</a></li>
+                    <li class="active"><a href="#">留言板</a></li>
+                    <li><%= link_to "工作招聘", employment_cinema_path(@cinema) %></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <ul id="goodsCommentList" class="list-unstyled">
+                    <% @cinema.comments.each do |comment| %>
+                      <li><%= comment.body %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="#" class="thumbnail">
+                    <%= image_tag(@cinema.avatar.url("140x140")) %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

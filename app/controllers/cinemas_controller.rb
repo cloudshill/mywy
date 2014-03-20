@@ -1,19 +1,14 @@
 class CinemasController < ApplicationController
-  before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
-  before_filter :require_cinema_owner_or_employee, only: [:index, :new, :edit, :create, :update, :destroy]
-  before_action :set_cinema, only: [:show, :edit, :update, :destroy, :employment, :comments]
+  before_filter :require_member, only: [:index]
+  before_filter :require_cinema_owner_or_employee, only: [:index]
+  before_action :set_cinema, only: [:show, :employment, :comments]
 
   layout "cinema", only: [:show, :employment, :comments]
 
   # GET /cinemas
   # GET /cinemas.json
   def index
-    @cinemas = []
-    if is_cinema_employee?
-      @cinemas << current_member.employment.cinema
-    else
-      @cinemas = current_member.cinemas.all
-    end
+    @cinemas = Cinema.all
   end
 
   # GET /cinemas/1
@@ -29,58 +24,6 @@ class CinemasController < ApplicationController
 
   def comments
     
-  end
-
-  # GET /cinemas/new
-  def new
-    @cinema = Cinema.new
-  end
-
-  # GET /cinemas/1/edit
-  def edit
-  end
-
-  # POST /cinemas
-  # POST /cinemas.json
-  def create
-    @cinema = current_member.cinemas.build(cinema_params)
-
-    respond_to do |format|
-      if @cinema.save
-        format.html { redirect_to cinemas_path, notice: 'Cinema was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @cinema }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @cinema.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /cinemas/1
-  # PATCH/PUT /cinemas/1.json
-  def update
-    if not params[:pk].blank?
-      params[:cinema][:name] = params[:value]
-    end
-    respond_to do |format|
-      if @cinema.update(cinema_params)
-        format.js
-        format.json { head :no_content }
-      else
-        format.js
-        format.json { render json: @cinema.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /cinemas/1
-  # DELETE /cinemas/1.json
-  def destroy
-    @cinema.destroy
-    respond_to do |format|
-      format.html { redirect_to cinemas_url }
-      format.json { head :no_content }
-    end
   end
 
   private

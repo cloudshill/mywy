@@ -18,6 +18,7 @@
 //= require countdown
 //= require jquery.autogrowtextarea.min
 //= require bootstrap-editable.min
+//= require video
 //= require turbolinks
 //= require_self
 
@@ -33,10 +34,12 @@ window.App = {
         amount: 1
 	    },
       success: function(result, status, xhr) {
-	    	$("#notification").append("<div class='alert alert-success'>添加成功！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
+        var message = {message: "添加成功！", status: 'success', placement: 'bottom' };
+        Essage.show(message, 3000);
 	   	},
       error: function(result, status, xhr) {
-        $("#notification").append("<div class='alert alert-danger'>请先登录,添加失败！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
+        var message = {message: "请先登录,添加失败！", status: 'danger', placement: 'bottom' };
+        Essage.show(message, 3000);
       }
     });
 	},
@@ -261,10 +264,12 @@ window.Product = {
         amount: product_count
       },
       success: function(result, status, xhr) {
-        $("#notification").append("<div class='alert alert-success'>添加成功！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
+        var message = {message: "添加成功！", status: 'success', placement: 'bottom' };
+        Essage.show(message, 3000);
       },
       error: function(result, status, xhr) {
-        $("#notification").append("<div class='alert alert-danger'>请先登录,添加失败！<a href='#' class='close' 'data-dismiss'='alert'>x</a></div>");
+        var message = {message: "请先登录,添加失败！", status: 'danger', placement: 'bottom' };
+        Essage.show(message, 3000);
       }
     });
   },

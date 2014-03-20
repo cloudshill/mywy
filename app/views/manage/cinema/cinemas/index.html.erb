@@ -1,0 +1,111 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+          <% if current_member.role.seller? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "我的电影院", manage_cinema_cinemas_path %></a></li>
+          </ul>
+          <% end %>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="tickets" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'manage/cinema/shared/cinemas_sidebar' %>
+      </div>
+      <div class="col-md-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span>我的电影院</span>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <tr>
+                <th><input type="checkbox" /></th>
+                <th>名称</th>
+                <th colspan="6">操作</th>
+              </tr>
+              <% @cinemas.each do |cinema| %>
+              <tr>
+                <td width="30"><input type="checkbox" name="cinemas[]" value="<%= cinema.id %>" style="margin-top:12px;" /></td>
+                <td>
+                  <span style="font-size:17px;line-height:37px;">
+                    <a class="edit_cinema" href="#" data-pk="<%= cinema.id %>" data-url="<%= manage_cinema_cinema_path(cinema) %>" data-placement="right">
+                      <%= cinema.name %>
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <% if current_member.role.seller? %>
+                    <%= link_to "查看影厅", manage_cinema_cinema_movie_halls_path(cinema), :class => "btn btn-info btn-sm" %>
+                  <% end %>
+                </td>
+                <td><%= link_to "查看场次", manage_cinema_cinema_show_times_path(cinema), :class => "btn btn-info btn-sm" %></td>
+                <td><%= link_to "活动管理", manage_cinema_cinema_events_path(cinema), :class => "btn btn-info btn-sm" %></td>
+                <td>
+                  <% if current_member.role.seller? %>
+                    <%= link_to "员工管理", manage_cinema_cinema_employments_path(cinema), :class => "btn btn-info btn-sm" %>
+                  <% end %>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown">
+                      操作 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><%= link_to "查看", manage_cinema_cinema_path(cinema) %></li>
+                      <% if current_member.role.seller? %>
+                      <li><%= link_to "修改", edit_manage_cinema_cinema_path(cinema) %></li>
+                      <li><%= link_to "删除", manage_cinema_cinema_path(cinema), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.fn.editable.defaults.mode = 'pop';
+    $(".edit_cinema").editable({
+      type: "text",
+      title: "输入名称",
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.cinema = { "name" : "" };
+        return params;
+      }
+    });
+  });
+</script>

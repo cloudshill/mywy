@@ -1,0 +1,83 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+          <% if is_cinema_employee? || is_cinema_owner? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "我的电影院", manage_cinema_cinemas_path %></a></li>
+          </ul>
+          <% end %>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="movies">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="movie" class="ui-slide-box">
+              <div class="ui-slide-control">
+                <span class="title"><%= @trailer.movie.title %> 预告片</span>
+                <div class="pull-right">
+                  <a class="prev-next-btn left" href="#" data-slide="prev">
+                  </a>
+                  <a class="prev-next-btn right" href="#"  data-slide="next">
+                  </a>
+                </div>
+              </div>
+              <div class="ui-slide-content">
+                <div class="row">
+                  <div class="col-md-12">
+                    <!--[if !IE]> -->
+                      <video class="video-js vjs-default-skin" controls preload="auto" width="830" height="467" poster="<%= @info.cover %>" data-setup="{}">
+                        <source src="<%= @info.play_media %>" type="video/mp4">
+                      </video>
+                    <!-- <![endif]-->
+
+                    <!--[if IE]>
+                      <video class="video-js" controls preload="auto" width="620" height="256" poster="<%= @info.cover %>" data-setup="{}">
+                        <source src="<%= @info.play_media %>" type='video/mp4'/>
+                      </video>
+                    <![endif]-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div id="movie" class="ui-slide-box">
+          <div class="ui-slide-control">
+            <span class="title">合作影院</span>
+          </div>
+          <div class="ui-slide-content">
+            <%= link_to "#", :class=>"thumbnail" do %>
+              <%= image_tag("jingdian.jpg") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

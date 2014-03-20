@@ -16,6 +16,7 @@ class Movie < ActiveRecord::Base
   has_many :show_times
   has_many :comments, as: :commentable
   has_many :favorites, as: :favoriteable
+  has_many :trailers
 
   validates :title, presence: true
 

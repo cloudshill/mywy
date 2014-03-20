@@ -1,0 +1,26 @@
+        <div class="col-md-2">
+          <div class="sidebar">
+            <ul class="nav nav-list">
+              <li>
+                <%= link_to "电影列表", cpanel_movies_path %>
+              </li>
+              <li>
+                <%= link_to "添加预告片", new_cpanel_movie_trailer_path(@movie) %>
+              </li>
+              <li>
+                <%= link_to "预告片列表", cpanel_movie_trailers_path(@movie) %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="content">
+            <ul class="breadcrumb">
+              <li>管理面板</li>
+              <li>电影管理</li>
+              <li>预告片管理</li>
+            </ul>
+            <h2>电影</h2>
+            <%= render 'form' %>
+          </div>
+        </div>

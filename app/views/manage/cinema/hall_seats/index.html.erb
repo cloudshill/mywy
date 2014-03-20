@@ -1,0 +1,119 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+          <% if current_member.role.seller? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "我的电影院", manage_cinema_cinemas_path %></a></li>
+          </ul>
+          <% end %>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="sys-notification">
+  <div class="container">
+    <div id="notification">
+      <%= notice_message %>
+    </div>
+  </div>
+</section>
+<section id="tickets" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'manage/cinema/shared/cinemas_sidebar' %>
+      </div>
+      <div class="col-md-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span><%= @cinema.name %></span> - <span><%= @movie_hall.name %></span>
+          </div>
+          <div class="panel-body">
+            <table class="table" style="width:100%;">
+              <thead>
+                <tr>
+                  <th style="width: 20px;"><input type="checkbox"></th>
+                  <th style="width: 100px;">行号</th>
+                  <th style="width: 100px;">列号</th>
+                  <th style="width: 50px;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @hall_seats.each do |hall_seat| %>
+                <tr>
+                  <td><input type="checkbox" style="margin-top:12px;"></td>
+                  <td>
+                    <span style="font-size:17px;line-height:37px;">
+                      <a class="edit_hall_seat_row" href="#" data-pk="<%= hall_seat.id %>" data-url="<%= manage_cinema_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat) %>" data-placement="right">
+                        <%= hall_seat.row %>
+                      </a>
+                    </span>
+                  </td>
+                  <td>
+                    <span style="font-size:17px;line-height:37px;">
+                      <a class="edit_hall_seat_col" href="#" data-pk="<%= hall_seat.id %>" data-url="<%= manage_cinema_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat) %>" data-placement="right">
+                        <%= hall_seat.col %>
+                      </a>
+                    </span>
+                  </td>
+                  <td>
+                    <%= link_to "删除", manage_cinema_cinema_movie_hall_hall_seat_path(@cinema, @movie_hall, hall_seat), :method => :delete, :class => "btn btn-info btn-sm" %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.fn.editable.defaults.mode = 'pop';
+    $(".edit_hall_seat_row").editable({
+      type: "text",
+      title: "输入名称",
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.hall_seat = { "row" : "wait" };
+        return params;
+      }
+    });
+    $(".edit_hall_seat_col").editable({
+      type: "text",
+      title: "输入名称",
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.hall_seat = { "col" : "wait" };
+        return params;
+      }
+    });
+  });
+</script>

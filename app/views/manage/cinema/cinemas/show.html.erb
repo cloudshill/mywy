@@ -1,0 +1,74 @@
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <%= image_tag(@cinema.avatar.url("50x50"), :class=>"media-object") %>
+                    </a>
+                    <div class="media-body">
+                      <span class="name"><%= @cinema.name %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#">在线购票</a></li>
+                    <li><a href="#">优惠活动</a></li>
+                    <li><a href="#">影院介绍</a></li>
+                    <li><%= link_to "留言板", comments_cinema_path(@cinema) %></li>
+                    <li><%= link_to "工作招聘", employment_cinema_path(@cinema) %></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>观影指南</h2>
+                  <div class="well"><%= @cinema.guide %></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>在线选座购票</h2>
+                  <h4>今天</h4>
+                  <table class="table table-hover">
+                  <% @show_times_today.each do |show_time| %>
+                    <tr>
+                      <td><%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %></td>
+                      <td><%= show_time.movie.title %> <%= show_time.technology %></td>
+                      <td><%= show_time.movie_hall.name %></td>
+                      <td><%= show_time.price %>元</td>
+                      <td><%= link_to "订票", order_cinema_show_time_path(@cinema, show_time) %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+                  <h4>明天</h4>
+                  <table class="table table-hover">
+                  <% @show_times_tomorrow.each do |show_time| %>
+                    <tr>
+                      <td><%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %></td>
+                      <td><%= show_time.movie.title %> <%= show_time.technology %></td>
+                      <td><%= show_time.price %>元</td>
+                      <td><%= link_to "订票", order_cinema_show_time_path(@cinema, show_time) %></td>
+                    </tr>
+                  <% end %>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <a href="#" class="thumbnail">
+                    <%= image_tag(@cinema.avatar.url("140x140")) %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

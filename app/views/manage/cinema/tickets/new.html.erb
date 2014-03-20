@@ -1,0 +1,98 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+          <% if current_member.role.seller? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "我的电影院", manage_cinema_cinemas_path %></a></li>
+          </ul>
+          <% end %>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="ticket" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'manage/cinema/shared/cinemas_sidebar' %>
+      </div>
+      <div class="col-md-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span><%= link_to @cinema.name, manage_cinema_cinemas_path %></span> - <span>时间</span>
+            <input type="hidden" id="selectedDate" value="today" />
+          </div>
+          <div class="panel-body">
+            <ul class="clearfix list-inline">
+              <li>
+                <span id="today" class='checked' name='dateSpan' checked='true' onclick='App.moviePubDateChange(this);' >今天</span>
+              </li>
+              <li>
+                <span id="tomorrow" class='unchecked' name='dateSpan' checked='false' onclick='App.moviePubDateChange(this);' >明天</span>
+              </li>
+              <li>
+                <span id="last" class='unchecked' name='dateSpan' checked='false' onclick='App.moviePubDateChange(this);' >后天</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span><%= link_to @cinema.name, manage_cinema_cinemas_path %></span> - <span>电影</span>
+            <input type="hidden" id="selectedMovie" value="" /> 
+          </div>
+          <div class="panel-body">
+            <ul class="clearfix list-inline">
+            <% @show_times.each do |show_time| %>
+              <li><span data-id="<%= show_time.movie.id %>" class='unchecked' name='MovieSpan' checked='false' onclick='App.movieChange(this);' ><%= show_time.movie.title %></span></li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span><%= link_to @cinema.name, cinemas_path %></span> - <span>场次</span>
+          </div>
+          <div class="panel-body">
+            <ul id="show_times" class="items clearfix list-inline">
+            </ul>
+          </div>
+        </div>
+
+        <%= form_for(Ticket.new) do |f| %>
+        <%= f.hidden_field :movie_id %>
+        <%= f.hidden_field :cinema_id, :value => @cinema.id %>
+        <%= f.hidden_field :show_time_id %>
+        <%= f.hidden_field :channel, :value => :shop %>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span><%= link_to @cinema.name, cinemas_path %></span> - <span>座位</span>
+          </div>
+          <div class="panel-body" id="hall_seats">
+          </div>
+        </div>
+        <%= f.submit "出票", :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

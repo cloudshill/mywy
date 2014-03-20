@@ -1,0 +1,96 @@
+<section id="movie-page">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">美月无忧电影</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">购票</a></li>
+            <li><a href="#">问答</a></li>
+          </ul>
+          <% if current_member.role.seller? %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "我的电影院", manage_cinema_cinemas_path %></a></li>
+          </ul>
+          <% end %>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</section>
+<section id="tickets" class="offcanvas-siderbars">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'manage/cinema/shared/cinemas_sidebar' %>
+      </div>
+      <div class="col-md-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span>员工列表</span>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th width="100px;">账号</th>
+                  <th width="150px;">电话</th>
+                  <th width="100px;">状态</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @employments.each do |employment| %>
+                  <tr>
+                    <td><%= employment.member.nickname %></td>
+                    <td><%= employment.member.mobile %></td>
+                    <td>
+                      <span>
+                        <a class="edit_employment" data-type="select" href="#" data-pk="<%= employment.id %>" data-url="<%= manage_cinema_cinema_employment_path(@cinema, employment) %>" data-placement="right">
+                          <%= employment.status.text %>
+                        </a>
+                      </span>
+                    </td>
+                    <td><%= link_to '删除', manage_cinema_cinema_employment_path(@cinema, employment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.fn.editable.defaults.mode = 'pop';
+    $(".edit_employment").editable({
+      type: "text",
+      title: "输入名称",
+      source: [
+        {value: 'work', text: '批准'}
+      ],
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.employment = { "status" : "" };
+        return params;
+      }
+    });
+  });
+</script>

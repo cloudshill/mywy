@@ -1,0 +1,21 @@
+<%= form_for([:manage, :cinema, @cinema, @movie_hall, @hall_seat], :validate => true, :html => {:class => "form-horizontal"}) do |f| %>
+<fieldset>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">行：</label>
+    <div class="col-sm-10">
+      <%= f.text_field :row, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">列：</label>
+    <div class="col-sm-10">
+      <%= f.text_field :col, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "保存", :class => 'btn btn-info' %>
+    </div>
+  </div>
+</fieldset>
+<% end %>

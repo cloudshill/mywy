@@ -1,0 +1,25 @@
+<%= form_for([:cpanel, @movie, @trailer], :validate => true, :html => {:class => "form-horizontal"}) do |f| %>
+  <% if @trailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trailer.errors.count, "error") %> prohibited this trailer from being saved:</h2>
+
+      <ul>
+      <% @trailer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :url, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :url, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%= f.submit "保存", :class => "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

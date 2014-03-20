@@ -1,15 +1,17 @@
 Mywy::Application.routes.draw do
 
+  resources :events
+
+  resources :trailers
+
   resources :members, only: [:index]
-  resources :cinemas do
+  resources :cinemas, only: [:index, :show] do
     member do
       get :employment
       get :comments
     end
+    resources :events
     resources :employments
-    resources :movie_halls do
-      resources :hall_seats
-    end
     resources :show_times do
       member do
         get :order
@@ -62,10 +64,26 @@ Mywy::Application.routes.draw do
     :registrations => 'admins/accounts'
   }
 
+  namespace :manage do
+    namespace :cinema do
+      resources :cinemas do
+        resources :events
+        resources :employments, only: [:index, :update, :destroy]
+        resources :movie_halls do
+          resources :hall_seats
+        end
+        resources :show_times
+        resources :tickets
+      end
+    end
+  end
+
   namespace :cpanel do
     root :to => "orders#index"
 
-    resources :movies
+    resources :movies do
+      resources :trailers
+    end
     resources :cinemas do
       resources :movie_halls do
         resources :hall_seats
