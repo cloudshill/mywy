@@ -8,6 +8,7 @@ class Cinema < ActiveRecord::Base
 
   has_many :employments, as: :employmentable
   has_many :comments, as: :commentable
+  has_many :events, as: :eventable
 
   validates :name, presence: true
   validates :member_id, presence: true

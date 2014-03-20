@@ -1,7 +1,7 @@
 class EmploymentsController < ApplicationController
-  before_action :set_employmentable, only: [:show, :edit, :create, :update, :destroy]
-  before_action :set_cinema, only: [:index, :new, :create, :update]
-  before_action :set_employment, only: [:update, :show, :destroy]
+  before_action :set_employmentable, only: [:show, :create]
+  before_action :set_cinema, only: [:index, :create]
+  before_action :set_employment, only: [:update, :show]
 
   # GET /employments
   # GET /employments.json
@@ -12,15 +12,6 @@ class EmploymentsController < ApplicationController
   # GET /employments/1
   # GET /employments/1.json
   def show
-  end
-
-  # GET /employments/new
-  def new
-    @employment = Employment.new
-  end
-
-  # GET /employments/1/edit
-  def edit
   end
 
   # POST /employments
@@ -41,33 +32,6 @@ class EmploymentsController < ApplicationController
           format.js { @info = "应聘失败了！" }
         end
       end
-    end
-  end
-
-  # PATCH/PUT /employments/1
-  # PATCH/PUT /employments/1.json
-  def update
-    if not params[:pk].blank?
-      params[:employment][:status] = params[:value]
-    end
-    respond_to do |format|
-      if @employment.update(employment_params)
-        format.js { @notice = 'Employment was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.js { @notice = 'Employment was successfully updated.' }
-        format.json { render json: @employment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /employments/1
-  # DELETE /employments/1.json
-  def destroy
-    @employment.destroy
-    respond_to do |format|
-      format.html { redirect_to employments_url }
-      format.json { head :no_content }
     end
   end
 

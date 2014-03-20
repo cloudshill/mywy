@@ -4,14 +4,9 @@ Mywy::Application.routes.draw do
 
   resources :trailers
 
-  resources :members, only: [:index]
-  resources :cinemas, only: [:index, :show] do
-    member do
-      get :employment
-      get :comments
-    end
+  resources :cinemas, only: [:show] do
     resources :events
-    resources :employments
+    resources :employments, only: [:index, :show, :create]
     resources :show_times do
       member do
         get :order
