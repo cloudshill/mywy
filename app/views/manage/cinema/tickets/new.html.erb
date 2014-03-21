@@ -57,23 +57,13 @@
         </div>
         <div class="panel panel-info">
           <div class="panel-heading">
-            <span><%= link_to @cinema.name, manage_cinema_cinemas_path %></span> - <span>电影</span>
-            <input type="hidden" id="selectedMovie" value="" /> 
-          </div>
-          <div class="panel-body">
-            <ul class="clearfix list-inline">
-            <% @show_times.each do |show_time| %>
-              <li><span data-id="<%= show_time.movie.id %>" class='unchecked' name='MovieSpan' checked='false' onclick='App.movieChange(this);' ><%= show_time.movie.title %></span></li>
-            <% end %>
-            </ul>
-          </div>
-        </div>
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <span><%= link_to @cinema.name, cinemas_path %></span> - <span>场次</span>
+            <span><%= link_to @cinema.name, manage_cinema_cinemas_path %></span> - <span>场次</span>
           </div>
           <div class="panel-body">
             <ul id="show_times" class="items clearfix list-inline">
+            <% @show_times.each do |show_time| %>
+              <li><span class='unchecked' data-id='<%= show_time.id %>' name='timeSpan' checked='false' onclick='App.cinemaShowTimeChange(this);' ><%= show_time.movie.title %> - <%= formattime(show_time.show_time, :unit => "hour") %> - <%= show_time.price %>元</span></li>
+            <% end %>
             </ul>
           </div>
         </div>
@@ -85,7 +75,7 @@
         <%= f.hidden_field :channel, :value => :shop %>
         <div class="panel panel-info">
           <div class="panel-heading">
-            <span><%= link_to @cinema.name, cinemas_path %></span> - <span>座位</span>
+            <span><%= link_to @cinema.name, manage_cinema_cinemas_path %></span> - <span>座位</span>
           </div>
           <div class="panel-body" id="hall_seats">
           </div>

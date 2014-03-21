@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @show_times = ShowTime.all.where(:show_time => ((Date.current.beginning_of_day)..(Date.current.end_of_day))).where(:cinema_id => params[:cinema_id].to_i)
+    @show_time = ShowTime.find(params[:st])
   end
 
   def create

@@ -102,19 +102,10 @@
             <% end %>
           </ul>
         </div>
-        <%= form_for(Ticket.new) do |f| %>
-        <div class="box2 box_left clearfix">
-          <h2>座位</h2>        
-          <%= f.hidden_field :movie_id, :value => @movie.id %>
-          <%= f.hidden_field :cinema_id %>
-          <%= f.hidden_field :show_time_id %>
-          <ul class="items clearfix list-inline" id="selectedSeats">
-          </ul>
-        </div>
-        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal">选座位</a>
-        选好了就
-        <%= f.submit "订票", :class => "btn btn-primary" %>
-        <% end %>
+        <form action="<%= new_ticket_path %>" method="get">
+          <input type="hidden" id="ticket_show_time_id" name="st" value="" />
+          <input type="submit" class="btn btn-primary" value="选好场次后选座位订票" onclick="return App.checkST();" />
+        </form>
       </div>
     </div>
     </br>

@@ -1,6 +1,4 @@
 class HallSeatsController < ApplicationController
-  before_action :set_cinema, only: [:index]
-  before_action :set_movie_hall, only: [:index]
   # GET /hallseats
   # GET /hallseats.json
   def index

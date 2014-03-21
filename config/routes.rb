@@ -4,6 +4,8 @@ Mywy::Application.routes.draw do
 
   resources :trailers
 
+  resources :tickets
+
   resources :cinemas, only: [:show] do
     resources :events
     resources :employments, only: [:index, :show, :create]

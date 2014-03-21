@@ -42,7 +42,7 @@
                       <td><%= show_time.movie.title %> <%= show_time.technology %></td>
                       <td><%= show_time.movie_hall.name %></td>
                       <td><%= show_time.price %>元</td>
-                      <td><%= link_to "订票", order_cinema_show_time_path(@cinema, show_time) %></td>
+                      <td><%= link_to "订票", new_ticket_path(:st => show_time.id) %></td>
                     </tr>
                   <% end %>
                   </table>
@@ -53,7 +53,7 @@
                       <td><%= formattime(show_time.show_time, :unit => "noDayOnlyHour") %></td>
                       <td><%= show_time.movie.title %> <%= show_time.technology %></td>
                       <td><%= show_time.price %>元</td>
-                      <td><%= link_to "订票", order_cinema_show_time_path(@cinema, show_time) %></td>
+                      <td><%= link_to "订票", new_ticket_path(:st => show_time.id) %></td>
                     </tr>
                   <% end %>
                   </table>
