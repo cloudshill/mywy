@@ -69,6 +69,6 @@ class Cpanel::NodesController < Cpanel::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def node_params
-      params.require(:node).permit(:name)
+      params.require(:node).permit(:name, :business_scope)
     end
 end

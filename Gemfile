@@ -53,6 +53,12 @@ gem "settingslogic"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.1.0'
+
+# Font Awesome
+gem 'font-awesome-sass', '~> 4.0.2'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -72,6 +78,9 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# slim
+gem 'slim'
+
 gem "puma", "2.6.0"
 
 group :doc do
@@ -89,7 +98,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.10.0'
   gem 'factory_girl_rails'
   gem 'capybara', :require => false
-  gem 'api_taster'
   gem 'letter_opener'
   gem 'thin'
   gem 'better_errors'            #出错提示友好版

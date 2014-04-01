@@ -1,0 +1,66 @@
+section#food-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_restaurant_restaurants_path
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "我的食物 - #{@food.name} - 图片管理"
+            span.pull-right.btn.btn-success.fileinput-button
+              i.glyphicon.glyphicon-plus
+              span
+                = "上传图片"
+              input#fileupload data-url=manage_restaurant_restaurant_food_images_path(@restaurant, @food) multiple="" name="image[image]" type="file"
+          .panel-body
+            table.table.table-hover.table-border#images_table
+              thead
+                tr
+                  th
+                    = "图片"
+                  th
+                    = "封面"
+                  th
+                    = "上传时间"
+                  th width="50"
+                    = "操作"
+              tbody
+                - @images.each do |image|
+                  tr(id="image_#{image.id}")
+                    td
+                      img src=image.image.url("50x50")
+                    td
+                      = image.is_cover ? "是" : "否"
+                    td
+                      = formattime(image.created_at)
+                    td
+                      span.pull-right
+                        = link_to "删除", manage_restaurant_restaurant_food_image_path(@restaurant, @food, image), class: "btn btn-danger", method: :delete, remote: true, data: { confirm: 'Are you sure?' }
+
+javascript:
+  $(function () {
+    $('#fileupload').fileupload({
+      dataType: 'json',
+      done: function(e, data) {
+        $('#images_table').append('<tr id="image_' + data.result.id + '"><td><img src="' + data.result.url.s + 
+        '" /></td><td>' + data.result.is_cover + '</td><td>' + data.result.created_at + '</td><td><span class="pull-right"></span></td></tr>');
+      }
+    });
+  });

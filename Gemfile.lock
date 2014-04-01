@@ -42,13 +42,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    api_taster (0.6.0)
-      bootstrap-sass (~> 2.1)
-      jquery-rails
-      rails (>= 3.1.0)
-      redcarpet
-      remotipart (~> 1.0)
-      sass-rails
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -57,7 +50,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.10)
@@ -125,6 +118,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    font-awesome-sass (4.0.3.1)
+      sass (~> 3.2)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -188,8 +183,6 @@ GEM
     rake (10.1.1)
     rdoc (4.1.1)
       json (~> 1.4)
-    redcarpet (3.0.0)
-    remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.10.0)
@@ -206,7 +199,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     ruby-hmac (0.4.0)
-    sass (3.2.14)
+    sass (3.3.4)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -215,6 +208,9 @@ GEM
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
     settingslogic (2.0.9)
+    slim (2.0.2)
+      temple (~> 0.6.6)
+      tilt (>= 1.3.3, < 2.1)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -229,6 +225,7 @@ GEM
       net-ssh
       term-ansicolor
     subexec (0.2.3)
+    temple (0.6.7)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
     thin (1.6.1)
@@ -264,9 +261,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  api_taster
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.1.0)
   cancan
   capistrano (~> 3.1.0)
   capistrano-bundler (~> 1.1)
@@ -286,6 +283,7 @@ DEPENDENCIES
   enumerize
   essage-rails
   factory_girl_rails
+  font-awesome-sass (~> 4.0.2)
   getvideo!
   jbuilder (~> 1.2)
   jquery-atwho-rails
@@ -303,6 +301,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   settingslogic
+  slim
   thin
   turbolinks
   uglifier (>= 1.3.0)

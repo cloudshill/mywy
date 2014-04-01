@@ -1,5 +1,11 @@
 Mywy::Application.routes.draw do
 
+  resources :foods, only: [:show, :index]
+
+  resources :dinner_tables
+
+  resources :restaurants
+
   resources :events
 
   resources :trailers
@@ -71,6 +77,17 @@ Mywy::Application.routes.draw do
         end
         resources :show_times
         resources :tickets
+      end
+    end
+
+    namespace :restaurant do
+      resources :restaurants do
+        resources :dinner_tables
+        resources :events
+        resources :employments, only: [:index, :update, :destroy]
+        resources :foods do
+          resources :images
+        end
       end
     end
   end

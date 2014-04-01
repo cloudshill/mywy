@@ -1,0 +1,188 @@
+/*
+ *= require font-awesome
+*/
+
+@import "bootstrap";
+@import "jquery.qeditor";
+@import "zTreeStyle";
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background: #f9f9f9;
+  color: #333;
+}
+ul, li {
+  list-style: none;
+}
+a:hover {
+  text-decoration: none;
+}
+h1 {
+  color: #41414c;
+  margin-top: 0px;
+}
+h2 {
+  color: #41414c;
+  font-size: 1.25em;
+  font-weight: normal;
+}
+h3 {
+  color: #41414c;
+  font-size: 1em;
+  font-weight: bold;
+}
+h2 span.info {
+  margin-top: -1em;
+  font-size: .75em;
+  display: block;
+  font-weight: normal;
+  color: #333;
+}
+hr {
+  border-top: 1px solid #dddde2;
+}
+.dialog,
+.row .dialog,
+.row-fluid .dialog,
+.row-fluid [class*="span"].dialog:first-child {
+  margin: 0px auto;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  float: none;
+  width: 300px;
+}
+.dialog input[type="checkbox"],
+.row .dialog input[type="checkbox"],
+.row-fluid .dialog input[type="checkbox"],
+.row-fluid [class*="span"].dialog:first-child input[type="checkbox"] {
+  margin: 0px;
+}
+.dialog .alert,
+.row .dialog .alert,
+.row-fluid .dialog .alert,
+.row-fluid [class*="span"].dialog:first-child .alert {
+  margin-bottom: 1em;
+}
+.dialog form,
+.row .dialog form,
+.row-fluid .dialog form,
+.row-fluid [class*="span"].dialog:first-child form {
+  margin-bottom: 0px;
+}
+.dialog .remember-me,
+.row .dialog .remember-me,
+.row-fluid .dialog .remember-me,
+.row-fluid [class*="span"].dialog:first-child .remember-me {
+  padding: .5em 0em 0em 0em;
+}
+.login {
+  color: #555;
+}
+.login h2 {
+  background: #333;
+  color: #fff;
+  background: #646475;
+  text-shadow: 0px 0px 1px #333;
+  margin: 0em;
+  border-top: 1px solid #7d7d8f;
+  padding: 0em 1em;
+  font-size: 1em;
+  line-height: 2.5em;
+}
+.login .block-header {
+  border: 1px solid #4c4c5a;
+  -webkit-box-shadow: 0px 1px 3px rgba(29, 29, 35, 0.3);
+  -moz-box-shadow: 0px 1px 3px rgba(29, 29, 35, 0.3);
+  box-shadow: 0px 1px 3px rgba(29, 29, 35, 0.3);
+  margin: -1px -1px 1em -1px;
+}
+.login .block {
+  background: #fff;
+  border: 1px solid #c1c1cb;
+  border: 1px solid #b4b4bf;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+}
+.login .block form {
+  margin: 0em 1em;
+}
+.login .brand {
+  text-align: center;
+  margin: 0em;
+  margin-bottom: .5em;
+  font-size: 2.5em;
+}
+.login .form-actions {
+  border-top: 1px solid #d2d2d9;
+  -webkit-box-shadow: inset 0px 1px 0px #ffffff;
+  -moz-box-shadow: inset 0px 1px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px #ffffff;
+  padding: .5em 1em;
+  margin: 1em -1em 0em -1em;
+}
+.login .sign-up {
+  font-size: .85em;
+  line-height: 2em;
+}
+.login .reset-password {
+  font-size: .75em;
+  float: right;
+  color: #999;
+}
+.form-actions {
+  background: #f3f3f5;
+}
+
+.item {
+  width: 160px;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  overflow: hidden;
+  .cosmetic_img {
+    z-index:10;
+    height: 140px;
+    width:140px;
+  }
+  .price {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    .sales {
+      color: red;
+    }
+    .market {
+      font-size: 12px;
+    }
+  }
+  .name {
+    text-align: center;
+    width: 140px;
+    text-overflow:clip;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+}
+
+.sidebar {
+  border:solid 1px #ccc;
+  background:#F0F0F0;
+}
+.content {
+  border:solid 5px #F0F0F0;
+  padding: 20px;
+  height: 100%;
+}
+
+.ztree li span.button.add {
+  margin-left:2px;
+  margin-right: -1px;
+  background-position:-144px 0;
+  vertical-align:top;
+  *vertical-align:middle;
+  }

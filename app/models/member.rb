@@ -22,6 +22,7 @@ class Member < ActiveRecord::Base
   has_many :orders
   has_many :tickets
   has_many :cinemas
+  has_many :restaurants
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

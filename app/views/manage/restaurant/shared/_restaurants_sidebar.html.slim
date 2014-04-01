@@ -1,0 +1,44 @@
+.panel.panel-info
+  .panel-heading
+    span
+      = "餐厅管理中心"
+  ul.list-group
+    li.list-group-item
+      a href=manage_restaurant_restaurants_path
+        = "我的餐厅"
+    li.list-group-item
+      a href=new_manage_restaurant_restaurant_path
+        = "创建餐厅"
+- if controller_name == 'dinner_tables'
+  .panel.panel-info
+    .panel-heading
+      span
+        = "餐桌管理"
+    ul.list-group
+      li.list-group-item
+        a href=manage_restaurant_restaurant_dinner_tables_path
+          = "我的餐桌"
+      li.list-group-item
+        a href=new_manage_restaurant_restaurant_dinner_table_path
+          = "创建餐桌"
+- if controller_name == 'foods'
+  .panel.panel-info
+    .panel-heading
+      span
+        = "食物管理"
+    ul.list-group
+      li.list-group-item
+        a href=manage_restaurant_restaurant_foods_path
+          = "我的食物"
+      li.list-group-item
+        a href=new_manage_restaurant_restaurant_food_path
+          = "添加食物"
+- if controller_name == 'images'
+  .panel.panel-info
+    .panel-heading
+      span
+        = "图片管理"
+    ul.list-group
+      li.list-group-item
+        a href=manage_restaurant_restaurant_foods_path
+          = "返回食物管理"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319060051) do
+ActiveRecord::Schema.define(version: 20140328093553) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 20140319060051) do
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["member_id"], name: "index_comments_on_member_id", using: :btree
 
+  create_table "dinner_tables", force: true do |t|
+    t.string   "name"
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "employments", force: true do |t|
     t.integer  "employmentable_id"
     t.string   "employmentable_type"
@@ -105,12 +112,33 @@ ActiveRecord::Schema.define(version: 20140319060051) do
     t.string   "favoriteable_type"
   end
 
+  create_table "foods", force: true do |t|
+    t.string   "name"
+    t.decimal  "price",         precision: 10, scale: 0
+    t.integer  "sales"
+    t.string   "description"
+    t.integer  "node_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "restaurant_id"
+  end
+
   create_table "hall_seats", force: true do |t|
     t.integer  "movie_hall_id"
     t.integer  "row"
     t.integer  "col"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "image"
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+    t.boolean  "is_cover"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "member_id"
   end
 
   create_table "line_items", force: true do |t|
@@ -182,6 +210,7 @@ ActiveRecord::Schema.define(version: 20140319060051) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "business_scope"
   end
 
   create_table "orders", force: true do |t|
@@ -220,6 +249,15 @@ ActiveRecord::Schema.define(version: 20140319060051) do
   end
 
   add_index "products", ["node_id"], name: "index_products_on_node_id", using: :btree
+
+  create_table "restaurants", force: true do |t|
+    t.string   "name"
+    t.string   "avatar"
+    t.string   "guide"
+    t.integer  "member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "show_times", force: true do |t|
     t.integer  "cinema_id"

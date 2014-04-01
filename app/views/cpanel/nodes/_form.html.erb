@@ -4,6 +4,10 @@
     <label>名称：</label>
     <%= f.text_field :name, :class => "form-control" %>
   </div>
+  <div class="form-group">
+    <label>所属行业：</label>
+    <%= f.select :business_scope, Node.business_scope.options %>
+  </div>
   <%= f.submit "保存", :class => 'btn btn-default' %>
     or
   <%= link_to '返回', cpanel_nodes_path, :class => 'btn btn-default' %>

@@ -1,8 +1,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require bootstrap.min
-//= require jquery.autogrowtextarea.min
+//= require bootstrap
+//= require jquery.autosize
 //= require jquery.qeditor
 //= require turbolinks
 //= require cpanel/categories

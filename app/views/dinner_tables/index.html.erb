@@ -1,0 +1,29 @@
+<h1>Listing dinner_tables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Restaurant</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dinner_tables.each do |dinner_table| %>
+      <tr>
+        <td><%= dinner_table.name %></td>
+        <td><%= dinner_table.restaurant_id %></td>
+        <td><%= link_to 'Show', dinner_table %></td>
+        <td><%= link_to 'Edit', edit_dinner_table_path(dinner_table) %></td>
+        <td><%= link_to 'Destroy', dinner_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dinner table', new_dinner_table_path %>

@@ -1,0 +1,53 @@
+section#food-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_restaurant_restaurants_path
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "我的食物"
+          .panel-body
+            table.table.table-hover
+              tr
+                th
+                  input type="checkbox"
+                th
+                  = "名称"
+                th
+                  = "操作"
+                th colspan="6"
+              - for food in @foods
+                tr
+                  td width="30"
+                    input type="checkbox" name="foods[]" value="#{food.id}" style="margin-top:12px;"
+                  td
+                    span style="font-size:17px;line-height:37px;"
+                      a.edit_restaurant href="#" data-pk="#{food.id}"
+                        = food.name
+                  td
+                    a href=manage_restaurant_restaurant_food_images_path(@restaurant, food) class='btn btn-info'
+                      = '图片'
+                  td
+                    a href=edit_manage_restaurant_restaurant_food_path(@restaurant, food) class="btn btn-info"
+                      = "修改"
+                  td
+                    a href=manage_restaurant_restaurant_food_path(@restaurant, food) method="delete" class="btn btn-info"
+                      = "删除"

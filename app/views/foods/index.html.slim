@@ -1,0 +1,48 @@
+section#food-page
+  .container
+    .navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="#"
+            = "美月无忧餐厅"
+
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a href="#"
+                = "购票"
+            li
+              a href="#"
+                = "回答"
+          - if is_cinema_employee? || is_cinema_owner?
+            ul.nav.navbar-nav.navbar-right
+              li
+                a href=manage_restaurant_restaurants_path
+                  = "我的餐厅"
+
+section#sys-notification
+  .container
+    #notification
+      = notice_message
+
+section#food.offcanvas-siderbars
+  .container
+    .row
+      .col-md-9
+        .row
+          section.col-lg-12.col-md-12.col-sm-12.col-xs-12
+            .ui-slide-box
+              .ui-slide-control
+                span.title
+                  = "热门"
+                .pull-right
+                  a.prev-next-btn.left href="#" data-slide="prev"
+                  a.prev-next-btn.right href="#" data-slide="next"
+              .ui-slide-content
+                .row
+      .col-md-3
+        .ui-slide-box
+          .ui-slide-control
+            span.title
+              = "我的收藏"
+          .ui-slide-content
