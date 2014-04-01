@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328093553) do
+ActiveRecord::Schema.define(version: 20140401094933) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -289,5 +289,21 @@ ActiveRecord::Schema.define(version: 20140328093553) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "wechats", force: true do |t|
+    t.string   "wechatable_type"
+    t.integer  "wechatable_id"
+    t.string   "name"
+    t.string   "public_name"
+    t.string   "slogan"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "weixin_secret_key"
+    t.string   "weixin_token"
+  end
+
+  add_index "wechats", ["weixin_secret_key"], name: "index_wechats_on_weixin_secret_key", using: :btree
+  add_index "wechats", ["weixin_token"], name: "index_wechats_on_weixin_token", using: :btree
 
 end

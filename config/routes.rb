@@ -1,5 +1,6 @@
 Mywy::Application.routes.draw do
 
+  mount WeixinRailsMiddleware::Engine, at: "/"
   resources :foods, only: [:show, :index]
 
   resources :dinner_tables
