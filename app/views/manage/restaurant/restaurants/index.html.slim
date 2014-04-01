@@ -46,14 +46,21 @@ section#foods
                     span style="font-size:17px;line-height:37px;"
                       = restaurant.guide
                   td
-                    a href=manage_restaurant_restaurant_dinner_tables_path(restaurant) class="btn btn-info"
-                      = "餐桌"
+                    - if restaurant.wechat.blank?
+                      a href=new_manage_restaurant_restaurant_wechat_path(restaurant) class='btn btn-info'
+                        = "绑定微信号"
+                    -else
+                      a href=manage_restaurant_restaurant_wechat_path(restaurant, restaurant.wechat) class="btn btn-info"
+                        = "微信号管理"
                   td
-                    a href=manage_restaurant_restaurant_foods_path(restaurant) class="btn btn-info"
-                      = "食物"
+                    .btn-group
+                      a href=manage_restaurant_restaurant_dinner_tables_path(restaurant) class="btn btn-info"
+                        = "餐桌"
+                      a href=manage_restaurant_restaurant_foods_path(restaurant) class="btn btn-info"
+                        = "食物"
                   td
-                    a href=edit_manage_restaurant_restaurant_path(restaurant) class="btn btn-info"
-                      = "修改"
-                  td
-                    a href=manage_restaurant_restaurant_path(restaurant) class="btn btn-info" method="delete"
-                      = "删除"
+                    .btn-group
+                      a href=edit_manage_restaurant_restaurant_path(restaurant) class="btn btn-info"
+                        = "修改"
+                      a href=manage_restaurant_restaurant_path(restaurant) class="btn btn-info" method="delete"
+                        = "删除"
