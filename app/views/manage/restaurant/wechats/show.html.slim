@@ -1,0 +1,39 @@
+section#food-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_restaurant_restaurants_path
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@restaurant.name} 餐厅 - 微信服务号"
+          .panel-body
+            .bs-callout.bs-callout-danger
+              p
+                = "URL：#{ weixin_engine.weixin_index_url(@wechat.weixin_secret_key) }"
+            .bs-callout.bs-callout-danger
+              p
+                = "Token：#{ @wechat.weixin_token }"
+            .bs-callout.bs-callout-info
+              p
+                = "微信号：#{@wechat.name}"
+            .bs-callout.bs-callout-info
+              p
+                = "微信号：#{@wechat.public_name}"
