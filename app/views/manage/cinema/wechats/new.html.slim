@@ -1,0 +1,28 @@
+section#movie-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_cinema_cinemas_path
+section#tickets
+  .container
+    .row
+      .col-md-3
+        = render 'manage/cinema/shared/cinemas_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@cinema.name} 餐厅 - 绑定微信服务号"
+          .panel-body
+            = render 'form'

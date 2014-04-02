@@ -1,4 +1,4 @@
-section#food-page
+section#movie-page
   .container
     nav.navbar.navbar-default
       .navbar-header
@@ -13,17 +13,17 @@ section#food-page
         - if current_member.role.seller?
           ul.nav.navbar-nav.navbar-right
             li
-              a href=manage_restaurant_restaurants_path
-section#foods
+              a href=manage_cinema_cinemas_path
+section#tickets
   .container
     .row
       .col-md-3
-        = render 'manage/restaurant/shared/restaurants_sidebar'
+        = render 'manage/cinema/shared/cinemas_sidebar'
       .col-md-9
         .panel.panel-info
           .panel-heading
             span
-              = "#{@restaurant.name} 餐厅 - 微信服务号"
+              = "#{@cinema.name} 餐厅 - 微信服务号"
           .panel-body
             .bs-callout.bs-callout-danger
               p
@@ -44,5 +44,5 @@ section#foods
               p
                 = "描述：#{@wechat.description}"
             p
-              a href=edit_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat) class="btn btn-info"
+              a href=edit_manage_cinema_cinema_wechat_path(@cinema, @wechat) class="btn btn-info"
                 = "修改"

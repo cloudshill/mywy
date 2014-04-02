@@ -1,0 +1,85 @@
+section#movie-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_cinema_cinemas_path
+section#tickets
+  .container
+    .row
+      .col-md-3
+        = render 'manage/cinema/shared/cinemas_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "我的电影院"
+          .panel-body
+            table.table.table-hover
+              tr
+                th
+                  input type="checkbox"
+                th
+                  = "名称"
+                th colspan="6"
+                  = "操作"
+              - @cinemas.each do |cinema|
+                tr
+                  td width="30"
+                    input type="checkbox" name="cinemas[]" value="#{cinema.id}" style="margin-top:12px;"
+                  td
+                    span style="font-size:17px;line-height:37px;"
+                      a.edit_cinema href="#" data-pk="#{cinema.id}" data-url="<%= manage_cinema_cinema_path(cinema) %>" data-placement="right"
+                        = cinema.name
+                  td
+                    - if cinema.wechat.blank?
+                      a href=new_manage_cinema_cinema_wechat_path(cinema) class='btn btn-info btn-sm'
+                        = "绑定微信号"
+                    - else
+                      a href=manage_cinema_cinema_wechat_path(cinema, cinema.wechat) class="btn btn-info btn-sm"
+                        = "微信号管理"
+                  td
+                    .btn-group
+                      - if current_member.role.seller?
+                        a href=manage_cinema_cinema_movie_halls_path(cinema) class="btn btn-info btn-sm"
+                          = "查看影厅"
+                      a href=manage_cinema_cinema_show_times_path(cinema) class="btn btn-info btn-sm"
+                        = "查看场次"
+                      a href=manage_cinema_cinema_events_path(cinema) class="btn btn-info btn-sm"
+                        = "活动管理"
+                      - if current_member.role.seller?
+                        a href=manage_cinema_cinema_employments_path(cinema) class="btn btn-info btn-sm"
+                          = "员工管理"
+                  td
+                    .btn-group
+                      a href=edit_manage_cinema_cinema_path(cinema) class="btn btn-info btn-sm"
+                        = "修改"
+                      a href=manage_cinema_cinema_path(cinema) class="btn btn-info btn-sm" method="delete"
+                        = "删除"
+
+javascript:
+  $(document).ready(function() {
+    $.fn.editable.defaults.mode = 'pop';
+    $(".edit_cinema").editable({
+      type: "text",
+      title: "输入名称",
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.cinema = { "name" : "" };
+        return params;
+      }
+    });
+  });

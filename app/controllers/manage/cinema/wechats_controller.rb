@@ -1,5 +1,5 @@
-class Manage::Restaurant::WechatsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :new, :create, :edit]
+class Manage::Cinema::WechatsController < ApplicationController
+  before_action :set_cinema, only: [:show, :new, :create, :edit]
   before_action :set_wechat, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -12,7 +12,7 @@ class Manage::Restaurant::WechatsController < ApplicationController
 
   def create
     @wechat = Wechat.new(wechat_params)
-    @wechat.wechatable = @restaurant
+    @wechat.wechatable = @cinema
     @wechat.save
   end
 
@@ -30,8 +30,8 @@ class Manage::Restaurant::WechatsController < ApplicationController
 
   private
 
-  def set_restaurant
-    @restaurant = Restaurant.find(params[:restaurant_id])
+  def set_cinema
+    @cinema = Cinema.find(params[:cinema_id])
   end
 
   def set_wechat
