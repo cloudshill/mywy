@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401094933) do
+ActiveRecord::Schema.define(version: 20140402055522) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -301,8 +301,13 @@ ActiveRecord::Schema.define(version: 20140401094933) do
     t.datetime "updated_at"
     t.string   "weixin_secret_key"
     t.string   "weixin_token"
+    t.string   "account_type"
+    t.string   "app_id"
+    t.string   "app_secret"
   end
 
+  add_index "wechats", ["app_id"], name: "index_wechats_on_app_id", using: :btree
+  add_index "wechats", ["app_secret"], name: "index_wechats_on_app_secret", using: :btree
   add_index "wechats", ["weixin_secret_key"], name: "index_wechats_on_weixin_secret_key", using: :btree
   add_index "wechats", ["weixin_token"], name: "index_wechats_on_weixin_token", using: :btree
 

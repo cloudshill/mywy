@@ -256,6 +256,7 @@
         public_name: "公众号名称"
         slogan: "品牌口号"
         description: "描述"
+        account_type: "账号类型"
   enumerize:
     pay_method:
       offline: "货到付款"
@@ -266,3 +267,8 @@
       paying: "等待支付"
       delivering: "正在配送"
       finished: "已收货"
+    account_type:
+      subscribe: "订阅号"
+      subscribe_authorized: "认证订阅号"
+      service: "服务号"
+      service_authorized: "认证服务号"

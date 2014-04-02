@@ -24,7 +24,7 @@ section#foods
           .panel-heading
             span
               = "我的食物 - #{@food.name} - 图片管理"
-            span.pull-right.btn.btn-success.fileinput-button
+            span.pull-right.btn.btn-success.fileinput-button.btn-sm
               i.glyphicon.glyphicon-plus
               span
                 = "上传图片"
@@ -52,7 +52,7 @@ section#foods
                       = formattime(image.created_at)
                     td
                       span.pull-right
-                        = link_to "删除", manage_restaurant_restaurant_food_image_path(@restaurant, @food, image), class: "btn btn-danger", method: :delete, remote: true, data: { confirm: 'Are you sure?' }
+                        = link_to "删除", manage_restaurant_restaurant_food_image_path(@restaurant, @food, image), class: "btn btn-danger btn-sm", method: :delete, remote: true, data: { confirm: 'Are you sure?' }
 
 javascript:
   $(function () {

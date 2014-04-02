@@ -84,7 +84,11 @@ Mywy::Application.routes.draw do
 
     namespace :restaurant do
       resources :restaurants do
-        resources :wechats
+        resources :wechats do
+          member do
+            get :authorize
+          end
+        end
         resources :dinner_tables
         resources :events
         resources :employments, only: [:index, :update, :destroy]

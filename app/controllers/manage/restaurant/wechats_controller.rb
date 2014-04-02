@@ -1,6 +1,6 @@
 class Manage::Restaurant::WechatsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :new, :create, :edit]
-  before_action :set_wechat, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :new, :create, :edit, :authorize]
+  before_action :set_wechat, only: [:show, :edit, :update, :destroy, :authorize]
 
   def show
     
@@ -17,6 +17,10 @@ class Manage::Restaurant::WechatsController < ApplicationController
   end
 
   def edit
+    
+  end
+
+  def authorize
     
   end
 

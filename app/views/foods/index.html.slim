@@ -34,12 +34,21 @@ section#food.offcanvas-siderbars
             .ui-slide-box
               .ui-slide-control
                 span.title
-                  = "热门"
+                  = "人气食品"
                 .pull-right
                   a.prev-next-btn.left href="#" data-slide="prev"
                   a.prev-next-btn.right href="#" data-slide="next"
               .ui-slide-content
                 .row
+                  - @foods.each do |food|
+                    .ui-slide-content-box.col-md-3
+                      = link_to food_path(food) do
+                        = image_tag(food.images.first.image.url("140x140"))
+                      .controll-box
+                        a href="#" class="left pull-left" alt="订票"
+                          span.fa.fa-plus
+                        a href="#" class="right pull-right" alt="赞"
+                          span.fa.fa-heart
       .col-md-3
         .ui-slide-box
           .ui-slide-control

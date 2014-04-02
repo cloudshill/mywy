@@ -49,3 +49,28 @@
         = "微信号管理"
     ul.list-group
       li.list-group-item
+        a href=manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
+          = "查看微信号"
+      li.list-group-item
+        a href=authorize_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
+          = "授权设置"
+  .panel.panel-info
+    .panel-heading
+      span
+        = "素材库"
+    ul.list-group
+      li.list-group-item
+        a href="#"
+          = "默认设置"
+      li.list-group-item
+        a href="#"
+          = "关注时回复"
+      li.list-group-item
+        a href="#"
+          = "文本回复"
+      li.list-group-item
+        a href="#"
+          = "图文回复"
+      li.list-group-item
+        a href="#"
+          = "LBS回复"

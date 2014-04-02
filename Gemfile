@@ -49,6 +49,7 @@ gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
 
 # 微信
 gem 'weixin_rails_middleware', "~> 1.2.1"
+gem 'weixin_authorize', '~> 1.5.7'
 
 # YAML 配置信息
 gem "settingslogic"

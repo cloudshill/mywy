@@ -47,20 +47,20 @@ section#foods
                       = restaurant.guide
                   td
                     - if restaurant.wechat.blank?
-                      a href=new_manage_restaurant_restaurant_wechat_path(restaurant) class='btn btn-info'
+                      a href=new_manage_restaurant_restaurant_wechat_path(restaurant) class='btn btn-info btn-sm'
                         = "绑定微信号"
                     -else
-                      a href=manage_restaurant_restaurant_wechat_path(restaurant, restaurant.wechat) class="btn btn-info"
+                      a href=manage_restaurant_restaurant_wechat_path(restaurant, restaurant.wechat) class="btn btn-info btn-sm"
                         = "微信号管理"
                   td
                     .btn-group
-                      a href=manage_restaurant_restaurant_dinner_tables_path(restaurant) class="btn btn-info"
+                      a href=manage_restaurant_restaurant_dinner_tables_path(restaurant) class="btn btn-info btn-sm"
                         = "餐桌"
-                      a href=manage_restaurant_restaurant_foods_path(restaurant) class="btn btn-info"
+                      a href=manage_restaurant_restaurant_foods_path(restaurant) class="btn btn-info btn-sm"
                         = "食物"
                   td
                     .btn-group
-                      a href=edit_manage_restaurant_restaurant_path(restaurant) class="btn btn-info"
+                      a href=edit_manage_restaurant_restaurant_path(restaurant) class="btn btn-info btn-sm"
                         = "修改"
-                      a href=manage_restaurant_restaurant_path(restaurant) class="btn btn-info" method="delete"
+                      a href=manage_restaurant_restaurant_path(restaurant) class="btn btn-info btn-sm" method="delete"
                         = "删除"

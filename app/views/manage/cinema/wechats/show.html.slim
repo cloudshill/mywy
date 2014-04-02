@@ -18,7 +18,7 @@ section#tickets
   .container
     .row
       .col-md-3
-        = render 'manage/cinema/shared/cinemas_sidebar'
+        = render 'manage/cinema/shared/cinemas_sidebar', :locals => { :wechat => @wechat }
       .col-md-9
         .panel.panel-info
           .panel-heading

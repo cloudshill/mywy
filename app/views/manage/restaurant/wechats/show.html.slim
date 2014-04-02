@@ -18,7 +18,7 @@ section#foods
   .container
     .row
       .col-md-3
-        = render 'manage/restaurant/shared/restaurants_sidebar'
+        = render 'manage/restaurant/shared/restaurants_sidebar', :locals => { :restaurant => @restaurant, :wechat => @wechat }
       .col-md-9
         .panel.panel-info
           .panel-heading
