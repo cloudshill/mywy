@@ -87,6 +87,8 @@ Mywy::Application.routes.draw do
         resources :wechats do
           member do
             get :authorize
+            get :replyset
+            get :focusset
           end
         end
         resources :dinner_tables

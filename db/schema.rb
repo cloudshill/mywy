@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402055522) do
+ActiveRecord::Schema.define(version: 20140402090909) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -304,6 +304,11 @@ ActiveRecord::Schema.define(version: 20140402055522) do
     t.string   "account_type"
     t.string   "app_id"
     t.string   "app_secret"
+    t.string   "default_focus_method"
+    t.string   "default_reply_no_match"
+    t.boolean  "default_reply_no_match_flag"
+    t.string   "lbs_distance"
+    t.string   "focus_reply"
   end
 
   add_index "wechats", ["app_id"], name: "index_wechats_on_app_id", using: :btree

@@ -51,6 +51,9 @@ gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
 gem 'weixin_rails_middleware', "~> 1.2.1"
 gem 'weixin_authorize', '~> 1.5.7'
 
+# 所见所得编辑器
+gem 'simditor-rails'
+
 # YAML 配置信息
 gem "settingslogic"
 

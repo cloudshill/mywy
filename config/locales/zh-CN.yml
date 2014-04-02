@@ -257,6 +257,11 @@
         slogan: "品牌口号"
         description: "描述"
         account_type: "账号类型"
+        default_focus_method: "默认关注回复方式"
+        default_reply_no_match: "默认无匹配回复"
+        default_reply_no_match_flag: "开启默认无匹配回复"
+        lbs_distance: "默认LBS查询范围"
+        focus_reply: "关注时自动回复内容"
   enumerize:
     pay_method:
       offline: "货到付款"
@@ -272,3 +277,6 @@
       subscribe_authorized: "认证订阅号"
       service: "服务号"
       service_authorized: "认证服务号"
+    default_focus_method:
+      text: "文字模式，用户关注时会以文字模式向用户回复一条信息!"
+      image_and_text: "图文模式, 用户关注时会以图文模式向用户回复一条信息!"

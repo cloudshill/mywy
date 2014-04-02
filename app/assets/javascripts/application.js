@@ -9,6 +9,7 @@
 //= require upload/vendor/jquery.ui.widget
 //= require upload/jquery.iframe-transport
 //= require upload/jquery.fileupload
+//= require simditor
 //= require turbolinks
 //= require_self
 
