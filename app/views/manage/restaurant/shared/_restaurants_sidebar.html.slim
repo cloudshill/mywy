@@ -42,7 +42,7 @@
       li.list-group-item
         a href=manage_restaurant_restaurant_foods_path
           = "返回食物管理"
-- if controller_name == 'wechats'
+- if controller_name == 'wechats' or controller_name == 'wechat_texts'
   .panel.panel-info
     .panel-heading
       span
@@ -66,7 +66,7 @@
         a href=focusset_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
           = "关注时回复"
       li.list-group-item
-        a href="#"
+        a href=manage_restaurant_restaurant_wechat_wechat_texts_path(@restaurant, @wechat)
           = "文本回复"
       li.list-group-item
         a href="#"

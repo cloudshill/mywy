@@ -6,5 +6,6 @@ class Wechat < ActiveRecord::Base
   enumerize :account_type, in: [:subscribe, :subscribe_authorized, :service, :service_authorized], default: :subscribe
   enumerize :default_focus_method, in: [:text, :image_and_text], default: :text
 
-  belongs_to :wechatable, polymorphic: true 
+  belongs_to :wechatable, polymorphic: true
+  has_many :wechat_texts
 end

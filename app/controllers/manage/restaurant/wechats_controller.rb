@@ -51,6 +51,21 @@ class Manage::Restaurant::WechatsController < ApplicationController
   end
 
   def wechat_params
-    params.require(:wechat).permit(:name, :public_name, :slogan, :description)
+    params.require(:wechat).permit(:name, :public_name, :slogan, :description, :account_type, :app_id, :app_secret, 
+      :default_focus_method, :default_reply_no_match, :default_reply_no_match_flag, :lbs_distance, :focus_reply)
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
