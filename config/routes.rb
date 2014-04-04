@@ -86,6 +86,7 @@ Mywy::Application.routes.draw do
       resources :restaurants do
         resources :wechats do
           resources :wechat_texts
+          resources :diymenus
           member do
             get :authorize
             get :replyset

@@ -1,0 +1,102 @@
+section#food-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_restaurant_restaurants_path
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar', :locals => { :restaurant => @restaurant, :wechat => @wechat }
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@restaurant.name} 餐厅 - 微信服务号 - 自定义菜单"
+            span.pull-right
+              a href="#" id="new_menu" data-url=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat) data-no-turbolink=""
+                = "添加"
+          .panel-body
+            table.table.table-hover#diymenus_table
+              thead
+                tr
+                  th width="10"
+                    input type="checkbox"
+                  th width="80"
+                    = "显示顺序"
+                  th width="180"
+                    = "菜单名称"
+                  th width="200"
+                    = "除法关键词或链接地址"
+                  th width="80"
+                    = "等级"
+                  th width="80"
+                    = "启用"
+                  th
+                    = "操作"
+              tbody
+                - @diymenus.each do |diymenu|
+                  tr id="diymenu_#{diymenu.id}"
+                    td
+                      input type="checkbox"
+                    td
+                      = diymenu.key
+                    td
+                      = diymenu.name
+                    td
+                      = diymenu.url
+                    td
+                      - if diymenu.parent_id == nil
+                        = "主菜单"
+                      - else
+                        = "子菜单"
+                    td
+                      = diymenu.is_show
+                    td
+                      .btn-group
+                        - if diymenu.parent_id == nil
+                          a href="#" class="btn btn-info btn-sm sub_menu" data-parent="#{diymenu.id}" data-url=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat) data-no-turbolink=""
+                              = "添加子菜单"
+                        = link_to "删除", manage_restaurant_restaurant_wechat_diymenu_path(@restaurant, @wechat, diymenu), method: :delete, remote: true, data: { confirm: 'Are you sure?' }, :class => "btn btn-info btn-sm"
+              tfooter
+                .btn-group
+                  a href="#" class="btn btn-info btn-sm"
+                    = "生成自定义菜单"
+                  a href="#" class="btn btn-danger btn-sm"
+                    = "撤销自定义菜单"
+
+            .bs-callout.bs-callout-danger
+              p
+                = "注意："
+              p
+                = "1级菜单最多只能开启3个，2级子菜单最多开启5个!"
+              p
+                = "只有保存主菜单后才可以添加子菜单！"
+              p
+                = "生成自定义菜单,必须在已经保存的基础上进行,临时勾选启用点击生成是无效的! "
+              p
+                = "第一步必须先修改保存状态！第二步点击生成!"
+              p
+                = "当您为自定义菜单填写链接地址时请填写以\"http://\"开头，这样可以保证用户手机浏览的兼容性更好！"
+              p
+                = "撤销自定义菜单：撤销后，您的微信公众帐号上的自定义菜单将不存在；如果您想继续在微信公众帐号上使用自定义菜单，请点击“生成自定义菜单”按钮，将重新启用！"
+javascript:
+  $("#new_menu").on("click", function(){
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="checkbox" /></td><td><input type="text" name="diymenu[key]" value="0" class="form-control" /></td><td><input type="text" name="diymenu[name]" class="form-control" /></td><td><input type="text" name="diymenu[url]" class="form-control" /></td><td><input type="checkbox" name="diymenu[is_show]" value="true" checked /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
+    $("#diymenus_table").children('tbody').append(trHtml);
+  });
+  $(".sub_menu").on('click', function(){
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="checkbox" /></td><td><input type="text" name="diymenu[key]" value="0" class="form-control" /></td><td><i class="fa fa-long-arrow-right"></i><input type="text" name="diymenu[name]" class="form-control" /></td><td><input type="text" name="diymenu[url]" class="form-control" /></td><td><input type="checkbox" name="diymenu[is_show]" value="true" checked /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td><input type="hidden" name="diymenu[parent_id]" value="' + $(this).data("parent") + '" /></form></tr>';
+    $("#diymenu_" + $(this).data("parent")).after(trHtml);
+  });

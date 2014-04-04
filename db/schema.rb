@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402152911) do
+ActiveRecord::Schema.define(version: 20140403090614) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -83,6 +83,21 @@ ActiveRecord::Schema.define(version: 20140402152911) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "diymenus", force: true do |t|
+    t.integer  "wechat_id"
+    t.integer  "parent_id"
+    t.string   "name"
+    t.string   "key"
+    t.boolean  "is_show"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "diymenus", ["key"], name: "index_diymenus_on_key", using: :btree
+  add_index "diymenus", ["parent_id"], name: "index_diymenus_on_parent_id", using: :btree
+  add_index "diymenus", ["wechat_id"], name: "index_diymenus_on_wechat_id", using: :btree
 
   create_table "employments", force: true do |t|
     t.integer  "employmentable_id"
