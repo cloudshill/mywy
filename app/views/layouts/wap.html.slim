@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title
+      = @wap.title
+    meta http-equiv="Access-Control-Allow-Origin" content="*"
+    = stylesheet_link_tag    "wap", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "wap", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  body
+    header.bar.bar-nav
+      button.btn.pull-left
+        =
+      button.btn.pull-left
+        =
+      h1.title
+        = @wap.title

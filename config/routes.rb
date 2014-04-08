@@ -68,6 +68,10 @@ Mywy::Application.routes.draw do
     :registrations => 'admins/accounts'
   }
 
+  namespace :restaurant do
+    resources :waps, only: [:show]
+  end
+
   namespace :manage do
     namespace :cinema do
       resources :cinemas do
