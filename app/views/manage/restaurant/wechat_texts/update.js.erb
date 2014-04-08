@@ -1,4 +1,4 @@
-<% if @wechat.errors.empty? %>
+<% if @wechat_text.errors.empty? %>
   Turbolinks.visit('<%= manage_restaurant_restaurant_wechat_wechat_texts_path(@restaurant, @wechat) %>');
 <% end %>
 var message = {message: "更新成功！", status: 'success', placement: 'bottom' };

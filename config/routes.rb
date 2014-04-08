@@ -85,7 +85,9 @@ Mywy::Application.routes.draw do
     namespace :restaurant do
       resources :restaurants do
         resources :wechats do
+          resources :waps, only: [:edit, :update]
           resources :wechat_texts
+          resources :wechat_articles
           resources :diymenus
           member do
             get :authorize

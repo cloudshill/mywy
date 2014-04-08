@@ -9,6 +9,16 @@
 @import "essage";
 @import "video-js";
 
+.datagrid {
+  input[type="checkbox"] {
+    margin-top:12px;
+  }
+  span {
+    font-size:17px;
+    line-height:37px;
+  }
+}
+
 .suc {
   margin:0 0 10px 30px; padding-top:20px; font-size:22px; font-weight:bold; color:#ff9630;
 }

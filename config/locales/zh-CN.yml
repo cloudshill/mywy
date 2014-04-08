@@ -266,6 +266,22 @@
         keyword: "关键字"
         match_type: "匹配方式"
         context: "内容"
+      wechat_article:
+        keyword: "关键字"
+        match_type: "匹配方式"
+        context: "内容"
+        sort: "排序"
+        picurl: "封面"
+        title: "题目"
+        description: "简介"
+        link_url: "跳转连接"
+        show_cover: "是否在详细页显示封面"
+      wap:
+        keyword: "关键字"
+        match_type: "匹配方式"
+        title: "官网标题"
+        cover: "图文消息封面"
+        logo: "官方LOGO"
   enumerize:
     pay_method:
       offline: "货到付款"

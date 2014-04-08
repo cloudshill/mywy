@@ -28,47 +28,73 @@ section#foods
               a href="#" id="new_menu" data-url=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat) data-no-turbolink=""
                 = "添加"
           .panel-body
-            table.table.table-hover#diymenus_table
+            table.table.table-hover.datagrid#diymenus_table
               thead
                 tr
-                  th width="10"
-                    input type="checkbox"
-                  th width="80"
-                    = "显示顺序"
-                  th width="180"
+                  th width="50"
+                    = "顺序"
+                  th width="100"
                     = "菜单名称"
-                  th width="200"
-                    = "除法关键词或链接地址"
-                  th width="80"
+                  th width="150"
+                    = "触发关键词"
+                  th width="100"
+                    = "链接地址"
+                  th width="60"
                     = "等级"
-                  th width="80"
+                  th width="50"
                     = "启用"
-                  th
+                  th width="50"
+                    = "子菜单"
+                  th width="50"
                     = "操作"
               tbody
                 - @diymenus.each do |diymenu|
                   tr id="diymenu_#{diymenu.id}"
                     td
-                      input type="checkbox"
-                    td
-                      = diymenu.key
+                      = diymenu.sort
                     td
                       = diymenu.name
                     td
+                      = diymenu.key
+                    td
                       = diymenu.url
                     td
-                      - if diymenu.parent_id == nil
-                        = "主菜单"
+                      = "主菜单"
+                    td
+                      - if diymenu.is_show
+                        i.fa.fa-check-square-o
                       - else
+                        i.fa.fa-square-o
+                    td
+                      a href="#" class="sub_menu" data-parent="#{diymenu.id}" data-url=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat) data-no-turbolink=""
+                        i.fa.fa-plus
+                    td
+                      = link_to manage_restaurant_restaurant_wechat_diymenu_path(@restaurant, @wechat, diymenu), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do
+                        i.fa.fa-trash-o
+                  - diymenu.sub_menus.each do |sub|
+                    tr id="diymenu_#{sub.id}"
+                      td
+                        = sub.sort
+                      td
+                        i.fa-long-arrow-right.fa
+                        = " "
+                        = sub.name
+                      td
+                        = sub.key
+                      td
+                        = sub.url
+                      td
                         = "子菜单"
-                    td
-                      = diymenu.is_show
-                    td
-                      .btn-group
-                        - if diymenu.parent_id == nil
-                          a href="#" class="btn btn-info btn-sm sub_menu" data-parent="#{diymenu.id}" data-url=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat) data-no-turbolink=""
-                              = "添加子菜单"
-                        = link_to "删除", manage_restaurant_restaurant_wechat_diymenu_path(@restaurant, @wechat, diymenu), method: :delete, remote: true, data: { confirm: 'Are you sure?' }, :class => "btn btn-info btn-sm"
+                      td
+                        - if sub.is_show
+                          i.fa.fa-check-square-o
+                        - else
+                          i.fa.fa-square-o
+                      td
+                        i.fa.fa-times-circle
+                      td
+                        = link_to manage_restaurant_restaurant_wechat_diymenu_path(@restaurant, @wechat, sub), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do
+                          i.fa.fa-trash-o
               tfooter
                 .btn-group
                   a href="#" class="btn btn-info btn-sm"
@@ -93,10 +119,10 @@ section#foods
                 = "撤销自定义菜单：撤销后，您的微信公众帐号上的自定义菜单将不存在；如果您想继续在微信公众帐号上使用自定义菜单，请点击“生成自定义菜单”按钮，将重新启用！"
 javascript:
   $("#new_menu").on("click", function(){
-    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="checkbox" /></td><td><input type="text" name="diymenu[key]" value="0" class="form-control" /></td><td><input type="text" name="diymenu[name]" class="form-control" /></td><td><input type="text" name="diymenu[url]" class="form-control" /></td><td><input type="checkbox" name="diymenu[is_show]" value="true" checked /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="text" name="diymenu[sort]" value="0" class="form-control" /></td><td><input type="text" name="diymenu[name]" class="form-control" /></td><td><input type="text" name="diymenu[key]" class="form-control" /></td><td><input type="text" name="diymenu[url]" class="form-control" /></td><td>主菜单</td><td><input type="checkbox" name="diymenu[is_show]" value="true" checked /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td><td></td></form></tr>';
     $("#diymenus_table").children('tbody').append(trHtml);
   });
   $(".sub_menu").on('click', function(){
-    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="checkbox" /></td><td><input type="text" name="diymenu[key]" value="0" class="form-control" /></td><td><i class="fa fa-long-arrow-right"></i><input type="text" name="diymenu[name]" class="form-control" /></td><td><input type="text" name="diymenu[url]" class="form-control" /></td><td><input type="checkbox" name="diymenu[is_show]" value="true" checked /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td><input type="hidden" name="diymenu[parent_id]" value="' + $(this).data("parent") + '" /></form></tr>';
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="text" name="diymenu[sort]" value="0" class="form-control" /></td><td><input type="text" name="diymenu[name]" class="form-control" /></td><td><input type="text" name="diymenu[key]" class="form-control" /></td><td><input type="text" name="diymenu[url]" class="form-control" /></td><td>子菜单</td><td><input type="checkbox" name="diymenu[is_show]" value="true" checked /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td><input type="hidden" name="diymenu[parent_id]" value="' + $(this).data("parent") + '" /></td><td></td></form></tr>';
     $("#diymenu_" + $(this).data("parent")).after(trHtml);
   });

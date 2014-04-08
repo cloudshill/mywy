@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403090614) do
+ActiveRecord::Schema.define(version: 20140406124449) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140403090614) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sort"
   end
 
   add_index "diymenus", ["key"], name: "index_diymenus_on_key", using: :btree
@@ -301,6 +302,32 @@ ActiveRecord::Schema.define(version: 20140403090614) do
   create_table "trailers", force: true do |t|
     t.string   "url"
     t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "waps", force: true do |t|
+    t.string   "title"
+    t.string   "keyword"
+    t.string   "match_type"
+    t.string   "cover"
+    t.string   "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "wechat_id"
+  end
+
+  create_table "wechat_articles", force: true do |t|
+    t.string   "keyword"
+    t.string   "match_type"
+    t.string   "title"
+    t.integer  "sort"
+    t.string   "picurl"
+    t.text     "description"
+    t.string   "link_url"
+    t.boolean  "show_cover"
+    t.text     "context"
+    t.integer  "wechat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

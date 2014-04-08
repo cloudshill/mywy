@@ -3,7 +3,7 @@ class Manage::Restaurant::DiymenusController < ApplicationController
   before_action :set_wechat, only: [:index, :create, :update]
 
   def index
-    @diymenus = @wechat.diymenus
+    @diymenus = @wechat.diymenus.where(:parent_id => nil)
   end
 
   def create
@@ -30,6 +30,6 @@ class Manage::Restaurant::DiymenusController < ApplicationController
   end
 
   def diymenu_params
-    params.require(:diymenu).permit(:wechat_id, :parent_id, :name, :key, :is_show, :url)
+    params.require(:diymenu).permit(:wechat_id, :parent_id, :name, :key, :is_show, :url, :sort)
   end
 end

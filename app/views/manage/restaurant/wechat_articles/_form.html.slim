@@ -1,0 +1,42 @@
+= form_for([:manage, :restaurant, @restaurant, @wechat, @wechat_article], remote: true, html: { class: "form-horizontal" }) do |f|
+  = render 'shared/form_error_messages', form: f
+  .form-group
+    = f.label :keyword, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :keyword, class: "form-control"
+  .form-group
+    = f.label :match_type, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.collection_radio_buttons :match_type, WechatArticle.match_type.options, :last, :first do |o|
+        = o.label(:class => 'radio-inline'){ o.radio_button + o.text }
+  .form-group
+    = f.label :sort, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :sort, class: "form-control"
+  .form-group
+    = f.label :title, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :description, class: "form-control"
+  .form-group
+    = f.label :picurl, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :picurl, class: "form-control"
+  .form-group
+    = f.label :show_cover, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :show_cover, class: "form-control"
+  .form-group
+    = f.label :link_url, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :link_url, class: "form-control"
+  .form-group
+    = f.label :context, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :context, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit "保存", class: "btn btn-info"

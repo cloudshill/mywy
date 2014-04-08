@@ -139,6 +139,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
+    liquid (2.6.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -310,6 +311,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   letter_opener
+  liquid (~> 2.6.1)
   memcache-client
   mini_magick
   mysql2

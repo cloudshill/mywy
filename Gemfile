@@ -15,6 +15,9 @@ gem 'mini_magick'
 gem 'carrierwave-upyun'
 gem 'rest-client'
 
+# 模板语言
+gem 'liquid', '~> 2.6.1'
+
 # 关联form
 gem "nested_form"
 

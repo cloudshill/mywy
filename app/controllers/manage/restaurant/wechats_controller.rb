@@ -14,6 +14,7 @@ class Manage::Restaurant::WechatsController < ApplicationController
     @wechat = Wechat.new(wechat_params)
     @wechat.wechatable = @restaurant
     @wechat.save
+    @wap = Wap.create(:wechat_id => @wechat.id)
   end
 
   def edit
