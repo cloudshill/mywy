@@ -1,0 +1,63 @@
+section#food-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_cinema_cinemas_path
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/cinema/shared/cinemas_sidebar', :locals => { :cinema => @cinema, :wechat => @wechat }
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@cinema.name} 餐厅 - 微信服务号 - 编辑图文自定义内容"
+            span.pull-right
+              a href=new_manage_cinema_cinema_wechat_wechat_text_path(@cinema, @wechat)
+                = "添加"
+          .panel-body
+            table.table.table-hover
+              thead
+                tr
+                  th
+                    input type="checkbox"
+                  th
+                    = "关键词"
+                  th
+                    = "回答"
+                  th
+                    = "匹配类型"
+                  th
+                    = "时间"
+                  th
+                    = "操作"
+              tbody
+                - @wechat_texts.each do |wechat_text|
+                  tr id="text_#{wechat_text.id}"
+                    td
+                      input type="checkbox"
+                    td
+                      = wechat_text.keyword
+                    td
+                      = wechat_text.context
+                    td
+                      = wechat_text.match_type.text
+                    td
+                      = wechat_text.created_at
+                    td
+                      .btn-group
+                        a href=edit_manage_cinema_cinema_wechat_wechat_text_path(@cinema, @wechat, wechat_text) class="btn btn-info btn-sm"
+                          = "修改"
+                        = link_to "删除", manage_cinema_cinema_wechat_wechat_text_path(@cinema, @wechat, wechat_text), class: "btn btn-danger btn-sm", method: :delete, remote: true, data: { confirm: 'Are you sure?' }

@@ -75,7 +75,17 @@ Mywy::Application.routes.draw do
   namespace :manage do
     namespace :cinema do
       resources :cinemas do
-        resources :wechats
+        resources :wechats do
+          resources :waps, only: [:edit, :update]
+          resources :wechat_texts
+          resources :wechat_articles
+          resources :diymenus
+          member do
+            get :authorize
+            get :replyset
+            get :focusset
+          end
+        end
         resources :events
         resources :employments, only: [:index, :update, :destroy]
         resources :movie_halls do

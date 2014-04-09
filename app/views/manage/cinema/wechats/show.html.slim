@@ -1,4 +1,4 @@
-section#movie-page
+section#food-page
   .container
     nav.navbar.navbar-default
       .navbar-header
@@ -14,11 +14,11 @@ section#movie-page
           ul.nav.navbar-nav.navbar-right
             li
               a href=manage_cinema_cinemas_path
-section#tickets
+section#foods
   .container
     .row
       .col-md-3
-        = render 'manage/cinema/shared/cinemas_sidebar', :locals => { :wechat => @wechat }
+        = render 'manage/cinema/shared/cinemas_sidebar', :locals => { :cinema => @cinema, :wechat => @wechat }
       .col-md-9
         .panel.panel-info
           .panel-heading

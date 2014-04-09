@@ -1,6 +1,6 @@
 class Manage::Cinema::WechatsController < ApplicationController
-  before_action :set_cinema, only: [:show, :new, :create, :edit]
-  before_action :set_wechat, only: [:show, :edit, :update, :destroy]
+  before_action :set_cinema, only: [:show, :new, :create, :edit, :authorize, :replyset, :focusset]
+  before_action :set_wechat, only: [:show, :edit, :update, :destroy, :authorize, :replyset, :focusset]
 
   def show
     
@@ -14,14 +14,27 @@ class Manage::Cinema::WechatsController < ApplicationController
     @wechat = Wechat.new(wechat_params)
     @wechat.wechatable = @cinema
     @wechat.save
+    @wap = Wap.create(:wechat_id => @wechat.id)
   end
 
   def edit
     
   end
 
-  def update
+  def authorize
     
+  end
+
+  def replyset
+    
+  end
+
+  def focusset
+    
+  end
+
+  def update
+    @wechat.update wechat_params
   end
 
   def destroy
@@ -39,6 +52,7 @@ class Manage::Cinema::WechatsController < ApplicationController
   end
 
   def wechat_params
-    params.require(:wechat).permit(:name, :public_name, :slogan, :description)
+    params.require(:wechat).permit(:name, :public_name, :slogan, :description, :account_type, :app_id, :app_secret, 
+      :default_focus_method, :default_reply_no_match, :default_reply_no_match_flag, :lbs_distance, :focus_reply)
   end
 end

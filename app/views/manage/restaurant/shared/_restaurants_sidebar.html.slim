@@ -42,54 +42,55 @@
       li.list-group-item
         a href=manage_restaurant_restaurant_foods_path
           = "返回食物管理"
-- if controller_name == 'wechats' or controller_name == 'wechat_texts' or controller_name == 'wechat_articles' or controller_name == 'diymenus' or controller_name == 'waps'
-  .panel.panel-info
-    .panel-heading
-      span
-        = "微信号管理"
-    ul.list-group
-      li.list-group-item
-        a href=manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
-          = "查看微信号"
-      li.list-group-item
-        a href=authorize_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
-          = "授权设置"
-  .panel.panel-info
-    .panel-heading
-      span
-        = "素材库"
-    ul.list-group
-      li.list-group-item
-        a href=replyset_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
-          = "默认设置"
-      li.list-group-item
-        a href=focusset_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
-          = "关注时回复"
-      li.list-group-item
-        a href=manage_restaurant_restaurant_wechat_wechat_texts_path(@restaurant, @wechat)
-          = "文本回复"
-      li.list-group-item
-        a href=manage_restaurant_restaurant_wechat_wechat_articles_path(@restaurant, @wechat)
-          = "图文回复"
-      li.list-group-item
-        a href="#"
-          = "LBS回复"
-  .panel.panel-info
-    .panel-heading
-      span
-        = "自定义菜单"
-    ul.list-group
-      li.list-group-item
-        a href=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat)
-          = "菜单设置"
-  .panel.panel-info
-    .panel-heading
-      span
-        = "微官网"
-    ul.list-group
-      li.list-group-item
-        a href=edit_manage_restaurant_restaurant_wechat_wap_path(@restaurant, @wechat, @wechat.wap)
-          = "微官网设置"
-      li.list-group-item
-        a href="#"
-          = "模板管理"
+- if !@restaurant.blank? && !@restaurant.wechat.blank?
+  - if controller_name == 'wechats' or controller_name == 'wechat_texts' or controller_name == 'wechat_articles' or controller_name == 'diymenus' or controller_name == 'waps'
+    .panel.panel-info
+      .panel-heading
+        span
+          = "微信号管理"
+      ul.list-group
+        li.list-group-item
+          a href=manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
+            = "查看微信号"
+        li.list-group-item
+          a href=authorize_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
+            = "授权设置"
+    .panel.panel-info
+      .panel-heading
+        span
+          = "素材库"
+      ul.list-group
+        li.list-group-item
+          a href=replyset_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
+            = "默认设置"
+        li.list-group-item
+          a href=focusset_manage_restaurant_restaurant_wechat_path(@restaurant, @wechat)
+            = "关注时回复"
+        li.list-group-item
+          a href=manage_restaurant_restaurant_wechat_wechat_texts_path(@restaurant, @wechat)
+            = "文本回复"
+        li.list-group-item
+          a href=manage_restaurant_restaurant_wechat_wechat_articles_path(@restaurant, @wechat)
+            = "图文回复"
+        li.list-group-item
+          a href="#"
+            = "LBS回复"
+    .panel.panel-info
+      .panel-heading
+        span
+          = "自定义菜单"
+      ul.list-group
+        li.list-group-item
+          a href=manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat)
+            = "菜单设置"
+    .panel.panel-info
+      .panel-heading
+        span
+          = "微官网"
+      ul.list-group
+        li.list-group-item
+          a href=edit_manage_restaurant_restaurant_wechat_wap_path(@restaurant, @wechat, @wechat.wap)
+            = "微官网设置"
+        li.list-group-item
+          a href="#"
+            = "模板管理"

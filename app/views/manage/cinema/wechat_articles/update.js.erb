@@ -1,0 +1,5 @@
+<% if @wechat_article.errors.empty? %>
+  Turbolinks.visit('<%= manage_cinema_cinema_wechat_wechat_articles_path(@cinema, @wechat) %>');
+<% end %>
+var message = {message: "更新成功！", status: 'success', placement: 'bottom' };
+Essage.show(message, 3000);

@@ -1,0 +1,47 @@
+section#food-page
+  .container
+    nav.navbar.navbar-default
+      .navbar-header
+        a.navbar-brand href="#"
+          = "美月无忧电影"
+
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+              = "购票"
+        - if current_member.role.seller?
+          ul.nav.navbar-nav.navbar-right
+            li
+              a href=manage_cinema_cinemas_path
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/cinema/shared/cinemas_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@cinema.name} 餐厅 - 管理微信服务号 - 关注时默认回复设置"
+          .panel-body
+            = form_for([:manage, :cinema, @cinema, @wechat], remote: true, html: { class: "form-horizontal" }) do |f|
+              = render 'shared/form_error_messages', form: f
+              .form-group
+                .col-sm-12
+                  = f.label :focus_reply, class: "control-label"
+              .form-group
+                .col-sm-12
+                  = f.text_area :focus_reply, class: "form-control simditor"
+              .form-group
+                .col-sm-12
+                  = f.submit "保存", class: "btn btn-info"
+javascript:
+  $(function(){
+    var editor = new Simditor({
+      textarea: $('.simditor'),
+      placeholder: '这里输入文字...',
+      upload: true,
+      toolbar: ['bold', 'italic', 'underline', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image', '|', 'indent', 'outdent', '|', 'hr', 'table']
+    });
+  });
