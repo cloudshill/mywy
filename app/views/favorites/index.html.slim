@@ -1,0 +1,59 @@
+section#market-page
+  .container
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="#"
+            = "美月无忧商城"
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a href=products_path
+                = "首页"
+            - Node.all.each do |node|
+              li
+                a href=node_products_path(node)
+                  = node.name
+section
+  .container
+    .row
+      = render 'shared/account_sidebar'
+      .col-lg-9.col-md-9.col-sm-12.col-xs-12
+        section#market
+          .panel.panel-default
+            .panel-heading
+              = "收藏的商品"
+            .panel-body
+              - @favorites_is_product.each do |favorite|
+                .col-lg-3.col-sm-3.col-xs-12
+                  .products-item style="width:180px;"
+                    .item-thumb
+                      = link_to product_path(favorite.favoriteable) do
+                        = image_tag(favorite.favoriteable.pictures.first.image.url("500x500"))
+                    h3.item-name
+                      = link_to favorite.favoriteable.name, product_path(favorite.favoriteable)
+                    .item-price
+                      = "#{favorite.favoriteable.price} 元"
+                    .item-action
+                      a href="#" onclick="return App.addToCart(this);" data-id="#{favorite.favoriteable.id}"
+                        i.fa.fa-plus-circle
+                        = "加入购物车"
+        section#food
+          .panel.panel-default
+            .panel-heading
+              = "收藏的食物"
+            .panel-body
+              .ui-slide-content
+                - @favorites_is_food.each do |favorite|
+                  .ui-slide-content-box.col-md-3
+                    = link_to food_path(favorite.favoriteable) do
+                      = image_tag(favorite.favoriteable.images.first.image.url("140x140"))
+                    .controll-box style="height:60px;"
+                      p.name
+                        = favorite.favoriteable.name
+                      p.price.text-danger
+                        = favorite.favoriteable.price
+                    .controll-box
+                      a href="#" class="left pull-left" alt="订票"
+                        span.fa.fa-plus
+                      = favorite_heart_tag(favorite.favoriteable)
