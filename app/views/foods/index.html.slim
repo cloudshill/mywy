@@ -25,7 +25,7 @@ section#sys-notification
     #notification
       = notice_message
 
-section#food.offcanvas-siderbars
+section#food
   .container
     .row
       .col-md-9
@@ -44,6 +44,11 @@ section#food.offcanvas-siderbars
                     .ui-slide-content-box.col-md-3
                       = link_to food_path(food) do
                         = image_tag(food.images.first.image.url("140x140"))
+                      .controll-box style="height:60px;"
+                        p.name
+                          = food.name
+                        p.price.text-danger
+                          = food.price
                       .controll-box
                         a href="#" class="left pull-left" alt="订票"
                           span.fa.fa-plus
