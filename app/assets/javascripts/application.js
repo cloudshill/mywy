@@ -53,6 +53,24 @@ window.App = {
 		};
 	},
 
+  addToFavoriteHeart: function(el) {
+    var object_id = $(el).data("id");
+    var object_type = $(el).data("type");
+    if ($(el).data("state") != "favorited") {
+      $.ajax({
+        url: '/' + object_type + '/' + object_id + '/favorites',
+        type: "POST"
+      });
+      $(el).data("state", "favorited").attr("class", "right pull-right btn-danger")
+    } else{
+      $.ajax({
+        url: '/' + object_type + '/' + object_id + '/favorites/' + $(el).data("o"),
+        type: "DELETE"
+      });
+      $(el).data("state", "").attr("class", "right pull-right btn-default")
+    };
+  },
+
 	addToCompare: function(param) {
 	},
 	moviePubDateChange: function(span) {  

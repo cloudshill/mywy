@@ -36,6 +36,29 @@ module ApplicationHelper
 
     html.html_safe
   end
+
+  def favorite_heart_tag(favorite_object)
+    return "" if current_member.blank?
+    class_name = ""
+    state = ""
+    id = 0
+    if current_member
+      favorite = current_member.favorites.where("favoriteable_id = ? AND favoriteable_type = ?", favorite_object.id, favorite_object.class.name).first
+      if favorite
+        class_name = "btn-danger"
+        state = "favorited"
+        id = favorite.id
+      end
+    end
+
+    html = <<-HTML
+      <a class="right pull-right #{class_name}" onclick="return App.addToFavoriteHeart(this);" data-o="#{id}" data-state="#{state}" data-type="#{favorite_object.class.name.downcase}s" data-id="#{favorite_object.id}">
+        <i class="fa fa-heart fa fa-wishlist-compare"></i>
+      </a>
+    HTML
+
+    html.html_safe
+  end
   
 	def active_controller?(c_name = nil)
     raw('class="active"') if controller_name == c_name

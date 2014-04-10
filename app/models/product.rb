@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   has_many :line_items
   has_many :members_have_cart, :through => :line_items, :source => :members
   has_many :pictures
-  has_many :favorites
   has_many :members, :through => :favorites
   has_and_belongs_to_many :categories
   has_many :comments, as: :commentable
