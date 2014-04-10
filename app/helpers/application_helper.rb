@@ -45,7 +45,7 @@ module ApplicationHelper
     if current_member
       favorite = current_member.favorites.where("favoriteable_id = ? AND favoriteable_type = ?", favorite_object.id, favorite_object.class.name).first
       if favorite
-        class_name = "btn-danger"
+        class_name = "text-danger"
         state = "favorited"
         id = favorite.id
       end
