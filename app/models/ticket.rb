@@ -9,7 +9,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :hall_seat
   belongs_to :show_time
 
-  has_many :line_items, as: :goodsable
+  has_many :line_items, as: :line_itemable
 
   validates :member_id, presence: true
   validates :cinema_id, presence: true

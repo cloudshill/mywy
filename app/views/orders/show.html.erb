@@ -60,20 +60,16 @@
                     <% @line_items.each do |line_item| %>
                       <tr>
                         <td class="image" data-label="Image" style="width:100px;height:50px;">
-                          <%= link_to product_path(line_item.product) do %>
-                            <%= image_tag(line_item.product.pictures.first.image.url("50x50")) %>
-                          <% end %>
+                          <%= line_item_image_tag(line_item) %>
                         </td>
                         <td class="name" data-label="Product Name">
-                          <%= link_to product_path(line_item.product) do %>
-                            <%= line_item.product.name %>
-                          <% end %>
+                          <%= line_item_a_tag(line_item) %>
                         </td>
                         <td class="quantity" data-label="Quantity">
                           <%= line_item.amount %>
                         </td>
-                        <td class="price" data-label="Unit Price">￥<%= line_item.product.price %></td>
-                        <td class="total" data-label="Total">￥<%= line_item.product.price * line_item.amount %></td>
+                        <td class="price" data-label="Unit Price">￥<%= line_item.line_itemable.price %></td>
+                        <td class="total" data-label="Total">￥<%= line_item.line_itemable.price * line_item.amount %></td>
                       </tr>
                     <% end %>
                       <tr>

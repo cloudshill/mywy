@@ -28,7 +28,7 @@
                 <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>
                 <div class="item-price"><%= product.price %> 元</div>
                 <div class="item-action">
-                  <a onclick="return App.addToCart(this);" data-id="<%= product.id %>">
+                  <a onclick="return App.addToCart(this);" data-id="<%= product.id %>" data-type="<%= product.class.name %>">
                     <i class="fa fa-plus-circle"></i> 加入购物车
                   </a>
                 </div>

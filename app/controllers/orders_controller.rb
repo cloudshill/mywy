@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     end
     @order.total_price = 0
     @line_items.each do |line_item|
-      @order.total_price += (line_item.product.price * line_item.amount)
+      @order.total_price += (line_item.line_itemable.price * line_item.amount)
     end
 
     respond_to do |format|

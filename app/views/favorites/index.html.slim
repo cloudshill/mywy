@@ -35,7 +35,7 @@ section
                     .item-price
                       = "#{favorite.favoriteable.price} 元"
                     .item-action
-                      a href="#" onclick="return App.addToCart(this);" data-id="#{favorite.favoriteable.id}"
+                      a href="#" onclick="return App.addToCart(this);" data-id="#{favorite.favoriteable.id}" data-type="#{favorite.favoriteable.class.name}"
                         i.fa.fa-plus-circle
                         = "加入购物车"
         section#food

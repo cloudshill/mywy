@@ -59,6 +59,48 @@ module ApplicationHelper
 
     html.html_safe
   end
+
+  def line_item_image_tag(line_item)
+    if line_item.line_itemable_type == "Product"
+      html = <<-HTML
+        <a href="#{product_path(line_item.line_itemable)}">
+          #{image_tag(line_item.line_itemable.pictures.first.image.url("50x50"), :id=>"image")}
+        </a>
+      HTML
+    elsif line_item.line_itemable_type == "Ticket"
+      html = <<-HTML
+        <a href="#{movie_path(line_item.line_itemable)}">
+          #{image_tag(line_item.line_itemable.images.first.image.url("50x50"), :id=>"image")}
+        </a>
+      HTML
+    elsif line_item.line_itemable_type == "Food"
+      html = <<-HTML
+        <a href="#{food_path(line_item.line_itemable)}">
+          #{image_tag(line_item.line_itemable.images.first.image.url("50x50"), :id=>"image")}
+        </a>
+      HTML
+    end
+
+    html.html_safe
+  end
+
+  def line_item_a_tag(line_item)
+    if line_item.line_itemable_type == "Product"
+      html = <<-HTML
+        <a href="#{product_path(line_item.line_itemable.id)}"> #{line_item.line_itemable.name}</a>
+      HTML
+    elsif line_item.line_itemable_type == "Ticket"
+      html = <<-HTML
+        <a href="#{movie_path(line_item.line_itemable)}"> #{line_item.line_itemable.name}</a>
+      HTML
+    elsif line_item.line_itemable_type == "Food"
+      html = <<-HTML
+        <a href="#{food_path(line_item.line_itemable)}"> #{line_item.line_itemable.name}</a>
+      HTML
+    end
+
+    html.html_safe
+  end
   
 	def active_controller?(c_name = nil)
     raw('class="active"') if controller_name == c_name

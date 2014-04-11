@@ -51,7 +51,7 @@
               <table class="table table-hover table-bordered">
                 <thead>
                   <tr>
-                    <td style="width:65px;"><input type="checkbox" checked="true" /> 全选</td>
+                    <td style="width:30px;"><input type="checkbox" checked="true" /></td>
                     <td class="image">图片</td>
                     <td class="name">商品</td>
                     <td class="quantity" style="width:70px;">数量</td>
@@ -64,18 +64,14 @@
                   
                   <% @line_items.each do |line_item| %>
                     <tr id="line_item_<%= line_item.id %>">
-                      <td style="width:50px;line-height:50px;text-align:center;">
+                      <td style="width:30px;line-height:40px;text-align:center;">
                         <input type="checkbox" name="line_items[]" value="<%= line_item.id %>" checked="true" />
                       </td>
                       <td class="image" data-label="Image" style="width:100px;height:50px;">
-                        <%= link_to product_path(line_item.product) do %>
-                          <%= image_tag(line_item.product.pictures.first.image.url("50x50"), :id=>"image") %>
-                        <% end %>
+                        <%= line_item_image_tag(line_item) %>
                       </td>
                       <td class="name" data-label="Product Name">
-                        <%= link_to product_path(line_item.product) do %>
-                          <%= line_item.product.name %>
-                        <% end %>
+                        <%= line_item_a_tag(line_item) %>
                         <div class="cart-option">
                         </div>
                         <small></small>
@@ -83,10 +79,10 @@
                       <td class="quantity" data-label="Quantity" style="vertical-align:middle;">
                         <input type="text" name="quantity" data-id="<%= line_item.id %>" value="<%= line_item.amount %>" size="1" />
                       </td>
-                      <td class="price" data-label="Unit Price">￥<%= line_item.product.price %></td>
-                      <td class="total" data-label="Total">￥<%= line_item.product.price * line_item.product.quantity_in_cart(current_member) %></td>
-                      <td>
-                        <%= link_to "移出购物车", line_item_path(line_item.product.belongs_to_line_item(current_member)), :remote => true, :method => :delete %>
+                      <td class="price" style="line-height:40px;">￥<%= line_item.line_itemable.price %></td>
+                      <td class="total" style="line-height:40px;">￥<%= line_item.line_itemable.price * line_item.amount %></td>
+                      <td style="line-height:40px;">
+                        <%= link_to "移出购物车", line_item_path(line_item.id), :remote => true, :method => :delete %>
                       </td>
                     </tr>
                   <% end %>

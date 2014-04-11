@@ -58,8 +58,8 @@
                   <% @orders.each do |order| %>
                     <tr>
                       <td>
-                        <% order.products.each do |product| %>
-                        <%= product.name %>
+                        <% order.line_items.each do |line_item| %>
+                        <%= line_item.name %>
                         <% end %>
                       </td>
                       <td>￥<%= order.total_price %></td>
