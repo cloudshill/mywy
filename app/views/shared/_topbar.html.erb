@@ -6,7 +6,7 @@
 							<ul class="links">
 								<li>
 									<%= link_to favorites_path do %>
-										<i class="fa fa-user"></i>收藏夹 (0)
+										<i class="fa fa-user"></i>收藏夹 (<%= current_member.favorites.count %>)
 									<% end %>
 								</li>
 								<li>

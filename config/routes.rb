@@ -3,12 +3,15 @@ Mywy::Application.routes.draw do
   mount WeixinRailsMiddleware::Engine, at: "/"
   
   resources :foods, only: [:show, :index] do
+    resources :comments
     resources :favorites, :only => [:create, :destroy]
   end
 
   resources :dinner_tables
 
-  resources :restaurants
+  resources :restaurants do
+    resources :favorites, :only => [:create, :destroy]
+  end
 
   resources :events
 

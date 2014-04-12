@@ -1,0 +1,160 @@
+section#market-page
+  .container
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="#"
+            = "美月无忧餐厅"
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a href=foods_path
+
+section#sys-notification
+  .container
+    .notification
+      = notice_message
+
+section#good
+  .container.goods-detail
+    .panel.panel-default.goods-detail-info.clearfix
+      .row.panel-body
+        .col-lg-8.col-sm-8.col-xs-12.goods-pic-box
+          .goods-big-pic
+            = image_tag(@food.images.first.image.url("500x500"), :id => "goodsBigPic")
+          .goods-small-pic.clearfix
+            ul#goodsPicList
+              - @food.images.each do |pic|
+                li
+                  = image_tag(pic.image.url("50x50"), "data-src" => pic.image.url("500x500"))
+          span.icon-slides.icon-slides-prev title="上一张" id="goodsPicPrev"
+            = "上一张"
+          span.icon-slides.icon-slides-next title="下一张" id="goodsPicNext"
+            = "下一张"
+        .col-lg-4.col-sm-4.col-xs-12
+          dl.goods-info-box
+            dt
+              .discount
+                p
+              h1#goodsName
+                = @food.name
+            dd.goods-info-price
+              .item
+                span.letter-spacing-2
+                  = "价"
+                = "格："
+                strong.goods-info-price-num
+                  em#goodsPrice
+                    = @food.price
+                  = "元"
+              .item
+                label
+                  = "商品评价："
+                span#goodsStarLevel
+                a href="#goodsComment" id="goodsToComment"
+                  = "已有#{@food.comments.count}人评价"
+            dd.goods-info-price
+              .item
+                span.letter-spacing-2
+                  = "数"
+                = "量："
+                span.fa.fa-minus onclick="setAmount.reduce('#quantity')"
+                = ' '
+                input type="text" name="quantity" id="quantity" size="2" value="1"
+                = ' '
+                span.fa.fa-plus onclick="setAmount.add('#quantity')"
+            dd.clearfix#goodsDetailBtnBox
+              a.btn.btn-primary href="#" onclick="return Product.addToCart(this);" data-id="<%= @food.id %>" data-type="<%= @food.class.name %>"
+                i.fa.fa-plus-circle
+                = ' '
+                = "加入购物车"
+              = ' '
+              = favorite_tag(@food)
+            dd.goods-info-extent
+    .row
+      .col-md-3
+        .panel.panel-default
+          .panel-heading
+            = "你可能还喜欢"
+          .panel-body
+      .col-md-9
+        .panel.panel-success
+          .panel-heading
+            ul.list-inline.clearfix
+              li.current
+                a href="#goodsDesc"
+                  = "食物详情"
+              li
+                a href="#goodsPar"
+                  = "规格参数"
+              li
+                a href="#goodsComment"
+                  = "用户评价(#{@food.comments.count})"
+              li
+                a href="#goodsFaq"
+                  = "常见问题"
+          .panel-body#goodsDesc
+            = @food.description
+        .panel.panel-warning#goodsPar
+          .panel-heading
+            = "规格参数"
+          .panel-body
+        .panel.panel-info#goodsComment
+          .panel-heading
+            = "食物评价"
+            span.pull-right data-toggle="modal" data-target="#commentPages"
+              i.fa.fa-comment
+                = "我要评价"
+          .panel-body
+            .goods-comment-list
+              ul#goodsCommentList.list-unstyled
+                - @food.comments.each do |comment|
+                  li
+                    = comment.body
+              = form_for([@food, Comment.new], :remote => true) do |f|
+                .modal.fade.xm-pagenavi#commentPages tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                  .modal-dialog
+                    .modal-content
+                      .modal-header
+                        button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                          | &times
+                        h4.modal-title#myModalLabel
+                          = "我要留言"
+                      .modal-body
+                        = f.text_area :body, :class => "form-control", :rows => "2", :cols => "10"
+                      .modal-footer
+                        button type="button" class="btn btn-default" data-dismiss="modal"
+                          = "不留言了"
+                        = ' '
+                        = f.submit "发表", :class=>"btn btn-primary"
+
+        .panel.panel-danger#goodsFaq
+          .panel-heading
+            = "常见问题"
+          .panel-body
+            .goods-faq-list
+              ul.clearfix.list-unstyled
+                li
+                  h2
+                    = "如何挑选商品？"
+                  p
+                    = "点击页面上方“加入购物车”按钮或页面下拉时顶部导航上的“加入购物车”按钮将商品加入购物车，再点击页面右上角的“购物车”前往购物车页面进行结算。"
+                li
+                  h2
+                    = "收藏商品功能"
+                  p
+                    = "点击“收藏按钮”后，按钮中的红心亮起代表收藏成功，再次点击取消收藏，按钮颜色回复灰色。您可在“个人中心”中的我的收藏查看所有收藏商品。"
+                li
+                  h2
+                    = "维修网点销售配件吗？"
+                  p
+                    = "所有授权维修网点具备维修手机标配里配件的功能，部分指定授权维修网点可销售标配及部分官网配件，具体销售的产品及价格请以修网点信息为准。"
+                li
+                  h2
+                    = "退换货办理流程"
+                  p
+                    = "您可拨打美月客服中心与客服人员沟通，或登录美月网“我的订单” ->“订单详情”下方点击“申请售后服务”并填写相应信息，美月看到您的申请，会安排工作人员与您进行退换货质量确认并办理相关事宜."
+javascript:
+  $(document).ready(function(){
+    Product.changeGoodsBigPic();
+  });

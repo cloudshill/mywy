@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
   def index
     @favorites_is_product = current_member.favorites.where("favoriteable_type = ?", "Product")
     @favorites_is_food = current_member.favorites.where("favoriteable_type = ?", "Food")
+    @favorites_is_restaurant = current_member.favorites.where("favoriteable_type = ?", "Restaurant")
   end
 
   def create
