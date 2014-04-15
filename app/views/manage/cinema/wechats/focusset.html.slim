@@ -32,16 +32,7 @@ section#tickets
                   = f.label :focus_reply, class: "control-label"
               .form-group
                 .col-sm-12
-                  = f.text_area :focus_reply, class: "form-control simditor"
+                  = f.text_area :focus_reply, class: "form-control"
               .form-group
                 .col-sm-12
                   = f.submit "保存", class: "btn btn-info"
-javascript:
-  $(function(){
-    var editor = new Simditor({
-      textarea: $('.simditor'),
-      placeholder: '这里输入文字...',
-      upload: true,
-      toolbar: ['bold', 'italic', 'underline', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image', '|', 'indent', 'outdent', '|', 'hr', 'table']
-    });
-  });

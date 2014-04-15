@@ -1,0 +1,5 @@
+<% if @address.errors.empty? %>
+  Turbolinks.visit('<%= account_addresses_path %>');
+<% end %>
+var message = {message: "保存成功！", status: 'success', placement: 'bottom' };
+Essage.show(message, 3000);

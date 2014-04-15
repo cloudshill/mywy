@@ -1,19 +1,4 @@
-section#food-page
-  .container
-    nav.navbar.navbar-default
-      .navbar-header
-        a.navbar-brand href="#"
-          = "美月无忧电影"
-
-      .collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li.active
-            a href="#"
-              = "购票"
-        - if current_member.role.seller?
-          ul.nav.navbar-nav.navbar-right
-            li
-              a href=manage_restaurant_restaurants_path
+= render 'manage/restaurant/shared/navbar'
 section#foods
   .container
     .row

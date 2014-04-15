@@ -69,6 +69,10 @@ Mywy::Application.routes.draw do
   devise_scope :member do
   end
 
+  namespace :account do
+    resources :addresses
+  end
+
   devise_for :admins, :controllers => {
     :sessions => 'admins/sessions',
     :registrations => 'admins/accounts'

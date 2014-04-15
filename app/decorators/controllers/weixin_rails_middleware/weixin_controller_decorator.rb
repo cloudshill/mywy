@@ -13,7 +13,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   private
 
     def response_text_message(options={})
-      reply_text_message("Your Message: #{@keyword}")
+      message = ""
+      current_weixin_public_account.wechat_texts.each do |text|
+        if text.keyword == @keyword
+          message = text.context
+          break
+        end
+      end
+      reply_text_message("#{message}")
     end
 
     # <Location_X>23.134521</Location_X>
@@ -54,7 +61,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
           # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
           reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
         end
-        reply_text_message("关注公众账号")
+        reply_text_message("#{current_weixin_public_account.focus_reply}")
       when "unsubscribe" # 取消关注
         reply_text_message("取消关注")
       when "SCAN"        # 扫描带参数二维码事件: 2用户已关注时的事件推送

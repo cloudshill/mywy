@@ -1,0 +1,71 @@
+section#market-page
+  .container
+    .navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="#"
+            = "美月无忧"
+
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              = link_to "首页", root_path
+            li
+              = link_to "电影购票&影讯", movies_path
+            li
+              = link_to "愉快购物", products_path
+            li
+              = link_to "智能点餐", products_path
+            li
+              = link_to "尝试云购", products_path
+section
+  .container
+    .row
+      = render 'shared/account_sidebar'
+      section.col-lg-9.col-md-9.col-sm-12.col-xs-12
+        #content
+          .panel.panel-default
+            .panel-heading
+              = "地址管理"
+              span.pull-right
+                a href="#" id="new_address" data-url=account_addresses_path data-no-turbolink=""
+                  = "新增地址"
+            .panel-body
+              table.table.table-hover#addresses_table
+                thead
+                  tr
+                    th width="30"
+                      input type="checkbox"
+                    th width="120"
+                      = "收件人"
+                    th
+                      = "收货地址"
+                    th width="180"
+                      = "电话"
+                    th width="50"
+                      = "默认"
+                    th width="50"
+                      = "操作"
+                tbody
+                  - @addresses.each do |address|
+                    tr
+                      td
+                        input type="checkbox"
+                      td
+                        = address.addressee
+                      td
+                        = address.address
+                      td
+                        = address.mobile
+                      td
+                        - if address.is_default
+                          i.fa.fa-check-square-o
+                        - else
+                          i.fa.fa-square-o
+                      td
+                        = link_to "删除", account_address_path(address), :method => :delete, data: { confirm: 'Are you sure?' }
+javascript:
+  $("#new_address").on('click', function(){
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td></td><td><input type="text" name="address[addressee]" class="form-control" /></td><td><input type="text" name="address[address]" class="form-control" /></td><td><input type="text" name="address[mobile]" class="form-control" /></td><td><input type="checkbox" name="address[is_default]"/></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
+    $("#addresses_table").children('tbody').append(trHtml);
+  });
