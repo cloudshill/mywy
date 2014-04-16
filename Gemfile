@@ -55,6 +55,9 @@ gem 'weixin_rails_middleware', "~> 1.2.1"
 gem 'weixin_authorize', '~> 1.5.7'
 gem 'twitter_ratchet_rails'
 
+# redis
+gem "redis-namespace", "~> 1.4.1"
+
 # 所见所得编辑器
 gem 'simditor-rails'
 

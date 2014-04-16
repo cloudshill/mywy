@@ -23,6 +23,17 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       reply_text_message("#{message}")
     end
 
+    def response_text_message(options={})
+      articles = []
+      current_weixin_public_account.wechat_articles.each do |article|
+        if article.keyword == @keyword
+          articles = [generate_article(article.title, article.description, article.picurl, article.link_url)]
+          break
+        end
+      end
+      reply_news_message(articles)
+    end
+
     # <Location_X>23.134521</Location_X>
     # <Location_Y>113.358803</Location_Y>
     # <Scale>20</Scale>
