@@ -1,0 +1,88 @@
+= form_for([:manage, :restaurant, @restaurant, @bill], remote: true, html: { class: "form-horizontal" }) do |f|
+  = render 'shared/form_error_messages', form: f
+  .form-group
+    = f.label :table_id, class: "col-sm-1 control-label"
+    .col-sm-11
+      = f.select :table_id, @restaurant.dinner_tables.collect{|t| [t.name, t.id]}, {}, { class: "form-control" }
+  .form-group
+    .col-sm-12
+      table.table.table-hover
+        thead
+          tr
+            th
+              = "名称"
+            th width="80"
+              = "数量"
+            th width="80"
+              = "单价"
+            th width="80"
+              = "操作"
+        tbody
+          tr
+            td
+              select.select_food#select_food_0
+                - @restaurant.foods.each do |food|
+                  option value="#{food.id}"
+                    = food.name
+              input type="hidden" name="foods[]" id="input_food_0"
+            td
+              input type="text" name="" value="1"
+            td
+            td
+            td
+          tr
+            td
+              select.select_food#select_food_1
+                - @restaurant.foods.each do |food|
+                  option value="#{food.id}"
+                    = food.name
+              input type="hidden" name="foods[]" id="input_food_1"
+            td
+              input type="text" name="" value="1"
+            td
+            td
+            td
+          tr
+            td
+              select.select_food#select_food_2
+                - @restaurant.foods.each do |food|
+                  option value="#{food.id}"
+                    = food.name
+              input type="hidden" name="foods[]" id="input_food_2"
+            td
+              input type="text" name="" value="1"
+            td
+            td
+            td
+          tr
+            td
+              select.select_food#select_food_3
+                - @restaurant.foods.each do |food|
+                  option value="#{food.id}"
+                    = food.name
+              input type="hidden" name="foods[]" id="input_food_3"
+            td
+              input type="text" name="" value="1"
+            td
+            td
+            td
+          tr
+            td
+              select.select_food#select_food_4
+                - @restaurant.foods.each do |food|
+                  option value="#{food.id}"
+                    = food.name
+              input type="hidden" name="foods[]" id="input_food_4"
+            td
+              input type="text" name="" value="1"
+            td
+            td
+            td
+javascript:
+  $(document).ready(function() {
+    $(".select_food").select2().on("select2-selecting", function(e) {
+      alert(e.parent("select").attr("id"));
+      $("#input_food_3").val(e.val);
+      alert($("#input_food_3").val());
+    });
+  });

@@ -1,0 +1,13 @@
+= render 'manage/restaurant/shared/navbar'
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@restaurant.name} 餐厅 - 落单"
+          .panel-body
+            = render 'form'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413035745) do
+ActiveRecord::Schema.define(version: 20140416114828) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 20140413035745) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "bill_items", force: true do |t|
+    t.integer  "amount"
+    t.integer  "bill_id"
+    t.string   "bill_itemable_type"
+    t.integer  "bill_itemable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bills", force: true do |t|
+    t.string   "billable_type"
+    t.integer  "billable_id"
+    t.integer  "table_id"
+    t.decimal  "total_price",   precision: 10, scale: 0
+    t.boolean  "pay"
+    t.decimal  "discount",      precision: 10, scale: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "carts", force: true do |t|
     t.integer  "member_id"

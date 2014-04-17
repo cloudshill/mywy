@@ -10,6 +10,8 @@
 //= require upload/jquery.iframe-transport
 //= require upload/jquery.fileupload
 //= require simditor
+//= require select2
+//= require select2_locale_zh-CN
 //= require turbolinks
 //= require_self
 

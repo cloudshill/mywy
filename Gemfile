@@ -51,7 +51,7 @@ gem 'cancan'
 gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
 
 # 微信
-gem 'weixin_rails_middleware', "~> 1.2.1"
+gem 'weixin_rails_middleware', "~> 1.2.3"
 gem 'weixin_authorize', '~> 1.5.7'
 gem 'twitter_ratchet_rails'
 
@@ -60,6 +60,7 @@ gem "redis-namespace", "~> 1.4.1"
 
 # 所见所得编辑器
 gem 'simditor-rails'
+gem "select2-rails"
 
 # YAML 配置信息
 gem "settingslogic"

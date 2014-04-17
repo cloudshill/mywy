@@ -282,6 +282,9 @@
         title: "官网标题"
         cover: "图文消息封面"
         logo: "官方LOGO"
+      bill:
+        billable_id: "店铺"
+        table_id: "房台"
   enumerize:
     pay_method:
       offline: "货到付款"
