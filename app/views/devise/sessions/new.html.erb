@@ -79,3 +79,27 @@
 		</div>
 	</div>
 </section>
+<script type="text/javascript">
+  $('#new_member').validate({
+    rules: {
+      'member[login]': {
+        required: true
+      },
+      'member[password]': {
+        required: true,
+        minlength: 8,
+        maxlength: 16
+      }
+    },
+    messages: {
+      'member[login]': {
+        required: '<%= resource.errors.generate_message :login, :blank %>'
+      },
+      'member[password]': {
+        required: '<%= resource.errors.generate_message :password, :blank %>',
+        minlength: '至少8位以上密码',
+        maxlength: '密码最多16位'
+      }
+    }
+  });
+</script>

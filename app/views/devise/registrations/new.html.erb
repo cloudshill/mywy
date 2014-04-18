@@ -130,18 +130,18 @@
         email: '请填写有效的邮箱地址'
       },
       'member[nickname]': {
-        required: '<%= resource.errors.generate_message :email, :blank %>'
+        required: '<%= resource.errors.generate_message :nickname, :blank %>'
       },
       'member[mobile]': {
-        required: '<%= resource.errors.generate_message :email, :blank %>'
+        required: '<%= resource.errors.generate_message :mobile, :blank %>'
       },
       'member[password]': {
-        required: '<%= resource.errors.generate_message :email, :blank %>',
+        required: '<%= resource.errors.generate_message :password, :blank %>',
         minlength: '至少8位以上密码',
         maxlength: '密码最多16位'
       },
       'member[password_confirmation]': {
-        required: '<%= resource.errors.generate_message :email, :blank %>',
+        required: '<%= resource.errors.generate_message :password_confirmation, :blank %>',
         minlength: '至少8位以上密码',
         maxlength: '密码最多16位'
       }
