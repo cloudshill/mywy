@@ -4,6 +4,7 @@
 //= require bootstrap
 //= require payfor
 //= require jquery.autosize
+//= require jquery.validate
 //= require bootstrap-editable.min
 //= require video
 //= require upload/vendor/jquery.ui.widget
@@ -14,6 +15,7 @@
 //= require select2_locale_zh-CN
 //= require turbolinks
 //= require_self
+//= require_tree ./plugins
 
 window.App = {
 	addToCart: function(el) {

@@ -100,3 +100,51 @@
 		</div>
 	</div>
 </section>
+<script type="text/javascript">
+  $('#new_member').validate({
+    rules: {
+      'member[email]': {
+        required: true,
+        email: true
+      },
+      'member[nickname]': {
+        required: true
+      },
+      'member[mobile]': {
+        required: true
+      },
+      'member[password]': {
+        required: true,
+        minlength: 8,
+        maxlength: 16
+      },
+      'member[password_confirmation]': {
+        required: true,
+        minlength: 8,
+        maxlength: 16
+      }
+    },
+    messages: {
+      'member[email]': {
+        required: '<%= resource.errors.generate_message :email, :blank %>',
+        email: '请填写有效的邮箱地址'
+      },
+      'member[nickname]': {
+        required: '<%= resource.errors.generate_message :email, :blank %>'
+      },
+      'member[mobile]': {
+        required: '<%= resource.errors.generate_message :email, :blank %>'
+      },
+      'member[password]': {
+        required: '<%= resource.errors.generate_message :email, :blank %>',
+        minlength: '至少8位以上密码',
+        maxlength: '密码最多16位'
+      },
+      'member[password_confirmation]': {
+        required: '<%= resource.errors.generate_message :email, :blank %>',
+        minlength: '至少8位以上密码',
+        maxlength: '密码最多16位'
+      }
+    }
+  });
+</script>

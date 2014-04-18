@@ -26,8 +26,7 @@
                     = food.name
               input type="hidden" name="foods[]" id="input_food_0"
             td
-              input type="text" name="" value="1"
-            td
+              input type="text" name="" value="1" class="form-control"
             td
             td
           tr
@@ -38,8 +37,7 @@
                     = food.name
               input type="hidden" name="foods[]" id="input_food_1"
             td
-              input type="text" name="" value="1"
-            td
+              input type="text" name="" value="1" class="form-control"
             td
             td
           tr
@@ -50,22 +48,25 @@
                     = food.name
               input type="hidden" name="foods[]" id="input_food_2"
             td
-              input type="text" name="" value="1"
-            td
+              input type="text" name="" value="1" class="form-control"
             td
             td
           tr
             td
               select.select_food#select_food_3
+                option value="0"
+                  = "请选择"
                 - @restaurant.foods.each do |food|
                   option value="#{food.id}"
                     = food.name
               input type="hidden" name="foods[]" id="input_food_3"
             td
-              input type="text" name="" value="1"
+              input type="text" name="" value="1" class="form-control"
             td
+              span.price
+                = "0.0"
             td
-            td
+              a href=""
           tr
             td
               select.select_food#select_food_4
@@ -74,14 +75,15 @@
                     = food.name
               input type="hidden" name="foods[]" id="input_food_4"
             td
-              input type="text" name="" value="1"
-            td
+              input type="text" name="" value="1" class="form-control"
             td
             td
 javascript:
   $(document).ready(function() {
-    $(".select_food").select2().on("select2-selecting", function(e) {
-      alert(e.parent("select").attr("id"));
+    $(".select_food").select2({
+      width: 400
+    }).on("select2-selecting", function(e) {
+      alert($(e.object).parent());
       $("#input_food_3").val(e.val);
       alert($("#input_food_3").val());
     });
