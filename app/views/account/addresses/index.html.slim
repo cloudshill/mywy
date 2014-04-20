@@ -58,10 +58,11 @@ section
                       td
                         = address.mobile
                       td
-                        - if address.is_default
+                        - if address.id == current_member.ship_address_id
                           i.fa.fa-check-square-o
                         - else
-                          i.fa.fa-square-o
+                          a href=set_ship_address_account_address_path(address) data-remote="true"
+                            i.fa.fa-square-o
                       td
                         = link_to "删除", account_address_path(address), :method => :delete, data: { confirm: 'Are you sure?' }
 javascript:

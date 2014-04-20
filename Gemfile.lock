@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/chloerei/alipay.git
+  revision: 58fa4ffe4d9e27abe469985e284e3939de553ee6
+  specs:
+    alipay (0.0.3)
+
+GIT
   remote: git://github.com/seuros/capistrano-puma.git
   revision: d852e31959c033fcda75f9009022c654ce245017
   specs:
@@ -287,6 +293,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alipay!
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.0)

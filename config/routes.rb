@@ -45,7 +45,11 @@ Mywy::Application.routes.draw do
 
   resources :categories
 
-  resources :orders
+  resources :orders do
+    collection do
+      post :alipay_notify
+    end
+  end
 
   resources :carts, :only => [:index]
 
@@ -70,7 +74,11 @@ Mywy::Application.routes.draw do
   end
 
   namespace :account do
-    resources :addresses
+    resources :addresses do
+      member do
+        get :set_ship_address
+      end
+    end
   end
 
   devise_for :admins, :controllers => {

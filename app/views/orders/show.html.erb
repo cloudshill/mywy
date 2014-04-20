@@ -45,8 +45,8 @@
             <div class="panel-heading">交易订单号：<%= @order.id %></div>
             <div class="panel-body">
               <div class="panel panel-info">
-                  <div class="panel-heading">发货单号</div>
-                  <table class="table table-bordered">
+                <div class="panel-heading">发货单号</div>
+                <table class="table table-bordered">
                     <thead>
                       <tr>
                         <td class="image">图片</td>
@@ -79,7 +79,26 @@
                         <td colspan="5"><%= @order.address %></td>
                       </tr>
                     </tbody>
-                  </table>
+                </table>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  选择支付方式
+                </div>
+                <table class="table table-bordered">
+                  <tr>
+                    <td width="200">支付平台</td>
+                    <td>
+                      <input type="radio" value="" name="" />
+                      <%= image_tag('payOnline_zfb.gif') %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <a href="" class="btn btn-danger">马上去支付</a>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>

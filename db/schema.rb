@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416114828) do
+ActiveRecord::Schema.define(version: 20140420034221) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
     t.string   "address"
     t.string   "mobile"
-    t.boolean  "is_default"
     t.integer  "member_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -215,6 +214,7 @@ ActiveRecord::Schema.define(version: 20140416114828) do
     t.string   "role"
     t.string   "business_scope"
     t.string   "avatar"
+    t.integer  "ship_address_id"
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree

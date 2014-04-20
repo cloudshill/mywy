@@ -1,5 +1,5 @@
 class Account::AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :set_address, only: [:show, :edit, :update, :destroy, :set_ship_address]
 
   # GET /addresses
   # GET /addresses.json
@@ -50,6 +50,11 @@ class Account::AddressesController < ApplicationController
       format.html { redirect_to account_addresses_path }
       format.json { head :no_content }
     end
+  end
+
+  def set_ship_address
+    current_member.ship_address_id = @address.id
+    current_member.save
   end
 
   private

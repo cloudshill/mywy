@@ -25,6 +25,8 @@ class Member < ActiveRecord::Base
   has_many :restaurants
   has_many :addresses
 
+  belongs_to :ship_address, :class_name => "Address", :foreign_key => "ship_address_id"
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

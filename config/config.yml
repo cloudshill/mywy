@@ -17,6 +17,10 @@ defaults: &defaults
     smsbao:
       username: 'stephen'
       password: '861117'
+  alipay:
+    pid: ''
+    key: ''
+    seller_email: ''
 
 development:
   <<: *defaults

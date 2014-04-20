@@ -40,6 +40,9 @@ gem 'carrierwave-qiniu'
 # 短信
 gem 'china_sms'
 
+# alipay
+gem 'alipay', :github => 'chloerei/alipay'
+
 # @
 gem 'jquery-atwho-rails'
 gem 'essage-rails'

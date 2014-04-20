@@ -12,7 +12,7 @@ section#foods
           .panel-body
             .bs-callout.bs-callout-danger
               p
-                = "URL：#{ weixin_engine.weixin_index_url(@wechat.weixin_secret_key) }"
+                = "URL：#{ weixin_engine.weixin_server_url(@wechat.weixin_secret_key) }"
             .bs-callout.bs-callout-danger
               p
                 = "Token：#{ @wechat.weixin_token }"
