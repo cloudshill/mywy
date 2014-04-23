@@ -39,7 +39,7 @@
         <td><%= order.id %></td>
         <td>
           <% order.line_items.each do |line_item| %>
-          <%= line_item.product.barcode %> X <%= line_item.amount %> | 
+          <%= line_item.line_itemable.name %> X <%= line_item.amount %> | 
           <% end %>
         </td>
         <td><%= order.total_price %> (元)</td>
