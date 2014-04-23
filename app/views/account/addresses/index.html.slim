@@ -67,6 +67,6 @@ section
                         = link_to "删除", account_address_path(address), :method => :delete, data: { confirm: 'Are you sure?' }
 javascript:
   $("#new_address").on('click', function(){
-    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td></td><td><input type="text" name="address[addressee]" class="form-control" /></td><td><input type="text" name="address[address]" class="form-control" /></td><td><input type="text" name="address[mobile]" class="form-control" /></td><td><input type="checkbox" name="address[is_default]"/></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td></td><td><input type="text" name="address[addressee]" class="form-control" /></td><td><input type="text" name="address[address]" class="form-control" /></td><td><input type="text" name="address[mobile]" class="form-control" /></td><td></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
     $("#addresses_table").children('tbody').append(trHtml);
   });
