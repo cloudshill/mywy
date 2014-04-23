@@ -16,4 +16,8 @@ class Admin < ActiveRecord::Base
        	where(conditions).first
     end
   end
+
+  def admin?
+    Setting.admin_emails && Setting.admin_emails.include?(email)
+  end
 end

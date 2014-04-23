@@ -21,6 +21,9 @@ defaults: &defaults
     pid: '2088411221290992'
     key: '21pk8fai0xjlk84ek1whb1pgr8ppwguo'
     seller_email: 'meiyuewuyou@foxmail.com'
+  admin_emails:
+    - 85636682@qq.com
+    - 251927161@qq.com
 
 development:
   <<: *defaults

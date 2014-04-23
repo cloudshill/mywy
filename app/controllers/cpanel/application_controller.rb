@@ -5,7 +5,7 @@ class Cpanel::ApplicationController < ApplicationController
   before_filter :require_admin
   
   def require_admin
-    if current_admin.blank?
+    if current_admin.blank? && !current_user.admin?
       respond_to do |format|
         format.html  {
           authenticate_admin!
