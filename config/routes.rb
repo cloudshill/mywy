@@ -49,6 +49,9 @@ Mywy::Application.routes.draw do
     collection do
       post :alipay_notify
     end
+    member do
+      post :pay
+    end
   end
 
   resources :carts, :only => [:index]

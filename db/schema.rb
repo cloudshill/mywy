@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420034221) do
+ActiveRecord::Schema.define(version: 20140422102132) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -263,14 +263,22 @@ ActiveRecord::Schema.define(version: 20140420034221) do
   create_table "orders", force: true do |t|
     t.integer  "member_id"
     t.decimal  "total_price", precision: 10, scale: 0
-    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pay_method"
     t.string   "status"
+    t.integer  "address_id"
   end
 
   add_index "orders", ["member_id"], name: "index_orders_on_member_id", using: :btree
+
+  create_table "pages", force: true do |t|
+    t.string   "pageable_type"
+    t.integer  "pageable_id"
+    t.string   "theme"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pictures", force: true do |t|
     t.string   "image"

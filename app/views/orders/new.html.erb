@@ -43,57 +43,77 @@
           <div class="panel-heading">
             订单结算
           </div>
-          <div class="panel-body">
+          <div class="panel-body xm-box">
             <%= form_for(@order, :html => {:class => "form-horizontal"}) do |f| %>
               <%= render 'shared/form_error_messages', :form => f %>
-                <table class="table table-hover table-bordered">
-                  <thead>
-                    <tr>
-                      <td class="image">图片</td>
-                      <td class="name">商品</td>
-                      <td class="quantity" style="width:100px;">数量</td>
-                      <td class="price" style="width:100px;">单价</td>
-                      <td class="total" style="width:100px;">总价</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <% @line_items.each do |line_item| %>
-                    <tr>
-                      <td class="image" data-label="Image" style="width:100px;height:50px;">
-                        <%= line_item_image_tag(line_item) %>
-                      </td>
-                      <td class="name" data-label="Product Name">
-                        <%= line_item_a_tag(line_item) %>
-                        <input type="checkbox" name="line_items[]" value="<%= line_item.id %>" checked="true" style="display:none;" />
-                      </td>
-                      <td class="quantity" style="line-height:40px;">
-                        <%= line_item.amount %>
-                      </td>
-                      <td class="price" style="line-height:40px;">￥<%= line_item.line_itemable.price %></td>
-                      <td class="total" style="line-height:40px;">￥<%= line_item.line_itemable.price * line_item.amount %></td>
-                    </tr>
-                  <% end %>
-                  </tbody>
-                </table>
-              <!--
-              <div class="form-group">
-                <label class="col-sm-1 control-label"><%= f.label :pay_method %></label>
-                <div class="col-sm-11">
-                  <%= f.collection_radio_buttons :pay_method, Order.pay_method.options, :last, :first do |o| %>
-                  <%= o.label(:class => 'radio-inline'){ o.radio_button + o.text } %>
-                  <% end %>
-                </div>
+              <div class="hd">
+                <h2 class="title">收货地址</h2>
               </div>
-              -->
-              <div class="form-group">
-                <label class="col-sm-1 control-label"><%= f.label :address %></label>
-                <div class="col-sm-11">
-                  <%= f.text_field :address, :class => "form-control" %>
-                </div>
+              <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <td class="image">图片</td>
+                    <td class="name">商品</td>
+                    <td class="quantity" style="width:100px;">数量</td>
+                    <td class="price" style="width:100px;">单价</td>
+                    <td class="total" style="width:100px;">总价</td>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @line_items.each do |line_item| %>
+                  <tr>
+                    <td class="image" data-label="Image" style="width:100px;height:50px;">
+                      <%= line_item_image_tag(line_item) %>
+                    </td>
+                    <td class="name" data-label="Product Name">
+                      <%= line_item_a_tag(line_item) %>
+                      <input type="checkbox" name="line_items[]" value="<%= line_item.id %>" checked="true" style="display:none;" />
+                    </td>
+                    <td class="quantity" style="line-height:40px;">
+                      <%= line_item.amount %>
+                    </td>
+                    <td class="price" style="line-height:40px;">￥<%= line_item.line_itemable.price %></td>
+                    <td class="total" style="line-height:40px;">￥<%= line_item.line_itemable.price * line_item.amount %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <div class="hd">
+                <h2 class="title">收货地址</h2>
               </div>
+              <div class="clearfix xm-address-list" id="checkoutAddrList">
+                <% current_member.addresses.each do |address| %>
+                <dl data-id="address_<%= address.id %>" data-addressee="address.addressee" data-mobile="address.mobile" data-address="<%= address.address %>" class="<%= "selected" if current_member.ship_address_id == address.id %>" name='address_dl'>
+                  <dt>
+                    <strong class="itemConsignee"><%= address.addressee %></strong>
+                    <span class="itemTel"><%= address.mobile %></span>
+                  </dt>
+                  <dd>
+                    <p class="itemRegion"><%= address.address %></p>
+                    <p class="itemStreet"></p>
+                    <span class="icon-common icon-common-edit checkoutAddrEdit"></span>
+                  </dd>
+                  <dd style="display:none">
+                    <input type="radio" id="address_<%= address.id %>" name="order[address_id]" class="addressId"  value="<%= address.id %>" <%= "checked='true'" if current_member.ship_address_id == address.id %> />
+                  </dd>
+                </dl>
+                <% end %>
+                <dl id="new_address">
+                  <dd>
+                    <span>
+                    <%= link_to "使用新地址", account_addresses_path %>
+                    </span>
+                  </dd>
+                </dl>
+              </div>
+              
               <div class="buttons">
                 <div class="pull-right">
+                  <% if current_member.addresses.blank? %>
                   <%= f.submit "确认订单", :class=>"btn btn-danger" %>
+                  <% else %>
+                  <%= f.submit "确认订单", :class=>"btn btn-danger disable" %>
+                  <% end %>
                 </div>
                 <div class="left">
                   <%= link_to "继续购物", products_path, :class=>"btn btn-info" %>
@@ -106,3 +126,20 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $("#checkoutAddrList dl[name='address_dl']").on("click", function() {
+    var theDL = $(this);
+    theDL.siblings().removeClass('selected');
+    theDL.addClass("selected");
+    $('input[name="order[address_id]"]').each(function(){
+      if(theDL.data("id") == this.id) {
+        $(this).attr("checked", "checked");
+      } else {
+        $(this).attr("checked", false);
+      }
+    });
+  });
+  $("#new_address").on("click", function() {
+
+  });
+</script>

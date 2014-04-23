@@ -76,7 +76,7 @@
                         <td colspan="5"><%= @order.total_price %></td>
                       </tr>
                       <tr>
-                        <td colspan="5"><%= @order.address %></td>
+                        <td colspan="5"><%= @order.address.address %></td>
                       </tr>
                     </tbody>
                 </table>
@@ -85,20 +85,22 @@
                 <div class="panel-heading">
                   选择支付方式
                 </div>
-                <table class="table table-bordered">
-                  <tr>
-                    <td width="200">支付平台</td>
-                    <td>
-                      <input type="radio" value="" name="" />
-                      <%= image_tag('payOnline_zfb.gif') %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <a href="" class="btn btn-danger">马上去支付</a>
-                    </td>
-                  </tr>
-                </table>
+                <%= form_tag pay_order_path(@order) do |f| %>
+                  <table class="table table-bordered">
+                    <tr>
+                      <td width="200">支付平台</td>
+                      <td>
+                        <input type="radio" value="zfb" name="agency" />
+                        <%= image_tag('payOnline_zfb.gif') %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <input type="submit" class="btn btn-danger" value="马上去支付" />
+                      </td>
+                    </tr>
+                  </table>
+                <% end %>
               </div>
             </div>
           </div>

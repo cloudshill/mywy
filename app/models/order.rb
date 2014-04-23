@@ -5,10 +5,11 @@ class Order < ActiveRecord::Base
   enumerize :status,     in: [:opening, :pending, :paid, :completed, :canceled], default: :opening
 
   belongs_to :member
+  belongs_to :address
   has_many :line_items
 
   validates :total_price, presence: true
-  validates :address, presence: true
+  validates :address_id, presence: true
   validates :pay_method, presence: true
   validates :status, presence: true
   validates :member_id, presence: true
@@ -56,18 +57,18 @@ class Order < ActiveRecord::Base
     Alipay::Service.create_direct_pay_by_user_url(
       :out_trade_no      => id.to_s,
       :price             => total_price,
-      :quantity          => quantity,
-      :discount          => discount,
-      :subject           => "MeiYueWuYou.com #{I18n.t "plan.#{plan}"} x #{quantity}",
+      :quantity          => '1',
+      :discount          => '0',
+      :subject           => "来自美月无忧 MeiYueWuYou.com 的订单！",
       :logistics_type    => 'DIRECT',
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
       :return_url        => Rails.application.routes.url_helpers.order_url(self, :host => 'meiyuewuyou.com'),
       :notify_url        => Rails.application.routes.url_helpers.alipay_notify_orders_url(:host => 'meiyuewuyou.com'),
-      :receive_name      => 'none', # 这里填写了收货信息，用户就不必填写
-      :receive_address   => 'none',
+      :receive_name      => address.addressee, # 这里填写了收货信息，用户就不必填写
+      :receive_address   => address.address,
       :receive_zip       => '100000',
-      :receive_mobile    => '100000000000'
+      :receive_mobile    => address.mobile
     )
   end
 

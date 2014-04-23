@@ -4,7 +4,6 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :addressee
       t.string :address
       t.string :mobile
-      t.boolean :is_default
       t.integer :member_id
 
       t.timestamps

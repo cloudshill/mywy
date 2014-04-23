@@ -44,7 +44,7 @@ class Manage::Cinema::CinemasController < ApplicationController
   # POST /cinemas.json
   def create
     @cinema = current_member.cinemas.build(cinema_params)
-
+    @page = Page.create(:pageable => @cinema)
     respond_to do |format|
       if @cinema.save
         format.html { redirect_to manage_cinema_cinemas_path, notice: 'Cinema was successfully created.' }

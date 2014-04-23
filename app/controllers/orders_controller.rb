@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :require_member
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :pay]
 
   # GET /orders
   # GET /orders.json
@@ -74,6 +74,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def pay
+    if params[:agency] == "zfb"
+      redirect_to @order.pay_url
+    end
+  end
+
   # 支付宝异步消息接口
   def alipay_notify
     notify_params = params.except(*request.path_parameters.keys)
@@ -114,6 +120,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:member_id, :total_price, :address, :pay_method, :status)
+      params.require(:order).permit(:member_id, :total_price, :address_id, :pay_method, :status)
     end
 end

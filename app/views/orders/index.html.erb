@@ -63,7 +63,7 @@
                         <% end %>
                       </td>
                       <td>￥<%= order.total_price %></td>
-                      <td><%= order.address %></td>
+                      <td><%= order.address.address %></td>
                       <td>
                         <%= link_to '详情', order %>
                         <% if order.status != 'finished' %>

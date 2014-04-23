@@ -4,4 +4,5 @@ class Restaurant < ActiveRecord::Base
   has_many :foods
   has_many :favorites, as: :favoriteable
   has_one :wechat, as: :wechatable
+  has_one :page, as: :pageable
 end

@@ -20,7 +20,7 @@
         tbody
           tr
             td
-              select.select_food#select_food_0
+              select.select_food#food_0
                 - @restaurant.foods.each do |food|
                   option value="#{food.id}"
                     = food.name
@@ -31,7 +31,7 @@
             td
           tr
             td
-              select.select_food#select_food_1
+              select.select_food#food_1
                 - @restaurant.foods.each do |food|
                   option value="#{food.id}"
                     = food.name
@@ -42,7 +42,7 @@
             td
           tr
             td
-              select.select_food#select_food_2
+              select.select_food#food_2
                 - @restaurant.foods.each do |food|
                   option value="#{food.id}"
                     = food.name
@@ -53,38 +53,40 @@
             td
           tr
             td
-              select.select_food#select_food_3
+              select.select_food#food_3
                 option value="0"
                   = "请选择"
                 - @restaurant.foods.each do |food|
                   option value="#{food.id}"
                     = food.name
-              input type="hidden" name="foods[]" id="input_food_3"
+              input type="hidden" name="food_3" id="input_food_3"
             td
-              input type="text" name="" value="1" class="form-control"
+              input type="text" id="food_3_count" name="food_3_count" value="1" class="form-control"
             td
               span.price
                 = "0.0"
             td
               a href=""
           tr
-            td
-              select.select_food#select_food_4
+            td.name
+              select.select_food#food_4
                 - @restaurant.foods.each do |food|
                   option value="#{food.id}"
                     = food.name
-              input type="hidden" name="foods[]" id="input_food_4"
+              input type="hidden" name="food_4" id="input_food_4"
             td
-              input type="text" name="" value="1" class="form-control"
+              input type="text" id="food_4_count" name="food_4_count" value="1" class="form-control"
             td
+              span
+                = "0.0"
             td
 javascript:
   $(document).ready(function() {
     $(".select_food").select2({
       width: 400
     }).on("select2-selecting", function(e) {
-      alert($(e.object).parent());
-      $("#input_food_3").val(e.val);
-      alert($("#input_food_3").val());
+      alert($("#input_" + $(e.target).attr("id")).val());
+      $("#input_" + $(e.target).attr("id")).val(e.val);
+      alert($("#input_" + $(e.target).attr("id")).val());
     });
   });

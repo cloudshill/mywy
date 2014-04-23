@@ -23,6 +23,7 @@ class Manage::Restaurant::RestaurantsController < ApplicationController
   # POST /restaurants.json
   def create
     @restaurant = current_member.restaurants.build(restaurant_params)
+    @page = Page.create(:pageable => @restaurant)
 
     respond_to do |format|
       if @restaurant.save
