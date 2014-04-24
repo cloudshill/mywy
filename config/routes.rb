@@ -124,7 +124,11 @@ Mywy::Application.routes.draw do
           resources :waps, only: [:edit, :update]
           resources :wechat_texts
           resources :wechat_articles
-          resources :diymenus
+          resources :diymenus do
+            collection do
+              get :generate_menu
+            end
+          end
           member do
             get :authorize
             get :replyset

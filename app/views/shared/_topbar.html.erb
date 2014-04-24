@@ -14,13 +14,29 @@
 										<i class="fa fa-list"></i>我的账号
 									<% end %>
 								</li>
+								<% if current_member.role.seller? %>
+									<% if is_cinema_owner? %>
+										<li>
+											<%= link_to manage_cinema_cinemas_path do %>
+												<i class="fa fa-archive"></i>我的电影院
+											<% end %>
+										</li>
+									<% end %>
+									<% if is_restaurant_owner? %>
+										<li>
+											<%= link_to manage_restaurant_restaurants_path do %>
+												<i class="fa fa-archive"></i>我的餐厅
+											<% end %>
+										</li>
+									<% end %>
+								<% end %>
 								<li>
 								<%= link_to carts_path do %>
 									<i class="fa fa-shopping-cart "></i>我的购物车</a></li>
 								<% end %>
 								<li>
 									<%= link_to destroy_member_session_path, :method => :delete, :class=>"last" do %>
-										<i class="fa fa-archive"></i>退出
+										<i class="fa fa-sign-out"></i>退出
 									<% end %>
 								</li>
 							</ul>

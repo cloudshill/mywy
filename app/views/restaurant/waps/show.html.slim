@@ -1,0 +1,8 @@
+ul.table-view
+  - @foods.each do |food|
+    li.table-view-cell.media
+      a.navigate-right
+        = image_tag(food.images.first.image.url("50x50"), class: "media-object pull-left")
+        .media-body
+          = food.name
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>

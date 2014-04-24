@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
-  helper_method :is_cinema_owner?, :is_cinema_employee?
+  helper_method :is_cinema_owner?, :is_cinema_employee?, :is_restaurant_owner?
 
   protect_from_forgery with: :exception
 
@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
 
   def is_cinema_employee?
     !current_member.blank? && !current_member.employment.blank? && (current_member.employment.employmentable_type.downcase == "cinema") && current_member.employment.status.work?
+  end
+
+  def is_restaurant_owner?
+    !current_member.blank? && current_member.role.seller? && current_member.business_scope.include?(:catering)
   end
   
   def after_sign_in_path_for(resource)

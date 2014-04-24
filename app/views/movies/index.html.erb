@@ -19,23 +19,12 @@
             <li class="active"><a href="#">购票</a></li>
             <li><a href="#">问答</a></li>
           </ul>
-          <% if is_cinema_employee? || is_cinema_owner? %>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "我的电影院", manage_cinema_cinemas_path %></a></li>
-          </ul>
-          <% end %>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
   </div>
 </section>
-<section id="sys-notification">
-  <div class="container">
-    <div id="notification">
-      <%= notice_message %>
-    </div>
-  </div>
-</section>
+<%= render 'shared/notification' %>
 <section id="movies">
   <div class="container">
     <div class="row">

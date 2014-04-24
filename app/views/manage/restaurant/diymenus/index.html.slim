@@ -1,4 +1,5 @@
 = render 'manage/restaurant/shared/navbar'
+= render 'shared/notification'
 section#foods
   .container
     .row
@@ -82,7 +83,7 @@ section#foods
                           i.fa.fa-trash-o
               tfooter
                 .btn-group
-                  a href="#" class="btn btn-info btn-sm"
+                  a href=generate_menu_manage_restaurant_restaurant_wechat_diymenus_path(@restaurant, @wechat) class="btn btn-info btn-sm"
                     = "生成自定义菜单"
                   a href="#" class="btn btn-danger btn-sm"
                     = "撤销自定义菜单"

@@ -10,8 +10,39 @@ html
   body
     header.bar.bar-nav
       button.btn.pull-left
-        =
-      button.btn.pull-left
-        =
+        = "客户端"
+      a href="#popover"
+        button.btn.pull-left
+          = "分类"
       h1.title
         = @wap.title
+    #popover.popover
+      header.bar.bar-nav
+        h1.title
+         = "Popover title"
+      ul.table-view
+        li.table-view-cell
+          = "Item1"
+    .content
+      = yield
+    nav.bar.bar-tab
+      a.tab-item.active href="#"
+        span.icon.icon-home
+        span.tab-label
+          = "首页"
+      a.tab-item href="#"
+        span.icon.icon-person
+        span.tab-label
+          = "账号"
+      a.tab-item href="#"
+        span.icon.icon-star-filled
+        span.tab-label
+          = "收藏"
+      a.tab-item href="#"
+        span.icon.icon-search
+        span.tab-label
+          = "搜索"
+      a.tab-item href="#"
+        span.icon.icon-gear
+        span.tab-label
+          = "购物车"

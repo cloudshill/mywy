@@ -1,19 +1,5 @@
-section#movie-page
-  .container
-    nav.navbar.navbar-default
-      .navbar-header
-        a.navbar-brand href="#"
-          = "美月无忧电影"
-
-      .collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li.active
-            a href="#"
-              = "购票"
-        - if current_member.role.seller?
-          ul.nav.navbar-nav.navbar-right
-            li
-              a href=manage_cinema_cinemas_path
+= render 'manage/cinema/shared/navbar'
+= render 'shared/notification'
 section#tickets
   .container
     .row
