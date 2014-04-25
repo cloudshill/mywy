@@ -99,10 +99,12 @@
     rules: {
       'member[email]': {
         required: true,
-        email: true
+        email: true,
+        remote: '/members/check_email'
       },
       'member[nickname]': {
-        required: true
+        required: true,
+        remote: '/members/check_nickname'
       },
       'member[mobile]': {
         required: true
@@ -121,10 +123,12 @@
     messages: {
       'member[email]': {
         required: '<%= resource.errors.generate_message :email, :blank %>',
-        email: '请填写有效的邮箱地址'
+        email: '请填写有效的邮箱地址！',
+        remote: '此邮箱已经存在！'
       },
       'member[nickname]': {
-        required: '<%= resource.errors.generate_message :nickname, :blank %>'
+        required: '<%= resource.errors.generate_message :nickname, :blank %>',
+        remote: '此用户名已经存在！'
       },
       'member[mobile]': {
         required: '<%= resource.errors.generate_message :mobile, :blank %>'

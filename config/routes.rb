@@ -69,12 +69,17 @@ Mywy::Application.routes.draw do
     resources :products, :only => [:index]
   end
 
+  resources :members do
+    collection do
+      get :check_email
+      get :check_nickname
+    end
+  end
+
   devise_for :members, :path => "accounts", :controllers => {
     :sessions => :sessions,
     :registrations => :accounts
   }
-  devise_scope :member do
-  end
 
   namespace :account do
     resources :addresses do
