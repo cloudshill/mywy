@@ -13,8 +13,12 @@ class Manage::Restaurant::WechatsController < ApplicationController
   def create
     @wechat = Wechat.new(wechat_params)
     @wechat.wechatable = @restaurant
-    @wechat.save
-    @wap = Wap.create(:wechat_id => @wechat.id)
+    if @wechat.save
+      @wap = Wap.create(:wechat_id => @wechat.id)
+      redirect_to manage_restaurant_restaurant_wechat_path(@restaurant, @wechat), :notice => "绑定微信号成功！"
+    else
+      render :new, :notice => "绑定微信号失败！请联系客服！"
+    end
   end
 
   def edit

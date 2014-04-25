@@ -16,6 +16,11 @@ class Wechat < ActiveRecord::Base
   # 当前公众账号的所有父级菜单
   has_many :parent_menus, ->{includes(:sub_menus).where(parent_id: nil, is_show: true).order("sort").limit(3)}, class_name: "Diymenu", foreign_key: :wechat_id
 
+  validates :wechatable_type, presence: true
+  validates :wechatable_id, presence: true
+  validates :name, presence: true
+  validates :public_name, presence: true
+
   def build_menu
     Jbuilder.encode do |json|
       json.button (parent_menus) do |menu|

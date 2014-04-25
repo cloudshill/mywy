@@ -19,3 +19,23 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit "绑定", class: "btn btn-info"
+
+javascript:
+  $("#new_wechat").validate({
+    rules: {
+      'wechat[name]': {
+        required: true
+      },
+      'wechat[public_name]': {
+        required: true
+      }
+    },
+    messages: {
+      'wechat[name]': {
+        required: '微信号不能为空！'
+      },
+      'wechat[public_name]': {
+        required: '公众号名称不能为空！'
+      }
+    }
+  });
