@@ -246,6 +246,8 @@
         name: "名称"
         guide: "饮食指南"
         avatar: "头像"
+      dinner_table:
+        name: "名称"
       food:
         name: "名称"
         price: "价格"

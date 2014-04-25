@@ -19,3 +19,22 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit "保存", class: "btn btn-info"
+javascript:
+  $('#new_food').validate({
+    rules: {
+      'food[name]': {
+        required: true
+      },
+      'food[price]': {
+        required: true
+      }
+    },
+    messages: {
+      'food[name]': {
+        required: '名称不能为空！'
+      },
+      'food[price]': {
+        required: '价格不能为空！'
+      }
+    }
+  });

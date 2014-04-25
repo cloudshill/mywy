@@ -7,3 +7,17 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit "保存", class: "btn btn-info"
+
+javascript:
+  $('#new_dinner_table').validate({
+    rules: {
+      'dinner_table[name]': {
+        required: true
+      }
+    },
+    messages: {
+      'dinner_table[name]': {
+        required: '名称不能为空！'
+      }
+    }
+  });

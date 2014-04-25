@@ -16,3 +16,28 @@
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit "保存", class: "btn btn-info"
+javascript:
+  $('#new_wechat_text').validate({
+    rules: {
+      'wechat_text[keyword]': {
+        required: true
+      },
+      'wechat_text[context]': {
+        required: true
+      },
+      'wechat_text[match_type]': {
+        required: true
+      }
+    },
+    messages: {
+      'wechat_text[keyword]': {
+        required: '关键字不能为空！'
+      },
+      'wechat_text[context]': {
+        required: '内容不能为空！'
+      },
+      'wechat_text[match_type]': {
+        required: '匹配不能为空！'
+      }
+    }
+  });

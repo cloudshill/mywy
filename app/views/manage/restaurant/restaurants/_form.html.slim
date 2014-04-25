@@ -23,3 +23,16 @@
     .form-group
       .col-sm-offset-2.col-sm-10
         = f.submit "保存", class: "btn btn-info"
+javascript:
+  $('#new_restaurant').validate({
+    rules: {
+      'restaurant[name]': {
+        required: true
+      }
+    },
+    messages: {
+      'restaurant[name]': {
+        required: '名称不能为空！'
+      }
+    }
+  });

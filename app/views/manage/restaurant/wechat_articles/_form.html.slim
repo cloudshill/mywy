@@ -50,4 +50,22 @@ javascript:
       leaveConfirm: '正在上传文件，如果离开上传会自动取消'
     },
   });
+  $('#new_wechat_article').validate({
+    rules: {
+      'wechat_article[keyword]': {
+        required: true
+      },
+      'wechat_article[title]': {
+        required: true
+      }
+    },
+    messages: {
+      'wechat_article[keyword]': {
+        required: '关键字不能为空！'
+      },
+      'wechat_article[title]': {
+        required: '题目不能为空！'
+      }
+    }
+  });
   
