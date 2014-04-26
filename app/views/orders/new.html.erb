@@ -88,7 +88,7 @@
                     <span class="icon-common icon-common-edit checkoutAddrEdit"></span>
                   </dd>
                   <dd style="display:none">
-                    <input type="radio" id="address_<%= address.id %>" name="order[address_id]" class="addressId"  value="<%= address.id %>" <%= "checked='true'" if current_member.ship_address_id == address.id %> />
+                    <input type="radio" id="address_<%= address.id %>" name="order[address_id]" class="addressId"  value="<%= address.id %>" <%= 'checked' if current_member.ship_address_id == address.id %> />
                   </dd>
                 </dl>
                 <% end %>
@@ -127,9 +127,9 @@
     theDL.addClass("selected");
     $('input[name="order[address_id]"]').each(function(){
       if(theDL.data("id") == this.id) {
-        $(this).attr("checked", "checked");
+        $(this).prop('checked', true);
       } else {
-        $(this).attr("checked", false);
+        $(this).prop('checked', false);
       }
     });
   });
