@@ -287,6 +287,7 @@
       bill:
         billable_id: "店铺"
         table_id: "房台"
+        is_takeout: "是否外卖"
   enumerize:
     pay_method:
       offline: "货到付款"

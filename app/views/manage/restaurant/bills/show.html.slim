@@ -1,0 +1,81 @@
+= render 'manage/restaurant/shared/navbar'
+= render 'shared/notification'
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@restaurant.name} 餐厅 - #{@bill.table.name}房台 - 销售单 #{@bill.created_at}"
+            span.pull-right
+              a href="#" id="add_food" data-url=manage_restaurant_restaurant_bill_bill_items_path(@restaurant, @bill) data-no-turbolink="" data-api=manage_restaurant_restaurant_foods_path(@restaurant)
+                = "添加"
+          .panel-body
+            table.table#foods_table
+              thead
+                tr
+                  th
+                    = "食物"
+                  th width="100"
+                    = "数量"
+                  th width="100"
+                    = "单价"
+                  th width="100"
+                    = "总价"
+                  th width="100"
+                    = "操作"
+              tbody
+                - @bill.bill_items.each do |item|
+                  tr
+                    td
+                      = item.bill_itemable.name
+                    td
+                      a href="#" class="edit_amount_row" data-pk="#{item.id}" data-url="#{manage_restaurant_restaurant_bill_bill_item_path(@restaurant, @bill, item)}" data-placement="right"
+                        = item.amount
+                    td
+                      = item.bill_itemable.price
+                    td
+                      = item.bill_itemable.price * item.amount
+                    td
+                      a href="#"
+                        = "删除"
+              tfooter
+                tr
+                  td colspan="5"
+                    span
+                      = "总价："
+                    a href="#" class="btn btn-danger btn-sm pull-right"
+                      = "结账"
+javascript:
+  $(document).ready(function() {
+    $.fn.editable.defaults.mode = 'pop';
+    $(".edit_amount_row").editable({
+      type: "text",
+      title: "修改数量",
+      ajaxOptions: {
+        type: 'PUT'
+      },
+      params: function(params) {
+        //originally params contain pk, name and value
+        params.bill_item = { "amount" : "" };
+        params.update_attr = "amount";
+        return params;
+      }
+    });
+  });
+  $("#add_food").on("click", function(){
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="hidden" name="bill_item[bill_itemable_id]" id="food_select" style="width:300px;" /></td><td><input type="text" name="bill_item[amount]" class="form-control" style="width:50px;" /></td><td><input type="hidden" name="bill_item[bill_itemable_type]" value="Food" /></td><td></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
+    $("#foods_table").children('tbody').append(trHtml);
+    $('#food_select').select2({
+      ajax: {
+        url: $(this).data("api") + '.json',
+        dataType: 'json',
+        results: function (data, page) {
+            return { results: data.foods };
+        }
+      }
+    });
+  });

@@ -1,0 +1,3 @@
+<% if @bill_item.errors.empty? %>
+  Turbolinks.visit('<%= manage_restaurant_restaurant_bill_path(@restaurant, @bill) %>');
+<% end %>

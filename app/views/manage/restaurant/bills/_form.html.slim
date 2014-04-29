@@ -1,92 +1,27 @@
-= form_for([:manage, :restaurant, @restaurant, @bill], remote: true, html: { class: "form-horizontal" }) do |f|
+= form_for([:manage, :restaurant, @restaurant, @bill], html: { class: "form-horizontal" }) do |f|
   = render 'shared/form_error_messages', form: f
   .form-group
-    = f.label :table_id, class: "col-sm-1 control-label"
-    .col-sm-11
+    = f.label :is_takeout, class: 'col-sm-2 control-label'
+    .col-sm-10
+      label.checkbox.inline
+        = f.check_box :is_takeout
+  .form-group
+    = f.label :table_id, class: "col-sm-2 control-label"
+    .col-sm-10
       = f.select :table_id, @restaurant.dinner_tables.collect{|t| [t.name, t.id]}, {}, { class: "form-control" }
   .form-group
-    .col-sm-12
-      table.table.table-hover
-        thead
-          tr
-            th
-              = "名称"
-            th width="80"
-              = "数量"
-            th width="80"
-              = "单价"
-            th width="80"
-              = "操作"
-        tbody
-          tr
-            td
-              select.select_food#food_0
-                - @restaurant.foods.each do |food|
-                  option value="#{food.id}"
-                    = food.name
-              input type="hidden" name="foods[]" id="input_food_0"
-            td
-              input type="text" name="" value="1" class="form-control"
-            td
-            td
-          tr
-            td
-              select.select_food#food_1
-                - @restaurant.foods.each do |food|
-                  option value="#{food.id}"
-                    = food.name
-              input type="hidden" name="foods[]" id="input_food_1"
-            td
-              input type="text" name="" value="1" class="form-control"
-            td
-            td
-          tr
-            td
-              select.select_food#food_2
-                - @restaurant.foods.each do |food|
-                  option value="#{food.id}"
-                    = food.name
-              input type="hidden" name="foods[]" id="input_food_2"
-            td
-              input type="text" name="" value="1" class="form-control"
-            td
-            td
-          tr
-            td
-              select.select_food#food_3
-                option value="0"
-                  = "请选择"
-                - @restaurant.foods.each do |food|
-                  option value="#{food.id}"
-                    = food.name
-              input type="hidden" name="food_3" id="input_food_3"
-            td
-              input type="text" id="food_3_count" name="food_3_count" value="1" class="form-control"
-            td
-              span.price
-                = "0.0"
-            td
-              a href=""
-          tr
-            td.name
-              select.select_food#food_4
-                - @restaurant.foods.each do |food|
-                  option value="#{food.id}"
-                    = food.name
-              input type="hidden" name="food_4" id="input_food_4"
-            td
-              input type="text" id="food_4_count" name="food_4_count" value="1" class="form-control"
-            td
-              span
-                = "0.0"
-            td
+    .col-sm-offset-2.col-sm-10
+      = f.submit "保存", class: "btn btn-info"
 javascript:
-  $(document).ready(function() {
-    $(".select_food").select2({
-      width: 400
-    }).on("select2-selecting", function(e) {
-      alert($("#input_" + $(e.target).attr("id")).val());
-      $("#input_" + $(e.target).attr("id")).val(e.val);
-      alert($("#input_" + $(e.target).attr("id")).val());
-    });
+  $('#new_bill').validate({
+    rules: {
+      'bill[table_id]': {
+        required: true
+      }
+    },
+    messages: {
+      'bill[table_id]': {
+        required: '请选择是哪个房台！'
+      }
+    }
   });

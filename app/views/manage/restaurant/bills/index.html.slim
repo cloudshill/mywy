@@ -1,0 +1,32 @@
+= render 'manage/restaurant/shared/navbar'
+= render 'shared/notification'
+section#foods
+  .container
+    .row
+      .col-md-3
+        = render 'manage/restaurant/shared/restaurants_sidebar'
+      .col-md-9
+        .panel.panel-info
+          .panel-heading
+            span
+              = "#{@restaurant.name} 餐厅 - 销售单"
+          .panel-body
+            table.table
+              thead
+                th
+                  = "销售单号"
+                th
+                  = "销售时间"
+                th
+                  = "操作"
+              tbody
+                - @restaurant.bills.each do |bill|
+                  tr
+                    td
+                      = bill.id
+                    td
+                      = bill.created_at
+                    td
+                      a href=manage_restaurant_restaurant_bill_path(@restaurant, bill)
+                        = "修改"
+                      = link_to "删除", manage_restaurant_restaurant_bill_path(@restaurant, bill), :method => :delete

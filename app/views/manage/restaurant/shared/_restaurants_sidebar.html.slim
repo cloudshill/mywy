@@ -94,3 +94,15 @@
         li.list-group-item
           a href="#"
             = "模板管理"
+- if controller_name == 'bills'
+  .panel.panel-info
+    .panel-heading
+      span
+        = "销售单"
+    ul.list-group
+      li.list-group-item
+        a href=manage_restaurant_restaurant_bills_path(@restaurant)
+          = "销售单管理"
+      li.list-group-item
+        a href=new_manage_restaurant_restaurant_bill_path(@restaurant)
+          = "新建销售单"

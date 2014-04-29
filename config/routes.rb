@@ -124,7 +124,9 @@ Mywy::Application.routes.draw do
 
     namespace :restaurant do
       resources :restaurants do
-        resources :bills
+        resources :bills do
+          resources :bill_items
+        end
         resources :wechats do
           resources :waps, only: [:edit, :update]
           resources :wechat_texts

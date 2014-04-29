@@ -1,13 +1,28 @@
 class Manage::Restaurant::BillsController < ApplicationController
 
-  before_action :set_restaurant, only: [:show, :new, :create, :edit]
+  before_action :set_restaurant, only: [:show, :new, :create, :edit, :index]
+  before_action :set_bill, only: [:show, :edit, :update, :destroy]
+
+  def index
+    
+  end
+
+  def show
+    
+  end
 
   def new
     @bill = Bill.new
   end
 
   def create
-    
+    @bill = Bill.new(bill_params)
+    @bill.billable = @restaurant
+    if @bill.save
+      redirect_to manage_restaurant_restaurant_bill_path(@restaurant, @bill), :notice => '创建销售单成功！'
+    else
+      render :new, :notice => '创建失败！请联系客服！'
+    end
   end
 
   def edit
@@ -21,7 +36,7 @@ class Manage::Restaurant::BillsController < ApplicationController
   private
 
   def set_bill
-    
+    @bill = Bill.find(params[:id])
   end
 
   def set_restaurant
@@ -29,6 +44,6 @@ class Manage::Restaurant::BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit()
+    params.require(:bill).permit(:is_takeout, :table_id)
   end
 end

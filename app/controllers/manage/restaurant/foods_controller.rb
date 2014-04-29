@@ -5,7 +5,7 @@ class Manage::Restaurant::FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json
   def index
-    @foods = @restaurant.foods.all
+    @foods = @restaurant.foods
   end
 
   # GET /foods/1
