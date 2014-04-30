@@ -1,7 +1,7 @@
 class Manage::Restaurant::BillsController < ApplicationController
 
   before_action :set_restaurant, only: [:show, :new, :create, :edit, :index]
-  before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_bill, only: [:show, :edit, :update, :destroy, :checkout]
 
   def index
     
@@ -31,6 +31,15 @@ class Manage::Restaurant::BillsController < ApplicationController
 
   def update
     @bill.update bill_params
+  end
+
+  def checkout
+    @bill.total_price = 0
+    @bill.bill_items.each do |bill_item|
+      @bill.total_price += (bill_item.bill_itemable.price * bill_item.amount)
+    end
+    @bill.checkout = true
+    @bill.save
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426055312) do
+ActiveRecord::Schema.define(version: 20140429090552) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140426055312) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_takeout"
+    t.boolean  "checkout"
   end
 
   create_table "carts", force: true do |t|
