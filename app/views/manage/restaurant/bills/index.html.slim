@@ -15,15 +15,23 @@ section#foods
               thead
                 th
                   = "销售单号"
+                th width="100"
+                  = "总金额"
+                th width="100"
+                  = "实收"
                 th width="200"
                   = "销售时间"
-                th width="200"
+                th width="150"
                   = "操作"
               tbody
                 - @restaurant.bills.each do |bill|
                   tr
                     td style="font-size:17px;line-height:37px;"
-                      = bill.id
+                      = bill.sn
+                    td style="font-size:17px;line-height:37px;"
+                      = bill.total_price
+                    td style="font-size:17px;line-height:37px;"
+                      = bill.paidin
                     td style="font-size:17px;line-height:37px;"
                       = formattime(bill.created_at, :unit => "hour")
                     td
