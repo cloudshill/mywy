@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501073117) do
+ActiveRecord::Schema.define(version: 20140502061903) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140501073117) do
     t.boolean  "is_takeout"
     t.boolean  "checkout"
     t.decimal  "paidin",        precision: 10, scale: 0
+    t.string   "sn"
   end
 
   create_table "carts", force: true do |t|

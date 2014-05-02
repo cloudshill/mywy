@@ -22,9 +22,9 @@ section#foods
               tbody
                 - @restaurant.bills.each do |bill|
                   tr
-                    td
+                    td style="font-size:17px;line-height:37px;"
                       = bill.id
-                    td
+                    td style="font-size:17px;line-height:37px;"
                       = formattime(bill.created_at, :unit => "hour")
                     td
                       .btn-group
