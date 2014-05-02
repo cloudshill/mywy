@@ -13,6 +13,7 @@
 //= require simditor
 //= require select2
 //= require select2_locale_zh-CN
+//= require artDialog/artDialog
 //= require turbolinks
 //= require_self
 //= require_tree ./plugins

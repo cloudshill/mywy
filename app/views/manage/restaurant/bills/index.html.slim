@@ -15,9 +15,9 @@ section#foods
               thead
                 th
                   = "销售单号"
-                th
+                th width="200"
                   = "销售时间"
-                th
+                th width="200"
                   = "操作"
               tbody
                 - @restaurant.bills.each do |bill|
@@ -25,8 +25,38 @@ section#foods
                     td
                       = bill.id
                     td
-                      = bill.created_at
+                      = formattime(bill.created_at, :unit => "hour")
                     td
-                      a href=manage_restaurant_restaurant_bill_path(@restaurant, bill)
-                        = "修改"
-                      = link_to "删除", manage_restaurant_restaurant_bill_path(@restaurant, bill), :method => :delete
+                      .btn-group
+                        - if bill.checkout
+                          a href="#" class="btn btn-primary btn-sm" id="pay" data-no-turbolink="" data-url=manage_restaurant_restaurant_bill_path(@restaurant, bill)
+                            = "收款"
+                        - else
+                          a href=manage_restaurant_restaurant_bill_path(@restaurant, bill) class="btn btn-primary btn-sm"
+                            = "修改"
+                        = link_to "删除", manage_restaurant_restaurant_bill_path(@restaurant, bill), :method => :delete, :class => "btn btn-danger btn-sm"
+javascript:
+  $('#pay').on('click', function(){
+    art.dialog({
+      id: 'paid-in-dialog',
+      title: '请输入实收金额！',
+      content: '<input type="text" name="paid-in" id="paid-in" />',
+      follow: document.getElementById('paidin'),
+      lock: true,
+      button:[{
+        value: '保存',
+        callback: function() {
+          var paidin = $('#paid-in').val();
+          $.ajax({
+            type: 'put',
+            url: $('#pay').data("url"),
+            data: {
+              'bill': {
+                'paidin': paidin
+              }
+            }
+          });
+        }
+      }]
+    });
+  });

@@ -53,6 +53,6 @@ class Manage::Restaurant::BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:is_takeout, :table_id)
+    params.require(:bill).permit(:is_takeout, :table_id, :paidin)
   end
 end
