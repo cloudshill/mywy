@@ -1,4 +1,6 @@
 class Restaurant::WapsController < Restaurant::ApplicationController
+  layout "wap"
+  
   before_action :set_wap
   
   def show

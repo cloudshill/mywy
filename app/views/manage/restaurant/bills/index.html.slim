@@ -21,7 +21,7 @@ section#foods
                   = "实收"
                 th width="200"
                   = "销售时间"
-                th width="150"
+                th width="200"
                   = "操作"
               tbody
                 - @restaurant.bills.each do |bill|
@@ -29,19 +29,18 @@ section#foods
                     td style="font-size:17px;line-height:37px;"
                       = bill.sn
                     td style="font-size:17px;line-height:37px;"
-                      = bill.total_price
+                      = "#{bill.total_price} 元"
                     td style="font-size:17px;line-height:37px;"
-                      = bill.paidin
+                      = "#{bill.paidin} 元"
                     td style="font-size:17px;line-height:37px;"
                       = formattime(bill.created_at, :unit => "hour")
                     td
                       .btn-group
                         - if bill.checkout
-                          a href="#" class="btn btn-primary btn-sm" id="pay" data-no-turbolink="" data-url=manage_restaurant_restaurant_bill_path(@restaurant, bill)
+                          a href="#" class="btn btn-info btn-sm" id="pay" data-no-turbolink="" data-url=manage_restaurant_restaurant_bill_path(@restaurant, bill)
                             = "收款"
-                        - else
-                          a href=manage_restaurant_restaurant_bill_path(@restaurant, bill) class="btn btn-primary btn-sm"
-                            = "修改"
+                        a href=manage_restaurant_restaurant_bill_path(@restaurant, bill) class="btn btn-primary btn-sm"
+                          = "查看"
                         = link_to "删除", manage_restaurant_restaurant_bill_path(@restaurant, bill), :method => :delete, :class => "btn btn-danger btn-sm"
 javascript:
   $('#pay').on('click', function(){
