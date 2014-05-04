@@ -11,18 +11,11 @@ html
     header.bar.bar-nav
       button.btn.pull-left
         = "客户端"
-      a href="#popover"
+      a href="#"
         button.btn.pull-left
           = "分类"
       h1.title
         = @wap.title
-    #popover.popover
-      header.bar.bar-nav
-        h1.title
-         = "Popover title"
-      ul.table-view
-        li.table-view-cell
-          = "Item1"
     .content
       = yield
     nav.bar.bar-tab

@@ -1,0 +1,13 @@
+.slider#mySlider
+  .slide-group
+    - @food.images.each do |pic|
+      .slide
+        = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500"))
+        span.slide-text
+          span.icon.icon-left-nav
+          = "Slide me"
+.content-padded
+  h4
+    = @food.name
+  h3 style="color: red;"
+    = "￥ #{@food.price}"
