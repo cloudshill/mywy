@@ -2,3 +2,8 @@
  *= require ratchet_base
  *= require ratchet_ios
 */
+ul { list-style: none;}
+.slider { background-color: #ffffff; }
+.pics img{border: 0; margin: 0; padding: 0;overflow: hidden;}
+.anvli{ width:18px; height:16px; float:left; margin-right:8px; cursor:pointer; background:image-url("dot.png") 0px -16px; }
+.navnow{ background:image-url("dot.png") 0px 0px; }

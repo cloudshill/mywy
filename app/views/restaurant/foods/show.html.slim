@@ -1,13 +1,54 @@
 .slider#mySlider
-  .slide-group
-    - @food.images.each do |pic|
-      .slide
+  .slide-group#picbox
+    - @food.images.limit(5).each do |pic|
+      .slide.pics
         = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500"))
-        span.slide-text
-          span.icon.icon-left-nav
-          = "Slide me"
+  ul
+    li id="navli1" class="anvli navnow" value="1"
+    li id="navli2" class="anvli" value="2"
+    li id="navli3" class="anvli" value="3"
+    li id="navli4" class="anvli" value="4"
+    li id="navli5" class="anvli" value="5"
+    
 .content-padded
   h4
     = @food.name
   h3 style="color: red;"
     = "￥ #{@food.price}"
+nav.bar.bar-tab
+  a.tab-item.active href="#"
+    span.icon.icon-home
+    span.tab-label
+      = "马上购买"
+  a.tab-item href="#"
+    span.icon.icon-person
+    span.tab-label
+      = "加入购物车"
+javascript:
+  var i = 0,m;
+
+  $(document).ready(function() {
+      setInterval(function autodo() {
+          i++;
+          if (i > 5) {
+              i = 1
+          }
+          doit(i);
+      },
+      3000);
+      $(".anvli").hover(function() {
+          i = $(this).val();
+          doit(i);
+
+      });
+
+  });
+  function doit(i) {
+      m = -960 * (i - 1);
+      $(".anvli").removeClass("navnow");
+      $("#navli" + i).addClass("navnow");
+      $("#picbox").stop(true, true).animate({
+          "left": m + "px"
+      },
+      700);
+  }
