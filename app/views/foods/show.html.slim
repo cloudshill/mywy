@@ -21,12 +21,12 @@ section#good
       .row.panel-body
         .col-lg-8.col-sm-8.col-xs-12.goods-pic-box
           .goods-big-pic
-            = image_tag(@food.images.first.image.url("500x500"), :id => "goodsBigPic") if not food.images.blank?
+            = image_tag(@food.images.first.image.url("500x500"), :id => "goodsBigPic") if not @food.images.blank?
           .goods-small-pic.clearfix
             ul#goodsPicList
               - @food.images.each do |pic|
                 li
-                  = image_tag(pic.image.url("50x50"), "data-src" => pic.image.url("500x500")) if not food.images.blank?
+                  = image_tag(pic.image.url("50x50"), "data-src" => pic.image.url("500x500")) if not pic.image.blank?
           span.icon-slides.icon-slides-prev title="上一张" id="goodsPicPrev"
             = "上一张"
           span.icon-slides.icon-slides-next title="下一张" id="goodsPicNext"

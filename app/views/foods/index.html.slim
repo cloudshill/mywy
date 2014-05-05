@@ -41,7 +41,8 @@ section#food
                         = image_tag(food.images.first.image.url("140x140")) if not food.images.blank?
                       .controll-box style="height:60px;"
                         p.name
-                          = food.name
+                          = link_to food_path(food) do
+                            = food.name
                         p.price.text-danger
                           = food.price
                       .controll-box
