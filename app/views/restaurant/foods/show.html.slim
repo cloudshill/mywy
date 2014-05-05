@@ -2,7 +2,7 @@
   .slide-group#picbox
     - @food.images.limit(5).each do |pic|
       .slide.pics
-        = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500"))
+        = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500")) if not food.images.blank?
   ul
     li id="navli1" class="anvli navnow" value="1"
     li id="navli2" class="anvli" value="2"
