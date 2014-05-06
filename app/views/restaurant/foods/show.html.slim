@@ -9,12 +9,15 @@
     li id="navli3" class="anvli" value="3"
     li id="navli4" class="anvli" value="4"
     li id="navli5" class="anvli" value="5"
-    
-.content-padded
-  h4
-    = @food.name
-  h3 style="color: red;"
-    = "￥ #{@food.price}"
+ul.table-view
+  li.table-view-cell
+    h4
+      = @food.name
+  li.table-view-cell
+    h3 style="color: red;"
+      = "￥ #{@food.price}"
+  
+  
 nav.bar.bar-tab
   a.tab-item.active href="#"
     span.icon.icon-home

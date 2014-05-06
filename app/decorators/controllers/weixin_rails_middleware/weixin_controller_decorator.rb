@@ -23,7 +23,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       reply_text_message("#{message}")
     end
 
-    def response_text_message(options={})
+    def response_news_message(options={})
       articles = []
       current_weixin_public_account.wechat_articles.each do |article|
         if article.keyword == @keyword
