@@ -4,6 +4,9 @@ html
     title
       = @wap.title
     meta http-equiv="Access-Control-Allow-Origin" content="*"
+    meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black"
     = stylesheet_link_tag    "wap", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "wap", "data-turbolinks-track" => true
     = csrf_meta_tags
