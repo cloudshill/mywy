@@ -6,13 +6,14 @@
 .my-head {
   background-color: #ffffff;
   height: 120px;
-}
-.my-head-blank {
-  height: 60px;
+  .bar {
+    background-color: #ffffff;
+  }
 }
 .my-head-title {
-  height: 30px;
-}
-.my-head-bar {
-  height: 30px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  .title {
+  }
 }

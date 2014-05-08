@@ -1,18 +1,45 @@
-.my-head
-  .my-head-blank
-  .my-head-title
+header.bar.bar-nav
+  button.btn.pull-left
+    = "客户端"
+  a href="#"
+    button.btn.pull-right
+      = "分类"
+  h1.title
     = @wap.title
-  .my-head-bar
-    = "宝贝 | 新宝贝 | 分享 | 收藏"
-ul.table-view
-  - @foods.each do |food|
-    li.table-view-cell.media
-      a.navigate-right href=restaurant_wap_food_path(@wap, food)
-        = image_tag(food.images.first.image.url("50x50"), class: "media-object pull-left") if not food.images.blank?
-        .media-body
-          = food.name
-          p
-            = "#{food.price} 元 #{food.description}"
+.content
+  .my-head
+    .my-head-blank
+    .my-head-title
+      span.title
+        = @wap.title
+    .my-head-bar.bar.bar-tab
+      a.tab-item href="#"
+        span.icon
+          = "123"
+        span.tab-label
+          = "宝贝"
+      a.tab-item href="#"
+        span.icon
+          = "123"
+        span.tab-label
+          = "新宝贝"
+      a.tab-item href="#"
+        span.icon.icon-share
+        span.tab-label
+          = "分享"
+      a.tab-item href="#"
+        span.icon.icon-star
+        span.tab-label
+          = "收藏"
+  ul.table-view
+    - @foods.each do |food|
+      li.table-view-cell.media
+        a.navigate-right href=restaurant_wap_food_path(@wap, food)
+          = image_tag(food.images.first.image.url("50x50"), class: "media-object pull-left") if not food.images.blank?
+          .media-body
+            = food.name
+            p
+              = "#{food.price} 元 #{food.description}"
 nav.bar.bar-tab
   a.tab-item.active href="#"
     span.icon.icon-home

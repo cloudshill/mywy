@@ -1,25 +1,35 @@
-.slider#mySlider
-  .slide-group
-    - @food.images.limit(5).each do |pic|
-      .slide
-        = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500")) if not pic.image.blank?
+header.bar.bar-nav
+  a href="#{request.referrer}"
+    button.btn.pull-left
+      = "首页"
+  a href="#"
+    button.btn.pull-right
+      = "分类"
+  h1.title
+    = @wap.title
+.content
+  .slider#mySlider
+    .slide-group
+      - @food.images.limit(5).each do |pic|
+        .slide
+          = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500")) if not pic.image.blank?
 
-ul.table-view
-  li.table-view-cell
-    h4
-      = @food.name
-  li.table-view-cell
-    h3 style="color: red;"
-      = "￥ #{@food.price}"
-
-ul.table-view
-  li.table-view-cell
-    a.navigate-right
+  ul.table-view
+    li.table-view-cell
       h4
-        = "评价详情"
-  li.table-view-cell
-    h3 style="color: red;"
-      = "￥ #{@food.price}"
+        = @food.name
+    li.table-view-cell
+      h3 style="color: red;"
+        = "￥ #{@food.price}"
+
+  ul.table-view
+    li.table-view-cell
+      a.navigate-right
+        h4
+          = "评价详情"
+    li.table-view-cell
+      h3 style="color: red;"
+        = "￥ #{@food.price}"
   
   
 nav.bar.bar-tab

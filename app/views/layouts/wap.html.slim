@@ -11,13 +11,4 @@ html
     = javascript_include_tag "wap", "data-turbolinks-track" => true
     = csrf_meta_tags
   body
-    header.bar.bar-nav
-      button.btn.pull-left
-        = "客户端"
-      a href="#"
-        button.btn.pull-right
-          = "分类"
-      h1.title
-        = @wap.title
-    .content
-      = yield
+    = yield
