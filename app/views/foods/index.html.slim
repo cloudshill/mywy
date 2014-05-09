@@ -44,7 +44,7 @@ section#food
                           = link_to food_path(food) do
                             = food.name
                         p.price.text-danger
-                          = food.price
+                          = "#{food.price} 元"
                       .controll-box
                         a href="#" class="left pull-left" alt="订餐" onclick="return App.addToCart(this);" data-id="#{food.id}" data-type="#{food.class.name}"
                           span.fa.fa-plus

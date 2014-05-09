@@ -1,7 +1,7 @@
 header.bar.bar-nav
   a href="#{request.referrer}"
     button.btn.pull-left
-      = "首页"
+      = "返回"
   a href="#"
     button.btn.pull-right
       = "分类"
@@ -12,7 +12,7 @@ header.bar.bar-nav
     .slide-group
       - @food.images.limit(5).each do |pic|
         .slide
-          = image_tag(pic.image.url("500x500"), "data-src" => pic.image.url("500x500")) if not pic.image.blank?
+          = image_tag(pic.image.url("500x500")) if not pic.image.blank?
 
   ul.table-view
     li.table-view-cell

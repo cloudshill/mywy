@@ -5,7 +5,7 @@ class Restaurant::FoodsController < Restaurant::ApplicationController
   before_action :set_food, only: [:show]
 
   def index
-    
+    @foods = @wap.wechat.wechatable.foods
   end
 
   def show
