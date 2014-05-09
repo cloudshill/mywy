@@ -21,6 +21,9 @@ header.bar.bar-nav
     li.table-view-cell
       h3 style="color: red;"
         = "￥ #{@food.price}"
+    li.table-view-cell
+      h4
+        = @food.description
 
   ul.table-view
     li.table-view-cell
@@ -30,7 +33,6 @@ header.bar.bar-nav
     li.table-view-cell
       h3 style="color: red;"
         = "￥ #{@food.price}"
-  
   
 nav.bar.bar-tab
   a.tab-item.active href="#"
