@@ -1,4 +1,4 @@
-class Manage::Cinema::TicketsController < ApplicationController
+class Manage::Cinema::TicketsController < Manage::ApplicationController
   before_filter :require_member
   before_action :set_cinema, only: [:index, :new, :create]
 

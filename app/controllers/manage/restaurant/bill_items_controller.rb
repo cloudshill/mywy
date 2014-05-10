@@ -1,4 +1,4 @@
-class Manage::Restaurant::BillItemsController < ApplicationController
+class Manage::Restaurant::BillItemsController < Manage::ApplicationController
   before_action :set_restaurant, only: [:create, :update]
   before_action :set_bill, only: [:create, :update]
   before_action :set_bill_item, only: [:update]

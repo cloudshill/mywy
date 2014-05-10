@@ -7,13 +7,21 @@ header.bar.bar-nav
       = "分类"
   h1.title
     = @wap.title
+nav.bar.bar-tab
+  a.tab-item.active href="#"
+    span.icon.icon-home
+    span.tab-label
+      = "马上购买"
+  a.tab-item href="#"
+    span.icon.icon-person
+    span.tab-label
+      = "加入购物车"
 .content
   .slider#mySlider
     .slide-group
       - @food.images.limit(5).each do |pic|
         .slide
           = image_tag(pic.image.url("500x500")) if not pic.image.blank?
-
   ul.table-view
     li.table-view-cell
       h4
@@ -24,7 +32,6 @@ header.bar.bar-nav
     li.table-view-cell
       h4
         = @food.description
-
   ul.table-view
     li.table-view-cell
       a.navigate-right
@@ -33,14 +40,5 @@ header.bar.bar-nav
     li.table-view-cell
       h3 style="color: red;"
         = "￥ #{@food.price}"
-  
-nav.bar.bar-tab
-  a.tab-item.active href="#"
-    span.icon.icon-home
-    span.tab-label
-      = "马上购买"
-  a.tab-item href="#"
-    span.icon.icon-person
-    span.tab-label
-      = "加入购物车"
+
 javascript:

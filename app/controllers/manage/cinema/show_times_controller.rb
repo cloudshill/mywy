@@ -1,4 +1,4 @@
-class Manage::Cinema::ShowTimesController < ApplicationController
+class Manage::Cinema::ShowTimesController < Manage::ApplicationController
   before_filter :require_member, only: [:new, :edit, :create, :update, :destroy, :order]
   before_filter :require_cinema_owner_or_employee, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:index, :new, :create, :order]

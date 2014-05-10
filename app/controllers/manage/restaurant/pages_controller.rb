@@ -1,4 +1,4 @@
-class Manage::Page::RestaurantsController < ApplicationController
+class Manage::Page::RestaurantsController < Manage::ApplicationController
   before_action :set_page, only: [:edit, :update]
 
   def edit

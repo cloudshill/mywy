@@ -1,4 +1,4 @@
-class Manage::Restaurant::DiymenusController < ApplicationController
+class Manage::Restaurant::DiymenusController < Manage::ApplicationController
   before_action :set_restaurant, only: [:index, :create, :update]
   before_action :set_wechat, only: [:index, :create, :update]
 

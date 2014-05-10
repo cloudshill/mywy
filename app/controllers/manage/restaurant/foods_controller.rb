@@ -1,4 +1,4 @@
-class Manage::Restaurant::FoodsController < ApplicationController
+class Manage::Restaurant::FoodsController < Manage::ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
   before_action :set_restaurant, only: [:index, :edit, :create, :new]
 

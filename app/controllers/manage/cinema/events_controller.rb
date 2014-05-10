@@ -1,4 +1,4 @@
-class Manage::Cinema::EventsController < ApplicationController
+class Manage::Cinema::EventsController < Manage::ApplicationController
   before_filter :require_member
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_eventable, only: [:create, :index, :show, :new, :edit]

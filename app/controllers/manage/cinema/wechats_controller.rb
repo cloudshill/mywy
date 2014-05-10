@@ -1,4 +1,4 @@
-class Manage::Cinema::WechatsController < ApplicationController
+class Manage::Cinema::WechatsController < Manage::ApplicationController
   before_action :set_cinema, only: [:show, :new, :create, :edit, :authorize, :replyset, :focusset]
   before_action :set_wechat, only: [:show, :edit, :update, :destroy, :authorize, :replyset, :focusset]
 

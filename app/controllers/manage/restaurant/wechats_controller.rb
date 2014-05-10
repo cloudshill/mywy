@@ -1,4 +1,4 @@
-class Manage::Restaurant::WechatsController < ApplicationController
+class Manage::Restaurant::WechatsController < Manage::ApplicationController
   before_action :set_restaurant, only: [:show, :new, :create, :edit, :authorize, :replyset, :focusset]
   before_action :set_wechat, only: [:show, :edit, :update, :destroy, :authorize, :replyset, :focusset]
 

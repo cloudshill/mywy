@@ -1,4 +1,4 @@
-class Manage::Restaurant::WapsController < ApplicationController
+class Manage::Restaurant::WapsController < Manage::ApplicationController
   before_action :set_restaurant, only: [:edit, :update]
   before_action :set_wechat, only: [:edit, :update]
   before_action :set_wap, only: [:edit, :update]

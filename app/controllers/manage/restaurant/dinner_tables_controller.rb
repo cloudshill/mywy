@@ -1,4 +1,4 @@
-class Manage::Restaurant::DinnerTablesController < ApplicationController
+class Manage::Restaurant::DinnerTablesController < Manage::ApplicationController
   before_action :set_dinner_table, only: [:show, :edit, :update, :destroy]
   before_action :set_restaurant, only: [:index, :create, :new]
 

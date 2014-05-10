@@ -1,4 +1,4 @@
-class Manage::Cinema::EmploymentsController < ApplicationController
+class Manage::Cinema::EmploymentsController < Manage::ApplicationController
   before_action :set_employmentable, only: [:update, :destroy]
   before_action :set_cinema, only: [:index, :update]
   before_action :set_employment, only: [:update, :destroy]

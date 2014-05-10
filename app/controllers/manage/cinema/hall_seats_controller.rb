@@ -1,4 +1,4 @@
-class Manage::Cinema::HallSeatsController < ApplicationController
+class Manage::Cinema::HallSeatsController < Manage::ApplicationController
   before_filter :require_member, only: [:new, :edit, :create, :update, :destroy]
   before_filter :require_cinema_owner_or_employee, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:index, :new, :create]

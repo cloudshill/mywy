@@ -1,4 +1,4 @@
-class Manage::Restaurant::WechatArticlesController < ApplicationController
+class Manage::Restaurant::WechatArticlesController < Manage::ApplicationController
   before_action :set_restaurant, only: [:index, :new, :create, :edit, :update]
   before_action :set_wechat, only: [:index, :new, :create, :edit, :update]
   before_action :set_wechat_article, only: [:edit, :update, :destroy]

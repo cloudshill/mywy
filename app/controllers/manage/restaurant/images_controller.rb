@@ -1,4 +1,4 @@
-class Manage::Restaurant::ImagesController < ApplicationController
+class Manage::Restaurant::ImagesController < Manage::ApplicationController
   before_action :set_restaurant_and_food, only: [:index]
   before_action :set_imageable, only: [:index, :create]
 

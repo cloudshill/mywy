@@ -1,4 +1,4 @@
-class Manage::Cinema::CinemasController < ApplicationController
+class Manage::Cinema::CinemasController < Manage::ApplicationController
   before_filter :require_member, only: [:index, :new, :edit, :create, :update, :destroy]
   before_filter :require_cinema_owner_or_employee, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_cinema, only: [:show, :edit, :update, :destroy, :employment, :comments]
