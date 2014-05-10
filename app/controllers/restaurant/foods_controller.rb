@@ -3,9 +3,14 @@ class Restaurant::FoodsController < Restaurant::ApplicationController
 
   before_action :set_wap, only: [:show, :index]
   before_action :set_food, only: [:show]
+  before_action :set_nodes
 
   def index
-    @foods = @wap.wechat.wechatable.foods
+    if params[:node_id].blank?
+      @foods = @wap.wechat.wechatable.foods
+    else
+      @foods = @wap.wechat.wechatable.foods.where(:node_id => params[:node_id])
+    end
   end
 
   def show
@@ -20,5 +25,9 @@ class Restaurant::FoodsController < Restaurant::ApplicationController
 
   def set_food
     @food = Food.find(params[:id])
+  end
+
+  def set_nodes
+    @nodes = Node.where("business_scope = 'restaurant'")
   end
 end

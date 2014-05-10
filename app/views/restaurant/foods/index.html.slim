@@ -2,11 +2,32 @@ header.bar.bar-nav
   a href=restaurant_wap_path(@wap)
     button.btn.pull-left
       = "首页"
-  a href="#"
+  a href="#nodesModal" data-no-turbolink=""
     button.btn.pull-right
       = "分类"
   h1.title
     = @wap.title
+nav.bar.bar-tab
+  a.tab-item.active href="#"
+    span.icon.icon-home
+    span.tab-label
+      = "首页"
+  a.tab-item href="#"
+    span.icon.icon-person
+    span.tab-label
+      = "账号"
+  a.tab-item href="#"
+    span.icon.icon-star-filled
+    span.tab-label
+      = "收藏"
+  a.tab-item href="#"
+    span.icon.icon-search
+    span.tab-label
+      = "搜索"
+  a.tab-item href="#"
+    span.icon.icon-gear
+    span.tab-label
+      = "购物车"
 .content
   .my-head style="height:50px;"
     .my-head-bar.bar.bar-tab
@@ -31,24 +52,14 @@ header.bar.bar-nav
             = food.name
             p
               = "#{food.price} 元 #{food.description}"
-nav.bar.bar-tab
-  a.tab-item.active href="#"
-    span.icon.icon-home
-    span.tab-label
-      = "首页"
-  a.tab-item href="#"
-    span.icon.icon-person
-    span.tab-label
-      = "账号"
-  a.tab-item href="#"
-    span.icon.icon-star-filled
-    span.tab-label
-      = "收藏"
-  a.tab-item href="#"
-    span.icon.icon-search
-    span.tab-label
-      = "搜索"
-  a.tab-item href="#"
-    span.icon.icon-gear
-    span.tab-label
-      = "购物车"
+#nodesModal.modal
+  header.bar.bar-nav
+    a.icon.icon-close.pull-right href="#nodesModal"
+    h1.title
+      = "分类"
+  .content
+    ul.table-view
+      -@nodes.each do |node|
+        li.table-view-cell
+          a.navigate-right href=restaurant_wap_foods_path(@wap, node_id: node.id)
+            = node.name
