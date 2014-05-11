@@ -1,10 +1,8 @@
 header.bar.bar-nav
-  a href=restaurant_wap_path(@wap)
-    button.btn.pull-left
-      = "首页"
-  a href="#nodesModal" data-no-turbolink=""
-    button.btn.pull-right
-      = "分类"
+  a.btn.pull-left href=restaurant_wap_path(@wap)
+    = "首页"
+  a.btn.pull-right href="#nodesModal" data-no-turbolink=""
+    = "分类"
   h1.title
     = @wap.title
 nav.bar.bar-tab
