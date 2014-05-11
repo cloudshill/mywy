@@ -26,6 +26,17 @@ nav.bar.bar-tab
     span.icon.icon-gear
     span.tab-label
       = "购物车"
+#nodesModal.modal
+  header.bar.bar-nav
+    a.icon.icon-close.pull-right href="#nodesModal"
+    h1.title
+      = "分类"
+  .content
+    ul.table-view
+      -@nodes.each do |node|
+        li.table-view-cell
+          a.navigate-right href=restaurant_wap_foods_path(@wap, node_id: node.id)
+            = node.name
 .content
   .my-head
     .my-head-blank
@@ -60,14 +71,3 @@ nav.bar.bar-tab
             = food.name
             p
               = "#{food.price} 元 #{food.description}"
-#nodesModal.modal
-  header.bar.bar-nav
-    a.icon.icon-close.pull-right href="#nodesModal"
-    h1.title
-      = "分类"
-  .content
-    ul.table-view
-      -@nodes.each do |node|
-        li.table-view-cell
-          a.navigate-right href=restaurant_wap_foods_path(@wap, node_id: node.id)
-            = node.name
