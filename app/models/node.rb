@@ -4,6 +4,7 @@ class Node < ActiveRecord::Base
 
 	has_many :categories, :dependent => :destroy
   has_many :products
+  has_many :foods
 
   validates :name, presence: true
 end

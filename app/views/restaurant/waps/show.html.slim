@@ -5,27 +5,7 @@ header.bar.bar-nav
     = "分类"
   h1.title
     = @wap.title
-nav.bar.bar-tab
-  a.tab-item.active href="#"
-    span.icon.icon-home
-    span.tab-label
-      = "首页"
-  a.tab-item href="#"
-    span.icon.icon-person
-    span.tab-label
-      = "账号"
-  a.tab-item href="#"
-    span.icon.icon-star-filled
-    span.tab-label
-      = "收藏"
-  a.tab-item href="#"
-    span.icon.icon-search
-    span.tab-label
-      = "搜索"
-  a.tab-item href="#"
-    span.icon.icon-gear
-    span.tab-label
-      = "购物车"
+= render 'restaurant/shared/wap_nav'
 #nodesModal.modal
   header.bar.bar-nav
     a.icon.icon-close.pull-right href="#nodesModal"
@@ -62,12 +42,18 @@ nav.bar.bar-tab
         span.icon.icon-star
         span.tab-label
           = "收藏"
-  ul.table-view
-    - @foods.each do |food|
-      li.table-view-cell.media
-        a.navigate-right href=restaurant_wap_food_path(@wap, food)
-          = image_tag(food.images.first.image.url("50x50"), class: "media-object pull-left") if not food.images.blank?
-          .media-body
-            = food.name
-            p
-              = "#{food.price} 元 #{food.description}"
+  -@nodes.each do |node|
+    h5.content-padded
+      = node.name
+      span.pull-right
+        a href=restaurant_wap_foods_path(@wap, node_id: node.id)
+          = "更多..."
+    ul.table-view
+      - node.foods.limit(5).each do |food|
+        li.table-view-cell.media
+          a.navigate-right href=restaurant_wap_food_path(@wap, food)
+            = image_tag(food.images.first.image.url("50x50"), class: "media-object pull-left") if not food.images.blank?
+            .media-body
+              = food.name
+              p
+                = "#{food.price} 元 #{food.description}"
