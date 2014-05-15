@@ -50,6 +50,9 @@ gem 'essage-rails'
 # 权限
 gem 'cancan'
 
+# 搜索
+gem 'rails-simple-search'
+
 # getvideo is parse video information on Ruby, you can get video media download url, cover, flash url and title.
 gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
 

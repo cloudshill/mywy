@@ -96,7 +96,11 @@ Mywy::Application.routes.draw do
 
   namespace :restaurant do
     resources :waps, only: [:show] do
-      resources :foods, only: [:index, :show]
+      resources :foods, only: [:index, :show] do
+        collection do
+          get :search
+        end
+      end
     end
   end
 

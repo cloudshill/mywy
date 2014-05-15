@@ -1,7 +1,7 @@
 class Restaurant::FoodsController < Restaurant::ApplicationController
   layout "wap"
 
-  before_action :set_wap, only: [:show, :index]
+  before_action :set_wap, only: [:show, :index, :search]
   before_action :set_food, only: [:show]
   before_action :set_nodes
 
@@ -15,6 +15,12 @@ class Restaurant::FoodsController < Restaurant::ApplicationController
 
   def show
     
+  end
+
+  def search
+    @search = Search.new(:food, params[:search], :per_page => 2)
+    @search.order = 'name'
+    @foods = @search.run
   end
 
   private
