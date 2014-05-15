@@ -7,6 +7,7 @@ header.bar.bar-nav
 .bar.bar-standard.bar-header-secondary
   = form_for @search, :url => search_restaurant_wap_foods_path(@wap), :method => :get do |f|
     input type="search" placeholder="请输入名称" name="search[name]"
+= render 'restaurant/shared/wap_nav'
 .content
   ul.table-view
     - @foods.each do |food|

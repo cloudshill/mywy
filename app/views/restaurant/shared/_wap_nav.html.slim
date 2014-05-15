@@ -1,17 +1,17 @@
 nav.bar.bar-tab
-  a.tab-item.active href=restaurant_wap_path(@wap)
+  a href=restaurant_wap_path(@wap) class="tab-item #{'active' if controller_name == 'waps' && action_name == 'show'}"
     span.icon.icon-home
     span.tab-label
       = "首页"
-  a.tab-item href="#"
+  a href="#" class="tab-item"
     span.icon.icon-gear
     span.tab-label
       = "购物车"
-  a.tab-item href=search_restaurant_wap_foods_path(@wap)
+  a href=search_restaurant_wap_foods_path(@wap) class="tab-item #{'active' if controller_name == 'foods' && action_name == 'search'}"
     span.icon.icon-search
     span.tab-label
       = "搜索"
-  a.tab-item href="#"
+  a href="#" class="tab-item"
     span.icon.icon-person
     span.tab-label
       = "我的"

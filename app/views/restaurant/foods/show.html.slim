@@ -22,8 +22,10 @@ nav.bar.bar-tab
           = image_tag(pic.image.url("500x500")) if not pic.image.blank?
   ul.table-view
     li.table-view-cell
-      h4
+      span
         = @food.name
+      span.pull-right.icon.icon-star
+        = "收藏"
     li.table-view-cell
       h3 style="color: red;"
         = "￥ #{@food.price}"
@@ -36,5 +38,4 @@ nav.bar.bar-tab
         h4
           = "评价详情"
     li.table-view-cell
-      h3 style="color: red;"
-        = "￥ #{@food.price}"
+      = "暂无评论"

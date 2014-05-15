@@ -1,6 +1,11 @@
 = form_for([:manage, :restaurant, @restaurant, @wechat, @wap], remote: true, html: { class: "form-horizontal" }) do |f|
   = render 'shared/form_error_messages', form: f
   .form-group
+    label.col-sm-2.control-label
+      = "微站地址"
+    .col-sm-10
+      input type="text" value="http://www.meiyuewuyou.com#{restaurant_wap_path(@wap)}" class="form-control"
+  .form-group
     = f.label :title, class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_field :title, class: "form-control"
