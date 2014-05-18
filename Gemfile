@@ -1,7 +1,7 @@
 source 'http://ruby.taobao.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.1'
 
 gem 'mysql2'
 
@@ -110,6 +110,7 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'spring'
   gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-rails',   '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
