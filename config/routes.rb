@@ -60,7 +60,7 @@ Mywy::Application.routes.draw do
 
   resources :pictures
 
-  resources :products do
+  resources :products, :only => [:index, :show] do
     resources :comments
     resources :favorites, :only => [:create, :destroy]
   end
