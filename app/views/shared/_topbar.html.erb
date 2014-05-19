@@ -1,10 +1,10 @@
 			<section id="topbar">
 				<div class="container">				
-					<div class="navbar-header pull-left hidden-xs hidden-sm">
+					<div class="navbar-header pull-left">
 						<div class="clearfix">
 							<% if member_signed_in? %>
 							<ul class="links">
-								<li>
+								<li class="hidden-xs">
 									<%= link_to favorites_path do %>
 										<i class="fa fa-user"></i>收藏夹 (<%= current_member.favorites.count %>)
 									<% end %>
@@ -16,14 +16,14 @@
 								</li>
 								<% if current_member.role.seller? %>
 									<% if is_cinema_owner? %>
-										<li>
+										<li class="hidden-xs">
 											<%= link_to manage_cinema_cinemas_path do %>
 												<i class="fa fa-archive"></i>我的电影院
 											<% end %>
 										</li>
 									<% end %>
 									<% if is_restaurant_owner? %>
-										<li>
+										<li class="hidden-xs">
 											<%= link_to manage_restaurant_restaurants_path do %>
 												<i class="fa fa-archive"></i>我的餐厅
 											<% end %>
