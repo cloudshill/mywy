@@ -1,69 +1,59 @@
-<section id="market-page">
-  <div class="container">
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="fa fa-list"></span>
-          </a>
-          <a class="navbar-brand" href="#">美月无忧</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "首页", root_path %></li>
-            <li><%= link_to "商城", products_path %></li>
-            <li><%= link_to "餐厅", foods_path %></li>
-            <li><%= link_to "电影", movies_path %></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-  </div>
-</section>
-<%= render 'shared/notification' %>
-<section id="home_page">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <div class="row">
-          <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div id="movie" class="ui-slide-box">
-              <div class="ui-slide-control">
-                <span class="title">电影</span>
-                <div class="pull-right">
-                  <a class="prev-next-btn left" href="#" data-slide="prev">
-                  </a>
-                  <a class="prev-next-btn right" href="#"  data-slide="next">
-                  </a>
+<div class="content">
+  <ul class="navigation-box list-unstyled list-inline">
+    <li>
+      <%= link_to products_path do %>
+        <span class="fa fa-shopping-cart"></span>
+        <span>商城</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to foods_path do %>
+        <span class="fa fa-cutlery"></span>
+        <span>餐厅</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to movies_path do %>
+        <span class="fa fa-file-video-o"></span>
+        <span>电影</span>
+      <% end %>
+    </li>
+  </ul>
+  <%= render 'shared/notification' %>
+  <section id="home_page">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="movie" class="ui-slide-box">
+                <div class="ui-slide-control">
+                  <span class="title">电影</span>
                 </div>
-              </div>
-              <div class="ui-slide-content">
-                <div class="row">
-                  <% @movies.each do |movie| %>
-                  <div class="ui-slide-content-box col-md-3">
-                    <%= link_to movie_path(movie) do %>
-                      <%= image_tag(movie.cover.url("140x140")) %>
-                    <% end %>
-                    <div class="controll-box">
-                      <a href="" class="left pull-left" alt="订票">
-                        <span class="fa fa-plus"></span>
-                      </a>
-                      <a href="" class="right pull-right" alt="赞">
-                        <span class="fa fa-heart"></span>
-                      </a>
+                <div class="ui-slide-content">
+                  <div class="row">
+                    <% @movies.each do |movie| %>
+                    <div class="ui-slide-content-box col-md-3">
+                      <%= link_to movie_path(movie) do %>
+                        <%= image_tag(movie.cover.url("140x140")) %>
+                      <% end %>
+                      <div class="controll-box">
+                        <a href="" class="left pull-left" alt="订票">
+                          <span class="fa fa-plus"></span>
+                        </a>
+                        <a href="" class="right pull-right" alt="赞">
+                          <span class="fa fa-heart"></span>
+                        </a>
+                      </div>
                     </div>
+                    <% end %>
                   </div>
-                  <% end %>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+</div>

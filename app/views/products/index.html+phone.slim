@@ -1,0 +1,15 @@
+.content
+  = render 'shared/notification'
+  ul.list-group.product-category
+    - Node.where("business_scope = 'mywy'").each do |node|
+      li.list-group-item
+        = link_to node.name, node_products_path(node)
+        span.pull-right
+          i.fa.fa-angle-right
+  #market
+    .row
+      .col-lg-12.col-md-12.col-sm-12.col-xs-12
+        - if @node.blank?
+          = render 'no_node_index'
+        - else
+          = render 'has_node_index'

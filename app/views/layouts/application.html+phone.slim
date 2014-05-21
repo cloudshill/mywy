@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title
+      = "美月无忧"
+    meta http-equiv="Access-Control-Allow-Origin" content="*"
+    meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black"
+    = stylesheet_link_tag    "application.mobile", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  body
+    header.bar.bar-nav
+  
+    nav.bar.bar-tab
+      a href=root_path class="tab-item #{'active' if controller_name == 'waps' && action_name == 'show'}"
+        span.icon.icon-home
+        span.tab-label
+          = "首页"
+      a href=carts_path class="tab-item"
+        span.icon.icon-gear
+        span.tab-label
+          = "购物车"
+      a href=carts_path class="tab-item"
+        span.icon.icon-list
+        span.tab-label
+          = "分类"
+      a href="#" class="tab-item #{'active' if controller_name == 'foods' && action_name == 'search'}"
+        span.icon.icon-search
+        span.tab-label
+          = "搜索"
+      a href=edit_member_registration_path class="tab-item"
+        span.icon.icon-person
+        span.tab-label
+          = "我的"
+
+    = yield
