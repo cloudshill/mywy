@@ -1,12 +1,9 @@
 /*
  *= require font-awesome
- *= require artDialog/default
  *= require ratchet_base
  *= require ratchet_ios
 */
 
-@import "bootstrap";
-@import "stylesheet";
 @import "essage";
 @import "video-js";
 
@@ -27,24 +24,18 @@
 }
 
 .navigation-box {
-  margin: 0;
-  display:table;
-  border: solid 1px #cccccc;
+  border-bottom: solid 1px #cccccc;
   background-color: #ffffff;
   width: 100%;
-  li {
+  td {
     border-right: solid 1px #cccccc;
     font-size: 18px;
-    display:table-cell;
-    height: 30px;
+    text-align:center;
+    height: 50px;
     span {
-      height:20px;
-      line-height:5px;
-      text-align:center;
-      display:block;
     }
   }
-  li:last-child {
+  td:last-child {
     border-right: 0;
   }
 }
@@ -374,8 +365,6 @@
   background-color: #FFF;
   border-bottom: solid 1px #CCC;
   height: 40px;
-  padding: 10px;
-  border-radius: 4px 4px 0 0;
 }
 
 .ui-slide-control .title {
@@ -407,8 +396,8 @@
 }
 
 .ui-slide-content .ui-slide-content-box {
+  display:inline-block;
   padding: 0px;
-  margin-left: 18px;
   margin-bottom: 10px;
   width:150px;
   height: 240px;
