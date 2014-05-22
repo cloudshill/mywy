@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active"><%= link_to "首页", products_path %></li>
-            <% Node.all.each do |node| %>
+            <% Node.where("business_scope = 'mywy'").each do |node| %>
             <li>
               <%= link_to node.name, node_products_path(node) %>
             </li>
@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-md-3">
         <ul class="list-group product-category">
-          <% Node.all.each do |node| %>
+          <% Node.where("business_scope = 'mywy'").each do |node| %>
           <li class="list-group-item">
             <%= link_to node.name, node_products_path(node) %>
             <span class="pull-right"><i class="fa fa-angle-right"></i></span>

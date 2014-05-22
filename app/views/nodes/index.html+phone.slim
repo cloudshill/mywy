@@ -1,0 +1,5 @@
+.content
+  ul.table-view
+    - Node.where("business_scope = 'mywy'").each do |node|
+      li.table-view-cell
+        = link_to node.name, node_products_path(node)

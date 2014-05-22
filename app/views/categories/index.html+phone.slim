@@ -1,0 +1,16 @@
+.content
+  ul.table-view
+    - @node.categories.where(:parent_id => 0).order("id ASC").each do |root|
+      li class="list-group-item"
+        ul class="clearfix list-inline"
+          li
+            = root.name
+          li
+            = render_option_of_total_category(@node.id, root.id)
+                <% root.children.each do |leave| %>
+                <li><%= render_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
+                <% end %>
+              </ul>
+            </li>
+            <% end %>
+          </ul>

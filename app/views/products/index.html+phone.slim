@@ -1,15 +1,21 @@
+.bar.bar-standard.bar-header-secondary.bar-tab
+  a class="tab-item active" href="#"
+    = "刷选"
+  a class="tab-item active" href="#"
+    = "刷选"
+  a class="tab-item active" href="#"
+    = "刷选"
 .content
   = render 'shared/notification'
-  ul.list-group.product-category
-    - Node.where("business_scope = 'mywy'").each do |node|
-      li.list-group-item
-        = link_to node.name, node_products_path(node)
-        span.pull-right
-          i.fa.fa-angle-right
   #market
     .row
       .col-lg-12.col-md-12.col-sm-12.col-xs-12
-        - if @node.blank?
-          = render 'no_node_index'
-        - else
-          = render 'has_node_index'
+        ul.table-view
+          - @products.each do |product|
+            li.table-view-cell.media
+              a.navigate-right href=product_path(product)
+                = image_tag(product.pictures.first.image.url("50x50"), class: "media-object pull-left") if not product.pictures.blank?
+                .media-body
+                  = product.name
+                  p
+                    = "#{product.price} 元 "
