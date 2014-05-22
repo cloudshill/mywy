@@ -31,7 +31,7 @@
               <span class="title">商城</span>
             </div>
             <div class="ui-slide-content">
-              <% @products.each do |product| %>
+              <% Product.all.order("sales ASC").limit(4).each do |product| %>
                 <div class="ui-slide-content-box">
                   <%= link_to product_path(product) do %>
                     <%= image_tag(product.pictures.first.image.url("140x140")) %>
@@ -58,7 +58,7 @@
             </div>
             <div class="ui-slide-content">
               <div class="row">
-                <% @foods.each do |food| %>
+                <% Food.all.order("name ASC").limit(4).each do |food| %>
                 <div class="ui-slide-content-box">
                   <%= link_to food_path(food) do %>
                     <%= image_tag(food.images.first.image.url("140x140")) %>
@@ -86,7 +86,7 @@
             </div>
             <div class="ui-slide-content">
               <div class="row">
-                <% @movies.each do |movie| %>
+                <% Movie.all.limit(4).each do |movie| %>
                 <div class="ui-slide-content-box">
                   <%= link_to movie_path(movie) do %>
                     <%= image_tag(movie.cover.url("140x140")) %>

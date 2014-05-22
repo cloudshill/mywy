@@ -40,7 +40,7 @@
               </div>
               <div class="ui-slide-content">
                 <div class="row">
-                  <% @movies.each do |movie| %>
+                  <% Movie.all.limit(5).each do |movie| %>
                   <div class="ui-slide-content-box col-md-3">
                     <%= link_to movie_path(movie) do %>
                       <%= image_tag(movie.cover.url("140x140")) %>
