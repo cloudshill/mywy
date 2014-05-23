@@ -229,7 +229,7 @@ window.Product = {
       type: "POST",
       data: {
         id: item_id,
-        item_type: item_type,
+        type: item_type,
         amount: item_count
       },
       success: function(result, status, xhr) {
