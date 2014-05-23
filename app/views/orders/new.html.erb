@@ -76,6 +76,7 @@
                 <h2 class="title">收货地址</h2>
               </div>
               <div class="clearfix xm-address-list" id="checkoutAddrList">
+                <input type="radio" id="address_0" name="order[address_id]" class="addressId" value="" checked style="display:none;" />
                 <% current_member.addresses.each do |address| %>
                 <dl data-id="address_<%= address.id %>" data-addressee="address.addressee" data-mobile="address.mobile" data-address="<%= address.address %>" class="<%= "selected" if current_member.ship_address_id == address.id %>" name='address_dl'>
                   <dt>
@@ -133,7 +134,21 @@
       }
     });
   });
+
   $("#new_address").on("click", function() {
 
+  });
+
+  $('#new_order').validate({
+    rules: {
+      'order[address_id]': {
+        required: true
+      }
+    },
+    messages: {
+      'order[address_id]': {
+        required: '地址不能为空！'
+      }
+    }
   });
 </script>
