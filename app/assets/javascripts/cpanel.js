@@ -12,7 +12,6 @@ $(document).ready(function(){
     $('#myModal').on('hide.bs.modal', function () {
         $(this).removeData('bs.modal');
     });
-    $("textarea").autoGrow();
     $("#product_description").qeditor({});
 });
 
