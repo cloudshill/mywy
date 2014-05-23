@@ -13,18 +13,7 @@ class Cpanel::PicturesController < Cpanel::ApplicationController
 
   def create
   	@picture = @product.pictures.build(picture_params)
-
-  	respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @picture }
-        format.js { @success = 1 }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-        format.js { @success = 2 }
-      end
-    end
+  	@picture.save
   end
 
   def destroy

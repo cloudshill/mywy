@@ -20,9 +20,13 @@
       <li>图片管理</li>
     </ul>
     <div class="page-header">
-      <%= link_to "上传", new_cpanel_node_product_picture_path(@node, @product), :class=>"btn btn-default", "data-toggle"=>"modal", "data-target"=>"#myModal" %>
+      <span class="pull-right btn btn-success fileinput-button btn-sm">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>上传图片</span>
+        <input id="fileupload" data-url="<%= cpanel_node_product_pictures_path(@node, @product) %>" multiple="" name="picture[image]" type="file" />
+      </span>
     </div>
-    <table class="table table-hover table-border">
+    <table class="table table-hover table-border" id="images_table">
       <thead>
         <th>图片</th>
         <th>封面</th>
@@ -46,3 +50,14 @@
     </table>
   </div>
 </div>
+<script type="text/javascript">
+  $(function () {
+    $('#fileupload').fileupload({
+      dataType: 'json',
+      done: function(e, data) {
+        $('#images_table').append('<tr id="image_' + data.result.id + '"><td><img src="' + data.result.url.s + 
+        '" /></td><td>' + data.result.is_cover + '</td><td>' + data.result.created_at + '</td><td><span class="pull-right"></span></td></tr>');
+      }
+    });
+  });
+</script>

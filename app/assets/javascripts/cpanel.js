@@ -3,16 +3,18 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.autosize
-//= require jquery.qeditor
+//= require jquery.validate
+//= require upload/vendor/jquery.ui.widget
+//= require upload/jquery.iframe-transport
+//= require upload/jquery.fileupload
+//= require simditor
+//= require artDialog/artDialog
 //= require turbolinks
 //= require cpanel/categories
 //= require cpanel/movies
 
 $(document).ready(function(){
-    $('#myModal').on('hide.bs.modal', function () {
-        $(this).removeData('bs.modal');
-    });
-    $("#product_description").qeditor({});
+    $('[data-behaviors~=autosize]').autosize();
 });
 
 $(function(){
