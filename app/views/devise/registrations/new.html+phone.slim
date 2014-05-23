@@ -1,0 +1,63 @@
+.content
+  = render 'shared/notification'
+  h1 class="suc"
+    = "注册 账号"
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = f.email_field :email, :autofocus => true, :class => "form-control", :placeholder => "邮箱"
+    = f.text_field :nickname, :class => "form-control", :placeholder => "账号"
+    = f.text_field :mobile, :class => "form-control", :placeholder => "电话"
+    = f.password_field :password, :class => "form-control", :placeholder => "密码"
+    = f.password_field :password_confirmation, :class => "form-control", :placeholder => "密码确认"
+    = f.submit "立 即 注 册", :class => "btn btn-positive btn-block"   
+javascript:
+  $('#new_member').validate({
+    rules: {
+      'member[email]': {
+        required: true,
+        email: true,
+        remote: '/members/check_email'
+      },
+      'member[nickname]': {
+        required: true,
+        remote: '/members/check_nickname'
+      },
+      'member[mobile]': {
+        required: true
+      },
+      'member[password]': {
+        required: true,
+        minlength: 8,
+        maxlength: 16
+      },
+      'member[password_confirmation]': {
+        required: true,
+        minlength: 8,
+        maxlength: 16
+      }
+    },
+    messages: {
+      'member[email]': {
+        required: '<%= resource.errors.generate_message :email, :blank %>',
+        email: '请填写有效的邮箱地址！',
+        remote: '此邮箱已经存在！'
+      },
+      'member[nickname]': {
+        required: '<%= resource.errors.generate_message :nickname, :blank %>',
+        remote: '此用户名已经存在！'
+      },
+      'member[mobile]': {
+        required: '<%= resource.errors.generate_message :mobile, :blank %>'
+      },
+      'member[password]': {
+        required: '<%= resource.errors.generate_message :password, :blank %>',
+        minlength: '至少8位以上密码',
+        maxlength: '密码最多16位'
+      },
+      'member[password_confirmation]': {
+        required: '<%= resource.errors.generate_message :password_confirmation, :blank %>',
+        minlength: '至少8位以上密码',
+        maxlength: '密码最多16位'
+      }
+    }
+  });
+</script>
