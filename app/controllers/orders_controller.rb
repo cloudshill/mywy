@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
           line_item.order_id = @order.id
           line_item.save
         end
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: '你的订单已经生成，确认无误后可以支付！' }
         format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: '你的订单已经更新成功！' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
