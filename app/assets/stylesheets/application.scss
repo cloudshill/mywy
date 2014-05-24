@@ -714,12 +714,12 @@
   .goods-big-pic {
     height: 550px;
     padding: 20px 0 10px;
-    background: image-url("loading.gif") no-repeat center center
+    background: image-url("loading.gif") no-repeat center center;
   }
 
   .goods-big-pic img {
-      width: 500px;
-      height: 500px
+    max-width: 500px;
+    max-height: 500px;
   }
 
   .goods-small-pic li {
