@@ -2,7 +2,7 @@
   <% if params[:comeback] == "new_order" %>
   Turbolinks.visit('<%= new_order_path %>');
   <% else %>
-  Turbolinks.visit('<%= account_addresses_path %>');
+  Turbolinks.visit('<%= params[:back_url] %>');
   <% end %>
 <% end %>
 var message = {message: "保存成功！", status: 'success', placement: 'bottom' };

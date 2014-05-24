@@ -35,13 +35,13 @@
       <div class="row panel-body">        
           <div class="col-lg-8 col-sm-8 col-xs-12 goods-pic-box">
             <div class="goods-big-pic">
-              <%= image_tag(@product.pictures.first.image.url("500x500"), :id=>"goodsBigPic") %>
+              <%= image_tag(@product.pictures.first.image.url("origin"), :id=>"goodsBigPic") %>
             </div>
             <div class="goods-small-pic clearfix">
               <ul id="goodsPicList">
                 <% @product.pictures.each do |pic| %>
                 <li>
-                  <img src="<%= pic.image.url("50x50")%>" data-src="<%= pic.image.url("500x500")%>" />
+                  <img src="<%= pic.image.url("50x50")%>" data-src="<%= pic.image.url("origin")%>" />
                 </li>
                 <% end %>
               </ul>
