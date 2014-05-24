@@ -1,5 +1,9 @@
 <% if @address.errors.empty? %>
+  <% if params[:comeback] == "new_order" %>
+  Turbolinks.visit('<%= new_order_path %>');
+  <% else %>
   Turbolinks.visit('<%= account_addresses_path %>');
+  <% end %>
 <% end %>
 var message = {message: "保存成功！", status: 'success', placement: 'bottom' };
 Essage.show(message, 3000);
