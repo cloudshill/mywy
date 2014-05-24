@@ -26,6 +26,10 @@ class Account::AddressesController < ApplicationController
   def create
     @address = current_member.addresses.build(address_params)
     @address.save
+    if params[:comeback] == "new_order"
+      current_member.ship_address_id = @address.id
+      current_member.save
+    end
   end
 
   # PATCH/PUT /addresses/1
