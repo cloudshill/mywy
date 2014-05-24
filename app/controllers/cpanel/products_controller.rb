@@ -37,7 +37,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to cpanel_node_product_pictures_path(@node, @product), notice: '商品生成成功！' }
         format.json { render action: 'show', status: :created, location: @product }
       else
         format.html { render action: 'new' }
@@ -52,7 +52,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
     params[:product][:category_ids] ||= []
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to cpanel_node_product(@node, @product), notice: '商品更新成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -66,7 +66,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to cpanel_node_products(@node), notice: '删除商品成功!' }
       format.json { head :no_content }
     end
   end

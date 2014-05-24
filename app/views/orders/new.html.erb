@@ -95,9 +95,18 @@
                 <% end %>
                 <dl id="new_address">
                   <dd>
-                    <span>
-                    <%= link_to "使用新地址", account_addresses_path %>
-                    </span>
+                    <dt style="height:40px;">
+                      <input type="text" id="new_address_addressee" class="form-control pull-left" placeholder="收货人名称" style="width:80px;" />
+                      <input type="text" id="new_address_mobile" class="form-control pull-right" placeholder="收货人电话" style="width:100px;" />
+                    </dt>
+                    <dd>
+                      <textarea id="new_address_address" placeholder="收货地址" rows="2" class="form-control" style="width:198px;"></textarea>
+                    </dd>
+                    <dd>
+                      <span>
+                        <a href="#" id="new_address_button">使用新地址</a>
+                      </span>
+                    </dd>
                   </dd>
                 </dl>
               </div>
@@ -121,6 +130,11 @@
     </div>
   </div>
 </section>
+<form action="<%= account_addresses_path %>" id="new_address_form" data-remote="true" method="post">
+  <input type="hidden" name="address[addressee]" />
+  <input type="hidden" name="address[mobile]" />
+  <input type="hidden" name="address[address]" />
+</form>
 <script type="text/javascript">
   $("#checkoutAddrList dl[name='address_dl']").on("click", function() {
     var theDL = $(this);
@@ -135,8 +149,16 @@
     });
   });
 
-  $("#new_address").on("click", function() {
-
+  $('#new_address_button').on("click", function() {
+    if ($('#new_address_addressee').val() == "" || $('#new_address_mobile').val() == "" || $('#new_address_address').val() == "") {
+      alert("请输入收货人姓名，电话和地址！");
+      return false;
+    } else {
+      $("input[name='address[addressee]']").val($('#new_address_addressee').val());
+      $("input[name='address[mobile]']").val($('#new_address_mobile').val());
+      $("input[name='address[address]']").val($('#new_address_address').val());
+      $('#new_address_form').submit();
+    }
   });
 
   $('#new_order').validate({
