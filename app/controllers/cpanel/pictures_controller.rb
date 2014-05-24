@@ -19,7 +19,7 @@ class Cpanel::PicturesController < Cpanel::ApplicationController
   def destroy
   	@picture.destroy
     respond_to do |format|
-      format.html { redirect_to pictures_url }
+      format.html { redirect_to cpanel_node_product_pictures_path(@node, @product), notice: '删除图片成功!' }
       format.json { head :no_content }
     end
   end
