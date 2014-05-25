@@ -1,0 +1,167 @@
+#market-page
+  .container
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="#"
+            = "美月无忧"
+        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+          ul.nav.navbar-nav
+            li class="active"
+              = link_to "首页", root_path
+            li
+              = link_to "电影购票&影讯", movies_path
+            li
+              = link_to "愉快购物", products_path
+            li
+              = link_to "智能点餐", products_path
+            li
+              = link_to "尝试云购", products_path
+
+= render 'shared/notification'
+
+section#home_page
+  .container
+    .row
+      .col-md-9
+        .row
+          .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            .box.productcarousel
+              #market class="ui-slide-box"
+                .box-products.slide
+                  .ui-slide-control
+                    span class="title"
+                      = "最新上架"
+                    .pull-right
+                      a class="prev-next-btn left" data-slide="prev"
+                      a class="prev-next-btn right"  data-slide="next"
+                  .carousel-inner.ui-slide-content
+                    .item.active.product-grid.no-margin
+                      .row
+                        - Product.all.limit(4).order("created_at ASC").each do |product|
+                          .col-lg-3.col-sm-3.col-xs-12
+                            .products-item
+                              .item-thumb
+                                = link_to product_path(product) do
+                                  = image_tag(product.pictures.first.image.url("500x500")) if not product.pictures.blank?
+                              h3 class="item-name"
+                                = link_to product.name, product_path(product)
+                              .item-price
+                                = "#{product.price} 元"
+                              .item-action
+                                a onclick="return App.addToCart(this);" data-id="#{product.id}" data-type="#{product.class.name}"
+                                  i class="fa fa-plus-circle"
+                                  = " 加入购物车"
+          .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            #food.ui-slide-box
+              .ui-slide-control
+                span.title
+                  = "人气食品"
+                .pull-right
+                  a.prev-next-btn.left href="#" data-slide="prev"
+                  a.prev-next-btn.right href="#" data-slide="next"
+              .ui-slide-content
+                .row
+                  - Food.all.limit(5).order("created_at ASC").each do |food|
+                    .ui-slide-content-box.col-md-3
+                      = link_to food_path(food) do
+                        = image_tag(food.images.first.image.url("140x140")) if not food.images.blank?
+                      .controll-box style="height:60px;"
+                        p.name
+                          = link_to food_path(food) do
+                            = food.name
+                        p.price.text-danger
+                          = "#{food.price} 元"
+                      .controll-box
+                        a href="#" class="left pull-left" alt="订餐" onclick="return App.addToCart(this);" data-id="#{food.id}" data-type="#{food.class.name}"
+                          span.fa.fa-plus
+                        = favorite_heart_tag(food)
+          .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            #movie.ui-slide-box
+              .ui-slide-control
+                span.title
+                  = "电影"
+                .pull-right
+                  a.prev-next-btn.left href="#" data-slide="prev"
+                  a.prev-next-btn.right href="#"  data-slide="next"
+              .ui-slide-content
+                .row
+                  - Movie.all.limit(5).each do |movie|
+                    .ui-slide-content-box.col-md-3
+                      = link_to movie_path(movie) do
+                        = image_tag(movie.cover.url("140x140"))
+                      .controll-box
+                        a href="" class="left pull-left" alt="订票"
+                          span class="fa fa-plus"
+                        a href="" class="right pull-right" alt="赞"
+                          span class="fa fa-heart"
+          .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            #content
+              .ui-slide-control
+                span class="title"
+                  = '商城'
+              .ui-slide-content.newgoods
+                .row
+                  .col-md-12
+                    ul.home-goods-list.home-goods-listlt.clearfix
+                      li class="big"
+                        a href="#" target="_blank"
+                          = image_tag("weishengjin.png", :alt => "卫生巾")
+                      li
+                        a href="#" target="_blank"
+                          = image_tag("lingshi.png", :alt => "零食")
+                      li class="last"
+                        a href="#" target="_blank"
+                          = image_tag("zhiniaoku.png", :alt => "纸尿裤")
+                    ul.home-goods-list.home-goods-listrt.clearfix
+                      li class="small"
+                        a href="#" target="_blank"
+                          = image_tag("huazhuang.png", :alt=>"潮装学院")
+                      li class="small"
+                        a href="#" target="_blank"
+                          = image_tag("shouji.png", :alt => "手机")
+                      li class="small smallsublast"
+                        a href="#" target="_blank"
+                          = image_tag("wenxiong.png", :alt => "文胸")
+                      li class="small smalllast last"
+                        a href="http://www.xiaomi.com/item/1134900194" target="_blank"
+                          = image_tag("xiezi.png", :alt => "鞋子")
+      
+      .col-md-3
+        .ui-slide-box
+          .ui-slide-control
+            span class="title"
+              = "话费充值"
+          .ui-slide-content
+            form class="xm-recharge-form" action="#"
+              fieldset class="xm-recharge-tel"
+                label for="rechargeTel"
+                  = "手机号："
+                span id="rechargeTips" class="xm-recharge-tips"
+                input type="tel" class="form-control" name="rechargeTel" id="rechargeTel" placeholder="支持移动、联通、电信"
+              fieldset class="xm-recharge-amount clearfix"
+                span class="fieldset-name"
+                  = "面值："
+                label
+                  input type="radio" name="rechargeAmount" id="amount30" value="30"
+                  = "30元"
+                label
+                  input type="radio" name="rechargeAmount" id="amount50" value="50"
+                  = "50元"
+                label
+                  input type="radio" name="rechargeAmount" id="amount100" value="100" checked="true"
+                  = "100元"
+              fieldset class="xm-recharge-price clearfix"
+                span class="fieldset-name"
+                  = "价格："
+                span id="rechargePrice" class="fieldset-text"
+                  span
+                    = "98.4"
+                  = "元起"
+              fieldset class="xm-recharge-submit"
+                input id="rechargeBtn" class="btn btn-danger btn-recharge-submit disabled" type="submit" value="服务正在升级"
+        #movie class="ui-slide-box"
+          .ui-slide-control
+            span class="title"
+              = "特价商品"
+          .ui-slide-content

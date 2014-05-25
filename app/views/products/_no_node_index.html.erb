@@ -1,6 +1,6 @@
         <div id="content">
           <div class="content-top">
-          <% Node.all.each do |node| %>
+          <% Node.where("business_scope = 'mywy'").each do |node| %>
             <div class=" box productcarousel">
               <div id="content" class="ui-slide-box">
                 <div class="box-products slide" id="productcarousel<%= node.id %>">
