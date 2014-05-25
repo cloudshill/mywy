@@ -23,14 +23,14 @@
   <div class="form-group">
     <label>属性：</label>
       
-    <div id="category-group">
+    <div id="category-group" class="panel" style="padding-left:20px;padding-top:20px;">
       <% @node.categories.where(:parent_id => 0).each do |root| %>
         <div class="control-group">
           <label class="control-label">
-            <%= root.name %>
+            <%= root.name %>：
           </label>
-          <div class="controls">
-            <ul>
+          <div class="controls" style="padding-left:20px;">
+            <ul class="list-inline">
             <% root.children.each do |leave| %>
             <li>
               <label class="checkbox inline">
@@ -54,3 +54,14 @@
   <%= link_to '返回', cpanel_node_products_path(@node), :class => 'btn btn-default' %>
 </fieldset>
 <% end %>
+<script type="text/javascript">
+  var editor = new Simditor({
+    textarea: $('#product_description'),
+    upload: {
+      url: '',
+      params: null,
+      connectionCount: 3,
+      leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+    },
+  });
+</script>

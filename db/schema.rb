@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502061903) do
+ActiveRecord::Schema.define(version: 20140525092416) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -80,6 +80,9 @@ ActiveRecord::Schema.define(version: 20140502061903) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
   end
 
   add_index "categories", ["node_id"], name: "index_categories_on_node_id", using: :btree
