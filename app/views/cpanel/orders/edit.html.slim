@@ -12,4 +12,13 @@
         label
           = "实收金额："
         = f.text_field :receivable, :class => "form-control"
+      .form-group
+        
+      .form-group
+        label
+          = "购买商品"
+        ul.list-unstyled
+          - @order.line_items.each do |line_item|
+            li
+              = "#{line_item.line_itemable.name} X #{line_item.amount}"
       = f.submit "保存", :class => 'btn btn-default'
