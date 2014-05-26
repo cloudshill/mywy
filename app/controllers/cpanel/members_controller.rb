@@ -1,5 +1,5 @@
 class Cpanel::MembersController < Cpanel::ApplicationController
-  before_action :set_member, only: [:edit, :update]
+  before_action :set_member, only: [:edit, :update, :destroy]
 	def index
 		@members = Member.all
 	end
@@ -12,12 +12,18 @@ class Cpanel::MembersController < Cpanel::ApplicationController
     params[:member][:business_scope] ||= []
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to cpanel_members_path, notice: 'member was successfully updated.' }
+        format.html { redirect_to cpanel_members_path, notice: '会员信息更新成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    if @member.destroy
+      redirect_to cpanel_members_path, notice: '会员已经成功删除.'
     end
   end
 
