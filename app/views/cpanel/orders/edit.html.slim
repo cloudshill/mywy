@@ -6,6 +6,7 @@
   h2
     = "#{@order.id}"
   = form_for([:cpanel, @order], :validate => true) do |f|
+    = render 'shared/form_error_messages', form: f
     fieldset
       .form-group
         label

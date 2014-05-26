@@ -15,7 +15,7 @@ class Cpanel::OrdersController < Cpanel::ApplicationController
         format.html { redirect_to cpanel_orders_path, notice: '订单已经更新成功！' }
         format.json { head :no_content }
       else
-        format.html { redirect_to cpanel_orders_path, notice: '订单已经更新成功！' }
+        format.html { render action: 'edit', notice: '更新失败' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
