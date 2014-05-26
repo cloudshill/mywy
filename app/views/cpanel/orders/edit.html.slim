@@ -13,7 +13,21 @@
           = "实收金额："
         = f.text_field :receivable, :class => "form-control"
       .form-group
-        = f.text_field :address_id, :class => "form-control"
+        label
+          = "会员账号："
+        = @order.member.email
+      .form-group
+        label
+          = "收货人："
+        = @order.address.addressee
+      .form-group
+        label
+          = "收货电话："
+        = @order.address.mobile
+      .form-group
+        label
+          = "收货地址："
+        = @order.address.address
       .form-group
         label
           = "购买商品"
