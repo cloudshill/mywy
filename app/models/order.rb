@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   has_many :line_items
 
   validates :total_price, presence: true
+  validates :receivable, presence: true
   validates :address_id, presence: true
   validates :pay_method, presence: true
   validates :status, presence: true
@@ -56,7 +57,7 @@ class Order < ActiveRecord::Base
   def pay_url
     Alipay::Service.create_direct_pay_by_user_url(
       :out_trade_no      => id.to_s,
-      :price             => total_price,
+      :price             => receivable,
       :quantity          => '1',
       :discount          => '0',
       :subject           => "来自美月无忧 MeiYueWuYou.com 的订单！",

@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
     @line_items.each do |line_item|
       @order.total_price += (line_item.line_itemable.price * line_item.amount)
     end
+    @order.receivable = @order.total_price
 
     respond_to do |format|
       if @order.save

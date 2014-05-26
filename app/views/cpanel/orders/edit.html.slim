@@ -1,0 +1,13 @@
+.col-md-2
+  .sidebar
+    ul.nav.nav-list
+.col-md-10
+  h2
+    = "#{@order.id}"
+  = form_for([:cpanel, @order], :validate => true) do |f|
+    fieldset
+      .form-group
+        label
+          = "实收金额："
+        = f.text_field :receivable, :class => "form-control"
+      = f.submit "保存", :class => 'btn btn-default'

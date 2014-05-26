@@ -22,10 +22,10 @@
   <table class="table">
     <thead>
       <tr>
-        <th><input type="checkbox"></th>
         <th>ID</th>
         <th>名称</th>
-        <th>金额</th>
+        <th>总金额</th>
+        <th>实收金额</th>
         <th>订单生成时间</th>
         <th>支付方式</th>
         <th>状态</th>
@@ -35,7 +35,6 @@
     <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><input type="checkbox"></td>
         <td><%= order.id %></td>
         <td>
           <% order.line_items.each do |line_item| %>
@@ -43,14 +42,12 @@
           <% end %>
         </td>
         <td><%= order.total_price %> (元)</td>
+        <td><%= order.receivable %> (元)</td>
         <td><%= formattime(order.created_at, :unit => "hour") %></td>
         <td><%= order.pay_method %></td>
         <td><%= order.status %></td>
         <td>
-          <%= link_to "查看", cpanel_order_path(order) %> | 
-          <%= link_to "完成", "#" %> | 
-          <%= link_to "取消", "#" %> | 
-          <%= link_to "删除", cpanel_order_path(order), :method => :delete %>
+          <%= link_to "查看", edit_cpanel_order_path(order) %>
         </td>
       </tr>
       <% end %>

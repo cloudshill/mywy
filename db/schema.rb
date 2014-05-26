@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526020449) do
+ActiveRecord::Schema.define(version: 20140526025033) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(version: 20140526020449) do
     t.string   "pay_method"
     t.string   "status"
     t.integer  "address_id"
+    t.decimal  "receivable",  precision: 10, scale: 0
   end
 
   add_index "orders", ["member_id"], name: "index_orders_on_member_id", using: :btree
