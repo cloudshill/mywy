@@ -1,12 +1,13 @@
 class Cpanel::NaturesController < Cpanel::ApplicationController
   before_action :set_node
+  before_action :set_product
   before_action :set_nature, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:id].to_i == 0
-      @natures = @node.natures.where("parent_id = 0").order("id asc")
+      @natures = @product.natures.where("parent_id = 0").order("id asc")
     else
-      @natures = @node.natures.where(:parent_id => params[:id]).order("id asc")
+      @natures = @product.natures.where(:parent_id => params[:id]).order("id asc")
     end
   end
 
@@ -21,7 +22,7 @@ class Cpanel::NaturesController < Cpanel::ApplicationController
   end
 
   def create
-    @nature = @node.natures.build(nature_params)
+    @nature = @product.natures.build(nature_params)
 
     respond_to do |format|
       if @nature.save
@@ -50,6 +51,10 @@ class Cpanel::NaturesController < Cpanel::ApplicationController
     def set_node
       @node = Node.find(params[:node_id])
     end
+
+    def set_product
+      @product = Product.find(params[:product_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_nature
       @nature = Nature.find(params[:id])
@@ -58,6 +63,6 @@ class Cpanel::NaturesController < Cpanel::ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def nature_params
       params[:nature] = params[:tn]
-      params.require(:nature).permit(:name, :sort, :node_id, :parent_id)
+      params.require(:nature).permit(:name, :sort, :product_id, :parent_id)
     end
 end

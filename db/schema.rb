@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525152732) do
+ActiveRecord::Schema.define(version: 20140526020449) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -262,7 +262,7 @@ ActiveRecord::Schema.define(version: 20140525152732) do
 
   create_table "natures", force: true do |t|
     t.string   "name"
-    t.integer  "node_id"
+    t.integer  "product_id"
     t.integer  "parent_id"
     t.integer  "sort"
     t.datetime "created_at"

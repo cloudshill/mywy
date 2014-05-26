@@ -181,13 +181,13 @@ Mywy::Application.routes.draw do
     resources :nodes do
       resources :products do
         resources :pictures
-      end
-      resources :categories do
-        collection do
-          get :forming
+        resources :natures do
+          collection do
+            get :forming
+          end
         end
       end
-      resources :natures do
+      resources :categories do
         collection do
           get :forming
         end
