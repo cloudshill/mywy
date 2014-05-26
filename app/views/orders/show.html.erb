@@ -67,10 +67,21 @@
                       </tr>
                     <% end %>
                       <tr>
-                        <td colspan="5"><%= @order.total_price %></td>
+                        <td colspan="5">总金额：￥ <%= @order.total_price %></td>
                       </tr>
                       <tr>
-                        <td colspan="5"><%= @order.address.address %></td>
+                        <td colspan="5">应付金额：￥ <%= @order.receivable %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="5">
+                          <p>
+                            收件人：<%= @order.address.addressee %> 
+                          </p>
+                          <p>电话：<%= @order.address.mobile %></p>
+                          <p>
+                            地址：<%= @order.address.address %>
+                          </p>
+                        </td>
                       </tr>
                     </tbody>
                 </table>

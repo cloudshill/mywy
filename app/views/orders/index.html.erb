@@ -43,6 +43,7 @@
                   <tr>
                     <th>商品</th>
                     <th>总额</th>
+                    <th>实付金额</th>
                     <th>收货地址</th>
                     <th></th>
                   </tr>
@@ -57,6 +58,7 @@
                         <% end %>
                       </td>
                       <td>￥<%= order.total_price %></td>
+                      <td>￥<%= order.receivable %></td>
                       <td><%= order.address.address if not order.address.blank? %></td>
                       <td>
                         <%= link_to '详情', order %>
