@@ -21,12 +21,6 @@ class Cpanel::MembersController < Cpanel::ApplicationController
     end
   end
 
-  def destroy
-    if @member.destroy
-      redirect_to cpanel_members_path, notice: '会员已经成功删除.'
-    end
-  end
-
   private
   def set_member
     @member = Member.find(params[:id])
