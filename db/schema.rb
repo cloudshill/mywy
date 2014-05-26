@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525092416) do
+ActiveRecord::Schema.define(version: 20140525152732) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -259,6 +259,23 @@ ActiveRecord::Schema.define(version: 20140525092416) do
     t.text     "genres"
     t.text     "countries"
   end
+
+  create_table "natures", force: true do |t|
+    t.string   "name"
+    t.integer  "node_id"
+    t.integer  "parent_id"
+    t.integer  "sort"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "natures_products", id: false, force: true do |t|
+    t.integer "nature_id",  null: false
+    t.integer "product_id", null: false
+  end
+
+  add_index "natures_products", ["nature_id", "product_id"], name: "index_natures_products_on_nature_id_and_product_id", using: :btree
+  add_index "natures_products", ["product_id", "nature_id"], name: "index_natures_products_on_product_id_and_nature_id", using: :btree
 
   create_table "nodes", force: true do |t|
     t.string   "name"

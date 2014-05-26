@@ -1,5 +1,4 @@
 Mywy::Application.routes.draw do
-
   mount WeixinRailsMiddleware::Engine, at: "/"
   
   resources :foods, only: [:show, :index] do
@@ -184,6 +183,11 @@ Mywy::Application.routes.draw do
         resources :pictures
       end
       resources :categories do
+        collection do
+          get :forming
+        end
+      end
+      resources :natures do
         collection do
           get :forming
         end

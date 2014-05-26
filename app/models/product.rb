@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :pictures
   has_many :members, :through => :favorites
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :natures
   has_many :comments, as: :commentable
   has_many :favorites, as: :favoriteable
 

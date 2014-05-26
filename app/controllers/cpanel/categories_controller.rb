@@ -80,6 +80,7 @@ class Cpanel::CategoriesController < Cpanel::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
+      params[:category] = params[:tn]
       params.require(:category).permit(:name, :sort, :node_id, :parent_id)
     end
 end

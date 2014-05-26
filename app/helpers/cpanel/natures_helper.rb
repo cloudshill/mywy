@@ -1,0 +1,2 @@
+module Cpanel::NaturesHelper
+end
