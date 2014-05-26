@@ -2,6 +2,7 @@
   .sidebar
     ul.nav.nav-list
 .col-md-10
+  = render 'shared/notification'
   h2
     = "#{@order.id}"
   = form_for([:cpanel, @order], :validate => true) do |f|
