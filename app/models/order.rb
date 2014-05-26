@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   has_many :line_items
 
   validates :total_price, presence: true
+  validates :receivable, presence: true
   validates :address_id, presence: true
   validates :pay_method, presence: true
   validates :status, presence: true
