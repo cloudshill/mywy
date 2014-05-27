@@ -5,7 +5,6 @@
   </div>
 </div>
 <div class="col-md-10">
-  <%= render 'shared/notification' %>
   <h2>订单数据</h2>
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -24,7 +23,7 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>名称</th>
+        <th>会员</th>
         <th>总金额</th>
         <th>实收金额</th>
         <th>订单生成时间</th>
@@ -38,9 +37,7 @@
       <tr>
         <td><%= order.id %></td>
         <td>
-          <% order.line_items.each do |line_item| %>
-          <%= line_item.line_itemable.name %> X <%= line_item.amount %> | 
-          <% end %>
+          <%= order.member.email %>
         </td>
         <td><%= order.total_price %> (元)</td>
         <td><%= order.receivable %> (元)</td>

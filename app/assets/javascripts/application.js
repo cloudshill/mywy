@@ -32,8 +32,11 @@ window.App = {
         amount: 1
 	    },
       success: function(result, status, xhr) {
-        var message = {message: "添加成功！", status: 'success', placement: 'bottom' };
+        var message = {message: "添加成功！马上跳转到购物车！", status: 'success', placement: 'bottom' };
         Essage.show(message, 3000);
+        setTimeout(function() {
+          location.href = '/carts';
+        }, 1000);
 	   	},
       error: function(result, status, xhr) {
         var message = {message: "请先登录,添加失败！", status: 'danger', placement: 'bottom' };

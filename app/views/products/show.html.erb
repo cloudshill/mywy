@@ -85,10 +85,10 @@
               <!--E 可选-->
               <dd class="clearfix" id="goodsDetailBtnBox">
                 <a href="#" class="btn btn-primary" onclick="return Product.addToCart(this);" data-id="<%= @product.id %>" data-type="<%= @product.class.name %>"><i class="fa fa-plus-circle"></i> 加入购物车</a>
-                <%= favorite_tag(@product) %>
+                <a href="#" class="btn btn-primary" onclick="return App.addToCart(this);" data-id="<%= @product.id %>" data-type="<%= @product.class.name %>"><i class="fa fa-plus-circle"></i> 马上购买</a>
               </dd>
               <dd class="goods-info-extent">
-               
+                <%= favorite_tag(@product) %>
               </dd>
             </dl>
           </div>
