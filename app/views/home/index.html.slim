@@ -26,32 +26,27 @@ section#home_page
       .col-md-9
         .row
           .col-lg-12.col-md-12.col-sm-12.col-xs-12
-            .box.productcarousel
+            .box
               #market class="ui-slide-box"
                 .box-products.slide
                   .ui-slide-control
                     span class="title"
                       = "最新上架"
-                    .pull-right
-                      a class="prev-next-btn left" data-slide="prev"
-                      a class="prev-next-btn right"  data-slide="next"
                   .carousel-inner.ui-slide-content
-                    .item.active.product-grid.no-margin
-                      .row
-                        - Product.all.limit(8).order("created_at DESC").each do |product|
-                          .col-lg-3.col-sm-3.col-xs-12
-                            .products-item
-                              .item-thumb
-                                = link_to product_path(product) do
-                                  = image_tag(product.pictures.first.image.url("500x500")) if not product.pictures.blank?
-                              h3 class="item-name"
-                                = link_to product.name, product_path(product)
-                              .item-price
-                                = "#{product.price} 元"
-                              .item-action
-                                a onclick="return App.addToCart(this);" data-id="#{product.id}" data-type="#{product.class.name}"
-                                  i class="fa fa-plus-circle"
-                                  = " 加入购物车"
+                    .item.active.product-grid.no-margin.row
+                      - Product.all.limit(8).order("created_at DESC").each do |product|
+                        .products-item.col-lg-3
+                          .item-thumb
+                            = link_to product_path(product) do
+                              = image_tag(product.pictures.first.image.url("500x500")) if not product.pictures.blank?
+                          h3 class="item-name"
+                            = link_to product.name, product_path(product)
+                          .item-price
+                            = "#{product.price} 元"
+                          .item-action
+                            a onclick="return App.addToCart(this);" data-id="#{product.id}" data-type="#{product.class.name}"
+                              i class="fa fa-plus-circle"
+                              = " 加入购物车"
           .col-lg-12.col-md-12.col-sm-12.col-xs-12
             #food.ui-slide-box
               .ui-slide-control
