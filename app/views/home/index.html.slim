@@ -38,7 +38,7 @@ section#home_page
                   .carousel-inner.ui-slide-content
                     .item.active.product-grid.no-margin
                       .row
-                        - Product.all.limit(4).order("created_at ASC").each do |product|
+                        - Product.all.limit(4).order("created_at DESC").each do |product|
                           .col-lg-3.col-sm-3.col-xs-12
                             .products-item
                               .item-thumb
