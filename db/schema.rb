@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526025033) do
+ActiveRecord::Schema.define(version: 20140531025911) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -284,6 +284,31 @@ ActiveRecord::Schema.define(version: 20140526025033) do
     t.string   "business_scope"
   end
 
+  create_table "option_types", force: true do |t|
+    t.string   "name"
+    t.string   "presentation"
+    t.integer  "position",     default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "option_values", force: true do |t|
+    t.string   "name"
+    t.string   "presentation"
+    t.integer  "position"
+    t.integer  "option_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "option_values_variants", id: false, force: true do |t|
+    t.integer "variant_id",      null: false
+    t.integer "option_value_id", null: false
+  end
+
+  add_index "option_values_variants", ["option_value_id", "variant_id"], name: "index_option_values_variants_on_option_value_id_and_variant_id", using: :btree
+  add_index "option_values_variants", ["variant_id", "option_value_id"], name: "index_option_values_variants_on_variant_id_and_option_value_id", using: :btree
+
   create_table "orders", force: true do |t|
     t.integer  "member_id"
     t.decimal  "total_price", precision: 10, scale: 0
@@ -315,6 +340,17 @@ ActiveRecord::Schema.define(version: 20140526025033) do
 
   add_index "pictures", ["product_id"], name: "index_pictures_on_product_id", using: :btree
 
+  create_table "product_option_types", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "option_type_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_option_types", ["option_type_id"], name: "index_product_option_types_on_option_type_id", using: :btree
+  add_index "product_option_types", ["product_id"], name: "index_product_option_types_on_product_id", using: :btree
+
   create_table "products", force: true do |t|
     t.string   "name"
     t.decimal  "price",       precision: 10, scale: 0
@@ -326,6 +362,7 @@ ActiveRecord::Schema.define(version: 20140526025033) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.string   "sku"
   end
 
   add_index "products", ["node_id"], name: "index_products_on_node_id", using: :btree
@@ -369,6 +406,21 @@ ActiveRecord::Schema.define(version: 20140526025033) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "variants", force: true do |t|
+    t.string   "sku",                                   default: "",    null: false
+    t.decimal  "price",         precision: 8, scale: 2,                 null: false
+    t.datetime "deleted_at"
+    t.boolean  "is_master",                             default: false
+    t.integer  "product_id"
+    t.integer  "count_on_hand",                         default: 0,     null: false
+    t.decimal  "cost_price",    precision: 8, scale: 2
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree
 
   create_table "waps", force: true do |t|
     t.string   "title"

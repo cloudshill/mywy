@@ -8,6 +8,9 @@ class Product < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :favorites, as: :favoriteable
   has_many :natures, :dependent => :destroy
+  has_many :variants, :dependent => :destroy
+  has_many :product_option_types, dependent: :destroy, inverse_of: :product
+  has_many :option_types, through: :product_option_types
 
   validates :name, presence: true
   validates :price, presence: true

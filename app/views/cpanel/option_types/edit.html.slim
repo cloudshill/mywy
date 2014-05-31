@@ -1,0 +1,53 @@
+= render 'cpanel/shared/products_sidebar'
+.col-md-10
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        a href=cpanel_products_path
+          = "商品管理"
+      li
+        a href=cpanel_option_types_path
+          = "可选属性"
+    h2
+      = "可选属性"
+      a href="#" id="new_option_value" data-url="#{cpanel_option_type_option_values_path(@option_type)}" data-no-turbolink=""
+        span.pull-right.label.label-success
+          = "添加属性值"
+    = form_for([:cpanel, @option_type]) do |f|
+      fieldset
+        legend align="center"
+          = "创建可选属性"
+        .form-group
+          = f.label :name
+          = f.text_field :name, :class => "form-control"
+        .form-group
+          = f.label :presentation
+          = f.text_field :presentation, :class => "form-control"
+        = f.submit "保存", :class => "btn btn-default"
+    table.table id="option_values_table"
+      thead
+        tr
+          th
+            = "名称"
+          th
+            = "对外显示名称"
+          th
+            = "操作"
+      tbody
+        - OptionValue.all.each do |option_value|
+          tr
+            td
+              = option_value.name
+            td
+              = option_value.presentation
+            td
+              a href="#"
+                i.fa.fa-trash-o
+    
+javascript:
+  $("#new_option_value").on("click", function(){
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="text" name="option_value[name]" value="" class="form-control" /></td><td><input type="text" name="option_value[presentation]" class="form-control" /></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td><td></td></form></tr>';
+    $("#option_values_table").children('tbody').append(trHtml);
+  });

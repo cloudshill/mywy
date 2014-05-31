@@ -1,21 +1,9 @@
-<div class="col-md-2">
-  <div class="sidebar">
-    <ul class="nav nav-list">
-      <li>
-        <%= link_to "添加商品", new_cpanel_node_product_path(@node) %>
-      </li>
-      <li>
-        <%= link_to "商品列表", cpanel_node_products_path(@node) %>
-      </li>
-    </ul>
-  </div>
-</div>
+<%= render 'cpanel/shared/products_sidebar' %>
 <div class="col-md-10">
   <div class="content">
     <ul class="breadcrumb">
       <li>管理面板</li>
       <li>商品管理</li>
-      <li><%= @node.name %></li>
       <li><%= @product.name %></li>
       <li>图片管理</li>
     </ul>
@@ -23,7 +11,7 @@
       <span class="pull-right btn btn-success fileinput-button btn-sm">
         <i class="glyphicon glyphicon-plus"></i>
         <span>上传图片</span>
-        <input id="fileupload" data-url="<%= cpanel_node_product_pictures_path(@node, @product) %>" multiple="" name="picture[image]" type="file" />
+        <input id="fileupload" data-url="<%= cpanel_product_pictures_path(@product) %>" multiple="" name="picture[image]" type="file" />
       </span>
     </div>
     <table class="table table-hover table-border" id="images_table">
@@ -42,7 +30,7 @@
         <td><%= formattime(picture.created_at) %></td>
         <td>
           <span class="pull-right">
-            <%= link_to "删除", cpanel_node_product_picture_path(@node, @product, picture), :class=>"btn btn-danger", :method =>:delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to "删除", cpanel_product_picture_path(@product, picture), :class=>"btn btn-danger", :method =>:delete, data: { confirm: 'Are you sure?' } %>
           </span>
         </td>
       </tr>

@@ -1,5 +1,5 @@
 class Cpanel::PicturesController < Cpanel::ApplicationController
-	before_action :set_node_and_product
+	before_action :set_product
 	before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -19,14 +19,13 @@ class Cpanel::PicturesController < Cpanel::ApplicationController
   def destroy
   	@picture.destroy
     respond_to do |format|
-      format.html { redirect_to cpanel_node_product_pictures_path(@node, @product), notice: '删除图片成功!' }
+      format.html { redirect_to cpanel_product_pictures_path(@product), notice: '删除图片成功!' }
       format.json { head :no_content }
     end
   end
 
   private
-  	def set_node_and_product
-      @node = Node.find(params[:node_id])
+  	def set_product
   		@product = Product.find(params[:product_id])
   	end
     # Use callbacks to share common setup or constraints between actions.

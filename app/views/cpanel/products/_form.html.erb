@@ -1,82 +1,65 @@
 <%= form_for([:cpanel, @node, @product], :validate => true) do |f| %>
 <fieldset>
-  <div class="form-group">
-    <label>名称：</label>
-    <%= f.text_field :name, :class=>"form-control" %>
-  </div>
-  <div class="form-group">
-    <label>条形码：</label>
-    <%= f.text_field :barcode, :class=>"form-control" %>
-  </div>
-  <div class="form-group">
-    <label>零售价：</label>
-    <%= f.text_field :price, :class=>"form-control" %>
-  </div>
-  <div class="form-group">
-    <label>入货价：</label>
-    <%= f.text_field :inprice, :class=>"form-control" %>
-  </div>
-  <div class="form-group">
-    <label>库存量：</label>
-    <%= f.text_field :inventory, :class=>"form-control" %>
-  </div>
-  <div class="form-group">
-    <label>属性：</label>
-      
-    <div id="category-group" class="panel" style="padding-left:20px;padding-top:20px;">
-      <% @node.natures.where(:parent_id => 0).each do |root| %>
-        <div class="control-group">
-          <label class="control-label">
-            <%= root.name %>：
-          </label>
-          <div class="controls" style="padding-left:20px;">
-            <ul class="list-inline">
-            <% root.children.each do |leave| %>
-            <li>
-              <label class="checkbox inline">
-                <%= check_box_tag "product[nature_ids][]", leave.id, @product.natures.map(&:id).include?(leave.id) %>
-                <%= leave.name %>
-              </label>
-            </li>
-            <% end %>
-            </ul>
-          </div>
-        </div>
-      <% end %>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>名称：</label>
+      <%= f.text_field :name, :class=>"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label>SKU：</label>
+      <%= f.text_field :sku, :class=>"form-control" %>
     </div>
   </div>
-  <div class="form-group">
-    <label>分类：</label>
-      
-    <div id="category-group" class="panel" style="padding-left:20px;padding-top:20px;">
-      <% @node.categories.where(:parent_id => 0).each do |root| %>
-        <div class="control-group">
-          <label class="control-label">
-            <%= root.name %>：
-          </label>
-          <div class="controls" style="padding-left:20px;">
-            <ul class="list-inline">
-            <% root.children.each do |leave| %>
-            <li>
-              <label class="checkbox inline">
-                <%= check_box_tag "product[category_ids][]", leave.id, @product.categories.map(&:id).include?(leave.id) %>
-                <%= leave.name %>
-              </label>
-            </li>
-            <% end %>
-            </ul>
-          </div>
-        </div>
-      <% end %>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>入货价：</label>
+      <%= f.text_field :inprice, :class=>"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label>零售价：</label>
+      <%= f.text_field :price, :class=>"form-control" %>
     </div>
   </div>
-  <div class="form-group">
-    <label>描述：</label>
-    <%= f.text_area :description, :class => "form-control", 'data-behaviors' => 'autosize' %>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>库存量：</label>
+      <%= f.text_field :inventory, :class=>"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <label>条形码：</label>
+      <%= f.text_field :barcode, :class=>"form-control" %>
+    </div>
   </div>
-  <%= f.submit "保存", :class => 'btn btn-default' %>
-  or
-  <%= link_to '返回', cpanel_node_products_path(@node), :class => 'btn btn-default' %>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>可选属性：</label>
+      <select multiple name="product[option_type_ids][]" id="e9" class="form-control" style="width:345px;">
+        <% OptionType.all.each do |option_type| %>
+        <option value="<%= option_type.id %>"><%= option_type.presentation %>（<%= option_type.name %>）</option>
+        <% end %>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label>所属节点：</label>
+      <%= f.select :node_id, Node.where("business_scope = 'mywy'").collect{|n| [n.name, n.id]}, {:prompt => "请选择一种类型"}, :class=>"form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <label>描述：</label>
+      <%= f.text_area :description, :class => "form-control", 'data-behaviors' => 'autosize' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <%= f.submit "保存", :class => 'btn btn-default' %>
+      or
+      <%= link_to '返回', cpanel_products_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
 </fieldset>
 <% end %>
 <script type="text/javascript">
@@ -89,4 +72,5 @@
       leaveConfirm: '正在上传文件，如果离开上传会自动取消'
     },
   });
+  $("#e9").select2();
 </script>

@@ -1,7 +1,9 @@
 /*
  *= require font-awesome
  *= require simditor
+ *= require select2
  *= require artDialog/default
+ *= require select2-bootstrap
 */
 
 @import "bootstrap";
@@ -202,4 +204,20 @@ hr {
   font-size: 200px;
   direction: ltr;
   cursor: pointer;
+}
+
+fieldset legend {
+  background-color: white;
+  color: #9fc820;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+fieldset legend i {
+  color: #5498da;
 }

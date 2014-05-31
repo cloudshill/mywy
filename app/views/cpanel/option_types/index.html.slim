@@ -1,0 +1,36 @@
+= render 'cpanel/shared/products_sidebar'
+.col-md-10
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        = "商品管理"
+      li
+        = "可选属性"
+    h2
+      = "可选属性"
+      a href=new_cpanel_option_type_path
+        span.pull-right.label.label-success
+          = "添加可选属性"
+    table.table
+      thead
+        tr
+          th
+            = "名称"
+          th
+            = "对外显示名称"
+          th
+            = "操作"
+      tbody
+        - @option_types.each do |option_type|
+          tr
+            td
+              = option_type.name
+            td
+              = option_type.presentation
+            td
+              a href=edit_cpanel_option_type_path(option_type)
+                i.fa.fa-edit
+              a href=cpanel_option_type_path(option_type) method="delete"
+                i.fa.fa-trash-o

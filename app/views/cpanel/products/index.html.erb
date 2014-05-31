@@ -1,37 +1,34 @@
-<div class="col-md-2">
-  <div class="sidebar">
-    <ul class="nav nav-list">
-      <li>
-        <%= link_to "添加商品", new_cpanel_node_product_path(@node) %>
-      </li>
-      <li>
-        <%= link_to "商品列表", cpanel_node_products_path(@node) %>
-      </li>
-    </ul>
-  </div>
-</div>
+<%= render 'cpanel/shared/products_sidebar' %>
 <div class="col-md-10">
   <div class="content">
     <ul class="breadcrumb">
       <li>管理面板</li>
       <li>商品管理</li>
-      <li><%= @node.name %></li>
+      <li><%= @node.blank? ? "所有商品" : @node.name %></li>
     </ul>
-    <h2>卫生巾</h2>
+    <h2>
+      <%= @node.blank? ? "所有商品" : @node.name %>
+      <a href="<%= new_cpanel_product_path %>" >
+        <span class="pull-right label label-success">
+          添加商品
+        </span>
+      </a>
+    </h2>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">筛选</h3>
+        <h3 class="panel-title">搜索</h3>
       </div>
       <div class="panel-body">
-        <% @node.categories.where(:parent_id => 0).order("id ASC").each do |root| %>
-        <ul class="category">
-          <li><%= root.name %></li>
-          <li><%= render_cpanel_option_of_total_category(@node.id, root.id) %></li>
-          <% root.children.each do |leave| %>
-          <li><%= render_cpanel_option_of_single_category(leave.id, leave.name, @node.id, root.id) %></li>
-          <% end %>
-        </ul>
-        <br/>
+        <%= form_for Search.new(:product, params[:search]), :url => cpanel_products_path, :method => :get, :html => { :class=>"form-inline" } do |f| %>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail2">名称</label>
+            <%= f.text_field :name, :class=>"form-control", :placeholder=>"名称" %>
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword2">SKU</label>
+            <%= f.text_field :sku, :class=>"form-control", :placeholder=>"SKU" %>
+          </div>
+          <button type="submit" class="btn btn-default">搜 索</button>
         <% end %>
       </div>
     </div>
@@ -66,11 +63,10 @@
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">操作 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><%= link_to "查看", cpanel_node_product_path(@node, product) %></li>
-                <li><%= link_to "修改", edit_cpanel_node_product_path(@node, product) %></li>
-                <li><%= link_to "删除", cpanel_node_product_path(@node, product), :method => :delete %></li>
-                <li><%= link_to "上传图片", cpanel_node_product_pictures_path(@node, product) %></li>
-                <li><%= link_to "属性", cpanel_node_product_natures_path(@node, product) %></li>
+                <li><%= link_to "查看", cpanel_product_path(product) %></li>
+                <li><%= link_to "修改", edit_cpanel_product_path(product) %></li>
+                <li><%= link_to "删除", cpanel_product_path(product), :method => :delete %></li>
+                <li><%= link_to "上传图片", cpanel_product_pictures_path(product) %></li>
               </ul>
             </div>
           </td>
@@ -78,5 +74,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

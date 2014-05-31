@@ -178,6 +178,17 @@ Mywy::Application.routes.draw do
 
     resources :carts
 
+    resources :option_types do
+      resources :option_values
+    end
+
+    resources :products do
+      resources :pictures
+      collection do
+        get :search
+      end
+    end
+
     resources :nodes do
       resources :products do
         resources :pictures
