@@ -18,7 +18,7 @@ class Restaurant::FoodsController < Restaurant::ApplicationController
   end
 
   def search
-    @search = Search.new(:food, params[:search], :per_page => 2)
+    @search = Search.new(:food, params[:search])
     @search.order = 'name'
     @foods = @search.run
   end

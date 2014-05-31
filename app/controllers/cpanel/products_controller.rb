@@ -5,6 +5,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
   # GET /products
   # GET /products.json
   def index
+    @search = Search.new(:product, params[:search])
     if params[:search].blank?
       if params[:node_id].blank?
         @products = Product.all.paginate(:page => params[:page], :per_page => 30)
@@ -20,7 +21,6 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
         end
       end
     else
-      @search = Search.new(:product, params[:search])
       @search.order = 'name'
       @products = @search.run
     end
@@ -43,7 +43,10 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = @node.products.build(product_params)
+    if params[:product][:option_type_ids].present?
+      params[:product][:option_type_ids] = params[:product][:option_type_ids].split(',')
+    end
+    @product = Product.new(product_params)
 
     respond_to do |format|
       if @product.save
@@ -59,6 +62,9 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    if params[:product][:option_type_ids].present?
+      params[:product][:option_type_ids] = params[:product][:option_type_ids].split(',')
+    end
     params[:product][:category_ids] ||= []
     respond_to do |format|
       if @product.update(product_params)

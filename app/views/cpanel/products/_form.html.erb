@@ -33,11 +33,7 @@
   <div class="form-group row">
     <div class="col-md-6">
       <label>可选属性：</label>
-      <select multiple name="product[option_type_ids][]" id="e9" class="form-control" style="width:345px;">
-        <% OptionType.all.each do |option_type| %>
-        <option value="<%= option_type.id %>"><%= option_type.presentation %>（<%= option_type.name %>）</option>
-        <% end %>
-      </select>
+      <%= f.hidden_field :option_type_ids, :value => @product.option_type_ids.join(','), :class => "form-control" %>
     </div>
     <div class="col-md-6">
       <label>所属节点：</label>
@@ -72,5 +68,13 @@
       leaveConfirm: '正在上传文件，如果离开上传会自动取消'
     },
   });
-  $("#e9").select2();
+  $("#product_option_type_ids").select2({
+    placeholder: "Search for a movie",
+    multiple: true,
+    data: [
+    <% OptionType.all.each do |option_type| %>
+      {id:<%= option_type.id %>,text:'<%= option_type.name %>'},
+    <% end %>
+    ]
+  });
 </script>
