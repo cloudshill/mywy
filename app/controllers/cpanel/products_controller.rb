@@ -8,16 +8,16 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
     @search = Search.new(:product, params[:search])
     if params[:search].blank?
       if params[:node_id].blank?
-        @products = Product.all.paginate(:page => params[:page], :per_page => 30)
+        @products = Product.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
       else
         categories = []
         if not params[:category].blank?
           categories = params[:category].split("-").delete_if { |c| c=="0" or c==""}
         end
         if categories.blank?
-          @products = @node.products.paginate(:page => params[:page], :per_page => 30)
+          @products = @node.products.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
         else
-          @products = @node.products.joins(:categories).where(:categories_products => { :category_id => categories }).paginate(:page => params[:page], :per_page => 30)
+          @products = @node.products.joins(:categories).where(:categories_products => { :category_id => categories }).order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
         end
       end
     else
@@ -82,7 +82,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to cpanel_node_products(@node), notice: '删除商品成功!' }
+      format.html { redirect_to cpanel_products_path, notice: '删除商品成功!' }
       format.json { head :no_content }
     end
   end
