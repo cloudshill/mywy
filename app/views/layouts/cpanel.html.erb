@@ -39,13 +39,10 @@
         <a class="navbar-brand" href="index.html">美月无忧.</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">商品管理 <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <% Node.all.each do |node| %>
-            <li><%= link_to node.name, cpanel_node_products_path(node) %></li>
-            <% end %>
-          </ul>
+        <li <%= active_controller?("products") %> >
+          <%= link_to  cpanel_products_path do %>
+          <i class="icon-magic"></i> <span>商品</span>
+          <% end %>
         </li>
         <li <%= active_controller?("users") %> >
           <%= link_to  cpanel_members_path do %>

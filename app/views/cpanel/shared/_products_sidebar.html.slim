@@ -5,7 +5,7 @@
         = link_to "商品列表", cpanel_products_path
       li
         = link_to "option_types", cpanel_option_types_path
-    - if controller_name == 'products'
+    - if controller_name == 'products' and action_name == 'edit'
       ul.nav.nav-list
         li
           = link_to "图片", cpanel_product_pictures_path(@product)
