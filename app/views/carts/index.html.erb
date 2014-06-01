@@ -77,10 +77,10 @@
                         <small></small>
                       </td>
                       <td class="quantity" data-label="Quantity" style="vertical-align:middle;">
-                        <input type="text" name="quantity" data-id="<%= line_item.id %>" value="<%= line_item.amount %>" size="1" />
+                        <input type="text" name="quantity" data-id="<%= line_item.id %>" value="<%= line_item.quantity %>" size="1" />
                       </td>
-                      <td class="price" style="line-height:40px;">￥<%= line_item.line_itemable.price %></td>
-                      <td class="total" style="line-height:40px;">￥<%= line_item.line_itemable.price * line_item.amount %></td>
+                      <td class="price" style="line-height:40px;">￥<%= line_item.product.price %></td>
+                      <td class="total" style="line-height:40px;">￥<%= line_item.product.price * line_item.quantity %></td>
                       <td style="line-height:40px;">
                         <%= link_to "移出购物车", line_item_path(line_item.id), :remote => true, :method => :delete %>
                       </td>
@@ -108,13 +108,13 @@
 <script type="text/javascript">
 $("input[name='quantity']").change(function(){
   id = $(this).data("id");
-  amount = $(this).val();
+  quantity = $(this).val();
   $.ajax({
     url: "/line_items/" + id,
     type: "PUT",
     data: {
       line_item: {
-        amount: amount
+        quantity: quantity
       }
     }
   });

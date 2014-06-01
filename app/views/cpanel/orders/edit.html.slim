@@ -33,5 +33,5 @@
         ul.list-unstyled
           - @order.line_items.each do |line_item|
             li
-              = "#{line_item.line_itemable.name} X #{line_item.amount}"
+              = "#{line_item.product.name} X #{line_item.quantity}"
       = f.submit "保存", :class => 'btn btn-default'

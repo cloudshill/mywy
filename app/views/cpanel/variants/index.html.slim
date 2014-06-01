@@ -1,0 +1,43 @@
+= render 'cpanel/shared/products_sidebar'
+.col-md-10
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        = "商品管理"
+      li
+        = @product.name if not @product.blank?
+      li
+        = "商品细分"
+    h2
+      = "商品细分"
+      a href=new_cpanel_product_variant_path(@product)
+        span.pull-right.label.label-success
+          = "添加商品细分"
+    table.table
+      thead
+        tr
+          th
+            = "可选属性"
+          th
+            = "价格"
+          th
+            = "SKU"
+          th
+            = "操作"
+      tbody
+        - @variants.each do |variant|
+          tr
+            td
+              - variant.option_values.each do |option_value|
+                = "#{option_value.option_type.presentation}:#{option_value.presentation} "
+            td
+              = variant.price
+            td
+              = variant.sku
+            td
+              a href="#"
+                = "修改"
+              a href="#"
+                = "删除"

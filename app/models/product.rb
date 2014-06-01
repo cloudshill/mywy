@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :node
-  has_many :line_items, as: :line_itemable
+  has_many :line_items
   has_many :pictures
   has_many :members, :through => :favorites
   has_and_belongs_to_many :categories
@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true
   validates :price, presence: true
-  validates :inprice, presence: true
+  validates :cost_price, presence: true
   validates :barcode, presence: true
   validates :node_id, presence: true
 

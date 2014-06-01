@@ -1,0 +1,51 @@
+= form_for([:cpanel, @product, @variant], :validate => true) do |f|
+  fieldset
+    - @product.option_types.each do |option_type|
+      .form-group.row
+        .col-md-12
+          label
+            = option_type.presentation
+          select class="form-control" name="variant[option_value_ids][]"
+            option value="0"
+              = "请选择#{option_type.presentation}"
+            - option_type.option_values.each do |option_value|
+              option value="#{option_value.id}"
+                = option_value.presentation
+    .form-group.row
+      .col-md-6
+        label
+          = "SKU："
+        = f.text_field :sku, :class=>"form-control"
+    .form-group.row
+      .col-md-6
+        label
+          = "成本价："
+        = f.text_field :cost_price, :class=>"form-control"
+      .col-md-6
+        label
+          = "零售价："
+        = f.text_field :price, :class=>"form-control"
+    .form-group.row
+      .col-md-12
+        = f.submit "保存", :class => 'btn btn-default'
+table.table
+  thead
+    tr
+      th
+        = "可选属性"
+      th
+        = "价格"
+      th
+        = "SKU"
+      th
+        = "操作"
+  tbody
+    - @product.variants.each do |variant|
+      tr
+        td
+          = 
+        td
+          = variant.price
+        td
+          = variant.sku
+        td

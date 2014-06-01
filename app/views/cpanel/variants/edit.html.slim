@@ -1,0 +1,15 @@
+= render 'cpanel/shared/products_sidebar'
+.col-md-10
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        = "商品管理"
+      li
+        = @product.name
+      li
+        = "修改商品细分"
+    .row
+      .col-md-10
+        = render 'form'

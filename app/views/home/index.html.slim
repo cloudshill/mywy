@@ -44,7 +44,7 @@ section#home_page
                           .item-price
                             = "#{product.price} 元"
                           .item-action
-                            a onclick="return App.addToCart(this);" data-id="#{product.id}" data-type="#{product.class.name}"
+                            a onclick="return App.addToCart(this);" data-id="#{product.id}"
                               i class="fa fa-plus-circle"
                               = " 加入购物车"
           .col-lg-12.col-md-12.col-sm-12.col-xs-12
@@ -68,7 +68,7 @@ section#home_page
                         p.price.text-danger
                           = "#{food.price} 元"
                       .controll-box
-                        a href="#" class="left pull-left" alt="订餐" onclick="return App.addToCart(this);" data-id="#{food.id}" data-type="#{food.class.name}"
+                        a href="#" class="left pull-left" alt="订餐" onclick="return App.addToCart(this);" data-id="#{food.id}"
                           span.fa.fa-plus
                         = favorite_heart_tag(food)
           .col-lg-12.col-md-12.col-sm-12.col-xs-12

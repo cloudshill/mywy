@@ -184,6 +184,7 @@ Mywy::Application.routes.draw do
 
     resources :products do
       resources :pictures
+      resources :variants
       collection do
         get :search
       end

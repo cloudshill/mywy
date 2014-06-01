@@ -54,7 +54,7 @@
                     <tr>
                       <td>
                         <% order.line_items.each do |line_item| %>
-                        <%= line_item.line_itemable.name %>
+                        <%= line_item.product.name %>
                         <% end %>
                       </td>
                       <td>￥<%= order.total_price %></td>

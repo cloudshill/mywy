@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531025911) do
+ActiveRecord::Schema.define(version: 20140601090631) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -194,13 +194,13 @@ ActiveRecord::Schema.define(version: 20140531025911) do
   end
 
   create_table "line_items", force: true do |t|
-    t.integer  "amount",             default: 1
+    t.integer  "quantity",   default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "member_id"
     t.integer  "order_id"
-    t.string   "line_itemable_type"
-    t.integer  "line_itemable_id"
+    t.integer  "product_id"
+    t.integer  "variant_id"
   end
 
   create_table "members", force: true do |t|
@@ -354,7 +354,7 @@ ActiveRecord::Schema.define(version: 20140531025911) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.decimal  "price",       precision: 10, scale: 0
-    t.decimal  "inprice",     precision: 10, scale: 0
+    t.decimal  "cost_price",  precision: 10, scale: 0
     t.integer  "inventory"
     t.integer  "sales"
     t.string   "barcode"

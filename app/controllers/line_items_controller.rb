@@ -24,15 +24,14 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.where("line_itemable_id = ? AND line_itemable_type = ? AND member_id = ? AND order_id IS NULL", params[:id], params[:type], current_member.id).first
+    @line_item = LineItem.where("product_id = ? AND member_id = ? AND order_id IS NULL", params[:id], current_member.id).first
     if @line_item.blank?
       @line_item = LineItem.new
       @line_item.member_id = current_member.id
-      @line_item.line_itemable_id = params[:id]
-      @line_item.line_itemable_type = params[:type]
-      @line_item.amount = params[:amount]
+      @line_item.product_id = params[:id]
+      @line_item.quantity = params[:quantity]
     else
-      @line_item.amount += params[:amount].to_i
+      @line_item.quantity += params[:quantity].to_i
     end
   
     respond_to do |format|
@@ -75,6 +74,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:amount, :line_itemable_id, :line_itemable_type)
+      params.require(:line_item).permit(:quantity, :product_id)
     end
 end

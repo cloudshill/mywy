@@ -36,7 +36,7 @@
           th
             = "操作"
       tbody
-        - OptionValue.all.each do |option_value|
+        - @option_type.option_values.all.each do |option_value|
           tr
             td
               = option_value.name

@@ -60,10 +60,10 @@
                           <%= line_item_a_tag(line_item) %>
                         </td>
                         <td class="quantity" data-label="Quantity">
-                          <%= line_item.amount %>
+                          <%= line_item.quantity %>
                         </td>
-                        <td class="price" data-label="Unit Price">￥<%= line_item.line_itemable.price %></td>
-                        <td class="total" data-label="Total">￥<%= line_item.line_itemable.price * line_item.amount %></td>
+                        <td class="price" data-label="Unit Price">￥<%= line_item.product.price %></td>
+                        <td class="total" data-label="Total">￥<%= line_item.product.price * line_item.quantity %></td>
                       </tr>
                     <% end %>
                       <tr>

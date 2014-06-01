@@ -35,7 +35,7 @@
       <div class="row panel-body">        
           <div class="col-lg-8 col-sm-8 col-xs-12 goods-pic-box">
             <div class="goods-big-pic">
-              <%= image_tag(@product.pictures.first.image.url("origin"), :id=>"goodsBigPic") %>
+              <%= image_tag(@product.pictures.first.image.url("origin"), :id=>"goodsBigPic") if not @product.pictures.blank? %>
             </div>
             <div class="goods-small-pic clearfix">
               <ul id="goodsPicList">
@@ -82,10 +82,19 @@
                   <span class="fa fa-plus" onClick="setAmount.add('#quantity')"></span> 
                 </div>
               </dd>
+              <% @product.variants.each do |variant| %>
+              <dd class="goods-info-price">
+                <div class="item">
+                  <% variant.option_values.each do |option_value| %>
+                  <%= "#{option_value.option_type.presentation}:#{option_value.presentation} " %>
+                  <% end %>
+                </div>
+              </dd>
+              <% end %>
               <!--E 可选-->
               <dd class="clearfix" id="goodsDetailBtnBox">
-                <a href="#" class="btn btn-primary" onclick="return Product.addToCart(this);" data-id="<%= @product.id %>" data-type="<%= @product.class.name %>"><i class="fa fa-plus-circle"></i> 加入购物车</a>
-                <a href="#" class="btn btn-primary" onclick="return App.addToCart(this);" data-id="<%= @product.id %>" data-type="<%= @product.class.name %>"><i class="fa fa-plus-circle"></i> 马上购买</a>
+                <a href="#" class="btn btn-primary" onclick="return Product.addToCart(this);" data-id="<%= @product.id %>"><i class="fa fa-plus-circle"></i> 加入购物车</a>
+                <a href="#" class="btn btn-primary" onclick="return App.addToCart(this);" data-id="<%= @product.id %>"><i class="fa fa-plus-circle"></i> 马上购买</a>
               </dd>
               <dd class="goods-info-extent">
                 <%= favorite_tag(@product) %>

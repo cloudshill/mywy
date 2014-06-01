@@ -64,10 +64,10 @@
                       <input type="checkbox" name="line_items[]" value="<%= line_item.id %>" checked="true" style="display:none;" />
                     </td>
                     <td class="quantity" style="line-height:40px;">
-                      <%= line_item.amount %>
+                      <%= line_item.quantity %>
                     </td>
-                    <td class="price" style="line-height:40px;">￥<%= line_item.line_itemable.price %></td>
-                    <td class="total" style="line-height:40px;">￥<%= line_item.line_itemable.price * line_item.amount %></td>
+                    <td class="price" style="line-height:40px;">￥<%= line_item.product.price %></td>
+                    <td class="total" style="line-height:40px;">￥<%= line_item.product.price * line_item.quantity %></td>
                   </tr>
                 <% end %>
                 </tbody>

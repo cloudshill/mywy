@@ -20,16 +20,14 @@
 
 window.App = {
 	addToCart: function(el) {
-		var item_count, item_id, item_type;
+		var item_id;
     item_id = $(el).data("id");
-    item_type = $(el).data("type");
 	 	$.ajax({
 	    url: "/line_items",
       type: "POST",
       data: {
         id: item_id,
-        type: item_type,
-        amount: 1
+        quantity: 1
 	    },
       success: function(result, status, xhr) {
         var message = {message: "添加成功！马上跳转到购物车！", status: 'success', placement: 'bottom' };
@@ -225,15 +223,13 @@ window.App = {
 window.Product = {
   addToCart: function(el) {
     item_id = $(el).data("id");
-    item_type = $(el).data("type");
-    item_count = $("#quantity").val();
+    quantity = $("#quantity").val();
     $.ajax({
       url: "/line_items",
       type: "POST",
       data: {
         id: item_id,
-        type: item_type,
-        amount: item_count
+        quantity: quantity
       },
       success: function(result, status, xhr) {
         var message = {message: "添加成功！", status: 'success', placement: 'bottom' };

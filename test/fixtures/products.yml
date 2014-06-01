@@ -3,7 +3,7 @@
 one:
   name: MyString
   price: 9.99
-  inprice: 9.99
+  cost_price: 9.99
   inventory: 1
   sales: 1
   barcode: MyString
@@ -12,7 +12,7 @@ one:
 two:
   name: MyString
   price: 9.99
-  inprice: 9.99
+  cost_price: 9.99
   inventory: 1
   sales: 1
   barcode: MyString
