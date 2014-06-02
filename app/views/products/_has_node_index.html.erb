@@ -22,7 +22,7 @@
               <div class="products-item">
                 <div class="item-thumb">
                   <%= link_to product_path(product) do %>
-                  <%= image_tag(product.pictures.first.image.url("500x500")) %>
+                  <%= image_tag(product.pictures.first.image.url("500x500")) if not product.pictures.blank? %>
                   <% end %>
                 </div>
                 <h3 class="item-name"><%= link_to product.name, product_path(product) %></h3>

@@ -73,6 +73,9 @@
                       <td class="name" data-label="Product Name">
                         <%= line_item_a_tag(line_item) %>
                         <div class="cart-option">
+                          <% line_item.variant.option_values.each do |option_value| %>
+                          <%= "#{option_value.option_type.presentation}:#{option_value.presentation} " %>
+                          <% end %>
                         </div>
                         <small></small>
                       </td>

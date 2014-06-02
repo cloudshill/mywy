@@ -12,7 +12,11 @@ class Cpanel::VariantsController < Cpanel::ApplicationController
 
   def create
     @variant = @product.variants.build(variant_params)
-    @variant.save
+    if @variant.save
+      redirect_to cpanel_product_variants_path(@product), :notice => "添加成功！"
+    else
+      render :new, :notice => "添加失败！"
+    end
   end
 
   def destroy

@@ -61,6 +61,12 @@
                     </td>
                     <td class="name" data-label="Product Name">
                       <%= line_item_a_tag(line_item) %>
+                      <div class="cart-option">
+                        <% line_item.variant.option_values.each do |option_value| %>
+                        <%= "#{option_value.option_type.presentation}:#{option_value.presentation} " %>
+                        <% end %>
+                      </div>
+                      <small></small>
                       <input type="checkbox" name="line_items[]" value="<%= line_item.id %>" checked="true" style="display:none;" />
                     </td>
                     <td class="quantity" style="line-height:40px;">

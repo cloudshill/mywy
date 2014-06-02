@@ -30,6 +30,7 @@ class LineItemsController < ApplicationController
       @line_item.member_id = current_member.id
       @line_item.product_id = params[:id]
       @line_item.quantity = params[:quantity]
+      @line_item.variant_id = params[:variant]
     else
       @line_item.quantity += params[:quantity].to_i
     end
@@ -74,6 +75,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:quantity, :product_id)
+      params.require(:line_item).permit(:quantity, :product_id, :variant_id)
     end
 end

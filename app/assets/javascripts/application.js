@@ -224,12 +224,18 @@ window.Product = {
   addToCart: function(el) {
     item_id = $(el).data("id");
     quantity = $("#quantity").val();
+    variant = $('input:radio[name="variant"]:checked').val();
+    if(variant == null){
+      alert("请选中一个!");
+      return false;
+    }
     $.ajax({
       url: "/line_items",
       type: "POST",
       data: {
         id: item_id,
-        quantity: quantity
+        quantity: quantity,
+        variant: variant
       },
       success: function(result, status, xhr) {
         var message = {message: "添加成功！", status: 'success', placement: 'bottom' };
