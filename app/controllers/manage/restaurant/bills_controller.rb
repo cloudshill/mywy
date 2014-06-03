@@ -17,7 +17,7 @@ class Manage::Restaurant::BillsController < Manage::ApplicationController
 
   def create
     @bill = Bill.new(bill_params)
-    @bill.billable = @restaurant
+    @bill.restaurant_id = @restaurant.id
     @bill.sn = @restaurant.id.to_s + Time.now.to_i.to_s
     if @bill.save
       redirect_to manage_restaurant_restaurant_bill_path(@restaurant, @bill), :notice => '创建销售单成功！'

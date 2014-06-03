@@ -5,7 +5,7 @@ class Restaurant < ActiveRecord::Base
   has_many :favorites, as: :favoriteable
   has_one :wechat, as: :wechatable
   has_one :page, as: :pageable
-  has_many :bills, as: :billable
+  has_many :bills
 
   validates :name, presence: true
 end
