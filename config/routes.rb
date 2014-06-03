@@ -71,7 +71,6 @@ Mywy::Application.routes.draw do
   resources :members do
     collection do
       get :check_email
-      get :check_nickname
     end
   end
 

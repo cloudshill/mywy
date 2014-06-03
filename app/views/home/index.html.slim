@@ -44,7 +44,7 @@ section#home_page
                           .item-price
                             = "#{product.price} 元"
                           .item-action
-                            a onclick="return App.addToCart(this);" data-id="#{product.id}"
+                            = link_to product_path(product) do
                               i class="fa fa-plus-circle"
                               = " 加入购物车"
           .col-lg-12.col-md-12.col-sm-12.col-xs-12
@@ -90,37 +90,6 @@ section#home_page
                           span class="fa fa-plus"
                         a href="" class="right pull-right" alt="赞"
                           span class="fa fa-heart"
-          .col-lg-12.col-md-12.col-sm-12.col-xs-12
-            #content
-              .ui-slide-control
-                span class="title"
-                  = '商城'
-              .ui-slide-content.newgoods
-                .row
-                  .col-md-12
-                    ul.home-goods-list.home-goods-listlt.clearfix
-                      li class="big"
-                        a href="#" target="_blank"
-                          = image_tag("weishengjin.png", :alt => "卫生巾")
-                      li
-                        a href="#" target="_blank"
-                          = image_tag("lingshi.png", :alt => "零食")
-                      li class="last"
-                        a href="#" target="_blank"
-                          = image_tag("zhiniaoku.png", :alt => "纸尿裤")
-                    ul.home-goods-list.home-goods-listrt.clearfix
-                      li class="small"
-                        a href="#" target="_blank"
-                          = image_tag("huazhuang.png", :alt=>"潮装学院")
-                      li class="small"
-                        a href="#" target="_blank"
-                          = image_tag("shouji.png", :alt => "手机")
-                      li class="small smallsublast"
-                        a href="#" target="_blank"
-                          = image_tag("wenxiong.png", :alt => "文胸")
-                      li class="small smalllast last"
-                        a href="http://www.xiaomi.com/item/1134900194" target="_blank"
-                          = image_tag("xiezi.png", :alt => "鞋子")
       
       .col-md-3
         .ui-slide-box

@@ -19,7 +19,7 @@
         <h3 class="panel-title">搜索</h3>
       </div>
       <div class="panel-body">
-        <%= form_for @search, :url => cpanel_products_path, :method => :get, :html => { :class=>"form-inline" } do |f| %>
+        <%= form_for Search.new(:product), :url => cpanel_products_path, :method => :get, :html => { :class=>"form-inline" } do |f| %>
           <div class="form-group">
             <label class="sr-only" for="exampleInputEmail2">名称</label>
             <%= f.text_field :name, :class=>"form-control", :placeholder=>"名称" %>

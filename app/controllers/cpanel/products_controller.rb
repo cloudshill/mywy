@@ -5,7 +5,6 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @search = Search.new(:product, params[:search])
     if params[:search].blank?
       if params[:node_id].blank?
         @products = Product.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
@@ -21,6 +20,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
         end
       end
     else
+      @search = Search.new(:product, params[:search])
       @search.order = 'name'
       @products = @search.run
     end

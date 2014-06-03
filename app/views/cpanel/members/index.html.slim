@@ -1,0 +1,36 @@
+.col-md-2
+  .sidebar
+    ul.nav.nav-list
+      li
+        = link_to "会员列表", "#"
+.col-md-10
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        = "会员管理"
+    h2
+      = "会员"
+    table class="table" style="width:100%;"
+      thead
+        tr
+          th style="width: 100px;"
+            = "邮箱"
+          th style="width: 100px;"
+            = "注册时间"
+          th style="width: 100px;"
+            = "手机"
+          th style="width: 50px;"
+            = "操作"
+      tbody
+        - @members.each do |member|
+          tr
+            td
+              = member.email
+            td
+              = formattime(member.created_at)
+            td
+              = member.mobile
+            td
+              = link_to "修改", edit_cpanel_member_path(member), :class => "btn btn-default"

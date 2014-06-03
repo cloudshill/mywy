@@ -6,12 +6,10 @@ class Admin < ActiveRecord::Base
 
   attr_accessor :login
 
-  validates :nickname, :uniqueness => { :case_sensitive => false }
-
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-    	where(conditions).where(["lower(nickname) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    	where(conditions).where(["lower(email) = :value", { :value => login.downcase }]).first
     else
        	where(conditions).first
     end

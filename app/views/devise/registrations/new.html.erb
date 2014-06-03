@@ -47,13 +47,6 @@
                 <div class="col-sm-7 help-info">填写你常用的邮箱，用于登录，接收系统的一些优惠活动信息和修改密码的安全信息。</div>
               </div>
               <div class="form-group">
-                <%= f.label :nickname, :class => "col-sm-2 control-label" %>
-                <div class="col-sm-3">
-                  <%= f.text_field :nickname, :class => "form-control" %>
-                </div>
-                <div class="col-sm-7">用户名，可以是英文+数字，用于登录和个性化主页。</div>
-              </div>   
-              <div class="form-group">
                 <%= f.label :mobile, :class => "col-sm-2 control-label" %>
                 <div class="col-sm-3">
                   <%= f.text_field :mobile, :class => "form-control" %>
@@ -102,10 +95,6 @@
         email: true,
         remote: '/members/check_email'
       },
-      'member[nickname]': {
-        required: true,
-        remote: '/members/check_nickname'
-      },
       'member[mobile]': {
         required: true
       },
@@ -125,10 +114,6 @@
         required: '<%= resource.errors.generate_message :email, :blank %>',
         email: '请填写有效的邮箱地址！',
         remote: '此邮箱已经存在！'
-      },
-      'member[nickname]': {
-        required: '<%= resource.errors.generate_message :nickname, :blank %>',
-        remote: '此用户名已经存在！'
       },
       'member[mobile]': {
         required: '<%= resource.errors.generate_message :mobile, :blank %>'

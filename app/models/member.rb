@@ -12,8 +12,6 @@ class Member < ActiveRecord::Base
 
   attr_accessor :login, :uploader_secure_token
 
-  validates :nickname, :uniqueness => { :case_sensitive => false }
-
   has_one :employment
 
   has_many :line_items
@@ -30,7 +28,7 @@ class Member < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-    	where(conditions).where(["lower(nickname) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    	where(conditions).where(["lower(mobile) = :value OR lower(email) = :value", { :value => login.downcase }]).first
     else
        	where(conditions).first
     end

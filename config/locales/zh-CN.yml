@@ -225,7 +225,6 @@
       member:
         email: "邮箱"
         mobile: "手机"
-        nickname: "账号"
         password: "密码"
         remember_me: "记住我"
         current_password: "现用密码"

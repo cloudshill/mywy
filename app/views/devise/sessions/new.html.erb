@@ -34,11 +34,11 @@
 					<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f| %>
 						<div class="content" style="margin-top:30px;">					  
 							<div class="form-group">
-								<label class="col-sm-2 control-label">账号</label>
+								<label class="col-sm-2 control-label">邮箱 / 手机</label>
                 <div class="col-sm-3">	
 									<%= f.text_field :login, :autofocus => true, :class => "form-control" %>
 								</div>
-                <div class="col-sm-7 help-info">可以用邮箱，账号，手机登录。</div>
+                <div class="col-sm-7 help-info">可以用邮箱，手机登录。</div>
               </div>
 							<div class="form-group">
 								<%= f.label :password, :class => "col-sm-2 control-label" %>
