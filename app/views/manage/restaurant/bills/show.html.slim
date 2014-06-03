@@ -44,14 +44,14 @@ section#foods
                 - @bill.bill_items.each do |item|
                   tr
                     td
-                      = item.bill_itemable.name
+                      = item.food.name
                     td
                       a href="#" class="edit_amount_row" data-pk="#{item.id}" data-url="#{manage_restaurant_restaurant_bill_bill_item_path(@restaurant, @bill, item)}" data-placement="right"
-                        = item.amount
+                        = item.quantity
                     td
-                      = item.bill_itemable.price
+                      = item.food.price
                     td
-                      = item.bill_itemable.price * item.amount
+                      = item.food.price * item.quantity
                     td
                       a href="#"
                         = "删除"
@@ -66,8 +66,8 @@ javascript:
       },
       params: function(params) {
         //originally params contain pk, name and value
-        params.bill_item = { "amount" : "" };
-        params.update_attr = "amount";
+        params.bill_item = { "quantity" : "" };
+        params.update_attr = "quantity";
         return params;
       }
     });
@@ -97,7 +97,7 @@ javascript:
     });
   });
   $("#add_food").on("click", function(){
-    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="hidden" name="bill_item[bill_itemable_id]" id="food_select" style="width:300px;" /></td><td><input type="text" name="bill_item[amount]" class="form-control" style="width:50px;" /></td><td><input type="hidden" name="bill_item[bill_itemable_type]" value="Food" /></td><td></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
+    var trHtml = '<tr><form action="' + $(this).data("url") + '" data-remote="true" method="post"><td><input type="hidden" name="bill_item[food_id]" id="food_select" style="width:300px;" /></td><td><input type="text" name="bill_item[quantity]" class="form-control" style="width:50px;" /></td><td></td><td><span id="item_price"></span></td><td><input type="submit" value="保存" class="btn btn-success btn-sm" /></td></form></tr>';
     $("#foods_table").children('tbody').append(trHtml);
     $('#food_select').select2({
       ajax: {

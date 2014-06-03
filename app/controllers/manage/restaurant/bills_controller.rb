@@ -37,7 +37,7 @@ class Manage::Restaurant::BillsController < Manage::ApplicationController
   def checkout
     @bill.total_price = 0
     @bill.bill_items.each do |bill_item|
-      @bill.total_price += (bill_item.bill_itemable.price * bill_item.amount)
+      @bill.total_price += (bill_item.food.price * bill_item.quantity)
     end
     @bill.checkout = true
     @bill.save

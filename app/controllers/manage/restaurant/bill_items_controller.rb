@@ -11,8 +11,8 @@ class Manage::Restaurant::BillItemsController < Manage::ApplicationController
 
   def update
     if not params[:pk].blank?
-      if params[:update_attr] == "amount"
-        params[:bill_item][:amount] = params[:value]
+      if params[:update_attr] == "quantity"
+        params[:bill_item][:quantity] = params[:value]
       end
     end
     respond_to do |format|
@@ -39,6 +39,6 @@ class Manage::Restaurant::BillItemsController < Manage::ApplicationController
   end
 
   def params_bill_item
-    params.require(:bill_item).permit(:bill_itemable_id, :amount, :bill_itemable_type)
+    params.require(:bill_item).permit(:food_id, :quantity)
   end
 end
