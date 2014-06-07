@@ -22,12 +22,18 @@ window.App = {
 	addToCart: function(el) {
 		var item_id;
     item_id = $(el).data("id");
+    variant = $('input:radio[name="variant"]:checked').val();
+    if(variant == null){
+      alert("请选中一个!");
+      return false;
+    }
 	 	$.ajax({
 	    url: "/line_items",
       type: "POST",
       data: {
         id: item_id,
-        quantity: 1
+        quantity: 1,
+        variant: variant
 	    },
       success: function(result, status, xhr) {
         var message = {message: "添加成功！马上跳转到购物车！", status: 'success', placement: 'bottom' };
