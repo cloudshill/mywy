@@ -99,6 +99,9 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# for api 跨域
+gem 'rack-cors', require: 'rack/cors'
+
 # slim
 gem 'slim'
 

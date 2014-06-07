@@ -31,5 +31,12 @@ module Mywy
     I18n.enforce_available_locales = false
     config.time_zone = 'Beijing'
     config.encoding = "utf-8"
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '/*.json', headers: :any, methods: [:get, :post, :put, :delete, :destroy]
+      end
+    end
   end
 end

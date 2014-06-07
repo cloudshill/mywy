@@ -25,7 +25,7 @@
   <section id="home_page">
     <div class="container">
       <div class="row">
-        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <section class="col-xs-12">
           <div id="movie" class="ui-slide-box">
             <div class="ui-slide-control">
               <span class="title">商城</span>
@@ -34,7 +34,7 @@
               <% Product.all.order("sales ASC").limit(4).each do |product| %>
                 <div class="ui-slide-content-box">
                   <%= link_to product_path(product) do %>
-                    <%= image_tag(product.pictures.first.image.url("140x140")) %>
+                    <%= image_tag(product.pictures.first.image.url("140x140")) if not product.pictures.blank? %>
                   <% end %>
                   <div class="controll-box">
                     <a href="" class="left pull-left" alt="订票">
@@ -51,7 +51,7 @@
         </section>
       </div>
       <div class="row">
-        <section class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <section class="col-xs-12">
           <div id="movie" class="ui-slide-box">
             <div class="ui-slide-control">
               <span class="title">餐饮</span>
