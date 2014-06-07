@@ -277,4 +277,3 @@ window.Product = {
 $(document).on('page:update', function(){
   $('[data-behaviors~=autosize]').autosize();
 });
-$(function(){ $(document).foundation(); });
