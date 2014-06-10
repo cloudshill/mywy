@@ -1,4 +1,6 @@
 Mywy::Application.routes.draw do
+  mount Mywy::API => '/'
+  
   mount WeixinRailsMiddleware::Engine, at: "/"
   
   resources :foods, only: [:show, :index] do

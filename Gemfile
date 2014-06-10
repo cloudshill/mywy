@@ -99,6 +99,10 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Grape APIs
+gem 'grape', github: 'intridea/grape'
+gem 'grape-entity'
+
 # for api 跨域
 gem 'rack-cors', require: 'rack/cors'
 

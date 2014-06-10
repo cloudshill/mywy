@@ -32,10 +32,14 @@ module Mywy
     config.time_zone = 'Beijing'
     config.encoding = "utf-8"
 
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
         resource '/*.json', headers: :any, methods: [:get, :post, :put, :delete, :destroy]
+        resource '/api/*', headers: :any, methods: [:get, :post, :put, :delete, :destroy]
       end
     end
   end
