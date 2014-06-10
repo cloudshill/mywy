@@ -1,6 +1,7 @@
 class Cpanel::MembersController < Cpanel::ApplicationController
   before_action :set_member, only: [:edit, :update, :destroy]
 	def index
+    Member.all.each(&:save)
 		@members = Member.all
 	end
 

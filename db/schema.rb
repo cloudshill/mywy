@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603023528) do
+ActiveRecord::Schema.define(version: 20140610070750) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -220,8 +220,10 @@ ActiveRecord::Schema.define(version: 20140603023528) do
     t.string   "business_scope"
     t.string   "avatar"
     t.integer  "ship_address_id"
+    t.string   "authentication_token"
   end
 
+  add_index "members", ["authentication_token"], name: "index_members_on_authentication_token", unique: true, using: :btree
   add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
   add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
 
