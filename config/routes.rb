@@ -1,5 +1,5 @@
 Mywy::Application.routes.draw do
-  mount Mywy::API => '/'
+  mount API => '/'
   
   mount WeixinRailsMiddleware::Engine, at: "/"
   
