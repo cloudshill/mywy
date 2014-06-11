@@ -20,6 +20,11 @@ class API < Grape::API
       @products = Product.all
       present @products, with: APIEntities::Product
     end
+
+    get ":id" do
+      @product = Product.find(params[:id])
+      present @product, with: APIEntities::Product
+    end
   end
 
   resource :members do
