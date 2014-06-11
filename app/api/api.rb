@@ -5,6 +5,8 @@ class API < Grape::API
   prefix "api"
   format :json
 
+  helpers APIHelpers
+
   resource :nodes do
     desc "Return list of nodes"
     get do
@@ -12,4 +14,30 @@ class API < Grape::API
       present @nodes, with: APIEntities::Node
     end
   end
+
+  resource :products do
+    get do
+      @products = Product.all
+      present @products, with: APIEntities::Product
+    end
+  end
+
+  resource :members do
+    get ":id" do
+      authenticate!
+      @member = Member.find(params[:id])
+      present @member, with: APIEntities::Member
+    end
+
+    post "sign_in" do
+      @member = Member.find_for_authentication( login: params[:member][:login] )
+
+      if @member and @member.valid_password?( params[:member][:password] )
+        { :success => true, :auth_token => @member.authentication_token, :email => @member.email }
+      else
+        { :success => false, :auth_token => "", :email => "" }
+      end
+    end
+  end
+
 end
