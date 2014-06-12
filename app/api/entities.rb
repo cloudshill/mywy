@@ -5,6 +5,10 @@ module APIEntities
 
   class Product < Grape::Entity
     expose :id, :name, :price
+    expose(:cover) do |model, opts|
+      cover = model.pictures.first
+      APIEntities::Picture.represent(cover)
+    end
   end
 
   class DetailProduct < Grape::Entity
