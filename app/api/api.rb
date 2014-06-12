@@ -23,7 +23,7 @@ class API < Grape::API
 
     get ":id" do
       @product = Product.find(params[:id])
-      present @product, with: APIEntities::Product
+      present @product, with: APIEntities::DetailProduct
     end
   end
 
