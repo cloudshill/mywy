@@ -189,6 +189,9 @@ Mywy::Application.routes.draw do
       collection do
         get :search
       end
+      member do
+        get :categories
+      end
     end
 
     resources :nodes do

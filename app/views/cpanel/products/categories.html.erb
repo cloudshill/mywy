@@ -1,0 +1,43 @@
+<%= render 'cpanel/shared/products_sidebar' %>
+<div class="col-md-10">
+  <div class="content">
+    <ul class="breadcrumb">
+      <li>管理面板</li>
+      <li>商品管理</li>
+      <li><%= @product.name %></li>
+      <li>节点属性</li>
+    </ul>
+    <div class="row">
+      <div class="col-md-10">
+        <%= form_for([:cpanel, @node, @product], :validate => true) do |f| %>
+          <fieldset>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <% Category.roots.where(:node_id => @product.node.id).each do |root| %>
+                  <div class="control-group">
+                    <label class="control-label"><%= root.name %></label>
+                    <div class="controls">
+                      <% root.children.each do |leave| %>
+                      <label class="checkbox inline">
+                        <%= check_box_tag "product[category_ids][]", leave.id, @product.categories.map(&:id).include?(leave.id) %>
+                        <%= leave.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <%= f.submit "保存", :class => 'btn btn-default' %>
+                or
+                <%= link_to '返回', cpanel_products_path, :class => 'btn btn-default' %>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 class Cpanel::ProductsController < Cpanel::ApplicationController
   before_action :set_node
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :categories]
 
   # GET /products
   # GET /products.json
@@ -85,6 +85,10 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
       format.html { redirect_to cpanel_products_path, notice: '删除商品成功!' }
       format.json { head :no_content }
     end
+  end
+
+  def categories
+    
   end
 
   def search

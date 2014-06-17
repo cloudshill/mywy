@@ -8,6 +8,8 @@
     - if controller_name == 'products' and action_name == 'edit'
       ul.nav.nav-list
         li
+          = link_to "节点属性", categories_cpanel_product_path(@product)
+        li
           = link_to "图片", cpanel_product_pictures_path(@product)
         li
           = link_to "商品细分", cpanel_product_variants_path(@product)
