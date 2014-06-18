@@ -15,13 +15,6 @@ class Order < ActiveRecord::Base
   validates :status, presence: true
   validates :member_id, presence: true
 
-  # 添加 paid? completed? 等方法
-  status.options.each do |s|
-    define_method "#{s}?" do
-      self.status == s
-    end
-  end
-
   # 状态迁移方法
 
   def pend
