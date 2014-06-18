@@ -103,6 +103,8 @@ class OrdersController < ApplicationController
       when 'TRADE_FINISHED'
         # 交易完成
         @order.complete
+      when 'TRADE_SUCCESS'
+        @order.complete
       when 'TRADE_CLOSED'
         # 交易被关闭
         @order.cancel
