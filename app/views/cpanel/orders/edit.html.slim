@@ -1,37 +1,49 @@
-.col-md-2
-  .sidebar
-    ul.nav.nav-list
+= render 'cpanel/shared/products_sidebar'
 .col-md-10
-  h2
-    = "#{@order.id}"
-  = form_for([:cpanel, @order], :validate => true) do |f|
-    = render 'shared/form_error_messages', form: f
-    fieldset
-      .form-group
-        label
-          = "实收金额："
-        = f.text_field :receivable, :class => "form-control"
-      .form-group
-        label
-          = "会员账号："
-        = @order.member.email
-      .form-group
-        label
-          = "收货人："
-        = @order.address.addressee
-      .form-group
-        label
-          = "收货电话："
-        = @order.address.mobile
-      .form-group
-        label
-          = "收货地址："
-        = @order.address.address
-      .form-group
-        label
-          = "购买商品"
-        ul.list-unstyled
-          - @order.line_items.each do |line_item|
-            li
-              = "#{line_item.product.name} X #{line_item.quantity}"
-      = f.submit "保存", :class => 'btn btn-default'
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        = "订单管理"
+      li
+        = "修改订单"
+      li
+        = "订单编号：#{@order.id}"
+    .row
+      .col-md-10
+        = form_for([:cpanel, @order], :validate => true) do |f|
+          = render 'shared/form_error_messages', form: f
+          fieldset
+            .form-group
+              label
+                = "实收金额："
+              = f.text_field :receivable, :class => "form-control"
+            .form-group
+              label
+                = "订单状态："
+              = f.select :status, Order.status.options, {}, :class => "form-control"
+            .form-group
+              label
+                = "会员账号："
+              = @order.member.email
+            .form-group
+              label
+                = "收货人："
+              = @order.address.addressee
+            .form-group
+              label
+                = "收货电话："
+              = @order.address.mobile
+            .form-group
+              label
+                = "收货地址："
+              = @order.address.address
+            .form-group
+              label
+                = "购买商品"
+              ul.list-unstyled
+                - @order.line_items.each do |line_item|
+                  li
+                    = "#{line_item.product.name} X #{line_item.quantity}"
+            = f.submit "保存", :class => 'btn btn-default'

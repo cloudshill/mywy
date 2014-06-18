@@ -93,7 +93,11 @@
                       </tr>
                       <tr>
                         <td colspan="5">
-                          <%= @order.status %>
+                          <% if @order.status.opening? %>
+                          订单成功，等待支付！
+                          <% elsif @order.status.completed? %>
+                          已经完成支付！
+                          <% end %>
                         </td>
                       </tr>
                     </tbody>

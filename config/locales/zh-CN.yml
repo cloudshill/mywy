@@ -294,8 +294,11 @@
     status:
       apply: "申请中"
       work: "就职中"
-      paying: "等待支付"
-      delivering: "正在配送"
+      opening: "等待支付"
+      pending: "支付中"
+      paid: "已经完成支付"
+      completed: "已经完成交易"
+      canceled: "取消"
       finished: "已收货"
     account_type:
       subscribe: "订阅号"
