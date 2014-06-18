@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_filter :require_member
+  before_filter :require_member, :except => [:alipay_notify]
+  skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
   before_action :set_order, only: [:show, :edit, :update, :destroy, :pay]
 
   # GET /orders
