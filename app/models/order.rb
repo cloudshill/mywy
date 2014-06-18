@@ -33,15 +33,15 @@ class Order < ActiveRecord::Base
 
   # 只在 pending 和 paid 状态可以 complete
   def complete
-    if status.pendding? or status.paid?
-      add_plan if status.pendding? # 如果是 paid 状态，已经执行过 add_plan
+    if status.pending? or status.paid?
+      add_plan if status.pending? # 如果是 paid 状态，已经执行过 add_plan
       update_attribute :status, 'completed'
     end
   end
 
   # 只在 pending 和 paid 状态可以 cancel
   def cancel
-    if status.pendding? or status.paid?
+    if status.pending? or status.paid?
       remove_plan if status.paid? # 业务逻辑，取消订单
       update_attribute :status, 'canceled'
     end
