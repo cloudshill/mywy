@@ -25,14 +25,14 @@ class Order < ActiveRecord::Base
   # 状态迁移方法
 
   def pend
-    if opening?
+    if sex.opening?
       update_attribute :status => 'pending'
     end
   end
 
   # 只在 pending 状态可以 pay
   def pay
-    if pending?
+    if sex.pending?
       add_plan # 业务逻辑，订单生效
       update_attribute :status, 'paid'
     end
@@ -40,16 +40,16 @@ class Order < ActiveRecord::Base
 
   # 只在 pending 和 paid 状态可以 complete
   def complete
-    if pendding? or paid?
-      add_plan if pendding? # 如果是 paid 状态，已经执行过 add_plan
+    if sex.pendding? or sex.paid?
+      add_plan if sex.pendding? # 如果是 paid 状态，已经执行过 add_plan
       update_attribute :status, 'completed'
     end
   end
 
   # 只在 pending 和 paid 状态可以 cancel
   def cancel
-    if pendding? or paid?
-      remove_plan if paid? # 业务逻辑，取消订单
+    if sex.pendding? or sex.paid?
+      remove_plan if sex.paid? # 业务逻辑，取消订单
       update_attribute :status, 'canceled'
     end
   end

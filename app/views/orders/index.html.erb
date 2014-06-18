@@ -62,7 +62,7 @@
                       <td><%= order.address.address if not order.address.blank? %></td>
                       <td>
                         <%= link_to '详情', order %>
-                        <% if order.status != 'finished' %>
+                        <% if not order.status.completed? %>
                          - 
                         <%= link_to '取消订单', order, method: :delete, data: { confirm: 'Are you sure?' } %>
                         <% end %>

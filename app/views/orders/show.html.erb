@@ -91,9 +91,15 @@
                           </p>
                         </td>
                       </tr>
+                      <tr>
+                        <td colspan="5">
+                          <%= @order.status %>
+                        </td>
+                      </tr>
                     </tbody>
                 </table>
               </div>
+              <% if not @order.status.completed? %>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   选择支付方式
@@ -115,6 +121,7 @@
                   </table>
                 <% end %>
               </div>
+              <% end %>
             </div>
           </div>
         </div>
