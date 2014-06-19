@@ -37,7 +37,7 @@ class Account::AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+        format.html { redirect_to @address, notice: '地址已经修改成功了！' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

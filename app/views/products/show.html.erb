@@ -87,7 +87,7 @@
                 <div class="item">
                   <input type="radio" name="variant" value="<%= variant.id %>">
                   <% variant.option_values.each do |option_value| %>
-                  <%= "#{option_value.option_type.presentation}:#{option_value.presentation} " %>
+                  <%= "(#{option_value.option_type.presentation}:#{option_value.presentation}) " %>
                   <% end %>
                 </div>
               <% end %>

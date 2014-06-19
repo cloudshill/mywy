@@ -24,7 +24,7 @@ window.App = {
     item_id = $(el).data("id");
     variant = $('input:radio[name="variant"]:checked').val();
     if(variant == null){
-      alert("请选中一个!");
+      alert("请选择你要购买的商品!");
       return false;
     }
 	 	$.ajax({

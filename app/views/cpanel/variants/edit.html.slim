@@ -5,9 +5,11 @@
       li
         = "管理面板"
       li
-        = "商品管理"
+        a href=cpanel_products_path
+          = "商品管理"
       li
-        = @product.name
+        a href=edit_cpanel_product_path(@product)
+          = @product.name if not @product.blank?
       li
         = "修改商品细分"
     .row
