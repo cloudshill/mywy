@@ -83,14 +83,18 @@
                 </div>
               </dd>
               <dd class="goods-info-price">
-              <% @product.variants.each do |variant| %>
-                <div class="item">
-                  <input type="radio" name="variant" value="<%= variant.id %>">
-                  <% variant.option_values.each do |option_value| %>
-                  <%= "(#{option_value.option_type.presentation}:#{option_value.presentation}) " %>
+                <ul class="list-unstyled">
+                  <% @product.variants.each do |variant| %>
+                    <li style="border:solid 1px #ccc;margin:2px;padding-left:10px;">
+                      <div class="item">
+                        <input type="radio" name="variant" value="<%= variant.id %>">
+                        <% variant.option_values.each do |option_value| %>
+                        <%= "(#{option_value.option_type.presentation}:#{option_value.presentation}) " %>
+                        <% end %>
+                      </div>
+                    </li>
                   <% end %>
-                </div>
-              <% end %>
+                </ul>
               </dd>
               <!--E 可选-->
               <dd class="clearfix" id="goodsDetailBtnBox">
@@ -197,5 +201,9 @@
 <script type="text/javascript">
   $(document).ready(function(){
     Product.changeGoodsBigPic();
+    $("input[name='variant']").click(function() {
+      $(this).parent().parent().css('border-color', 'red');
+      $(this).parent().parent().siblings().css('border-color', '#ccc');
+    });
   });
 </script>
