@@ -18,6 +18,8 @@ class Product < ActiveRecord::Base
   validates :barcode, presence: true
   validates :node_id, presence: true
 
+  scope :popular, -> { where(:favorites.count => 5) }
+
   def favorited_by_member?(member)
     return false if member.blank?
     self.members.include?(member)

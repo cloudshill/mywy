@@ -17,7 +17,9 @@ class API < Grape::API
 
   resource :products do
     get do
-      @products = Product.all
+      @products = Product.all.order("created_at desc")
+      @products = @products.send(params[:type]) if ['excellent', 'no_reply', 'popular', 'recent'].include?(params[:type])
+      @products = @products.paginate(page: params[:page], per_page: params[:per_page] || 30)
       present @products, with: APIEntities::Product
     end
 
