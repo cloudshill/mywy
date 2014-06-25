@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   has_many :variants, :dependent => :destroy
   has_many :product_option_types, dependent: :destroy, inverse_of: :product
   has_many :option_types, through: :product_option_types
+  has_many :stock_items
 
   validates :name, presence: true
   validates :price, presence: true
@@ -23,6 +24,14 @@ class Product < ActiveRecord::Base
   def favorited_by_member?(member)
     return false if member.blank?
     self.members.include?(member)
+  end
+
+  def sales_volume
+    volume = 0
+    self.variants.each do |variant|
+      volume += variant.sales_volume.to_i
+    end
+    volume
   end
 
 end

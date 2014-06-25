@@ -4,6 +4,7 @@
  *= require select2
  *= require artDialog/default
  *= require select2-bootstrap
+ *= require component
 */
 
 @import "bootstrap";
@@ -12,7 +13,6 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: #f9f9f9;
   color: #333;
 }
 ul, li {
@@ -175,6 +175,7 @@ hr {
 .sidebar {
   border:solid 1px #ccc;
   background:#F0F0F0;
+  margin-bottom: 10px;
 }
 .content {
   border:solid 5px #F0F0F0;

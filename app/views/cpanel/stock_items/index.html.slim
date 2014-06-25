@@ -1,0 +1,48 @@
+= render 'cpanel/shared/products_sidebar'
+.col-md-10
+  .content
+    ul.breadcrumb
+      li
+        = "管理面板"
+      li
+        a href=cpanel_products_path
+          = "商品管理"
+      li
+        a href=edit_cpanel_product_path(@product)
+          = @product.name if not @product.blank?
+      li
+        = "库存管理"
+    .section-title
+      h2
+        = "添加库存"
+    = form_for([:cpanel, @product, @stock_item], :validate => true, :html => {:class=>"form-inline"}) do |f|
+      .form-group style="padding-left:20px;"
+        label
+          = "库存数量："
+        = f.text_field :count_on_hand, :class=>"form-control", :placeholder=>"数量"
+      .form-group style="padding-left:20px;padding-right:20px;"
+        label
+          = "型号："
+        = f.select :variant_id, @product.variants.map{ |m| [m.name, m.id] }, {:prompt=>"请选择"}, :class=>"form-control"
+      = f.submit "保存", :class=>"btn btn-default"
+    .section-title
+      h2
+        = "现存库存"
+    table.table
+      thead
+        tr
+          th
+            = "库存"
+          th
+            = "型号"
+          th
+            = "操作"
+      tbody
+        - @stock_items.each do |stock_item|
+          tr
+            td
+              = stock_item.count_on_hand
+            td
+              = stock_item.variant.name
+            td
+              = link_to "删除", cpanel_product_stock_item_path(@product, stock_item), :method => :delete, data: { confirm: 'Are you sure?' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618030336) do
+ActiveRecord::Schema.define(version: 20140624090549) do
 
   create_table "addresses", force: true do |t|
     t.string   "addressee"
@@ -389,6 +389,15 @@ ActiveRecord::Schema.define(version: 20140618030336) do
     t.string   "technology"
   end
 
+  create_table "stock_items", force: true do |t|
+    t.integer  "count_on_hand"
+    t.integer  "variant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.integer  "sales_volume"
+  end
+
   create_table "tickets", force: true do |t|
     t.integer  "member_id"
     t.integer  "cinema_id"
@@ -420,6 +429,7 @@ ActiveRecord::Schema.define(version: 20140618030336) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sales_volume"
   end
 
   add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree

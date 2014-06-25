@@ -69,6 +69,14 @@
                   <span id="goodsStarLevel"></span>
                   <a href="#goodsComment" id="goodsToComment"> 已有<%= @product.comments.count %>人评价 &gt;</a>
                 </div>
+                <div class="item">
+                  <label>累计销售：</label>
+                  <strong class="goods-info-price-num"><%= @product.sales_volume %></strong>
+                </div>
+                <div class="item">
+                  <span class="letter-spacing-2">库</span>存：
+                  <strong class="goods-info-price-num" id="count_on_hand"></strong>
+                </div>
                 <!-- 评价 E -->
                 <!--S 参与活动-->
                 <!--E 参与活动-->
@@ -87,7 +95,7 @@
                   <% @product.variants.each do |variant| %>
                     <li style="border:solid 1px #ccc;margin:2px;padding-left:10px;">
                       <div class="item">
-                        <input type="radio" name="variant" value="<%= variant.id %>">
+                        <input type="radio" name="variant" value="<%= variant.id %>" data-price="<%= variant.price %>" data-count="<%= variant.stock_item.count_on_hand %>">
                         <% variant.option_values.each do |option_value| %>
                         <%= "(#{option_value.option_type.presentation}:#{option_value.presentation}) " %>
                         <% end %>
@@ -204,6 +212,8 @@
     $("input[name='variant']").click(function() {
       $(this).parent().parent().css('border-color', 'red');
       $(this).parent().parent().siblings().css('border-color', '#ccc');
+      $("#goodsPrice").text($(this).data("price"));
+      $("#count_on_hand").text($(this).data("count"));
     });
   });
 </script>

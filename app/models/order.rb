@@ -33,10 +33,11 @@ class Order < ActiveRecord::Base
 
   # 只在 pending 和 paid 状态可以 complete
   def complete
-    #if status.pending? or status.paid?
-    #  add_plan if status.pending? # 如果是 paid 状态，已经执行过 add_plan
-    #  update_attribute :status, 'completed'
-    #end
+    self.line_items.each do |line_item|
+      line_item.variant.stock_item.count_on_hand -= line_item.quantity
+      line_item.variant.sales_volume += line_item.quantity
+      line_item.variant.stock_item.save
+    end
     update_attribute :status, 'completed'
   end
 
