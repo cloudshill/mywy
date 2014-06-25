@@ -39,7 +39,6 @@
             td
               = variant.sku
             td
-              a href="#"
+              a href=edit_cpanel_product_variant_path(@product, variant)
                 = "修改"
-              a href="#"
-                = "删除"
+              = link_to "删除", cpanel_product_variant_path(@product, variant), :method => :delete

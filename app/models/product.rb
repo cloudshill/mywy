@@ -1,17 +1,17 @@
 class Product < ActiveRecord::Base
   belongs_to :node
   has_many :line_items
-  has_many :pictures
+  has_many :pictures, :dependent => :destroy
   has_many :members, :through => :favorites
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :natures
-  has_many :comments, as: :commentable
-  has_many :favorites, as: :favoriteable
+  has_many :comments, as: :commentable, :dependent => :destroy
+  has_many :favorites, as: :favoriteable, :dependent => :destroy
   has_many :natures, :dependent => :destroy
   has_many :variants, :dependent => :destroy
   has_many :product_option_types, dependent: :destroy, inverse_of: :product
   has_many :option_types, through: :product_option_types
-  has_many :stock_items
+  has_many :stock_items, :dependent => :destroy
 
   validates :name, presence: true
   validates :price, presence: true
