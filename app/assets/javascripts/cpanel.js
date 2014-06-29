@@ -10,7 +10,7 @@
 //= require simditor
 //= require select2
 //= require select2_locale_zh-CN
-//= require artDialog/artDialog
+//= require dialog-min
 //= require jquery.ztree.all-3.5.min
 //= require turbolinks
 //= require cpanel/movies
