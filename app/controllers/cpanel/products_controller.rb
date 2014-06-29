@@ -23,6 +23,7 @@ class Cpanel::ProductsController < Cpanel::ApplicationController
       @search = Search.new(:product, params[:search])
       @search.order = 'name'
       @products = @search.run
+      @products = @products.paginate(:page => params[:page], :per_page => 30)
     end
   end
 

@@ -1,26 +1,31 @@
+<header class="bar bar-nav">
+  <a class="btn pull-left">客户端</a>
+  <a class="btn pull-right">分类</a>
+  <h1 class="title">美月无忧</h1>
+</header>
+<nav class="bar bar-tab">
+  <a href="<%= root_path %>" class="tab-item #{'active' if controller_name == 'waps' && action_name == 'show'}">
+    <span class="icon icon-home"></span>
+    <span class="tab-label">首页</span>
+  </a>
+  <a href="<%= carts_path %>" class="tab-item">
+    <span class="icon icon-gear"></span>
+    <span class="tab-label">购物车</span>
+  </a>
+  <a href="<%= nodes_path %>" class="tab-item">
+    <span class="icon icon-list"></span>
+    <span class="tab-label">分类</span>
+  </a>
+  <a href="#" class="tab-item #{'active' if controller_name == 'foods' && action_name == 'search'}">
+    <span class="icon icon-search"></span>
+    <span class="tab-label">搜索</span>
+  </a>
+  <a href="<%= edit_member_registration_path %>" class="tab-item">
+    <span class="icon icon-person"></span>
+    <span class="tab-label">我的</span>
+  </a>
+</nav>
 <div class="content">
-  <table class="navigation-box">
-    <tr>
-      <td>
-        <%= link_to products_path do %>
-          <span class="fa fa-shopping-cart"></span>
-          <span>商城</span>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to foods_path do %>
-          <span class="fa fa-cutlery"></span>
-          <span>餐厅</span>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to movies_path do %>
-          <span class="fa fa-file-video-o"></span>
-          <span>电影</span>
-        <% end %>
-      </td>
-    </tr>
-  </table>
   <%= render 'shared/notification' %>
   <section id="home_page">
     <div class="container">

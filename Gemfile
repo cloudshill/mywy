@@ -51,7 +51,7 @@ gem 'essage-rails'
 gem 'cancan'
 
 # 搜索
-gem 'rails-simple-search'
+gem 'rails-simple-search', '~> 0.9.8'
 
 # getvideo is parse video information on Ruby, you can get video media download url, cover, flash url and title.
 gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
@@ -59,7 +59,7 @@ gem 'getvideo', :git => 'git@github.com:yeeli/getvideo.git'
 # 微信
 gem 'weixin_rails_middleware', "~> 1.2.3"
 gem 'weixin_authorize', '~> 1.5.7'
-gem 'twitter_ratchet_rails'
+gem 'twitter_ratchet_rails', '~> 0.0.2'
 
 # redis
 gem "redis-namespace", "~> 1.4.1"
