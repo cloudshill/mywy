@@ -53,6 +53,15 @@ class API < Grape::API
         { :success => false, :auth_token => "", :email => "" }
       end
     end
+
+    post "sign_up" do
+      @member = Member.new(params[:member])
+      if @member.save
+        { :success => true, :auth_token => @member.authentication_token, :email => @member.email }
+      else
+        { :success => false, :auth_token => "", :email => "" }
+      end
+    end
   end
 
 end
