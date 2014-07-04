@@ -280,6 +280,15 @@ window.Product = {
   }
 };
 
+NProgress.configure({
+  speed: 300,
+  minimum: 0.03,
+  ease: 'ease'
+});
+
+$(document).on('page:fetch',   function() { NProgress.start(); });
+$(document).on('page:change',  function() { NProgress.done(); });
+$(document).on('page:restore', function() { NProgress.remove(); });
 $(document).on('page:update', function(){
   $('[data-behaviors~=autosize]').autosize();
 });
