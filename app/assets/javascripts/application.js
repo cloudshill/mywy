@@ -14,6 +14,7 @@
 //= require select2
 //= require select2_locale_zh-CN
 //= require dialog-min
+//= require nprogress
 //= require turbolinks
 //= require_self
 //= require_tree ./plugins
